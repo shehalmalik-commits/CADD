@@ -12,17 +12,13 @@ import {
   PenTool,
   ShieldCheck,
   Wrench,
-  BarChart3,
   CheckCircle2,
   Award,
-  UserCheck,
   Sparkles,
   Tag,
-  Compass
+  MessageSquare,
+  ArrowUpRight
 } from 'lucide-react';
-import SectionHeading from './ui/SectionHeading';
-import Button from './ui/Button';
-import useAutoCarousel from '../hooks/useAutoCarousel';
 
 export default function FaqSection({ onOpenDemo }) {
   const [activeCategory, setActiveCategory] = useState('all');
@@ -31,13 +27,13 @@ export default function FaqSection({ onOpenDemo }) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const categories = [
-    { id: 'all', label: 'All FAQs (29)', icon: <HelpCircle className="w-4 h-4" /> },
-    { id: 'institute', label: 'CADD Centre & Overview', icon: <ShieldCheck className="w-4 h-4" /> },
-    { id: 'autocad-civil', label: 'AutoCAD, Civil 3D & Civil', icon: <PenTool className="w-4 h-4" /> },
-    { id: 'bim', label: 'BIM & Architecture', icon: <Layers className="w-4 h-4" /> },
-    { id: 'interior-vis', label: 'Interior Design & 3ds Max', icon: <BookOpen className="w-4 h-4" /> },
-    { id: 'mep-mech', label: 'MEP, Mechanical & SolidWorks', icon: <Wrench className="w-4 h-4" /> },
-    { id: 'eligibility-careers', label: 'Eligibility, Beginners & Careers', icon: <Award className="w-4 h-4" /> },
+    { id: 'all', label: 'All FAQs (29)', icon: <HelpCircle className="w-3.5 h-3.5 shrink-0" /> },
+    { id: 'institute', label: 'CADD Centre & Overview', icon: <ShieldCheck className="w-3.5 h-3.5 shrink-0" /> },
+    { id: 'autocad-civil', label: 'AutoCAD & Civil 3D', icon: <PenTool className="w-3.5 h-3.5 shrink-0" /> },
+    { id: 'bim', label: 'BIM & Architecture', icon: <Layers className="w-3.5 h-3.5 shrink-0" /> },
+    { id: 'interior-vis', label: 'Interior & 3ds Max', icon: <BookOpen className="w-3.5 h-3.5 shrink-0" /> },
+    { id: 'mep-mech', label: 'MEP & SolidWorks', icon: <Wrench className="w-3.5 h-3.5 shrink-0" /> },
+    { id: 'eligibility-careers', label: 'Eligibility & Placements', icon: <Award className="w-3.5 h-3.5 shrink-0" /> },
   ];
 
   // Complete 29 SEO-Optimized FAQs for Manjeri & Malappuram
@@ -267,264 +263,232 @@ export default function FaqSection({ onOpenDemo }) {
     return matchesCategory && matchesSearch;
   });
 
-  // Mobile shows one question per slide instead of a tall accordion stack.
-  const { railProps, index: slide, goTo } = useAutoCarousel(filteredFaqs.length, { paused: true });
-
-  // Reset slide index and expand state on category/search change
+  // Reset open item and expand state on category/search change
   useEffect(() => {
-    goTo(0);
+    setOpenIdx(0);
     setIsExpanded(false);
-  }, [activeCategory, searchQuery, goTo]);
+  }, [activeCategory, searchQuery]);
 
-  const visibleDesktopFaqs = (isExpanded || filteredFaqs.length <= 8)
+  const visibleFaqs = (isExpanded || filteredFaqs.length <= 6)
     ? filteredFaqs
-    : filteredFaqs.slice(0, 8);
+    : filteredFaqs.slice(0, 6);
 
   return (
-    <section id="faq" className="relative py-10 sm:py-24 bg-[#F5F4F1] font-['Plus_Jakarta_Sans',sans-serif]">
+    <section id="faq" className="relative py-16 sm:py-24 bg-[#080D14] text-white font-['Plus_Jakarta_Sans',sans-serif] border-t border-white/5 overflow-hidden">
       {/* Schema.org JSON-LD Structured Data for Google Rich Results */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdData) }}
       />
 
-      <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
 
-        {/* SECTION HEADER */}
-        <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-12">
-          <SectionHeading
-            eyebrow="FREQUENTLY ASKED QUESTIONS"
-            title="CAD &amp; CADD Training in Manjeri, Malappuram"
-            description="Find clear answers about courses, AutoCAD &amp; BIM training, software coverage, eligibility, and career placement assistance at CADD Centre Manjeri."
-            align="center"
-          />
+          {/* LEFT COLUMN: Got Questions Badge, Photo Card with Floating Advisor Badge & Subtext */}
+          <div className="lg:col-span-5 flex flex-col items-start">
+            {/* Got Questions Pill Badge */}
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#181014] border border-[#E94B3C]/40 text-[#FF6B5A] text-xs font-semibold tracking-wider mb-6 shadow-sm">
+              <Sparkles className="w-3.5 h-3.5 text-[#FF6B5A]" />
+              <span>GOT QUESTIONS?</span>
+            </div>
 
-          {/* Search Input */}
-          <div className="mt-6 max-w-md mx-auto relative">
-            <Search className="w-4 h-4 text-[#9299A3] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search AutoCAD, BIM, MEP, Interior, Placement..."
-              className="w-full pl-9 pr-8 py-2.5 rounded-[8px] bg-white border border-[rgba(28,37,51,0.12)] text-xs sm:text-sm text-[#1C2533] placeholder-[#9299A3] shadow-2xs focus:outline-none focus:ring-2 focus:ring-[#E94B3C]/20 focus:border-[#E94B3C] transition-all"
-            />
-            {searchQuery && (
-              <button
-                type="button"
-                onClick={() => setSearchQuery('')}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-bold text-[#9299A3] hover:text-[#1C2533] cursor-pointer"
-                aria-label="Clear search"
-              >
-                <X className="w-4 h-4" />
-              </button>
-            )}
-          </div>
-        </div>
+            {/* Photo Card with Layered Frame Effect */}
+            <div className="relative w-full max-w-[420px] mx-auto lg:mx-0 group">
+              {/* Layered tilted background frame */}
+              <div className="absolute inset-0 rounded-[28px] border border-white/10 bg-white/[0.02] transform -rotate-3 scale-[1.01] pointer-events-none hidden sm:block" />
 
-        {/* 2-COLUMN MAIN LAYOUT GRID */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start max-w-5xl mx-auto">
-          
-          {/* Left Sidebar: Vertical Category Tabs */}
-          <div className="lg:col-span-4 grid grid-cols-2 lg:flex lg:flex-col gap-2">
-            {categories.map((cat) => {
-              const isActive = activeCategory === cat.id;
-              return (
-                <button
-                  key={cat.id}
-                  type="button"
-                  onClick={() => {
-                    setActiveCategory(cat.id);
-                    setOpenIdx(0);
-                  }}
-                  className={`w-full px-4 py-3 rounded-[12px] flex items-center justify-between text-left transition-all duration-200 cursor-pointer ${
-                    isActive
-                      ? 'bg-white text-[#1C2533] border border-[#E94B3C]/40 shadow-xs font-bold'
-                      : 'bg-white/60 hover:bg-white text-[#687282] hover:text-[#1C2533] border border-[rgba(28,37,51,0.08)] font-medium'
-                  }`}
+              {/* Main Photo Card */}
+              <div className="relative rounded-[28px] overflow-hidden border border-white/10 bg-[#0E1624] shadow-2xl">
+                <img
+                  src="/images/faq-advisor.jpg"
+                  alt="CADD Career Advisor"
+                  className="w-full aspect-[4/5] object-cover object-center transform transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                />
+
+                {/* Subtle gradient vignette at bottom */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#080D14]/90 via-[#080D14]/25 to-transparent pointer-events-none" />
+
+                {/* Floating Glassmorphism Advisor Badge */}
+                <div 
+                  onClick={onOpenDemo}
+                  className="absolute bottom-3.5 left-3.5 right-3.5 sm:bottom-4 sm:left-4 sm:right-4 p-3.5 rounded-2xl bg-[#080D14]/90 backdrop-blur-md border border-white/15 shadow-2xl flex items-center gap-3.5 cursor-pointer hover:border-[#E94B3C]/50 hover:bg-[#080D14]/95 transition-all group/badge"
                 >
-                  <div className="flex items-center gap-2.5">
-                    <span className={`p-1 rounded-[6px] transition-colors ${
-                      isActive ? 'bg-[#E94B3C]/10 text-[#E94B3C]' : 'text-[#9299A3]'
-                    }`}>
-                      {cat.icon}
-                    </span>
-                    <span className="text-xs sm:text-sm">{cat.label}</span>
+                  <div className="w-10 h-10 rounded-xl bg-[#E94B3C]/20 border border-[#E94B3C]/35 flex items-center justify-center shrink-0 text-[#FF6B5A] group-hover/badge:scale-105 transition-transform">
+                    <MessageSquare className="w-5 h-5" />
                   </div>
+                  <div className="min-w-0">
+                    <h4 className="text-xs sm:text-sm font-bold text-white leading-tight flex items-center gap-1.5">
+                      Need Expert Advice?
+                    </h4>
+                    <p className="text-[11px] sm:text-xs text-slate-300 leading-snug mt-0.5">
+                      Our counsellors are ready to guide your career path.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-                  <ChevronRight className={`w-3.5 h-3.5 transition-transform ${
-                    isActive ? 'text-[#E94B3C] translate-x-0.5' : 'text-[#9299A3]'
-                  }`} />
-                </button>
-              );
-            })}
+            {/* Sub-caption Text beneath Card */}
+            <p className="mt-5 text-xs sm:text-[13px] text-slate-400 leading-relaxed max-w-[420px]">
+              CADD Centre Manjeri offers industry-certified training in AutoCAD, BIM, Revit, MEP &amp; 3ds Max with 100% placement support.
+            </p>
           </div>
 
-          {/* MOBILE / TABLET: one question per slide */}
-          <div className="lg:hidden">
+          {/* RIGHT COLUMN: Headline, Subtitle, Search, Category Pills, Accordion */}
+          <div className="lg:col-span-7 flex flex-col">
+            {/* Title */}
+            <h2 className="text-4xl sm:text-5xl lg:text-[56px] font-['Playfair_Display',serif] font-medium text-white tracking-tight leading-tight">
+              Ask away<span className="text-[#E94B3C]">.</span>
+            </h2>
+
+            {/* Subtitle */}
+            <p className="mt-3 text-xs sm:text-sm text-slate-400 leading-relaxed max-w-xl">
+              Everything you need to know about CAD, BIM, MEP, Interior Design, and Placement Support at CADD Centre Manjeri.
+            </p>
+
+            {/* Search Input */}
+            <div className="mt-6 relative w-full">
+              <Search className="w-4 h-4 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search AutoCAD, BIM, MEP, Interior, Placement..."
+                className="w-full pl-11 pr-10 py-3 rounded-xl bg-[#0E1624] border border-white/10 text-xs sm:text-sm text-white placeholder-slate-400 shadow-inner focus:outline-none focus:ring-2 focus:ring-[#E94B3C]/30 focus:border-[#E94B3C] transition-all"
+              />
+              {searchQuery && (
+                <button
+                  type="button"
+                  onClick={() => setSearchQuery('')}
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white cursor-pointer"
+                  aria-label="Clear search"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              )}
+            </div>
+
+            {/* Horizontal Filter Category Pills */}
+            <div className="flex flex-wrap items-center gap-2 mt-4 mb-6">
+              {categories.map((cat) => {
+                const isActive = activeCategory === cat.id;
+                return (
+                  <button
+                    key={cat.id}
+                    type="button"
+                    onClick={() => {
+                      setActiveCategory(cat.id);
+                      setOpenIdx(0);
+                    }}
+                    className={`px-3.5 py-1.5 rounded-full text-xs flex items-center gap-1.5 transition-all duration-200 cursor-pointer ${
+                      isActive
+                        ? 'bg-[#E94B3C] text-white font-semibold shadow-md shadow-[#E94B3C]/25 border border-[#E94B3C]'
+                        : 'bg-white/[0.04] text-slate-300 hover:text-white hover:bg-white/[0.08] border border-white/10 font-medium'
+                    }`}
+                  >
+                    <span>{cat.icon}</span>
+                    <span>{cat.label}</span>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Accordion Questions List */}
             {filteredFaqs.length > 0 ? (
               <>
-                <div
-                  {...railProps}
-                  className="flex gap-3 overflow-x-auto snap-x snap-mandatory no-scrollbar pb-1 items-stretch"
-                >
-                  {filteredFaqs.map((item) => (
-                    <div key={item.id} className="snap-center shrink-0 w-full">
-                      <div className="h-full bg-white rounded-[16px] border border-[rgba(28,37,51,0.10)] shadow-2xs p-5 flex flex-col">
-                        <p className="text-sm font-bold text-[#1C2533] leading-snug">
-                          {item.question}
-                        </p>
+                <div className="divide-y divide-white/10 border-t border-b border-white/10">
+                  {visibleFaqs.map((item, idx) => {
+                    const isOpen = openIdx === idx;
 
-                        <div className="pt-3 mt-3 border-t border-[rgba(28,37,51,0.08)] text-xs text-[#687282] leading-relaxed space-y-3 flex-1">
-                          <p>{item.answer}</p>
-                        </div>
+                    return (
+                      <div
+                        key={item.id}
+                        className={`transition-colors duration-200 ${
+                          isOpen ? 'bg-white/[0.015]' : 'hover:bg-white/[0.01]'
+                        }`}
+                      >
+                        {/* Question Header */}
+                        <button
+                          type="button"
+                          onClick={() => setOpenIdx(isOpen ? null : idx)}
+                          className="w-full text-left py-4.5 px-1 flex items-start sm:items-center justify-between gap-4 cursor-pointer group"
+                        >
+                          <span className={`transition-colors leading-snug ${
+                            isOpen
+                              ? "font-['Playfair_Display',serif] text-base sm:text-lg lg:text-[19px] font-semibold text-[#FF6B5A]"
+                              : "font-['Playfair_Display',serif] text-sm sm:text-base font-normal text-slate-200 group-hover:text-white"
+                          }`}>
+                            {item.question}
+                          </span>
 
-                        <div className="pt-3 mt-1 flex flex-wrap items-center justify-between gap-2">
-                          <div className="flex items-center gap-1.5 text-emerald-600 font-semibold text-[11px]">
-                            <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
-                            <span>Authorized Certification &amp; Placements</span>
+                          <div className={`w-7 h-7 rounded-full border flex items-center justify-center shrink-0 transition-all duration-200 ${
+                            isOpen
+                              ? 'border-[#E94B3C]/50 bg-[#E94B3C]/15 text-[#FF6B5A]'
+                              : 'border-white/15 text-slate-400 group-hover:border-white/30 group-hover:text-white group-hover:bg-white/[0.03]'
+                          }`}>
+                            {isOpen ? (
+                              <X className="w-3.5 h-3.5" />
+                            ) : (
+                              <Plus className="w-3.5 h-3.5" />
+                            )}
                           </div>
+                        </button>
 
-                          <Button onClick={onOpenDemo} variant="link" size="sm">
-                            Enquire Course
-                          </Button>
-                        </div>
+                        {/* Answer Body */}
+                        <AnimatePresence initial={false}>
+                          {isOpen && (
+                            <motion.div
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: "auto", opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              transition={{ duration: 0.22, ease: "easeInOut" }}
+                            >
+                              <div className="pb-5 px-1 text-xs sm:text-sm text-slate-300 leading-relaxed space-y-3.5">
+                                <p>{item.answer}</p>
+
+                                <div className="pt-2 flex flex-wrap items-center justify-between gap-3">
+                                  <div className="flex items-center gap-1.5 text-emerald-400 font-medium text-xs sm:text-[13px]">
+                                    <CheckCircle2 className="w-4 h-4 shrink-0" />
+                                    <span>Authorized International Certification &amp; Placements</span>
+                                  </div>
+
+                                  <button
+                                    type="button"
+                                    onClick={onOpenDemo}
+                                    className="text-xs sm:text-[13px] font-semibold text-[#FF6B5A] hover:text-[#E94B3C] inline-flex items-center gap-1 cursor-pointer transition-colors group/link"
+                                  >
+                                    <span>Enquire Course</span>
+                                    <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
+                                  </button>
+                                </div>
+                              </div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
                       </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
 
-                {/* Slide controls */}
-                {filteredFaqs.length > 1 && (
-                  <div className="flex items-center justify-center gap-3 mt-3">
-                    <button
-                      type="button"
-                      onClick={() => goTo((slide - 1 + filteredFaqs.length) % filteredFaqs.length)}
-                      aria-label="Previous question"
-                      className="w-8 h-8 rounded-[8px] bg-white border border-[rgba(28,37,51,0.12)] text-[#1C2533] hover:text-[#E94B3C] hover:border-[#E94B3C]/40 flex items-center justify-center cursor-pointer active:scale-95"
-                    >
-                      <ChevronRight className="w-4 h-4 rotate-180" />
-                    </button>
-
-                    <span className="text-xs font-bold text-[#1C2533]">
-                      {slide + 1} <span className="text-[#9299A3] font-normal">/ {filteredFaqs.length}</span>
-                    </span>
-
-                    <button
-                      type="button"
-                      onClick={() => goTo((slide + 1) % filteredFaqs.length)}
-                      aria-label="Next question"
-                      className="w-8 h-8 rounded-[8px] bg-white border border-[rgba(28,37,51,0.12)] text-[#1C2533] hover:text-[#E94B3C] hover:border-[#E94B3C]/40 flex items-center justify-center cursor-pointer active:scale-95"
-                    >
-                      <ChevronRight className="w-4 h-4" />
-                    </button>
-                  </div>
-                )}
-              </>
-            ) : (
-              <div className="bg-white rounded-[16px] p-8 text-center border border-[rgba(28,37,51,0.10)] shadow-2xs">
-                <p className="text-sm font-semibold text-[#687282]">No matching questions found for "{searchQuery}".</p>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setSearchQuery('');
-                    setActiveCategory('all');
-                  }}
-                  className="mt-3 text-xs font-bold text-[#E94B3C] hover:underline cursor-pointer"
-                >
-                  Reset Search &amp; Category Filters
-                </button>
-              </div>
-            )}
-          </div>
-
-          {/* Right Column: Desktop Accordion Questions List */}
-          <div className="hidden lg:block lg:col-span-8 space-y-2.5">
-            {filteredFaqs.length > 0 ? (
-              <>
-                {visibleDesktopFaqs.map((item, idx) => {
-                  const isOpen = openIdx === idx;
-
-                  return (
-                    <div
-                      key={item.id}
-                      className={`transition-all duration-200 rounded-[16px] overflow-hidden ${
-                        isOpen
-                          ? 'bg-white border border-[#E94B3C]/40 shadow-xs p-5'
-                          : 'bg-white border border-[rgba(28,37,51,0.10)] hover:border-[rgba(28,37,51,0.2)] p-4 sm:p-5 shadow-2xs'
-                      }`}
-                    >
-                      {/* Question Header Row */}
-                      <button
-                        type="button"
-                        onClick={() => setOpenIdx(isOpen ? null : idx)}
-                        className="w-full text-left flex items-start justify-between gap-4 cursor-pointer group"
-                      >
-                        <span className={`text-xs sm:text-sm leading-snug transition-colors ${
-                          isOpen ? 'font-bold text-[#1C2533]' : 'font-semibold text-[#1C2533] group-hover:text-[#E94B3C]'
-                        }`}>
-                          {item.question}
-                        </span>
-
-                        <div className={`p-1 rounded-[6px] shrink-0 transition-colors ${
-                          isOpen ? 'text-[#E94B3C] bg-[#E94B3C]/10' : 'text-[#9299A3] group-hover:text-[#1C2533]'
-                        }`}>
-                          {isOpen ? (
-                            <X className="w-3.5 h-3.5" />
-                          ) : (
-                            <Plus className="w-3.5 h-3.5" />
-                          )}
-                        </div>
-                      </button>
-
-                      {/* Expanded Answer Body */}
-                      <AnimatePresence initial={false}>
-                        {isOpen && (
-                          <motion.div
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{ height: "auto", opacity: 1 }}
-                            exit={{ height: 0, opacity: 0 }}
-                            transition={{ duration: 0.2, ease: "easeInOut" }}
-                          >
-                            <div className="pt-3 mt-3 border-t border-[rgba(28,37,51,0.08)] text-xs sm:text-sm text-[#687282] leading-relaxed space-y-3">
-                              <p>{item.answer}</p>
-
-                              <div className="pt-1 flex flex-wrap items-center justify-between gap-3">
-                                <div className="flex items-center gap-1.5 text-emerald-600 font-semibold text-xs">
-                                  <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
-                                  <span>Authorized International Certification &amp; Practical Training Included</span>
-                                </div>
-
-                                <Button onClick={onOpenDemo} variant="link" size="sm">
-                                  Enquire Course
-                                </Button>
-                              </div>
-                            </div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
-                  );
-                })}
-
-                {/* See More / Show Fewer Button for Desktop */}
-                {filteredFaqs.length > 8 && (
-                  <div className="pt-2">
+                {/* Show More / Show Fewer Button */}
+                {filteredFaqs.length > 6 && (
+                  <div className="pt-5">
                     <button
                       type="button"
                       onClick={() => setIsExpanded(!isExpanded)}
-                      className="w-full py-3.5 px-4 rounded-[14px] bg-white hover:bg-[#FDFBF7] border border-[rgba(28,37,51,0.12)] hover:border-[#E94B3C]/40 text-xs sm:text-sm font-bold text-[#1C2533] hover:text-[#E94B3C] flex items-center justify-center gap-2.5 transition-all duration-200 shadow-2xs hover:shadow-xs cursor-pointer group"
+                      className="w-full py-3 px-6 rounded-full bg-white/[0.03] hover:bg-white/[0.07] border border-white/10 hover:border-white/20 text-xs sm:text-sm font-semibold text-white flex items-center justify-center gap-2 transition-all duration-200 cursor-pointer group"
                     >
-                      <span className="flex items-center gap-2">
+                      <span>
                         {isExpanded ? (
-                          <>Show Fewer Questions</>
+                          'Show Fewer Questions'
                         ) : (
                           <>
-                            See More Questions <span className="px-2 py-0.5 rounded-full bg-[#E94B3C]/10 text-[#E94B3C] text-[11px] font-bold">+{filteredFaqs.length - 8} More</span>
+                            See More Questions <span className="ml-1.5 px-2 py-0.5 rounded-full bg-[#E94B3C]/20 text-[#FF6B5A] text-[11px] font-bold">+{filteredFaqs.length - 6} More</span>
                           </>
                         )}
                       </span>
-                      <ChevronDown className={`w-4 h-4 text-[#9299A3] group-hover:text-[#E94B3C] transition-transform duration-200 ${
+                      <ChevronDown className={`w-4 h-4 text-slate-400 group-hover:text-white transition-transform duration-200 ${
                         isExpanded ? 'rotate-180' : 'rotate-0'
                       }`} />
                     </button>
@@ -532,15 +496,15 @@ export default function FaqSection({ onOpenDemo }) {
                 )}
               </>
             ) : (
-              <div className="bg-white rounded-[16px] p-8 text-center border border-[rgba(28,37,51,0.10)] shadow-2xs">
-                <p className="text-sm font-semibold text-[#687282]">No matching questions found for "{searchQuery}".</p>
+              <div className="bg-[#0E1624] rounded-[16px] p-8 text-center border border-white/10 shadow-xl my-4">
+                <p className="text-sm font-semibold text-slate-300">No matching questions found for "{searchQuery}".</p>
                 <button
                   type="button"
                   onClick={() => {
                     setSearchQuery('');
                     setActiveCategory('all');
                   }}
-                  className="mt-3 text-xs font-bold text-[#E94B3C] hover:underline cursor-pointer"
+                  className="mt-3 text-xs font-bold text-[#FF6B5A] hover:underline cursor-pointer"
                 >
                   Reset Search &amp; Category Filters
                 </button>
@@ -551,10 +515,10 @@ export default function FaqSection({ onOpenDemo }) {
         </div>
 
         {/* POPULAR SEARCHES & KEYWORDS CLOUD */}
-        <div className="mt-12 pt-8 border-t border-[rgba(28,37,51,0.08)] max-w-5xl mx-auto">
-          <div className="flex items-center gap-2 mb-3.5 text-[#687282]">
+        <div className="mt-14 pt-8 border-t border-white/10">
+          <div className="flex items-center gap-2 mb-3.5 text-slate-400">
             <Tag className="w-3.5 h-3.5 text-[#E94B3C]" />
-            <span className="text-[11px] font-bold uppercase tracking-wider text-[#1C2533]">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-slate-300">
               Popular Training Searches in Manjeri &amp; Malappuram
             </span>
           </div>
@@ -562,7 +526,7 @@ export default function FaqSection({ onOpenDemo }) {
             {popularSearchTags.map((tag, idx) => (
               <span
                 key={idx}
-                className="px-2.5 py-1 rounded-full bg-white border border-[rgba(28,37,51,0.08)] text-[11px] font-medium text-[#687282] hover:text-[#E94B3C] hover:border-[#E94B3C]/30 transition-colors shadow-2xs cursor-default"
+                className="px-3 py-1.5 rounded-full bg-[#0E1624] border border-white/10 text-[11.5px] font-medium text-slate-300 hover:text-white hover:border-[#E94B3C]/50 hover:bg-[#E94B3C]/10 transition-colors shadow-xs cursor-default"
               >
                 {tag}
               </span>

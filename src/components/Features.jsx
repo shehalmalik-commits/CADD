@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { Sparkles, Layers, ArrowUpRight, GraduationCap } from 'lucide-react';
+import { Sparkles, Layers, ArrowRight, ArrowUpRight, GraduationCap, Clock, CheckCircle2, ChevronDown, ChevronUp } from 'lucide-react';
 import CourseBottomSheet from './CourseBottomSheet';
 import Button from './ui/Button';
 
@@ -13,7 +13,7 @@ export const ALL_COURSES = [
     duration: '240 hours',
     tools: 'AutoCAD · 3ds Max · SketchUp · V-Ray · Lumion · Coohom',
     description: 'Complete interior design workflow from 2D floor plans, 3D modeling, realistic materials, photorealistic lighting, walkthroughs, to post-production.',
-    img: '/images/courses/interior-diploma.png',
+    img: '/images/hero/hero-interior-design.jpg',
     popularAreas: ['2D Planning & Drafting', '3D Spatial Modeling', 'Material & Texture Creation', 'Photorealistic Lighting', 'Real-Time Walkthroughs', 'Post-Production'],
     toolGroups: [
       { category: 'AutoCAD', tools: ['AutoCAD', 'AutoCAD Architecture'] },
@@ -43,7 +43,7 @@ export const ALL_COURSES = [
     duration: '240 hours',
     tools: 'Revit (Arch/Struct/MEP) · Navisworks · BIM 360 · Dynamo · BIM Theory',
     description: 'Comprehensive Building Information Modeling program covering ISO 19650 standards, LOD 100-350 coordination, clash detection, CDE, and ACC workflows.',
-    img: '/images/courses/bim-master-certificate.png',
+    img: '/images/hero/hero-bim-architecture.jpg',
     popularAreas: ['BIM Theory & Concepts', 'ISO 19650 Standards', 'LOD 100-350 Modeling', 'Multi-Discipline Coordination', 'Clash Detection', 'Dynamo Automation'],
     toolGroups: [
       { category: 'AutoCAD', tools: ['AutoCAD', 'AutoCAD Architecture'] },
@@ -70,7 +70,7 @@ export const ALL_COURSES = [
     duration: '160 hours',
     tools: 'Revit Architecture · Revit Structure · Revit MEP · Navisworks',
     description: 'Master architectural BIM modeling, parametric design, documentation, structural coordination, and multi-disciplinary model review.',
-    img: '/images/courses/bim-architecture.png',
+    img: '/images/disciplines/discipline-bim.jpg',
     popularAreas: ['Architectural Modeling', 'Parametric Families', 'Model Coordination', 'Clash Detection', 'Sheet Documentation', 'Navisworks Review'],
     toolGroups: [
       { category: 'Core BIM', tools: ['Revit Architecture', 'Revit Structure', 'Revit MEP (Basics)'] },
@@ -96,7 +96,7 @@ export const ALL_COURSES = [
     duration: '200 hours',
     tools: 'Revit Architecture (Base) · Revit Structure · Revit MEP · Navisworks',
     description: 'Coordinated modeling of HVAC, Electrical, Plumbing, and Fire Protection systems with architectural/structural alignment and automated clash detection.',
-    img: '/images/courses/mep-with-bim.png',
+    img: '/images/course_mep.jpg',
     popularAreas: ['HVAC Ducting & Sizing', 'Electrical Lighting & Panels', 'Plumbing & Drainage', 'Fire Fighting Layouts', 'Clash Resolution', 'Multi-Discipline Coordination'],
     toolGroups: [
       { category: 'Revit Suite', tools: ['Revit Architecture (Base)', 'Revit Structure', 'Revit MEP'] },
@@ -124,7 +124,7 @@ export const ALL_COURSES = [
     duration: '240 hours',
     tools: 'Revit (Arch/Struct/MEP) · Navisworks · BIM 360 · Dynamo · BIM Theory',
     description: 'Comprehensive Building Information Modeling program covering ISO 19650 standards, LOD 100-350 coordination, clash detection, CDE, and ACC workflows.',
-    img: '/images/courses/bim-master-certificate.png',
+    img: '/images/hero/hero-bim-architecture.jpg',
     popularAreas: ['BIM Theory & Concepts', 'ISO 19650 Standards', 'LOD 100-350 Modeling', 'Multi-Discipline Coordination', 'Clash Detection', 'Dynamo Automation'],
     toolGroups: [
       { category: 'AutoCAD', tools: ['AutoCAD', 'AutoCAD Architecture'] },
@@ -151,7 +151,7 @@ export const ALL_COURSES = [
     duration: '220 hours',
     tools: 'STAAD.Pro · ETABS · SAFE · Revit Structure · Tekla Structures',
     description: 'Complete structural design pipeline from load simulation (Dead/Live/Wind/Seismic), RCC & Steel analysis, foundation design to rebar fabrication detailing.',
-    img: '/images/courses/structural-design-analysis.png',
+    img: '/images/course_structural.jpg',
     popularAreas: ['Seismic & Wind Analysis', 'RCC Building Design', 'Steel Trusses & Frames', 'Mat & Raft Foundations', 'Rebar Detailing', 'Tekla Fabrication'],
     toolGroups: [
       { category: 'Structural Analysis', tools: ['STAAD.Pro', 'ETABS', 'SAFE'] },
@@ -177,7 +177,7 @@ export const ALL_COURSES = [
     duration: '140 hours',
     tools: 'Primavera P6 · Microsoft Project (MS Project)',
     description: 'Master project scheduling, Work Breakdown Structure (WBS), resource leveling, critical path method (CPM), delay analysis, and executive project reporting.',
-    img: '/images/courses/project-planning-management.png',
+    img: '/primavera_p6.jpg',
     popularAreas: ['WBS Breakdown', 'CPM Critical Path', 'Resource Allocation', 'Earned Value Analysis', 'Delay & Risk Analysis', 'Executive Reporting'],
     toolGroups: [
       { category: 'Enterprise PPM', tools: ['Primavera P6', 'Primavera Web'] },
@@ -203,7 +203,7 @@ export const ALL_COURSES = [
     duration: '180 hours',
     tools: 'AutoCAD · Autodesk Civil 3D · MicroStation',
     description: 'Transform field survey data into digital terrain models, road alignments, corridor profiles, cross-sections, and transportation infrastructure plans.',
-    img: '/images/courses/surveying-transportation-engineering.png',
+    img: '/images/course_survey.jpg',
     popularAreas: ['Total Station Data', 'Digital Terrain Modeling', 'Road Alignment & Profiles', 'Corridor Modeling', 'Cross-Sections', 'Earthwork Quantities'],
     toolGroups: [
       { category: 'Civil Design', tools: ['Autodesk Civil 3D', 'AutoCAD Civil'] },
@@ -229,7 +229,7 @@ export const ALL_COURSES = [
     duration: '220 hours',
     tools: 'AutoCAD Mechanical · SolidWorks · Creo · CATIA',
     description: 'End-to-end 3D mechanical product development, feature-based parametric modeling, complex assemblies, sheet metal, and GD&T manufacturing documentation.',
-    img: '/images/courses/product-design-engineering.png',
+    img: '/images/course_product.jpg',
     popularAreas: ['Parametric Modeling', 'Complex Assemblies', 'Sheet Metal & Weldments', 'Surface Modeling', 'Mechanism Kinematics', 'GD&T Drawings'],
     toolGroups: [
       { category: 'Drafting', tools: ['AutoCAD', 'AutoCAD Mechanical'] },
@@ -255,7 +255,7 @@ export const ALL_COURSES = [
     duration: '120 hours',
     tools: 'AutoCAD · AutoCAD Mechanical',
     description: 'Precision mechanical 2D drafting, machine component detailing, assembly drawings, bill of materials (BOM), and manufacturing CAD standards.',
-    img: '/images/courses/mechanical-cad.png',
+    img: '/images/disciplines/discipline-mechanical.jpg',
     popularAreas: ['Machine Component Drafting', 'Assembly Layouts', 'Sectional Views & Fits', 'BOM & Part Lists', 'Geometric Tolerances', 'Layer Standards'],
     toolGroups: [
       { category: 'Mechanical CAD', tools: ['AutoCAD', 'AutoCAD Mechanical'] }
@@ -279,7 +279,7 @@ export const ALL_COURSES = [
     duration: '120 hours',
     tools: 'AutoCAD · AutoCAD Architecture',
     description: 'Comprehensive 2D architectural drafting, building permit drawings, floor plan layouts, elevation sections, construction documentation, and professional CAD standards.',
-    img: '/images/courses/autocad-civil.png',
+    img: '/images/disciplines/discipline-civil.jpg',
     popularAreas: ['2D Drafting', 'Architectural Documentation', 'Building Components', 'Site & Layout Drawings', 'Construction Documentation', 'CAD Standards'],
     toolGroups: [
       { category: 'Civil & Architectural Drafting', tools: ['AutoCAD', 'AutoCAD Architecture'] }
@@ -305,7 +305,7 @@ export const ALL_COURSES = [
     duration: '140 hours',
     tools: '3ds Max · V-Ray · Corona · Enscape · Forest Pack · Photoshop',
     description: 'High-end 3D architectural visualization, realistic PBR materials, advanced studio lighting, interior rendering, and post-production in Photoshop.',
-    img: '/images/courses/3ds-max.png',
+    img: '/images/interior_render.jpg',
     popularAreas: ['Parametric Modeling', 'PBR Materials & Textures', 'V-Ray Day/Night Lighting', 'Corona Photorealism', 'Environment Scattering', 'Photoshop Post-Processing'],
     toolGroups: [
       { category: '3D Modeling & Rendering', tools: ['3ds Max', 'V-Ray', 'Corona Renderer'] },
@@ -330,7 +330,7 @@ export const ALL_COURSES = [
     duration: '100 hours',
     tools: 'SketchUp · V-Ray · Enscape · 1001bit Tools',
     description: 'Fast, intuitive 3D architectural modeling, interior space planning, 1001bit architectural tools, photorealistic V-Ray rendering, and live Enscape walkthroughs.',
-    img: '/images/courses/sketchup.png',
+    img: '/images/disciplines/discipline-interior.jpg',
     popularAreas: ['Space Planning & Layout', '1001bit Architecture Tools', 'V-Ray Rendering', 'Enscape Live Walkthrough', 'Landscape Assets', 'Client Presentation'],
     toolGroups: [
       { category: 'Modeling & Render', tools: ['SketchUp Pro', 'V-Ray for SketchUp', 'Enscape', '1001bit Tools'] }
@@ -353,7 +353,7 @@ export const ALL_COURSES = [
     duration: '80 hours',
     tools: 'Lumion · Real-Time Landscapes · Atmospheric Lighting · Animations',
     description: 'Transform CAD & BIM models into cinematic 4K video walkthroughs, realistic weather, foliage, volumetric sunlight, and immersive client presentations.',
-    img: '/images/courses/lumion.png',
+    img: '/images/disciplines/discipline-bim.jpg',
     popularAreas: ['Cinematic Video Walkthroughs', 'Atmospheric Weather & Skies', 'Foliage & Tree Animation', 'PBR Material Shaders', 'Photo & 4K Video Output', 'LiveSync CAD Integration'],
     toolGroups: [
       { category: 'Lumion Suite', tools: ['Lumion Pro', 'LiveSync Integration', 'Atmospheric Effects', 'Video Sequencing'] }
@@ -376,7 +376,7 @@ export const ALL_COURSES = [
     duration: '140 hours',
     tools: 'Revit Architecture · Parametric Families · BIM Documentation',
     description: 'Parametric BIM architectural design, walls, curtain systems, parametric custom families, automated schedules & quantity takeoff, and sheet sets.',
-    img: '/images/courses/revit-architecture.png',
+    img: '/images/disciplines/discipline-bim.jpg',
     popularAreas: ['Parametric Walls & Roofs', 'Custom Family Creation', 'Automated Schedules & QTO', 'Construction Sheet Sets', 'Phasing & Design Options', 'BIM Worksharing'],
     toolGroups: [
       { category: 'Revit Architecture', tools: ['Revit Architecture', 'Family Editor', 'BIM Schedules', 'Worksharing'] }
@@ -400,7 +400,7 @@ export const ALL_COURSES = [
     duration: '140 hours',
     tools: 'Revit Structure · Reinforcement Detailing · Analytical Models',
     description: 'Parametric structural BIM modeling, concrete & steel framing, 3D reinforcement rebar detailing, bar bending schedules (BBS), and analytical coordination.',
-    img: '/images/courses/revit-structure.png',
+    img: '/images/hero/hero-civil-structural.jpg',
     popularAreas: ['Concrete Foundations & Columns', 'Structural Steel Framing', '3D Rebar Detailing', 'Bar Bending Schedules (BBS)', 'Analytical Model Export', 'BIM Coordination'],
     toolGroups: [
       { category: 'Revit Structure', tools: ['Revit Structure', 'Rebar Detailing', 'Analytical Link', 'Structural Schedules'] }
@@ -424,7 +424,7 @@ export const ALL_COURSES = [
     duration: '140 hours',
     tools: 'Revit MEP · HVAC · Electrical · Plumbing · Fire Protection',
     description: 'Design and model complex building services: HVAC ductwork, mechanical equipment, electrical power & lighting systems, piping, and clash avoidance.',
-    img: '/images/courses/revit-mep.png',
+    img: '/images/course_mep.jpg',
     popularAreas: ['HVAC Duct Sizing & Routing', 'Electrical Circuits & Cable Trays', 'Domestic Water & Sanitary Piping', 'Fire Sprinkler Networks', 'MEP Family Creation', 'Clash Detection'],
     toolGroups: [
       { category: 'Revit MEP', tools: ['Revit MEP', 'HVAC Systems', 'Electrical Systems', 'Plumbing & Fire'] }
@@ -448,7 +448,7 @@ export const ALL_COURSES = [
     duration: '140 hours',
     tools: 'Revit MEP · HVAC · Electrical · Plumbing · Fire Protection',
     description: 'Design and model complex building services: HVAC ductwork, mechanical equipment, electrical power & lighting systems, piping, and clash avoidance.',
-    img: '/images/courses/revit-mep.png',
+    img: '/images/course_mep.jpg',
     popularAreas: ['HVAC Duct Sizing & Routing', 'Electrical Circuits & Cable Trays', 'Domestic Water & Sanitary Piping', 'Fire Sprinkler Networks', 'MEP Family Creation', 'Clash Detection'],
     toolGroups: [
       { category: 'Revit MEP', tools: ['Revit MEP', 'HVAC Systems', 'Electrical Systems', 'Plumbing & Fire'] }
@@ -472,7 +472,7 @@ export const ALL_COURSES = [
     duration: '140 hours',
     tools: 'Revit Structure · Framing & Slabs · Penetration Detailing · BIM Coordination',
     description: 'Coordinate MEP building services with structural concrete, framing, wall/slab sleeve penetrations, and ensure clash-free structural integration.',
-    img: '/images/courses/revit-structure.png',
+    img: '/images/hero/hero-civil-structural.jpg',
     popularAreas: ['Structural Slab Openings', 'Beam Sleeve Penetrations', 'Shaft Coordination', 'Concrete Framing Support', 'MEP-Structural Interference', 'BIM Worksharing'],
     toolGroups: [
       { category: 'Revit Structure', tools: ['Revit Structure', 'Sleeve Detailing', 'Schedules', 'Coordination Link'] }
@@ -494,7 +494,7 @@ export const ALL_COURSES = [
     duration: '80 hours',
     tools: 'Navisworks Manage · Clash Detective · 4D Timeliner · Coordination Reports',
     description: 'Master multi-disciplinary BIM clash detection between MEP, Architectural, and Structural models, hard & soft clash analysis, and coordination issue tracking.',
-    img: '/images/courses/navisworks-manage.png',
+    img: '/images/cad_bim_hero_bg.jpg',
     popularAreas: ['MEP Clash Detection', 'Hard & Clearance Clashes', 'Clash Matrix Reports', '4D Construction Simulation', 'Model Federation', 'Issue Tracking'],
     toolGroups: [
       { category: 'Navisworks Manage', tools: ['Clash Detective', 'Timeliner 4D', 'Quantification', 'Clash Reports'] }
@@ -516,7 +516,7 @@ export const ALL_COURSES = [
     duration: '80 hours',
     tools: 'Navisworks Manage · Clash Detective · Timeliner 4D · Quantification',
     description: 'Multi-discipline federated model coordination, automated hard & clearance clash detection, 4D construction schedule simulation with Gantt charts, and QTO.',
-    img: '/images/courses/navisworks-manage.png',
+    img: '/images/cad_bim_hero_bg.jpg',
     popularAreas: ['Federated Model Merging', 'Clash Detective & Rules', 'Clash Matrix Reporting', 'Timeliner 4D Scheduling', 'Quantity Takeoff (QTO)', 'Redline Model Review'],
     toolGroups: [
       { category: 'Navisworks Manage', tools: ['Clash Detective', 'Timeliner 4D', 'Quantification', 'Clash Reports'] }
@@ -540,7 +540,7 @@ export const ALL_COURSES = [
     duration: '100 hours',
     tools: 'STAAD.Pro · IS 456 / IS 800 · Foundation Design · Wind & Seismic',
     description: 'Perform linear & non-linear finite element analysis, space frame modeling, wind and earthquake load definitions, concrete & steel design optimization.',
-    img: '/images/courses/staad-pro.png',
+    img: '/images/hero/hero-civil-structural.jpg',
     popularAreas: ['Space Frame Modeling', 'IS Code Load Calculations', 'Static & Dynamic Seismic Analysis', 'Concrete Beam/Column Design', 'Steel Truss Design', 'Isolated & Combined Footing'],
     toolGroups: [
       { category: 'STAAD.Pro', tools: ['STAAD.Pro Connect Edition', 'STAAD Foundation Advanced', 'Steel & RCC Designer'] }
@@ -564,7 +564,7 @@ export const ALL_COURSES = [
     duration: '100 hours',
     tools: 'ETABS · High-Rise Modeling · Response Spectrum · Shear Walls',
     description: 'Specialized 3D analysis and design of multi-storey residential & commercial towers, response spectrum seismic analysis, wind drift checks, and shear wall design.',
-    img: '/images/courses/etabs.png',
+    img: '/images/course_structural.jpg',
     popularAreas: ['Multi-Storey Tower Modeling', 'Response Spectrum Seismic', 'Wind Tunnel Loads', 'Concrete Core & Shear Walls', 'P-Delta Secondary Effects', 'Design Reports'],
     toolGroups: [
       { category: 'ETABS Suite', tools: ['ETABS Nonlinear', 'Shear Wall Designer', 'Seismic & Wind Engine'] }
@@ -588,7 +588,7 @@ export const ALL_COURSES = [
     duration: '120 hours',
     tools: 'Tekla Structures · Steel Detailing · RCC Detailing · Shop Drawings',
     description: 'Constructible 3D structural steel and cast-in-place rebar detailing, custom connection joints, automated fabrication shop drawings, and CNC export.',
-    img: '/images/courses/tekla.png',
+    img: '/images/hero/hero-civil-structural.jpg',
     popularAreas: ['Structural Steel Detailing', 'Connection Plates & Bolts', 'Cast-In-Place Concrete Rebar', 'Automated Shop Drawings', 'Assembly Part Lists', 'NC/CNC Machine Export'],
     toolGroups: [
       { category: 'Tekla Structures', tools: ['Tekla Structures Steel', 'Tekla Concrete', 'Drawing Manager'] }
@@ -612,7 +612,7 @@ export const ALL_COURSES = [
     duration: '80 hours',
     tools: 'SAFE · Post-Tensioned Slabs · Mat Foundations · Punching Shear',
     description: 'Specialized analysis and design of concrete floor slabs, flat slab systems with drop panels, punching shear checks, and mat/raft foundation systems.',
-    img: '/images/courses/safe.png',
+    img: '/images/cad_bim_hero_bg.jpg',
     popularAreas: ['Flat Slab Design', 'Punching Shear Verification', 'Mat / Raft Foundation Design', 'Soil-Structure Interaction', 'Flexural Reinforcement', 'Deflection Limits'],
     toolGroups: [
       { category: 'SAFE', tools: ['CSI SAFE', 'Slab Designer', 'Raft Foundation Engine'] }
@@ -636,7 +636,7 @@ export const ALL_COURSES = [
     duration: '140 hours',
     tools: 'Revit Structure · Reinforcement Detailing · Analytical Models',
     description: 'Parametric structural BIM modeling, concrete & steel framing, 3D reinforcement rebar detailing, bar bending schedules (BBS), and analytical coordination.',
-    img: '/images/courses/revit-structure.png',
+    img: '/images/hero/hero-civil-structural.jpg',
     popularAreas: ['Concrete Foundations & Columns', 'Structural Steel Framing', '3D Rebar Detailing', 'Bar Bending Schedules (BBS)', 'Analytical Model Export', 'BIM Coordination'],
     toolGroups: [
       { category: 'Revit Structure', tools: ['Revit Structure', 'Rebar Detailing', 'Analytical Link', 'Structural Schedules'] }
@@ -660,7 +660,7 @@ export const ALL_COURSES = [
     duration: '140 hours',
     tools: 'SolidWorks · Parametric Parts · Assemblies · Sheet Metal · Weldments',
     description: 'Parametric 3D mechanical part modeling, complex multi-body assemblies, sheet metal enclosures, structural weldment frames, and manufacturing drawings.',
-    img: '/images/courses/solidworks.png',
+    img: '/images/course_product.jpg',
     popularAreas: ['Parametric Part Modeling', 'Assembly Mates & Relations', 'Sheet Metal Bends & Flat Patterns', 'Structural Weldments', 'Surface Modeling', 'GD&T 2D Drawings'],
     toolGroups: [
       { category: 'SolidWorks', tools: ['Solid Modeling', 'Surface Modeling', 'Assembling', 'FEA', 'Sheet Metal', 'Weldments', 'Drafting & Detailing'] }
@@ -684,7 +684,7 @@ export const ALL_COURSES = [
     duration: '120 hours',
     tools: 'Creo Parametric · Part Design · Assemblies · Mechanism Design',
     description: 'High-end parametric CAD modeling for consumer products and automotive machinery, mechanism kinematics, complex surfaces, and GD&T drawings.',
-    img: '/images/courses/creo-parametric.png',
+    img: '/images/hero/hero-mechanical-product.jpg',
     popularAreas: ['Feature-Based Part Design', 'Parametric Constraints', 'Complex Assembly Management', 'Mechanism Kinematics', 'Advanced Surface Modeling', 'Manufacturing Drawings'],
     toolGroups: [
       { category: 'Creo Suite', tools: ['Creo Parametric', 'Mechanism Design', 'Sheet Metal', 'Drawing & Detailing', 'Design Automation'] }
@@ -708,7 +708,7 @@ export const ALL_COURSES = [
     duration: '100 hours',
     tools: 'Primavera P6 · WBS · CPM Scheduling · Resource Leveling · Baselines',
     description: 'Enterprise project planning, creating Work Breakdown Structures (WBS), defining activity relationships, resource & cost management, and S-curve reports.',
-    img: '/images/courses/primavera-p6.png',
+    img: '/images/hero/hero-project-management.jpg',
     popularAreas: ['Enterprise Project Structure (EPS)', 'Work Breakdown Structure (WBS)', 'Critical Path Method (CPM)', 'Resource & Cost Loading', 'Baseline Tracking', 'Delay Analysis & S-Curves'],
     toolGroups: [
       { category: 'Primavera P6', tools: ['Primavera P6 Professional', 'Resource Management', 'Progress Tracking', 'Report Wizard'] }
@@ -733,7 +733,7 @@ export const ALL_COURSES = [
     duration: '80 hours',
     tools: 'MS Project · Gantt Charts · WBS · Critical Path · Resource Allocation',
     description: 'Essential project management with Microsoft Project: task scheduling, Gantt chart visualization, resource allocation, baseline tracking, and progress reporting.',
-    img: '/images/courses/ms-project.png',
+    img: '/primavera_p6.jpg',
     popularAreas: ['Gantt Chart Management', 'WBS Task Hierarchy', 'Resource Allocation & Leveling', 'Critical Path Analysis', 'Baseline Comparison', 'Project Status Reports'],
     toolGroups: [
       { category: 'Microsoft Project', tools: ['MS Project Standard', 'Gantt Views', 'Resource Sheet', 'Report Dashboard'] }
@@ -760,7 +760,7 @@ export const ALL_COURSES = [
     duration: '120 hours',
     tools: 'AutoCAD · AutoCAD Civil · Land Development · Site Drafting',
     description: 'Comprehensive 2D civil drafting, site layouts, topographic boundary plans, subdivision plotting, road cross-sections, and municipal infrastructure drawings.',
-    img: '/images/courses/autocad-civil.png',
+    img: '/images/disciplines/discipline-civil.jpg',
     popularAreas: ['Site Layout Plans', 'Topographic Boundary Mapping', 'Road Cross-Sections', 'Subdivision Plotting', 'Municipal Infrastructure', 'CAD Layer Standards'],
     toolGroups: [
       { category: 'Civil CAD', tools: ['AutoCAD Civil', 'AutoCAD Architecture', 'Drafting Tools'] }
@@ -782,7 +782,7 @@ export const ALL_COURSES = [
     duration: '140 hours',
     tools: 'AutoCAD Civil 3D · Survey Data Processing · Terrain Modeling · Corridor Design',
     description: 'Master Civil 3D for land development, survey data processing, surface & terrain modeling, road corridor design, grading, pipe networks, and construction documentation.',
-    img: '/images/courses/autocad-civil-3d.png',
+    img: '/images/course_survey.jpg',
     popularAreas: ['Surveying & Survey Data Processing', 'Surface & Terrain Modeling', 'Alignment & Profile Design', 'Road & Corridor Design', 'Grading & Site Development', 'Pipe Networks & Utility Design', 'Quantity Takeoff & Civil Documentation'],
     toolGroups: [
       {
@@ -823,7 +823,7 @@ export const ALL_COURSES = [
     duration: '120 hours',
     tools: 'MicroStation · 2D Engineering Drafting · Survey & Mapping · Road & Highway Design',
     description: 'Learn Bentley MicroStation for civil engineering drafting, surveying, topographic mapping, road & highway design, site development, geometric design, and infrastructure documentation.',
-    img: '/images/courses/microstation.png',
+    img: '/images/cad_bim_hero_bg.jpg',
     popularAreas: ['2D Engineering Drafting', 'Survey & Mapping', 'Road & Highway Design', 'Site Development', 'Geometric Design', 'Terrain & Topographic Mapping', 'Infrastructure Documentation'],
     toolGroups: [
       {
@@ -865,7 +865,7 @@ export const ALL_COURSES = [
     duration: '120 hours',
     tools: 'AutoCAD · AutoCAD Architecture',
     description: 'Master 2D drafting, architectural floor plans, building components, site layout drawings, construction documentation, and professional CAD standards.',
-    img: '/images/courses/autocad-civil.png',
+    img: '/images/disciplines/discipline-civil.jpg',
     popularAreas: ['2D Drafting', 'Architectural Documentation', 'Building Components', 'Site & Layout Drawings', 'Construction Documentation', 'CAD Standards'],
     toolGroups: [
       { category: 'Civil & Architectural Drafting', tools: ['AutoCAD', 'AutoCAD Architecture'] }
@@ -891,7 +891,7 @@ export const ALL_COURSES = [
     duration: '120 hours',
     tools: 'AutoCAD · AutoCAD Mechanical',
     description: 'Master 2D mechanical drafting, engineering drawing dimensions & tolerances, machine component design, assembly layouts, and manufacturing documentation.',
-    img: '/images/courses/mechanical-cad.png',
+    img: '/images/disciplines/discipline-mechanical.jpg',
     popularAreas: ['Mechanical Drafting', 'Engineering Drawing', 'Mechanical Components', 'Assembly Drawings', 'Manufacturing Documentation', 'CAD Standards'],
     toolGroups: [
       { category: 'Mechanical Drafting & Design', tools: ['AutoCAD', 'AutoCAD Mechanical'] }
@@ -917,7 +917,7 @@ export const ALL_COURSES = [
     duration: '120 hours',
     tools: 'AutoCAD · AutoCAD Electrical',
     description: 'Master electrical schematics, single-line diagrams, control panel layouts, standardized component libraries, circuit wiring, and multi-disciplinary CAD coordination.',
-    img: '/images/courses/autocad-electrical.jpg',
+    img: '/images/disciplines/discipline-electrical.jpg',
     popularAreas: ['Electrical Drafting', 'Single Line Diagrams (SLD)', 'Control Panel Design', 'Component Libraries', 'Circuit & Wiring Design', 'CAD Standards'],
     toolGroups: [
       { category: 'Electrical Drafting & Design', tools: ['AutoCAD', 'AutoCAD Electrical'] }
@@ -1022,57 +1022,102 @@ function readLocation(pathname) {
   return { inCatalogue: true, discipline, course };
 }
 
-// Compact course tile. The course NAME is the primary element; the photograph is a
-// backdrop, not the content. Sized so a full row of courses is scannable at a glance.
+// Modern, structured course card ("nalla model") with dedicated high-res media banner,
+// floating status chips, clear hierarchy, software tags, and interactive syllabus trigger.
 function CourseTile({ item, onSelectCourse }) {
+  const toolsList = item.tools ? item.tools.split('·').map((t) => t.trim()).filter(Boolean) : [];
+
   return (
-    <button
-      type="button"
+    <div
       onClick={() => onSelectCourse(item)}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          onSelectCourse(item);
+        }
+      }}
       aria-label={`${item.title} — view syllabus`}
-      className="group relative block w-full h-[132px] sm:h-[164px] rounded-[12px] overflow-hidden border border-white/10 bg-[#171A20] text-left cursor-pointer transition-all duration-200 hover:border-[#E94B3C]/70 hover:-translate-y-0.5 hover:shadow-[0_10px_28px_rgba(0,0,0,0.45)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#E94B3C] focus-visible:ring-offset-2 focus-visible:ring-offset-[#080D14]"
+      className="group relative flex flex-col w-full rounded-2xl overflow-hidden border border-white/10 bg-[#0D131F]/90 hover:border-[#FF5A36]/60 text-left cursor-pointer transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.6),0_0_25px_rgba(255,90,54,0.12)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF5A36] focus-visible:ring-offset-2 focus-visible:ring-offset-[#080D14]"
     >
-      <img
-        src={item.img}
-        alt=""
-        aria-hidden="true"
-        loading="lazy"
-        className="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-85 group-hover:scale-[1.04] transition-all duration-300"
-      />
+      {/* 16:10 Media Container */}
+      <div className="relative w-full aspect-[16/10] overflow-hidden bg-slate-900 shrink-0">
+        <img
+          src={item.img}
+          alt={item.title}
+          loading="lazy"
+          onError={(e) => {
+            e.currentTarget.onerror = null;
+            e.currentTarget.src = '/images/cad_bim_hero_bg.jpg';
+          }}
+          className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
+        />
 
-      {/* Legibility scrim: keeps the course name readable over any photograph */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[#080D14] via-[#080D14]/75 to-[#080D14]/15 pointer-events-none" />
+        {/* Subtle vignette scrim */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0D131F] via-transparent to-black/30 pointer-events-none" />
 
-      <div className="absolute inset-x-0 bottom-0 p-3 sm:p-3.5">
-        <div className="flex items-center justify-between gap-2 mb-1">
-          <span className="text-[9.5px] font-bold text-[#FF7A5C] uppercase tracking-wider truncate">
+        {/* Floating Category Pill */}
+        <div className="absolute top-3 left-3 z-10">
+          <span className="inline-flex items-center px-2.5 py-1 rounded-full bg-black/65 backdrop-blur-md border border-white/15 text-[10.5px] font-bold text-[#FF7A5C] uppercase tracking-wider shadow-sm">
             {item.category}
           </span>
-          {item.duration && (
-            <span className="shrink-0 text-[9px] font-semibold text-white/85 px-1.5 py-0.5 rounded-[4px] bg-white/12 border border-white/10">
+        </div>
+
+        {/* Floating Duration Pill */}
+        {item.duration && (
+          <div className="absolute top-3 right-3 z-10">
+            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-black/65 backdrop-blur-md border border-white/15 text-[10.5px] font-semibold text-slate-200 shadow-sm">
+              <Clock className="w-3 h-3 text-[#FF7A5C]" />
               {item.duration}
             </span>
+          </div>
+        )}
+      </div>
+
+      {/* Card Body */}
+      <div className="p-4 sm:p-5 flex flex-col flex-1 justify-between gap-3 bg-gradient-to-b from-[#0D131F] to-[#0A0E17]">
+        <div className="space-y-2">
+          <h4 className="text-[15px] sm:text-[16px] font-bold text-white group-hover:text-[#FF7A5C] transition-colors leading-snug line-clamp-2">
+            {item.title}
+          </h4>
+
+          <p className="text-[12px] text-slate-400 font-normal leading-relaxed line-clamp-2">
+            {item.description}
+          </p>
+
+          {/* Software Tools Pills */}
+          {toolsList.length > 0 && (
+            <div className="flex flex-wrap items-center gap-1.5 pt-1.5">
+              {toolsList.slice(0, 3).map((tool, idx) => (
+                <span
+                  key={idx}
+                  className="text-[10px] font-medium text-slate-300 bg-white/5 border border-white/8 px-2 py-0.5 rounded-md"
+                >
+                  {tool}
+                </span>
+              ))}
+              {toolsList.length > 3 && (
+                <span className="text-[10px] font-medium text-slate-400">
+                  +{toolsList.length - 3} more
+                </span>
+              )}
+            </div>
           )}
         </div>
 
-        <h4 className="text-[12px] sm:text-[14px] font-bold text-white leading-snug line-clamp-3 sm:line-clamp-2">
-          {item.title}
-        </h4>
+        {/* Card Footer: Certification & CTA */}
+        <div className="pt-3 mt-1 border-t border-white/8 flex items-center justify-between text-xs">
+          <span className="inline-flex items-center gap-1 text-[11px] font-medium text-emerald-400/90">
+            <CheckCircle2 className="w-3.5 h-3.5" /> Certified
+          </span>
 
-        {/* Secondary detail — revealed on hover/focus, never required to identify a course */}
-        <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] group-focus-visible:grid-rows-[1fr] transition-[grid-template-rows] duration-200">
-          <div className="overflow-hidden">
-            <p className="pt-1 text-[10px] text-slate-300/90 font-medium truncate">
-              {item.tools}
-            </p>
-          </div>
+          <span className="inline-flex items-center gap-1 text-[12px] font-semibold text-[#FF7A5C] group-hover:text-[#FF5A36] group-hover:translate-x-0.5 transition-all">
+            View Syllabus <ArrowRight className="w-3.5 h-3.5" />
+          </span>
         </div>
       </div>
-
-      <span className="absolute top-2.5 right-2.5 w-6 h-6 rounded-full bg-[#E94B3C] text-white flex items-center justify-center opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-200">
-        <ArrowUpRight className="w-3.5 h-3.5" />
-      </span>
-    </button>
+    </div>
   );
 }
 
@@ -1084,6 +1129,14 @@ export default function Features({ onOpenDemo }) {
 
   const [selectedCourseDetail, setSelectedCourseDetail] = useState(initialLocation.course);
   const [activeDiscipline, setActiveDiscipline] = useState(initialLocation.discipline);
+  const [expandedDisciplines, setExpandedDisciplines] = useState({});
+
+  const toggleExpandDiscipline = useCallback((disciplineName) => {
+    setExpandedDisciplines((prev) => ({
+      ...prev,
+      [disciplineName]: !prev[disciplineName]
+    }));
+  }, []);
 
   // Back / forward — including the iOS left-edge swipe, which fires popstate
   // like any other history move — replays whatever the address now says.
@@ -1182,64 +1235,121 @@ export default function Features({ onOpenDemo }) {
           </div>
         </div>
 
-        {/* DISCIPLINE FILTER — optional shortcut, never a prerequisite for discovery */}
-        <div className="flex flex-wrap items-center gap-1.5 pb-5 mb-6 border-b border-white/10">
+        {/* DISCIPLINE FILTER — interactive quick shortcuts */}
+        <div className="flex flex-wrap items-center gap-2 pb-5 mb-8 border-b border-white/10">
           <button
             type="button"
             onClick={() => selectDiscipline('all')}
-            className={`px-3 py-1.5 rounded-full text-[11px] font-bold transition-colors cursor-pointer ${
+            className={`px-3.5 py-1.5 rounded-full text-[12px] font-bold transition-all cursor-pointer ${
               activeDiscipline === 'all'
-                ? 'bg-[#E94B3C] text-white'
-                : 'bg-white/8 text-slate-300 hover:bg-white/15 hover:text-white'
+                ? 'bg-[#FF5A36] text-white shadow-[0_4px_16px_rgba(255,90,54,0.35)]'
+                : 'bg-white/5 text-slate-300 hover:bg-white/10 hover:text-white border border-white/10'
             }`}
           >
-            All {ALL_COURSES.length}
+            All Courses ({ALL_COURSES.length})
           </button>
           {COURSES_BY_DISCIPLINE.map((group) => (
             <button
               key={group.name}
               type="button"
               onClick={() => selectDiscipline(group.name)}
-              className={`px-3 py-1.5 rounded-full text-[11px] font-bold transition-colors cursor-pointer ${
+              className={`px-3.5 py-1.5 rounded-full text-[12px] font-bold transition-all cursor-pointer ${
                 activeDiscipline === group.name
-                  ? 'bg-[#E94B3C] text-white'
-                  : 'bg-white/8 text-slate-300 hover:bg-white/15 hover:text-white'
+                  ? 'bg-[#FF5A36] text-white shadow-[0_4px_16px_rgba(255,90,54,0.35)]'
+                  : 'bg-white/5 text-slate-300 hover:bg-white/10 hover:text-white border border-white/10'
               }`}
             >
               {group.shortName}
-              <span className="ml-1.5 opacity-60">{group.courses.length}</span>
+              <span className="ml-1.5 opacity-60">({group.courses.length})</span>
             </button>
           ))}
         </div>
 
-        {/* THE CATALOGUE — uniform grid, grouped by discipline, nothing hidden */}
-        <div className="space-y-6 sm:space-y-8">
-          {visibleGroups.map((group) => (
-            <div key={group.name}>
-              {/* No nowrap: the long group names plus the count overflow a 320px
-                  screen, so the row is allowed to wrap instead. */}
-              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mb-3">
-                <Layers className="w-3.5 h-3.5 text-[#E94B3C] shrink-0" />
-                <h3 className="text-[12px] sm:text-[13px] font-extrabold text-white uppercase tracking-[0.14em] min-w-0">
-                  {group.name}
-                </h3>
-                <span className="text-[11px] font-semibold text-slate-500 shrink-0">
-                  {group.courses.length} course{group.courses.length === 1 ? '' : 's'}
-                </span>
-                <span className="hidden sm:block flex-1 h-px bg-white/10" />
-              </div>
+        {/* THE CATALOGUE — uniform 4-column preview with View All per discipline */}
+        <div className="space-y-10 sm:space-y-14">
+          {visibleGroups.map((group) => {
+            const hasMore = group.courses.length > 4;
+            const isExpanded = !!expandedDisciplines[group.name] || activeDiscipline !== 'all';
+            const displayedCourses = isExpanded || !hasMore
+              ? group.courses
+              : group.courses.slice(0, 4);
+            const remainingCount = group.courses.length - 4;
 
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2.5 sm:gap-3.5">
-                {group.courses.map((item) => (
-                  <CourseTile
-                    key={item.id}
-                    item={item}
-                    onSelectCourse={openCourse}
-                  />
-                ))}
+            return (
+              <div key={group.name} id={`discipline-${group.shortName.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}>
+                {/* Discipline Group Header */}
+                <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2 mb-5">
+                  <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
+                    <div className="w-8 h-8 rounded-lg bg-[#FF5A36]/10 border border-[#FF5A36]/25 flex items-center justify-center shrink-0">
+                      <Layers className="w-4 h-4 text-[#FF5A36]" />
+                    </div>
+                    <h3 className="text-[14px] sm:text-[15px] font-extrabold text-white uppercase tracking-[0.14em] truncate">
+                      {group.name}
+                    </h3>
+                    <span className="text-[11px] font-semibold text-slate-400 px-2.5 py-0.5 rounded-full bg-white/5 border border-white/10 shrink-0">
+                      {group.courses.length} course{group.courses.length === 1 ? '' : 's'}
+                    </span>
+                  </div>
+
+                  {/* Header quick toggle */}
+                  <div className="flex items-center gap-3">
+                    {hasMore && activeDiscipline === 'all' && (
+                      <button
+                        type="button"
+                        onClick={() => toggleExpandDiscipline(group.name)}
+                        className="inline-flex items-center gap-1.5 text-xs font-bold text-[#FF7A5C] hover:text-[#FF5A36] px-3 py-1 rounded-full bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 transition-all cursor-pointer"
+                      >
+                        <span>{isExpanded ? 'Show Less' : `View All (${group.courses.length})`}</span>
+                        {isExpanded ? (
+                          <ChevronUp className="w-3.5 h-3.5 text-[#FF5A36]" />
+                        ) : (
+                          <ChevronDown className="w-3.5 h-3.5 text-[#FF5A36]" />
+                        )}
+                      </button>
+                    )}
+                    <span className="hidden sm:block w-12 lg:w-20 h-px bg-white/10" />
+                  </div>
+                </div>
+
+                {/* Spacious 4-column course grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
+                  {displayedCourses.map((item) => (
+                    <CourseTile
+                      key={item.id}
+                      item={item}
+                      onSelectCourse={openCourse}
+                    />
+                  ))}
+                </div>
+
+                {/* Bottom View All / Show Less CTA for disciplines with > 4 courses */}
+                {hasMore && activeDiscipline === 'all' && (
+                  <div className="mt-6 flex justify-center">
+                    <button
+                      type="button"
+                      onClick={() => toggleExpandDiscipline(group.name)}
+                      className="group inline-flex items-center gap-2.5 px-6 py-2.5 rounded-full text-xs sm:text-[13px] font-bold bg-white/[0.04] hover:bg-[#FF5A36]/15 border border-white/15 hover:border-[#FF5A36]/40 text-white transition-all duration-200 shadow-sm hover:shadow-[0_4px_20px_rgba(255,90,54,0.25)] cursor-pointer"
+                    >
+                      {isExpanded ? (
+                        <>
+                          <span>Show Less</span>
+                          <ChevronUp className="w-4 h-4 text-[#FF5A36] group-hover:-translate-y-0.5 transition-transform" />
+                        </>
+                      ) : (
+                        <>
+                          <span>View All {group.name} Courses ({group.courses.length})</span>
+                          <span className="px-2 py-0.5 rounded-full bg-[#FF5A36]/20 text-[#FF7A5C] text-[10.5px] font-extrabold border border-[#FF5A36]/30">
+                            +{remainingCount} more
+                          </span>
+                          <ChevronDown className="w-4 h-4 text-[#FF5A36] group-hover:translate-y-0.5 transition-transform" />
+                        </>
+                      )}
+                    </button>
+                  </div>
+                )}
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Footer note + enquiry CTA */}

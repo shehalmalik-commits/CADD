@@ -89,6 +89,11 @@ export default function HomepageEvents({ events = [], onOpenDemo }) {
   // Mobile auto-carousel
   const { railProps, index: slide, goTo } = useAutoCarousel(total);
 
+  // Reset slide index when category filter changes
+  React.useEffect(() => {
+    goTo(0);
+  }, [selectedCategory, goTo]);
+
   const scrollLeft = () => {
     if (scrollContainerRef.current) {
       scrollContainerRef.current.scrollBy({ left: -320, behavior: 'smooth' });

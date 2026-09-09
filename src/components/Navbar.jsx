@@ -1,20 +1,165 @@
-import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import {
+  Menu,
+  X,
+  ChevronDown,
+  ArrowRight,
+  Layers,
+  Palette,
+  Cpu,
+  Building,
+  Wrench,
+  CalendarCheck,
+  Compass,
+  FileCode2,
+  Sparkles
+} from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import useOverlayHistory from '../hooks/useOverlayHistory';
+
+// Core engineering disciplines for Courses mega-menu hover dropdown
+const NAV_DISCIPLINES = [
+  { name: 'Interior Design', tools: 'AutoCAD · 3ds Max · SketchUp · Lumion', icon: Palette },
+  { name: 'BIM [Building Info]', tools: 'Revit Arch · Navisworks · BIM 360', icon: Building },
+  { name: 'MEP with BIM', tools: 'HVAC · Electrical · Plumbing · Revit MEP', icon: Cpu },
+  { name: 'Structural Design', tools: 'STAAD.Pro · ETABS · Tekla · SAFE', icon: Layers },
+  { name: 'Product Design', tools: 'SolidWorks · Creo Parametric · GD&T', icon: Wrench },
+  { name: 'Project Planning & Mgmt', tools: 'Primavera P6 · MS Project · CPM', icon: CalendarCheck },
+  { name: 'Surveying & Transportation', tools: 'AutoCAD Civil 3D · MicroStation', icon: Compass },
+  { name: 'AutoCAD Professional', tools: 'Civil · Mechanical · Electrical CAD', icon: FileCode2 }
+];
 
 export default function Navbar({ onOpenDemo }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
+  const [coursesHovered, setCoursesHovered] = useState(false);
+  const [mobileCoursesOpen, setMobileCoursesOpen] = useState(false);
+  const hoverTimeoutRef = useRef(null);
+  const lastOpenTimeRef = useRef(0);
 
   // Back / swipe-back closes the menu instead of leaving the site
-  useOverlayHistory(mobileMenuOpen, () => setMobileMenuOpen(false));
+  useOverlayHistory(mobileMenuOpen, () => {
+    setMobileMenuOpen(false);
+    setMobileCoursesOpen(false);
+  });
 
+  // Dynamic Scrollspy: track which section is currently in view
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 40);
+
+      // If near top of page, home is always active
+      if (window.scrollY < 200) {
+        setActiveSection('home');
+        return;
+      }
+
+      // Check sections from bottom to top according to actual DOM layout:
+      // DOM order: hero (home) -> features (courses) -> placement -> events -> about -> testimonials
+      const sections = [
+        { id: 'testimonials', key: 'testimonials' },
+        { id: 'about', key: 'about' },
+        { id: 'events', key: 'events' },
+        { id: 'placement', key: 'placement' },
+        { id: 'features', key: 'features' }
+      ];
+
+      const navHeight = 90;
+      for (const sec of sections) {
+        const el = document.getElementById(sec.id);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          // Active when section top has entered upper half of viewport and bottom is still below navbar
+          if (rect.top <= window.innerHeight * 0.45 && rect.bottom >= navHeight) {
+            setActiveSection(sec.key);
+            return;
+          }
+        }
+      }
+    };
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const coursesRef = useRef(null);
+
+  // Close Courses dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (coursesRef.current && !coursesRef.current.contains(e.target)) {
+        setCoursesHovered(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('touchstart', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
+    };
+  }, []);
+
+  const handleMouseEnterCourses = () => {
+    if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
+    lastOpenTimeRef.current = Date.now();
+    setCoursesHovered(true);
+  };
+
+  const handleMouseLeaveCourses = () => {
+    hoverTimeoutRef.current = setTimeout(() => {
+      setCoursesHovered(false);
+    }, 280);
+  };
+
+  const handleCoursesTouchOrClick = (e) => {
+    if (e && e.preventDefault) e.preventDefault();
+    if (e && e.stopPropagation) e.stopPropagation();
+    if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
+
+    // If dropdown is not currently open, open it immediately
+    if (!coursesHovered) {
+      lastOpenTimeRef.current = Date.now();
+      setCoursesHovered(true);
+      return;
+    }
+
+    // If it was just opened within the last 400ms (e.g. mouseenter fired right before click),
+    // keep it OPEN so it doesn't instantly close on tap/click!
+    if (Date.now() - lastOpenTimeRef.current < 400) {
+      setCoursesHovered(true);
+      return;
+    }
+
+    // If already open and settled, clicking it again navigates smoothly to #features
+    navTo(e, 'features');
+  };
+
+  const navTo = (e, id) => {
+    if (e && e.preventDefault) e.preventDefault();
+    setActiveSection(id);
+    setCoursesHovered(false);
+    setMobileMenuOpen(false);
+    setMobileCoursesOpen(false);
+
+    if (id === 'home') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    const el = document.getElementById(id);
+    if (el) {
+      const navOffset = 80;
+      const elementPosition = el.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   return (
     <header
@@ -25,69 +170,196 @@ export default function Navbar({ onOpenDemo }) {
       }`}
     >
       <div className="max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16 flex items-center justify-between">
-        
         {/* Brand Logo - CADD Centre Manjeri */}
-        <a 
-          href="#" 
+        <a
+          href="#"
+          onClick={(e) => navTo(e, 'home')}
           className="flex items-center group cursor-pointer focus:outline-none shrink-0"
           aria-label="CADD Centre Manjeri Home"
         >
-          <img 
-            src="/CADD.png" 
-            alt="CADD Centre Manjeri" 
-            className="h-9 sm:h-11 lg:h-[46px] w-auto object-contain transition-transform duration-200 group-hover:scale-105 drop-shadow-[0_2px_10px_rgba(0,0,0,0.75)]" 
+          <img
+            src="/CADD.png"
+            alt="CADD Centre Manjeri"
+            className="h-9 sm:h-11 lg:h-[46px] w-auto object-contain transition-transform duration-200 group-hover:scale-105 drop-shadow-[0_2px_10px_rgba(0,0,0,0.75)]"
           />
         </a>
 
-        {/* Desktop Navigation Links */}
-        <nav className="hidden md:flex items-center gap-5 lg:gap-7 xl:gap-8.5 text-[13.5px] font-medium tracking-wide">
-          {/* Home Capsule Pill Button */}
-          <a 
-            href="#" 
-            className="px-4.5 py-1.5 rounded-full border border-white/25 bg-white/10 text-white font-semibold hover:bg-white/20 transition-all shadow-sm"
+        {/* Desktop Navigation Links with Active Scrollspy & Hover Dropdown */}
+        <nav className="hidden md:flex items-center gap-1 lg:gap-2 text-[13.5px] font-medium tracking-wide">
+          {/* 1. Home */}
+          <a
+            href="#"
+            onClick={(e) => navTo(e, 'home')}
+            className={`px-4 py-1.5 rounded-full transition-all duration-200 cursor-pointer ${
+              activeSection === 'home'
+                ? 'border border-white/25 bg-white/15 text-white font-semibold shadow-sm'
+                : 'text-slate-300 hover:text-white'
+            }`}
           >
             Home
           </a>
 
-          <a 
-            href="#features" 
-            className="text-white/85 hover:text-white transition-colors"
+          {/* 2. Courses with Rich Touch & Hover Mega-Menu Dropdown */}
+          <div
+            ref={coursesRef}
+            className="relative"
+            onMouseEnter={handleMouseEnterCourses}
+            onMouseLeave={handleMouseLeaveCourses}
           >
-            Courses
-          </a>
+            <button
+              type="button"
+              onClick={handleCoursesTouchOrClick}
+              aria-expanded={coursesHovered}
+              className={`inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full transition-all duration-200 cursor-pointer ${
+                activeSection === 'features' || coursesHovered
+                  ? 'border border-white/25 bg-white/15 text-white font-semibold shadow-sm'
+                  : 'text-slate-300 hover:text-white'
+              }`}
+            >
+              <span>Courses</span>
+              <ChevronDown
+                className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                  coursesHovered ? 'rotate-180 text-[#FF5A36]' : 'text-white/60'
+                }`}
+              />
+            </button>
 
-          <a 
-            href="#about" 
-            className="text-white/85 hover:text-white transition-colors"
+            {/* Hover & Touch Mega-Menu Dropdown */}
+            <AnimatePresence>
+              {coursesHovered && (
+                <motion.div
+                  initial={{ opacity: 0, y: 8, scale: 0.98 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 6, scale: 0.98 }}
+                  transition={{ duration: 0.18, ease: 'easeOut' }}
+                  className="absolute top-full -left-12 sm:left-0 pt-2 w-[560px] max-w-[92vw] z-50 text-left"
+                >
+                  <div className="p-4 sm:p-5 rounded-2xl bg-[#090E17]/95 backdrop-blur-xl border border-white/15 shadow-[0_20px_50px_rgba(0,0,0,0.85)]">
+                    {/* Header */}
+                    <div className="flex items-center justify-between pb-3 mb-3 border-b border-white/10">
+                      <div>
+                        <p className="text-[12px] font-bold text-white uppercase tracking-wider flex items-center gap-2">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#FF5A36] animate-pulse" />
+                          Certified Engineering Disciplines
+                        </p>
+                        <p className="text-[11px] text-slate-400">
+                          36+ accredited career programs in Manjeri
+                        </p>
+                      </div>
+
+                      <a
+                        href="#features"
+                        onClick={(e) => navTo(e, 'features')}
+                        className="text-[11.5px] font-bold text-[#FF7A5C] hover:text-[#FF5A36] flex items-center gap-1 transition-colors group/all cursor-pointer"
+                      >
+                        View All Courses <ArrowRight className="w-3.5 h-3.5 group-hover/all:translate-x-0.5 transition-transform" />
+                      </a>
+                    </div>
+
+                    {/* 8 Disciplines Grid (2 columns) */}
+                    <div className="grid grid-cols-2 gap-2">
+                      {NAV_DISCIPLINES.map((d) => (
+                        <a
+                          key={d.name}
+                          href="#features"
+                          onClick={(e) => navTo(e, 'features')}
+                          className="group/item flex items-start gap-2.5 p-2.5 rounded-xl hover:bg-white/[0.06] border border-transparent hover:border-white/10 transition-all cursor-pointer"
+                        >
+                          <div className="w-7 h-7 rounded-lg bg-[#FF5A36]/10 border border-[#FF5A36]/25 text-[#FF7A5C] group-hover/item:bg-[#FF5A36] group-hover/item:text-white flex items-center justify-center shrink-0 transition-colors mt-0.5 shadow-sm">
+                            <d.icon className="w-3.5 h-3.5" />
+                          </div>
+                          <div className="min-w-0">
+                            <p className="text-[12.5px] font-bold text-white group-hover/item:text-[#FF7A5C] transition-colors truncate">
+                              {d.name}
+                            </p>
+                            <p className="text-[10px] text-slate-400 truncate">
+                              {d.tools}
+                            </p>
+                          </div>
+                        </a>
+                      ))}
+                    </div>
+
+                    {/* Dropdown Footer CTA */}
+                    <div className="mt-3.5 pt-3 border-t border-white/10 flex items-center justify-between text-xs">
+                      <span className="text-[11px] text-slate-400 flex items-center gap-1.5">
+                        <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                        Free Demo &amp; Syllabus Counseling
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setCoursesHovered(false);
+                          onOpenDemo();
+                        }}
+                        className="text-[11.5px] font-bold text-white hover:text-[#FF7A5C] transition-colors cursor-pointer"
+                      >
+                        Enquire Admissions →
+                      </button>
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
+          {/* 3. About Us */}
+          <a
+            href="#about"
+            onClick={(e) => navTo(e, 'about')}
+            className={`px-4 py-1.5 rounded-full transition-all duration-200 cursor-pointer ${
+              activeSection === 'about'
+                ? 'border border-white/25 bg-white/15 text-white font-semibold shadow-sm'
+                : 'text-slate-300 hover:text-white'
+            }`}
           >
             About Us
           </a>
 
-          <a 
-            href="#placement" 
-            className="text-white/85 hover:text-white transition-colors"
+          {/* 4. Placements */}
+          <a
+            href="#placement"
+            onClick={(e) => navTo(e, 'placement')}
+            className={`px-4 py-1.5 rounded-full transition-all duration-200 cursor-pointer ${
+              activeSection === 'placement'
+                ? 'border border-white/25 bg-white/15 text-white font-semibold shadow-sm'
+                : 'text-slate-300 hover:text-white'
+            }`}
           >
             Placements
           </a>
 
-          <a 
-            href="#events" 
-            className="text-white/85 hover:text-white transition-colors"
+          {/* 5. Events */}
+          <a
+            href="#events"
+            onClick={(e) => navTo(e, 'events')}
+            className={`px-4 py-1.5 rounded-full transition-all duration-200 cursor-pointer ${
+              activeSection === 'events'
+                ? 'border border-white/25 bg-white/15 text-white font-semibold shadow-sm'
+                : 'text-slate-300 hover:text-white'
+            }`}
           >
             Events
           </a>
 
-          <a 
-            href="#testimonials" 
-            className="text-white/85 hover:text-white transition-colors"
+          {/* 6. Reviews */}
+          <a
+            href="#testimonials"
+            onClick={(e) => navTo(e, 'testimonials')}
+            className={`px-4 py-1.5 rounded-full transition-all duration-200 cursor-pointer ${
+              activeSection === 'testimonials'
+                ? 'border border-white/25 bg-white/15 text-white font-semibold shadow-sm'
+                : 'text-slate-300 hover:text-white'
+            }`}
           >
             Reviews
           </a>
 
+          {/* 7. Contact CTA */}
           <button
             type="button"
             onClick={onOpenDemo}
-            className="text-white/85 hover:text-white transition-colors cursor-pointer"
+            className="px-4 py-1.5 rounded-full text-slate-300 hover:text-white font-medium transition-colors duration-200 cursor-pointer"
           >
             Contact
           </button>
@@ -127,25 +399,152 @@ export default function Navbar({ onOpenDemo }) {
 
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
-        <div className="fixed top-16 inset-x-4 bg-[#080D14]/95 backdrop-blur-xl border border-white/15 rounded-2xl p-5 shadow-2xl md:hidden space-y-3 text-center text-white animate-in fade-in slide-in-from-top-2 duration-200">
-          <div className="flex justify-center pb-1">
-            <a 
-              href="#" 
-              onClick={() => setMobileMenuOpen(false)} 
-              className="inline-block px-5 py-1.5 rounded-full border border-white/25 bg-white/10 text-white text-sm font-semibold"
+        <div className="fixed top-16 inset-x-4 bg-[#080D14]/95 backdrop-blur-xl border border-white/15 rounded-2xl p-5 shadow-2xl md:hidden space-y-2 text-center text-white animate-in fade-in slide-in-from-top-2 duration-200">
+          <a
+            href="#"
+            onClick={(e) => navTo(e, 'home')}
+            className={`block py-2 px-4 rounded-xl text-sm font-semibold transition-all ${
+              activeSection === 'home'
+                ? 'bg-white/15 border border-white/20 text-white'
+                : 'text-white/80 hover:bg-white/10'
+            }`}
+          >
+            Home
+          </a>
+
+          {/* Mobile Courses Accordion Item */}
+          <div className="rounded-xl overflow-hidden border border-white/10 bg-white/[0.03]">
+            <button
+              type="button"
+              onClick={() => setMobileCoursesOpen(!mobileCoursesOpen)}
+              className={`w-full flex items-center justify-between py-2 px-4 text-sm font-semibold transition-all cursor-pointer ${
+                activeSection === 'features' || mobileCoursesOpen
+                  ? 'bg-white/15 text-white'
+                  : 'text-white/80 hover:bg-white/10'
+              }`}
             >
-              Home
-            </a>
+              <div className="flex items-center gap-2">
+                <span>Courses</span>
+                <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-[#FF5A36]/20 text-[#FF7A5C] border border-[#FF5A36]/30">
+                  8 Disciplines
+                </span>
+              </div>
+              <ChevronDown
+                className={`w-4 h-4 transition-transform duration-200 ${
+                  mobileCoursesOpen ? 'rotate-180 text-[#FF5A36]' : 'text-white/60'
+                }`}
+              />
+            </button>
+
+            {/* Expandable disciplines list */}
+            <AnimatePresence>
+              {mobileCoursesOpen && (
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: 'auto', opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                  className="overflow-hidden border-t border-white/10 bg-black/50 p-2 text-left"
+                >
+                  <div className="grid grid-cols-1 gap-1.5 max-h-56 overflow-y-auto pr-1">
+                    {NAV_DISCIPLINES.map((d) => (
+                      <a
+                        key={d.name}
+                        href="#features"
+                        onClick={(e) => navTo(e, 'features')}
+                        className="flex items-center gap-2.5 p-2 rounded-lg hover:bg-white/10 transition-colors"
+                      >
+                        <div className="w-6 h-6 rounded-md bg-[#FF5A36]/15 text-[#FF7A5C] flex items-center justify-center shrink-0">
+                          <d.icon className="w-3 h-3" />
+                        </div>
+                        <div className="min-w-0">
+                          <p className="text-xs font-semibold text-white truncate">{d.name}</p>
+                          <p className="text-[10px] text-slate-400 truncate">{d.tools}</p>
+                        </div>
+                      </a>
+                    ))}
+                  </div>
+
+                  <div className="pt-2 mt-2 border-t border-white/10 flex items-center justify-between px-1">
+                    <a
+                      href="#features"
+                      onClick={(e) => navTo(e, 'features')}
+                      className="text-xs font-bold text-[#FF7A5C] hover:text-[#FF5A36] flex items-center gap-1 transition-colors"
+                    >
+                      View All 36+ Courses →
+                    </a>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setMobileMenuOpen(false);
+                        setMobileCoursesOpen(false);
+                        onOpenDemo();
+                      }}
+                      className="text-xs font-medium text-white/70 hover:text-white"
+                    >
+                      Free Counseling
+                    </button>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
-          <a href="#features" onClick={() => setMobileMenuOpen(false)} className="block py-1 text-sm font-medium text-white/90 hover:text-white">Courses</a>
-          <a href="#about" onClick={() => setMobileMenuOpen(false)} className="block py-1 text-sm font-medium text-white/90 hover:text-white">About Us</a>
-          <a href="#placement" onClick={() => setMobileMenuOpen(false)} className="block py-1 text-sm font-medium text-white/90 hover:text-white">Placements</a>
-          <a href="#events" onClick={() => setMobileMenuOpen(false)} className="block py-1 text-sm font-medium text-white/90 hover:text-white">Events</a>
-          <a href="#testimonials" onClick={() => setMobileMenuOpen(false)} className="block py-1 text-sm font-medium text-white/90 hover:text-white">Reviews</a>
+
+          <a
+            href="#about"
+            onClick={(e) => navTo(e, 'about')}
+            className={`block py-2 px-4 rounded-xl text-sm font-semibold transition-all ${
+              activeSection === 'about'
+                ? 'bg-white/15 border border-white/20 text-white'
+                : 'text-white/80 hover:bg-white/10'
+            }`}
+          >
+            About Us
+          </a>
+
+          <a
+            href="#placement"
+            onClick={(e) => navTo(e, 'placement')}
+            className={`block py-2 px-4 rounded-xl text-sm font-semibold transition-all ${
+              activeSection === 'placement'
+                ? 'bg-white/15 border border-white/20 text-white'
+                : 'text-white/80 hover:bg-white/10'
+            }`}
+          >
+            Placements
+          </a>
+
+          <a
+            href="#events"
+            onClick={(e) => navTo(e, 'events')}
+            className={`block py-2 px-4 rounded-xl text-sm font-semibold transition-all ${
+              activeSection === 'events'
+                ? 'bg-white/15 border border-white/20 text-white'
+                : 'text-white/80 hover:bg-white/10'
+            }`}
+          >
+            Events
+          </a>
+
+          <a
+            href="#testimonials"
+            onClick={(e) => navTo(e, 'testimonials')}
+            className={`block py-2 px-4 rounded-xl text-sm font-semibold transition-all ${
+              activeSection === 'testimonials'
+                ? 'bg-white/15 border border-white/20 text-white'
+                : 'text-white/80 hover:bg-white/10'
+            }`}
+          >
+            Reviews
+          </a>
+
           <button
             type="button"
-            onClick={() => { setMobileMenuOpen(false); onOpenDemo(); }}
-            className="block w-full py-1 text-sm font-medium text-white/90 hover:text-white cursor-pointer"
+            onClick={() => {
+              setMobileMenuOpen(false);
+              onOpenDemo();
+            }}
+            className="block w-full py-2 px-4 rounded-xl text-sm font-semibold text-white/80 hover:bg-white/10 transition-all cursor-pointer"
           >
             Contact
           </button>
@@ -153,8 +552,11 @@ export default function Navbar({ onOpenDemo }) {
           <div className="pt-2 border-t border-white/10 flex justify-center">
             <button
               type="button"
-              onClick={() => { setMobileMenuOpen(false); onOpenDemo(); }}
-              className="w-full bg-[#E94B3C] hover:bg-[#D4382A] text-white py-2.5 rounded-full text-sm font-semibold shadow-lg shadow-red-500/30 active:scale-98 transition-all"
+              onClick={() => {
+                setMobileMenuOpen(false);
+                onOpenDemo();
+              }}
+              className="w-full bg-[#E94B3C] hover:bg-[#D4382A] text-white py-2.5 rounded-full text-sm font-semibold shadow-lg shadow-red-500/30 active:scale-98 transition-all cursor-pointer"
             >
               Apply Now
             </button>
