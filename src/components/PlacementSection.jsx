@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useRef, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Briefcase, FileText, UserCheck, FolderCheck, Compass, CheckCircle2, Building, ArrowUpRight, X, ChevronLeft, ChevronRight, Award, Sparkles, ZoomIn, ChevronDown } from 'lucide-react';
-import Button from './ui/Button';
-import useAutoCarousel from '../hooks/useAutoCarousel';
+import { ChevronLeft, ChevronRight, X, ArrowUpRight, CheckCircle2, Sparkles } from 'lucide-react';
+import useOverlayHistory from '../hooks/useOverlayHistory';
 
-// 17 Authentic Placed Student Images from assets/placestudents
+// 17 Authentic Placed Student Poster Images from assets/placestudents
 import imgHanna from '../assets/placestudents/Hanna.png';
 import imgHijas from '../assets/placestudents/Hijas.png';
 import imgJasmin from '../assets/placestudents/Jasmin.png';
@@ -24,570 +23,555 @@ import imgSuhail from '../assets/placestudents/IMG_0069.JPEG';
 import imgAshique from '../assets/placestudents/IMG_0070.PNG';
 import imgShehin from '../assets/placestudents/IMG_0071.PNG';
 
-// Placed Students Data with rich metadata
 export const placedStudentsList = [
   {
     id: 'placed-hanna',
     name: 'Hanna',
     role: 'Designer',
+    category: 'interior',
     company: 'Design & Architecture',
     img: imgHanna,
-    alt: 'Hanna - Placed as Designer from CADD Centre Manjeri',
   },
   {
     id: 'placed-hijas',
     name: 'Hijas',
     role: 'BIM Modeler',
+    category: 'bim',
     company: 'BIM Consultancy',
     img: imgHijas,
-    alt: 'Hijas - Placed as BIM Modeler from CADD Centre Manjeri',
   },
   {
     id: 'placed-jasmin',
     name: 'Jasmin',
     role: 'CAD Draftman',
+    category: 'bim',
     company: 'Engineering Consultancy',
     img: imgJasmin,
-    alt: 'Jasmin - Placed as CAD Draftman from CADD Centre Manjeri',
   },
   {
     id: 'placed-jithin',
     name: 'Jithin',
     role: 'Site Engineer',
+    category: 'civil',
     company: 'Infrastructure & Construction',
     img: imgJithin,
-    alt: 'Jithin - Placed as Site Engineer from CADD Centre Manjeri',
   },
   {
     id: 'placed-peter',
     name: 'Peter',
     role: 'Site Engineer',
+    category: 'civil',
     company: 'Construction & Civil',
     img: imgPeter,
-    alt: 'Peter - Placed as Site Engineer from CADD Centre Manjeri',
   },
   {
     id: 'placed-vipin',
     name: 'Vipin',
     role: 'Designer',
+    category: 'mechanical',
     company: 'Design Studio',
     img: imgVipin,
-    alt: 'Vipin - Placed as Designer from CADD Centre Manjeri',
   },
   {
     id: 'placed-shahla',
     name: 'Shahla',
     role: 'CAD Designer',
+    category: 'bim',
     company: 'Architectural Consultancy',
     img: imgShahla,
-    alt: 'Shahla - Placed as CAD Designer from CADD Centre Manjeri',
   },
   {
     id: 'placed-salman',
     name: 'Salman',
     role: 'Designer',
+    category: 'mechanical',
     company: 'Engineering Studio',
     img: imgSalman,
-    alt: 'Salman - Placed as Designer from CADD Centre Manjeri',
   },
   {
     id: 'placed-dilshad',
     name: 'Dilshad',
     role: 'MEP Designer',
+    category: 'interior',
     company: 'Focus MEP Solutions',
     img: imgDilshad,
-    alt: 'Dilshad - Placed as MEP Designer at Focus MEP Solutions from CADD Centre Manjeri',
   },
   {
     id: 'placed-ansar',
     name: 'Ansar',
     role: 'Draughtsman',
-    company: 'Engineering Consultancy',
+    category: 'civil',
+    company: 'Civil & Architectural Engineering',
     img: imgAnsar,
-    alt: 'Ansar - Placed as Draughtsman from CADD Centre Manjeri',
   },
   {
     id: 'placed-anshad',
     name: 'Anshad',
     role: 'Product Designer',
-    company: 'Product Design Studio',
+    category: 'mechanical',
+    company: 'Creative Studio Solutions',
     img: imgAnshad,
-    alt: 'Anshad - Placed as Product Designer from CADD Centre Manjeri',
   },
   {
     id: 'placed-ziyad',
     name: 'Ziyad',
-    role: 'Draughtsman',
-    company: 'Architectural Drafting',
+    role: 'Civil Engineer',
+    category: 'civil',
+    company: 'Smart Design & Build',
     img: imgZiyad,
-    alt: 'Ziyad - Placed as Draughtsman from CADD Centre Manjeri',
   },
   {
     id: 'placed-sreni',
     name: 'Sreni',
-    role: '3D Designer',
-    company: '3D Visualization Firm',
+    role: 'Architectural Designer',
+    category: 'bim',
+    company: 'Modern Architecture Studio',
     img: imgSreni,
-    alt: 'Sreni - Placed as 3D Designer from CADD Centre Manjeri',
   },
   {
     id: 'placed-vignesh',
     name: 'Vignesh',
-    role: 'Product Designer',
-    company: 'Industrial Design Firm',
+    role: 'Mechanical Draughtsman',
+    category: 'mechanical',
+    company: 'Engineering Services Group',
     img: imgVignesh,
-    alt: 'Vignesh - Placed as Product Designer from CADD Centre Manjeri',
   },
   {
     id: 'placed-suhail',
     name: 'Suhail',
     role: 'Designer',
+    category: 'mechanical',
     company: 'SeoskoServ Private Limited',
     img: imgSuhail,
-    alt: 'Suhail - Placed as Designer at SeoskoServ Private Limited from CADD Centre Manjeri',
   },
   {
     id: 'placed-ashique',
     name: 'Ashique',
     role: 'Designer',
+    category: 'mechanical',
     company: 'SeoskoServ Private Limited',
     img: imgAshique,
-    alt: 'Ashique - Placed as Designer at SeoskoServ Private Limited from CADD Centre Manjeri',
   },
   {
     id: 'placed-shehin',
     name: 'Shehin',
     role: 'Interior Designer',
+    category: 'interior',
     company: 'Ajiro Solutions',
     img: imgShehin,
-    alt: 'Shehin - Placed as Interior Designer at Ajiro Solutions from CADD Centre Manjeri',
   },
 ];
 
-// Single Portrait Card with crisp border and subtle interactive hover
-function PortraitCard({ student, className = "", onClick }) {
-  return (
-    <div
-      onClick={onClick}
-      role="button"
-      tabIndex={0}
-      onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && onClick?.()}
-      className={`group relative rounded-[16px] xl:rounded-[18px] overflow-hidden border-2 border-white/95 bg-white shadow-[0_8px_24px_rgba(0,0,0,0.08)] hover:shadow-[0_16px_36px_rgba(233,75,60,0.18)] hover:scale-[1.04] transition-all duration-300 cursor-pointer select-none ${className}`}
-      title={`${student.name} - ${student.role} (${student.company})`}
-    >
-      <img
-        src={student.img}
-        alt={student.alt}
-        className="w-full h-full object-cover object-center pointer-events-none"
-        loading="eager"
-      />
-      {/* Subtle hover overlay hint with Zoom icon */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-2.5">
-        <div className="flex items-center justify-between text-white text-[11px] font-semibold">
-          <span className="truncate pr-1">{student.name}</span>
-          <ZoomIn className="w-3.5 h-3.5 shrink-0 text-white/90" />
-        </div>
-      </div>
-    </div>
-  );
-}
+export default function PlacementSection({ onOpenDemo }) {
+  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [selectedStudent, setSelectedStudent] = useState(null);
+  const [allModalOpen, setAllModalOpen] = useState(false);
+  const carouselRef = useRef(null);
 
-// Stepped Flow Cluster with smooth rotation
-function SteppedFlowCluster({ items, isRight = false, interval = 2600, cardSize = "", onSelectCard }) {
-  const [step, setStep] = useState(0);
+  // Overlay history for lightbox modal
+  useOverlayHistory(!!selectedStudent, () => setSelectedStudent(null));
+  useOverlayHistory(allModalOpen, () => setAllModalOpen(false));
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setStep((prev) => (prev + 1) % items.length);
-    }, interval);
-    return () => clearInterval(timer);
-  }, [items.length, interval]);
+  const categories = [
+    { id: 'all', label: 'All Placements' },
+    { id: 'bim', label: 'BIM & Architectural' },
+    { id: 'civil', label: 'Civil & Site' },
+    { id: 'mechanical', label: 'Mechanical & Product' },
+    { id: 'interior', label: 'MEP & Interior' },
+  ];
 
-  const getSlot = (slotIdx) => {
-    const innerX = isRight ? -190 : 190;
-    const offstageX = isRight ? 205 : -205;
+  const filteredStudents = useMemo(() => {
+    if (selectedCategory === 'all') return placedStudentsList;
+    return placedStudentsList.filter((s) => s.category === selectedCategory);
+  }, [selectedCategory]);
 
-    switch (slotIdx) {
-      case 0:
-        return { x: 0, y: 0, opacity: 1, scale: 1, zIndex: 10 };
-      case 1:
-        return { x: innerX, y: 65, opacity: 1, scale: 1, zIndex: 15 };
-      case 2:
-        return { x: innerX, y: 295, opacity: 1, scale: 1, zIndex: 15 };
-      case 3:
-        return { x: 0, y: 360, opacity: 1, scale: 1, zIndex: 10 };
-      case 4:
-        return { x: offstageX, y: 360, opacity: 0, scale: 0.88, zIndex: 0 };
-      default:
-        return { x: offstageX, y: 0, opacity: 0, scale: 0.88, zIndex: 0 };
+  const scrollLeft = () => {
+    if (carouselRef.current) {
+      carouselRef.current.scrollBy({ left: -340, behavior: 'smooth' });
     }
   };
 
-  return (
-    <div className="relative w-[340px] xl:w-[370px] 2xl:w-[390px] h-[550px] xl:h-[575px] 2xl:h-[600px] pointer-events-auto">
-      {items.map((card, i) => {
-        const currentSlot = (i + step) % items.length;
-        const style = getSlot(currentSlot);
-
-        return (
-          <motion.div
-            key={card.id}
-            initial={false}
-            animate={{
-              x: style.x,
-              y: style.y,
-              opacity: style.opacity,
-              scale: style.scale,
-              zIndex: style.zIndex,
-            }}
-            transition={{
-              duration: 0.75,
-              ease: [0.16, 1, 0.3, 1],
-            }}
-            className={`absolute ${isRight ? 'right-0' : 'left-0'} top-0 transform-gpu will-change-transform will-change-opacity`}
-          >
-            <PortraitCard
-              student={card}
-              className={cardSize}
-              onClick={() => onSelectCard(card)}
-            />
-          </motion.div>
-        );
-      })}
-    </div>
-  );
-}
-
-export default function PlacementSection({ onOpenDemo }) {
-  const [selectedStudent, setSelectedStudent] = useState(null);
-  const [isPillarsExpanded, setIsPillarsExpanded] = useState(false);
-
-  // Placed-students rail on mobile / tablet: advances on its own, pauses while
-  // the viewer is interacting with it or the poster lightbox is open.
-  const { railProps, index: railIndex, goTo: goToStudent } = useAutoCarousel(
-    placedStudentsList.length,
-    { paused: !!selectedStudent }
-  );
-
-  // Left wing items (9 items)
-  const leftCards = [
-    placedStudentsList[0], // Hanna (Designer)
-    placedStudentsList[1], // Hijas (BIM Modeler)
-    placedStudentsList[2], // Jasmin (CAD Draftman)
-    placedStudentsList[3], // Jithin (Site Engineer)
-    placedStudentsList[8], // Dilshad (MEP Designer)
-    placedStudentsList[9], // Ansar (Draughtsman)
-    placedStudentsList[10], // Anshad (Product Designer)
-    placedStudentsList[11], // Ziyad (Draughtsman)
-    placedStudentsList[12], // Sreni (3D Designer)
-  ];
-
-  // Right wing items (8 items)
-  const rightCards = [
-    placedStudentsList[4], // Peter (Site Engineer)
-    placedStudentsList[5], // Vipin (Designer)
-    placedStudentsList[6], // Shahla (CAD Designer)
-    placedStudentsList[7], // Salman (Designer)
-    placedStudentsList[13], // Vignesh (Product Designer)
-    placedStudentsList[14], // Suhail (Designer - SeoskoServ)
-    placedStudentsList[15], // Ashique (Designer - SeoskoServ)
-    placedStudentsList[16], // Shehin (Interior Designer - Ajiro)
-  ];
-
-  // Placement Pillars
-  const placementPillars = [
-    {
-      icon: FileText,
-      title: "Resume & Portfolio Guidance",
-      desc: "Industry-standard CAD portfolio structuring & technical project documentation."
-    },
-    {
-      icon: UserCheck,
-      title: "Interview Preparation",
-      desc: "Technical mock interviews, drafting speed assessments, and professional communication."
-    },
-    {
-      icon: FolderCheck,
-      title: "Industry-Oriented Projects",
-      desc: "Live project workflows matching real engineering and architectural deliverables."
-    },
-    {
-      icon: Compass,
-      title: "Career Counselling",
-      desc: "One-on-one mentorship identifying optimal discipline paths across Civil, BIM, Mechanical & MEP."
+  const scrollRight = () => {
+    if (carouselRef.current) {
+      carouselRef.current.scrollBy({ left: 340, behavior: 'smooth' });
     }
-  ];
+  };
 
-  const cardSize = "w-[138px] h-[172px] sm:w-[145px] sm:h-[181px] lg:w-[152px] lg:h-[190px] xl:w-[162px] xl:h-[202px] 2xl:w-[172px] 2xl:h-[215px]";
-
-  // Keyboard navigation for modal
+  // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (e.key === 'Escape') setSelectedStudent(null);
+      if (e.key === 'Escape') {
+        setSelectedStudent(null);
+        setAllModalOpen(false);
+      }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
   return (
-    <section id="placement" className="relative py-10 sm:py-20 lg:py-24 bg-[#F5F4F1] overflow-hidden min-h-0 sm:min-h-[85vh] lg:min-h-screen flex items-center justify-center font-['Plus_Jakarta_Sans',sans-serif]">
-      <div id="team" className="absolute -top-12 left-0 pointer-events-none" />
-      <div className="relative w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 flex flex-col lg:flex-row items-center justify-between lg:h-[610px] 2xl:h-[650px]">
+    <section
+      id="placement"
+      className="relative py-16 sm:py-24 lg:py-28 bg-[#080D14] text-white font-['Plus_Jakarta_Sans',sans-serif] overflow-hidden border-t border-white/5 select-none"
+    >
+      {/* Subtle CAD / Engineering dot grid pattern */}
+      <div 
+        className="absolute inset-0 pointer-events-none opacity-35"
+        style={{
+          backgroundImage: 'radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px)',
+          backgroundSize: '28px 28px',
+        }}
+        aria-hidden="true"
+      />
 
-        {/* LEFT ANIMATED CARD FLOW CLUSTER */}
-        <div className="hidden lg:flex flex-1 justify-start">
-          <SteppedFlowCluster
-            items={leftCards}
-            isRight={false}
-            interval={2600}
-            cardSize={cardSize}
-            onSelectCard={setSelectedStudent}
-          />
-        </div>
+      {/* Ambient Red Glow in Background */}
+      <div 
+        className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[400px] rounded-full bg-[#E94B3C]/10 blur-[150px] pointer-events-none" 
+        aria-hidden="true" 
+      />
 
-        {/* CENTER PLACEMENT CELL CONTENT BLOCK */}
-        <div className="relative z-20 text-center max-w-[490px] xl:max-w-[530px] mx-auto px-4 flex flex-col items-center flex-shrink-0 my-8 lg:my-0">
-
-          {/* Squircle Icon Box */}
-          <div className="w-12 h-12 rounded-[12px] bg-white shadow-sm border border-[rgba(28,37,51,0.10)] flex items-center justify-center text-[#E94B3C] mb-3.5">
-            <Briefcase className="w-6 h-6 stroke-[1.8]" />
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        {/* ========================================================= */}
+        {/* TOP CONTEXT BAR                                           */}
+        {/* ========================================================= */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 mb-10 pb-4 border-b border-white/10 text-xs">
+          <div className="flex items-center gap-2 text-white/60">
+            <span className="text-[#E94B3C] font-black">*</span>
+            <span>Click any student poster to view their verified placement details &amp; company.</span>
           </div>
 
-          <div className="inline-flex items-center gap-2 mb-2">
-            <span className="w-1.5 h-1.5 rounded-sm bg-[#E94B3C]" />
-            <span className="text-[11px] font-bold text-[#E94B3C] uppercase tracking-[0.14em]">
-              PLACEMENT CELL
+          <button
+            type="button"
+            onClick={onOpenDemo}
+            className="bg-[#E94B3C] hover:bg-[#D4382A] active:bg-[#B82E22] text-white text-xs font-semibold px-5 py-2 rounded-full transition-all shadow-[0_4px_16px_rgba(233,75,60,0.35)] hover:scale-105 active:scale-95 cursor-pointer inline-flex items-center gap-1.5 shrink-0"
+          >
+            <span>Enquire About Admissions</span>
+            <ArrowUpRight className="w-3.5 h-3.5" />
+          </button>
+        </div>
+
+        {/* ========================================================= */}
+        {/* MAIN PLACEMENT HERO HEADLINE & METRICS                    */}
+        {/* ========================================================= */}
+        <div className="text-center max-w-4xl mx-auto space-y-4 mb-10">
+          
+          {/* Eyebrow */}
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/[0.05] border border-white/10 backdrop-blur-md">
+            <span className="w-2 h-2 rounded-full bg-[#E94B3C] shadow-[0_0_8px_#E94B3C] animate-pulse" />
+            <span className="text-[11px] sm:text-xs font-bold uppercase tracking-[0.18em] text-[#E94B3C]">
+              PLACEMENT CELL 2026
             </span>
           </div>
 
-          {/* Main Headline */}
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1C2533] tracking-tight leading-[1.15]">
-            From Skills to<br />
-            <span className="text-[#E94B3C]">
-              Career Opportunities.
+          {/* Bold 2-Line Headline matching Screenshot 1 */}
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-[-0.03em] leading-[1.08] uppercase text-white">
+            ENGINEERING<br />
+            <span className="text-[#E94B3C] drop-shadow-[0_0_35px_rgba(233,75,60,0.45)]">
+              100+ SUCCESS STORIES.
             </span>
           </h2>
 
-          {/* Subtitle */}
-          <p className="mt-3 text-xs sm:text-sm text-[#687282] font-normal leading-relaxed max-w-md">
-            Practical training is only the beginning. Our dedicated placement cell helps students prepare for technical interviews, portfolio presentations, and professional engineering opportunities across India and the Middle East.
+          {/* Subtitle Description */}
+          <p className="text-xs sm:text-sm lg:text-[15px] text-white/70 font-normal leading-relaxed max-w-2xl mx-auto pt-1">
+            Practical training is only the beginning. Our dedicated placement cell helps students prepare for technical interviews, portfolio presentations, and professional engineering opportunities across India &amp; the Middle East.
           </p>
 
-          {/* Placement Services 2x2 Grid (Mobile: Card 1 + expandable Cards 2-4, Desktop: 2-column grid) */}
-          <div className="mt-5 w-full text-left sm:grid sm:grid-cols-2 sm:gap-2.5">
-            {/* Card 01 - Always visible on mobile with expand toggle button */}
-            <div
-              className="bg-white border border-[rgba(28,37,51,0.10)] rounded-[12px] p-3 shadow-2xs space-y-1 hover:border-[#E94B3C]/30 transition-colors cursor-pointer sm:cursor-default"
-              onClick={() => setIsPillarsExpanded((prev) => !prev)}
-            >
-              <div className="flex items-center justify-between gap-2">
-                <div className="flex items-center gap-2 min-w-0">
-                  <FileText className="w-4 h-4 text-[#E94B3C] shrink-0" />
-                  <h3 className="text-xs font-bold text-[#1C2533] truncate sm:whitespace-normal">
-                    {placementPillars[0].title}
-                  </h3>
+          {/* 4-Metric Floating Glass Scorecard Card */}
+          <div className="pt-6">
+            <div className="rounded-[22px] bg-[#0E1624]/85 border border-white/12 backdrop-blur-xl p-5 sm:p-7 shadow-2xl grid grid-cols-2 sm:grid-cols-4 gap-6 text-center max-w-3xl mx-auto">
+              <div>
+                <div className="text-3xl sm:text-4xl font-black text-[#38BDF8] tracking-tight">
+                  100+
                 </div>
+                <div className="text-[10.5px] sm:text-[11px] text-white/60 font-semibold tracking-wider uppercase mt-1">
+                  CAREERS LAUNCHED
+                </div>
+              </div>
 
-                {/* Mobile Expand / Collapse Button */}
-                <button
-                  type="button"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setIsPillarsExpanded((prev) => !prev);
-                  }}
-                  className="sm:hidden shrink-0 w-6 h-6 rounded-full bg-[#F5F4F1] border border-[rgba(28,37,51,0.10)] text-[#E94B3C] flex items-center justify-center shadow-xs active:scale-90 transition-all cursor-pointer hover:bg-[#E94B3C] hover:text-white"
-                  aria-label={isPillarsExpanded ? "Show fewer services" : "Expand all placement services"}
-                  aria-expanded={isPillarsExpanded}
-                >
-                  <ChevronDown
-                    className={`w-3.5 h-3.5 transition-transform duration-300 ease-out ${
-                      isPillarsExpanded ? 'rotate-180' : 'rotate-0'
+              <div>
+                <div className="text-3xl sm:text-4xl font-black text-[#FF5722] tracking-tight">
+                  100+
+                </div>
+                <div className="text-[10.5px] sm:text-[11px] text-white/60 font-semibold tracking-wider uppercase mt-1">
+                  PARTNER NETWORK
+                </div>
+              </div>
+
+              <div>
+                <div className="text-3xl sm:text-4xl font-black text-[#10B981] tracking-tight">
+                  100%
+                </div>
+                <div className="text-[10.5px] sm:text-[11px] text-white/60 font-semibold tracking-wider uppercase mt-1">
+                  PLACEMENT ASSISTANCE
+                </div>
+              </div>
+
+              <div>
+                <div className="text-3xl sm:text-4xl font-black text-[#00D8FF] tracking-tight">
+                  TOP
+                </div>
+                <div className="text-[10.5px] sm:text-[11px] text-white/60 font-semibold tracking-wider uppercase mt-1">
+                  INDUSTRY PACKAGES
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        {/* ========================================================= */}
+        {/* VERIFIED GRADUATES HEADER & FILTER TABS (Screenshot 2)    */}
+        {/* ========================================================= */}
+        <div className="pt-12 sm:pt-16 pb-6">
+          <div className="text-center max-w-3xl mx-auto space-y-2 mb-8">
+            <h3 className="text-3xl sm:text-4xl font-black text-white tracking-tight uppercase">
+              VERIFIED GRADUATES
+            </h3>
+            <p className="text-xs sm:text-sm text-white/70 max-w-xl mx-auto">
+              Meet our engineering &amp; design training graduates placed directly into CAD drafting, BIM modeling, MEP engineering, and interior design zones.
+            </p>
+          </div>
+
+          {/* Filter Bar */}
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-6">
+            
+            {/* Category Filter Pills */}
+            <div className="flex items-center gap-2 overflow-x-auto max-w-full pb-1 no-scrollbar">
+              {categories.map((cat) => {
+                const isActive = selectedCategory === cat.id;
+                return (
+                  <button
+                    key={cat.id}
+                    type="button"
+                    onClick={() => setSelectedCategory(cat.id)}
+                    className={`px-4 py-2 rounded-full text-xs font-semibold transition-all whitespace-nowrap cursor-pointer ${
+                      isActive
+                        ? 'bg-[#E94B3C] text-white shadow-md shadow-red-500/30 scale-[1.02]'
+                        : 'bg-white/[0.05] border border-white/10 text-white/70 hover:text-white hover:bg-white/[0.08]'
                     }`}
-                  />
-                </button>
-              </div>
-              <p className="text-[11px] text-[#687282] leading-tight">
-                {placementPillars[0].desc}
-              </p>
+                  >
+                    {cat.label}
+                  </button>
+                );
+              })}
             </div>
 
-            {/* Cards 02, 03, 04 - Expandable on mobile with smooth transition, direct 2x2 grid on desktop */}
-            <div
-              className={`transition-all duration-300 ease-in-out sm:contents ${
-                isPillarsExpanded
-                  ? 'grid grid-rows-[1fr] opacity-100 mt-2.5 sm:mt-0'
-                  : 'grid grid-rows-[0fr] opacity-0 pointer-events-none sm:pointer-events-auto sm:opacity-100 sm:mt-0'
-              }`}
+            {/* View All (17) Button */}
+            <button
+              type="button"
+              onClick={() => setAllModalOpen(true)}
+              className="px-4.5 py-2 rounded-full text-xs font-semibold bg-white/[0.05] border border-white/15 text-white/90 hover:text-white hover:bg-white/10 hover:border-[#E94B3C]/50 transition-all inline-flex items-center gap-1.5 cursor-pointer shrink-0"
             >
-              <div className="overflow-hidden sm:overflow-visible sm:contents">
-                <div className="flex flex-col gap-2.5 sm:contents">
-                  {placementPillars.slice(1).map((pillar, idx) => {
-                    const IconComp = pillar.icon;
-                    return (
-                      <div
-                        key={idx + 1}
-                        className="bg-white border border-[rgba(28,37,51,0.10)] rounded-[12px] p-3 shadow-2xs space-y-1 hover:border-[#E94B3C]/30 transition-colors"
-                      >
-                        <div className="flex items-center gap-2">
-                          <IconComp className="w-4 h-4 text-[#E94B3C] shrink-0" />
-                          <h3 className="text-xs font-bold text-[#1C2533]">{pillar.title}</h3>
-                        </div>
-                        <p className="text-[11px] text-[#687282] leading-tight">
-                          {pillar.desc}
-                        </p>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
-          </div>
+              <span>View All ({placedStudentsList.length})</span>
+              <ArrowUpRight className="w-3.5 h-3.5 text-[#E94B3C]" />
+            </button>
 
-          {/* Direct Placement Assistance Banner */}
-          <div className="mt-4 p-3 bg-white border border-[rgba(28,37,51,0.10)] rounded-[12px] text-left w-full shadow-2xs flex items-center justify-between gap-3">
-            <div className="flex items-center gap-2">
-              <Building className="w-4 h-4 text-emerald-600 shrink-0" />
-              <p className="text-[11px] font-bold text-[#1C2533]">
-                100+ Placement Partners &amp; Industry Network
-              </p>
-            </div>
-            <span className="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-[4px] border border-emerald-200">
-              Active Support
-            </span>
           </div>
-
-          {/* CTA Button */}
-          <div className="mt-5">
-            <Button onClick={onOpenDemo} variant="primary" size="md">
-              Enquire Placement Assistance
-            </Button>
-          </div>
-
         </div>
 
-        {/* RIGHT ANIMATED CARD FLOW CLUSTER */}
-        <div className="hidden lg:flex flex-1 justify-end">
-          <SteppedFlowCluster
-            items={rightCards}
-            isRight={true}
-            interval={2600}
-            cardSize={cardSize}
-            onSelectCard={setSelectedStudent}
-          />
-        </div>
-
-        {/* AUTO-ADVANCING PLACED-STUDENTS CAROUSEL (mobile & tablet) */}
-        <div className="lg:hidden w-full mt-6">
-          <div className="flex items-center justify-between mb-3 px-1">
-            <div className="flex items-center gap-1.5">
-              <Sparkles className="w-3.5 h-3.5 text-[#E94B3C]" />
-              <span className="text-[12px] font-bold text-[#1C2533]">Recent Placed Students</span>
-            </div>
-            <span className="text-[11px] font-medium text-[#687282]">
-              {placedStudentsList.length} Success Stories
-            </span>
-          </div>
-
-          <div
-            {...railProps}
-            className="flex gap-3 overflow-x-auto pb-3 pt-1 snap-x snap-mandatory no-scrollbar scroll-smooth"
+        {/* ========================================================= */}
+        {/* CAROUSEL SLIDER OF PLACED STUDENT POSTERS                 */}
+        {/* ========================================================= */}
+        <div className="relative group/slider">
+          
+          {/* Left Arrow Button */}
+          <button
+            type="button"
+            onClick={scrollLeft}
+            className="absolute left-2 top-1/2 -translate-y-1/2 z-30 w-11 h-11 rounded-full bg-black/75 hover:bg-[#E94B3C] border border-white/20 text-white flex items-center justify-center transition-all duration-200 shadow-xl backdrop-blur-md hover:scale-110 active:scale-95 cursor-pointer"
+            aria-label="Previous placed students"
           >
-            {placedStudentsList.map((student, idx) => (
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+
+          {/* Right Arrow Button */}
+          <button
+            type="button"
+            onClick={scrollRight}
+            className="absolute right-2 top-1/2 -translate-y-1/2 z-30 w-11 h-11 rounded-full bg-black/75 hover:bg-[#E94B3C] border border-white/20 text-white flex items-center justify-center transition-all duration-200 shadow-xl backdrop-blur-md hover:scale-110 active:scale-95 cursor-pointer"
+            aria-label="Next placed students"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
+
+          {/* Edge Fade Vignettes */}
+          <div className="absolute top-0 bottom-0 left-0 w-8 sm:w-16 bg-gradient-to-r from-[#080D14] to-transparent z-20 pointer-events-none" />
+          <div className="absolute top-0 bottom-0 right-0 w-8 sm:w-16 bg-gradient-to-l from-[#080D14] to-transparent z-20 pointer-events-none" />
+
+          {/* Horizontal Scrolling Track */}
+          <div
+            ref={carouselRef}
+            className="flex items-center gap-5 sm:gap-6 overflow-x-auto scroll-smooth py-3 px-2 no-scrollbar"
+            style={{ scrollSnapType: 'x mandatory' }}
+          >
+            {filteredStudents.map((student) => (
               <div
                 key={student.id}
-                className={`snap-center shrink-0 w-[150px] sm:w-[168px] transition-opacity duration-300 ${
-                  idx === railIndex ? 'opacity-100' : 'opacity-70'
-                }`}
+                onClick={() => setSelectedStudent(student)}
+                className="w-[260px] sm:w-[290px] lg:w-[310px] shrink-0 rounded-[22px] overflow-hidden border border-white/12 bg-[#0E1624] shadow-2xl relative group cursor-pointer transition-all duration-300 hover:border-[#E94B3C]/75 hover:scale-[1.03] hover:shadow-[0_16px_36px_rgba(233,75,60,0.22)] text-left"
+                style={{ scrollSnapAlign: 'start' }}
               >
-                <PortraitCard
-                  student={student}
-                  className="w-full aspect-[4/5]"
-                  onClick={() => setSelectedStudent(student)}
-                />
-                <div className="mt-1.5 text-center">
-                  <p className="text-[12px] font-bold text-[#1C2533] truncate">{student.name}</p>
-                  <p className="text-[10px] text-[#E94B3C] font-semibold truncate">{student.role}</p>
+                {/* Poster Graphic Image */}
+                <div className="relative aspect-[4/5] w-full overflow-hidden bg-white/5">
+                  <img
+                    src={student.img}
+                    alt={`${student.name} - ${student.role} Placed`}
+                    loading="lazy"
+                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent pointer-events-none" />
+                </div>
+
+                {/* Bottom Student Bar */}
+                <div className="p-3.5 sm:p-4 bg-[#0B111D] border-t border-white/10 flex items-center justify-between">
+                  <div>
+                    <h4 className="text-sm sm:text-base font-bold text-white tracking-tight group-hover:text-[#FF7A5C] transition-colors">
+                      {student.name}
+                    </h4>
+                    <p className="text-[11px] text-white/60 font-medium">
+                      {student.role}
+                    </p>
+                  </div>
+
+                  {/* LinkedIn / Verified Badge */}
+                  <div className="w-6 h-6 rounded-md bg-[#0077B5]/20 border border-[#0077B5]/40 text-[#38BDF8] flex items-center justify-center shrink-0">
+                    <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                      <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.45a1.62 1.62 0 1 0 0 3.24 1.62 1.62 0 0 0 0-3.24Z" />
+                    </svg>
+                  </div>
                 </div>
               </div>
             ))}
           </div>
 
-          {/* Position dots — also let the viewer jump straight to a student */}
-          <div className="flex items-center justify-center gap-1.5 mt-1">
-            {placedStudentsList.map((student, idx) => (
-              <button
-                key={student.id}
-                type="button"
-                onClick={() => goToStudent(idx)}
-                aria-label={`Show ${student.name}`}
-                className={`h-1.5 rounded-full transition-all duration-200 cursor-pointer ${
-                  idx === railIndex ? 'w-4 bg-[#E94B3C]' : 'w-1.5 bg-slate-300 hover:bg-slate-400'
-                }`}
-              />
-            ))}
-          </div>
         </div>
 
       </div>
 
-      {/* INTERACTIVE FULL-RES POSTER LIGHTBOX MODAL */}
+      {/* ========================================================= */}
+      {/* LIGHTBOX MODAL: Full Size Student Poster                   */}
+      {/* ========================================================= */}
       <AnimatePresence>
         {selectedStudent && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setSelectedStudent(null)}
-            className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6"
-          >
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 font-['Plus_Jakarta_Sans',sans-serif]">
+            {/* Backdrop */}
             <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              onClick={(e) => e.stopPropagation()}
-              className="relative bg-white rounded-2xl overflow-hidden max-w-sm sm:max-w-md w-full shadow-2xl border border-white/40"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedStudent(null)}
+              className="absolute inset-0 bg-black/85 backdrop-blur-md"
+            />
+
+            {/* Modal Box */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.94, y: 15 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.94, y: 15 }}
+              className="relative w-full max-w-md bg-[#0E1624] border border-white/15 rounded-[24px] overflow-hidden shadow-2xl z-10 text-left"
             >
               {/* Close Button */}
               <button
+                type="button"
                 onClick={() => setSelectedStudent(null)}
-                className="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-black/60 hover:bg-black text-white flex items-center justify-center transition-colors shadow-md"
-                aria-label="Close poster view"
+                className="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-black/60 hover:bg-black/90 border border-white/20 text-white flex items-center justify-center transition-colors cursor-pointer"
+                aria-label="Close poster"
               >
-                <X className="w-4 h-4" />
+                <X className="w-5 h-5" />
               </button>
 
               {/* Poster Image */}
-              <div className="relative w-full aspect-[4/5] bg-slate-100">
+              <div className="w-full aspect-[4/5] bg-black/40 overflow-hidden">
                 <img
                   src={selectedStudent.img}
-                  alt={selectedStudent.alt}
+                  alt={selectedStudent.name}
                   className="w-full h-full object-contain"
                 />
               </div>
 
-              {/* Footer info bar */}
-              <div className="p-4 bg-slate-50 border-t border-slate-100 flex items-center justify-between">
+              {/* Student Meta Details */}
+              <div className="p-5 bg-[#0B111D] border-t border-white/10 flex items-center justify-between">
                 <div>
-                  <h4 className="text-sm font-bold text-[#1C2533]">{selectedStudent.name}</h4>
-                  <p className="text-xs text-[#E94B3C] font-semibold">{selectedStudent.role} &bull; {selectedStudent.company}</p>
+                  <div className="flex items-center gap-1.5">
+                    <h3 className="text-lg font-bold text-white">{selectedStudent.name}</h3>
+                    <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                  </div>
+                  <p className="text-xs text-[#FF7A5C] font-semibold mt-0.5">
+                    {selectedStudent.role} &bull; {selectedStudent.company}
+                  </p>
                 </div>
+
                 <button
-                  onClick={() => {
-                    setSelectedStudent(null);
-                    onOpenDemo?.();
-                  }}
-                  className="text-xs font-bold text-[#E94B3C] hover:underline flex items-center gap-1"
+                  type="button"
+                  onClick={() => { setSelectedStudent(null); onOpenDemo(); }}
+                  className="bg-[#E94B3C] hover:bg-[#D4382A] text-white text-xs font-semibold px-4 py-2 rounded-full transition-all shadow-md"
                 >
-                  Join Course <ArrowUpRight className="w-3.5 h-3.5" />
+                  Join Course
                 </button>
               </div>
             </motion.div>
-          </motion.div>
+          </div>
         )}
       </AnimatePresence>
 
+      {/* ========================================================= */}
+      {/* VIEW ALL MODAL: Grid of all 17 Placed Students             */}
+      {/* ========================================================= */}
+      <AnimatePresence>
+        {allModalOpen && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 lg:p-10 font-['Plus_Jakarta_Sans',sans-serif]">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setAllModalOpen(false)}
+              className="absolute inset-0 bg-black/85 backdrop-blur-md"
+            />
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="relative w-full max-w-5xl max-h-[90vh] bg-[#0E1624] border border-white/15 rounded-[28px] overflow-hidden shadow-2xl z-10 flex flex-col"
+            >
+              {/* Header */}
+              <div className="p-5 sm:p-6 border-b border-white/10 flex items-center justify-between">
+                <div>
+                  <h3 className="text-xl font-bold text-white">All Placed Students (17)</h3>
+                  <p className="text-xs text-white/60">CADD Centre Manjeri Verified Placement Hall of Fame</p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setAllModalOpen(false)}
+                  className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors cursor-pointer"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* Grid Body */}
+              <div className="p-5 sm:p-6 overflow-y-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+                {placedStudentsList.map((st) => (
+                  <div
+                    key={st.id}
+                    onClick={() => { setAllModalOpen(false); setSelectedStudent(st); }}
+                    className="rounded-[18px] overflow-hidden border border-white/10 bg-[#0B111D] group cursor-pointer hover:border-[#E94B3C]/70 transition-all text-left"
+                  >
+                    <div className="aspect-[4/5] w-full overflow-hidden">
+                      <img src={st.img} alt={st.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
+                    </div>
+                    <div className="p-3">
+                      <div className="text-xs font-bold text-white truncate">{st.name}</div>
+                      <div className="text-[10.5px] text-[#FF7A5C] truncate">{st.role}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
-
