@@ -233,25 +233,6 @@ export default function PlacementSection({ onOpenDemo }) {
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* ========================================================= */}
-        {/* TOP CONTEXT BAR                                           */}
-        {/* ========================================================= */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 mb-10 pb-4 border-b border-white/10 text-xs">
-          <div className="flex items-center gap-2 text-white/60">
-            <span className="text-[#E94B3C] font-black">*</span>
-            <span>Click any student poster to view their verified placement details &amp; company.</span>
-          </div>
-
-          <button
-            type="button"
-            onClick={onOpenDemo}
-            className="bg-[#E94B3C] hover:bg-[#D4382A] active:bg-[#B82E22] text-white text-xs font-semibold px-5 py-2 rounded-full transition-all shadow-[0_4px_16px_rgba(233,75,60,0.35)] hover:scale-105 active:scale-95 cursor-pointer inline-flex items-center gap-1.5 shrink-0"
-          >
-            <span>Enquire About Admissions</span>
-            <ArrowUpRight className="w-3.5 h-3.5" />
-          </button>
-        </div>
-
-        {/* ========================================================= */}
         {/* MAIN PLACEMENT HERO HEADLINE & METRICS                    */}
         {/* ========================================================= */}
         <div className="text-center max-w-4xl mx-auto space-y-4 mb-10">
