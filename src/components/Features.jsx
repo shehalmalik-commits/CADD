@@ -1235,12 +1235,12 @@ export default function Features({ onOpenDemo }) {
           </div>
         </div>
 
-        {/* DISCIPLINE FILTER — interactive quick shortcuts */}
-        <div className="flex flex-wrap items-center gap-2 pb-5 mb-8 border-b border-white/10">
+        {/* DISCIPLINE FILTER — horizontal swipeable pill carousel on mobile, flex-wrap on desktop */}
+        <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-3 mb-8 -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap border-b border-white/10">
           <button
             type="button"
             onClick={() => selectDiscipline('all')}
-            className={`px-3.5 py-1.5 rounded-full text-[12px] font-bold transition-all cursor-pointer ${
+            className={`shrink-0 px-3.5 py-1.5 rounded-full text-[12px] font-bold transition-all cursor-pointer ${
               activeDiscipline === 'all'
                 ? 'bg-[#FF5A36] text-white shadow-[0_4px_16px_rgba(255,90,54,0.35)]'
                 : 'bg-white/5 text-slate-300 hover:bg-white/10 hover:text-white border border-white/10'
@@ -1253,7 +1253,7 @@ export default function Features({ onOpenDemo }) {
               key={group.name}
               type="button"
               onClick={() => selectDiscipline(group.name)}
-              className={`px-3.5 py-1.5 rounded-full text-[12px] font-bold transition-all cursor-pointer ${
+              className={`shrink-0 px-3.5 py-1.5 rounded-full text-[12px] font-bold transition-all cursor-pointer ${
                 activeDiscipline === group.name
                   ? 'bg-[#FF5A36] text-white shadow-[0_4px_16px_rgba(255,90,54,0.35)]'
                   : 'bg-white/5 text-slate-300 hover:bg-white/10 hover:text-white border border-white/10'
@@ -1324,11 +1324,11 @@ export default function Features({ onOpenDemo }) {
 
                 {/* Bottom View All / Show Less CTA for disciplines with > 4 courses */}
                 {hasMore && activeDiscipline === 'all' && (
-                  <div className="mt-6 flex justify-center">
+                  <div className="mt-6 flex justify-center w-full px-2 sm:px-0">
                     <button
                       type="button"
                       onClick={() => toggleExpandDiscipline(group.name)}
-                      className="group inline-flex items-center gap-2.5 px-6 py-2.5 rounded-full text-xs sm:text-[13px] font-bold bg-white/[0.04] hover:bg-[#FF5A36]/15 border border-white/15 hover:border-[#FF5A36]/40 text-white transition-all duration-200 shadow-sm hover:shadow-[0_4px_20px_rgba(255,90,54,0.25)] cursor-pointer"
+                      className="group inline-flex items-center justify-center gap-2.5 w-full sm:w-auto px-6 py-3 sm:py-2.5 rounded-full text-xs sm:text-[13px] font-bold bg-white/[0.04] hover:bg-[#FF5A36]/15 border border-white/15 hover:border-[#FF5A36]/40 text-white transition-all duration-200 shadow-sm hover:shadow-[0_4px_20px_rgba(255,90,54,0.25)] active:scale-[0.98] cursor-pointer"
                     >
                       {isExpanded ? (
                         <>

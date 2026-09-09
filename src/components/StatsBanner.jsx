@@ -132,7 +132,7 @@ export default function StatsBanner({ onOpenDemo }) {
     <section
       id="why-choose-us"
       ref={sectionRef}
-      className="relative py-16 sm:py-24 lg:py-28 bg-[#080D14] text-white font-['Plus_Jakarta_Sans',sans-serif] overflow-hidden border-t border-white/5"
+      className="relative pt-8 pb-16 sm:py-24 lg:py-28 bg-[#080D14] text-white font-['Plus_Jakarta_Sans',sans-serif] overflow-hidden border-t border-white/5"
     >
       {/* Ambient background glow accents in Brand Red */}
       <div 
@@ -161,7 +161,7 @@ export default function StatsBanner({ onOpenDemo }) {
             </div>
 
             {/* Dominant 3-Line Headline (White & Brand Red) */}
-            <h2 className="text-4xl sm:text-5xl lg:text-[54px] xl:text-[62px] font-black tracking-[-0.03em] leading-[1.08] text-white">
+            <h2 className="text-[28px] xs:text-[32px] sm:text-5xl lg:text-[54px] xl:text-[62px] font-black tracking-[-0.03em] leading-[1.12] sm:leading-[1.08] text-white">
               Industry Skills,<br />
               <span className="text-[#E94B3C] drop-shadow-[0_0_35px_rgba(233,75,60,0.45)]">
                 Practical Training &amp;
@@ -172,35 +172,41 @@ export default function StatsBanner({ onOpenDemo }) {
             </h2>
 
             {/* Authentic CADD Centre Manjeri Description */}
-            <p className="text-sm sm:text-base lg:text-[16px] text-white/75 font-normal leading-relaxed max-w-xl">
+            <p className="text-xs sm:text-base lg:text-[16px] text-white/75 font-normal leading-relaxed max-w-xl">
               At CADD Centre Manjeri, we focus on more than software training. Our programs combine live project-based learning, practical industry workflows, and career-focused guidance to help you develop skills that are relevant to real-world work.
             </p>
 
-            {/* 4 Core Pillars Grid (Replacing dummy BCA/MBA with authentic 01-04 points) */}
+            {/* 4 Core Pillars Grid (Polished micro-tiles with icons) */}
             <div 
               ref={pillarsRef} 
-              className="pt-4 sm:pt-6 border-t border-white/10 grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-5"
+              className="pt-3 sm:pt-6 border-t border-white/10 grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-5"
             >
-              {corePillars.map((pillar) => (
-                <div key={pillar.num} className="space-y-1">
-                  <span className="text-xs font-black text-[#E94B3C] tracking-wider block">
-                    {pillar.num}
-                  </span>
-                  <h3 className="text-sm sm:text-[15px] font-bold text-white tracking-tight leading-snug">
-                    {pillar.title}
-                  </h3>
-                  <p className="text-[11px] sm:text-xs text-white/60 font-normal leading-relaxed">
-                    {pillar.desc}
-                  </p>
-                </div>
-              ))}
+              {corePillars.map((pillar) => {
+                const Icon = pillar.icon;
+                return (
+                  <div key={pillar.num} className="p-3 sm:p-3.5 rounded-2xl bg-white/[0.03] border border-white/8 space-y-1 hover:border-[#E94B3C]/30 transition-colors">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[11px] sm:text-xs font-black text-[#E94B3C] tracking-wider block">
+                        {pillar.num}
+                      </span>
+                      <Icon className="w-3.5 h-3.5 text-white/40" />
+                    </div>
+                    <h3 className="text-[13px] sm:text-[15px] font-bold text-white tracking-tight leading-snug">
+                      {pillar.title}
+                    </h3>
+                    <p className="text-[10.5px] sm:text-xs text-white/60 font-normal leading-relaxed line-clamp-2 sm:line-clamp-none">
+                      {pillar.desc}
+                    </p>
+                  </div>
+                );
+              })}
             </div>
 
             {/* Action Row */}
-            <div className="pt-2 flex items-center gap-3.5 sm:gap-4 flex-wrap">
+            <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-4 w-full sm:w-auto">
               <a
                 href="#features"
-                className="bg-[#E94B3C] hover:bg-[#D4382A] active:bg-[#B82E22] text-white text-xs sm:text-sm font-semibold px-6 sm:px-7 py-3 rounded-full transition-all shadow-[0_4px_20px_rgba(233,75,60,0.4)] hover:scale-105 active:scale-95 cursor-pointer inline-flex items-center gap-2"
+                className="bg-[#E94B3C] hover:bg-[#D4382A] active:bg-[#B82E22] text-white text-xs sm:text-sm font-semibold px-6 sm:px-7 py-3 rounded-xl sm:rounded-full transition-all shadow-[0_4px_20px_rgba(233,75,60,0.4)] hover:scale-105 active:scale-95 cursor-pointer inline-flex items-center justify-center gap-2"
               >
                 <span>Explore Courses</span>
                 <ArrowUpRight className="w-4 h-4" />
@@ -209,7 +215,7 @@ export default function StatsBanner({ onOpenDemo }) {
               <button
                 type="button"
                 onClick={onOpenDemo}
-                className="bg-white/5 hover:bg-white/10 border border-white/15 text-white text-xs sm:text-sm font-semibold px-6 py-3 rounded-full transition-all hover:scale-105 active:scale-95 cursor-pointer"
+                className="bg-white/5 hover:bg-white/10 border border-white/15 text-white text-xs sm:text-sm font-semibold px-6 py-3 rounded-xl sm:rounded-full transition-all hover:scale-105 active:scale-95 cursor-pointer inline-flex items-center justify-center"
               >
                 Enquire Now
               </button>
@@ -220,8 +226,8 @@ export default function StatsBanner({ onOpenDemo }) {
           {/* ========================================================= */}
           {/* RIGHT COLUMN: Authentic CADD Photograph & Approach Card   */}
           {/* ========================================================= */}
-          <div ref={rightColRef} className="lg:col-span-5 relative">
-            <div className="relative h-[420px] sm:h-[480px] lg:h-[530px] rounded-[28px] sm:rounded-[32px] overflow-hidden border border-white/15 shadow-2xl group bg-[#0E1726]">
+          <div ref={rightColRef} className="lg:col-span-5 relative mt-2 lg:mt-0">
+            <div className="relative h-[360px] sm:h-[480px] lg:h-[530px] rounded-[24px] sm:rounded-[32px] overflow-hidden border border-white/15 shadow-2xl group bg-[#0E1726]">
               {/* Authentic CADD Centre Manjeri Counselling / Mentorship Photograph */}
               <img 
                 src="/images/why-choose-us.jpg" 
@@ -230,20 +236,20 @@ export default function StatsBanner({ onOpenDemo }) {
               />
 
               {/* Legibility Scrim */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent pointer-events-none" />
 
               {/* Floating Glassmorphic Overlay Card at Bottom with Image 2 Content */}
-              <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 rounded-[20px] bg-[#0E1726]/85 backdrop-blur-xl border border-white/15 p-4 sm:p-5 shadow-2xl text-left">
+              <div className="absolute bottom-3 left-3 right-3 sm:bottom-6 sm:left-6 sm:right-6 rounded-[18px] bg-[#0E1726]/90 backdrop-blur-xl border border-white/15 p-3.5 sm:p-5 shadow-2xl text-left">
                 <div className="flex items-center gap-2 mb-1">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#E94B3C]" />
                   <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#E94B3C]">
                     OUR APPROACH
                   </span>
                 </div>
-                <h4 className="text-base sm:text-lg font-bold text-white tracking-tight leading-snug">
+                <h4 className="text-sm sm:text-lg font-bold text-white tracking-tight leading-snug">
                   From Learning Software to Building a Career
                 </h4>
-                <p className="text-xs sm:text-[13px] text-white/80 font-normal leading-relaxed mt-1.5">
+                <p className="text-[11px] sm:text-[13px] text-white/80 font-normal leading-relaxed mt-1 line-clamp-2 sm:line-clamp-none">
                   Develop practical skills through industry-focused training, hands-on projects and career guidance designed for engineering and design professionals.
                 </p>
               </div>

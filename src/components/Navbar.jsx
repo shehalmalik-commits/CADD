@@ -12,7 +12,10 @@ import {
   CalendarCheck,
   Compass,
   FileCode2,
-  Sparkles
+  Sparkles,
+  Home,
+  Award,
+  Phone
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import useOverlayHistory from '../hooks/useOverlayHistory';
@@ -399,31 +402,34 @@ export default function Navbar({ onOpenDemo }) {
 
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
-        <div className="fixed top-16 inset-x-4 bg-[#080D14]/95 backdrop-blur-xl border border-white/15 rounded-2xl p-5 shadow-2xl md:hidden space-y-2 text-center text-white animate-in fade-in slide-in-from-top-2 duration-200">
+        <div className="fixed top-16 inset-x-3 max-h-[85vh] overflow-y-auto bg-[#080D14]/98 backdrop-blur-2xl border border-white/15 rounded-3xl p-4.5 shadow-[0_25px_60px_rgba(0,0,0,0.9)] md:hidden space-y-1.5 text-white animate-in fade-in slide-in-from-top-2 duration-200 text-left">
+          {/* 1. Home */}
           <a
             href="#"
             onClick={(e) => navTo(e, 'home')}
-            className={`block py-2 px-4 rounded-xl text-sm font-semibold transition-all ${
+            className={`flex items-center gap-3 py-2.5 px-3.5 rounded-xl text-sm font-semibold transition-all ${
               activeSection === 'home'
                 ? 'bg-white/15 border border-white/20 text-white'
                 : 'text-white/80 hover:bg-white/10'
             }`}
           >
-            Home
+            <Home className="w-4 h-4 text-[#FF7A5C]" />
+            <span>Home</span>
           </a>
 
-          {/* Mobile Courses Accordion Item */}
+          {/* 2. Mobile Courses Accordion Item */}
           <div className="rounded-xl overflow-hidden border border-white/10 bg-white/[0.03]">
             <button
               type="button"
               onClick={() => setMobileCoursesOpen(!mobileCoursesOpen)}
-              className={`w-full flex items-center justify-between py-2 px-4 text-sm font-semibold transition-all cursor-pointer ${
+              className={`w-full flex items-center justify-between py-2.5 px-3.5 text-sm font-semibold transition-all cursor-pointer ${
                 activeSection === 'features' || mobileCoursesOpen
                   ? 'bg-white/15 text-white'
                   : 'text-white/80 hover:bg-white/10'
               }`}
             >
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-3">
+                <Layers className="w-4 h-4 text-[#FF7A5C]" />
                 <span>Courses</span>
                 <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-[#FF5A36]/20 text-[#FF7A5C] border border-[#FF5A36]/30">
                   8 Disciplines
@@ -490,76 +496,84 @@ export default function Navbar({ onOpenDemo }) {
             </AnimatePresence>
           </div>
 
+          {/* 3. About Us */}
           <a
             href="#about"
             onClick={(e) => navTo(e, 'about')}
-            className={`block py-2 px-4 rounded-xl text-sm font-semibold transition-all ${
+            className={`flex items-center gap-3 py-2.5 px-3.5 rounded-xl text-sm font-semibold transition-all ${
               activeSection === 'about'
                 ? 'bg-white/15 border border-white/20 text-white'
                 : 'text-white/80 hover:bg-white/10'
             }`}
           >
-            About Us
+            <Compass className="w-4 h-4 text-[#FF7A5C]" />
+            <span>About Us</span>
           </a>
 
+          {/* 4. Placements */}
           <a
             href="#placement"
             onClick={(e) => navTo(e, 'placement')}
-            className={`block py-2 px-4 rounded-xl text-sm font-semibold transition-all ${
+            className={`flex items-center gap-3 py-2.5 px-3.5 rounded-xl text-sm font-semibold transition-all ${
               activeSection === 'placement'
                 ? 'bg-white/15 border border-white/20 text-white'
                 : 'text-white/80 hover:bg-white/10'
             }`}
           >
-            Placements
+            <Award className="w-4 h-4 text-[#FF7A5C]" />
+            <span>Placements</span>
           </a>
 
+          {/* 5. Events */}
           <a
             href="#events"
             onClick={(e) => navTo(e, 'events')}
-            className={`block py-2 px-4 rounded-xl text-sm font-semibold transition-all ${
+            className={`flex items-center gap-3 py-2.5 px-3.5 rounded-xl text-sm font-semibold transition-all ${
               activeSection === 'events'
                 ? 'bg-white/15 border border-white/20 text-white'
                 : 'text-white/80 hover:bg-white/10'
             }`}
           >
-            Events
+            <CalendarCheck className="w-4 h-4 text-[#FF7A5C]" />
+            <span>Events</span>
           </a>
 
+          {/* 6. Reviews */}
           <a
             href="#testimonials"
             onClick={(e) => navTo(e, 'testimonials')}
-            className={`block py-2 px-4 rounded-xl text-sm font-semibold transition-all ${
+            className={`flex items-center gap-3 py-2.5 px-3.5 rounded-xl text-sm font-semibold transition-all ${
               activeSection === 'testimonials'
                 ? 'bg-white/15 border border-white/20 text-white'
                 : 'text-white/80 hover:bg-white/10'
             }`}
           >
-            Reviews
+            <Sparkles className="w-4 h-4 text-[#FF7A5C]" />
+            <span>Reviews</span>
           </a>
 
-          <button
-            type="button"
-            onClick={() => {
-              setMobileMenuOpen(false);
-              onOpenDemo();
-            }}
-            className="block w-full py-2 px-4 rounded-xl text-sm font-semibold text-white/80 hover:bg-white/10 transition-all cursor-pointer"
-          >
-            Contact
-          </button>
-
-          <div className="pt-2 border-t border-white/10 flex justify-center">
+          {/* 7. Direct Admissions & Quick Actions */}
+          <div className="pt-3 mt-2 border-t border-white/10 space-y-2">
             <button
               type="button"
               onClick={() => {
                 setMobileMenuOpen(false);
                 onOpenDemo();
               }}
-              className="w-full bg-[#E94B3C] hover:bg-[#D4382A] text-white py-2.5 rounded-full text-sm font-semibold shadow-lg shadow-red-500/30 active:scale-98 transition-all cursor-pointer"
+              className="w-full bg-[#E94B3C] hover:bg-[#D4382A] text-white py-3 rounded-xl text-sm font-bold shadow-lg shadow-red-500/30 active:scale-98 transition-all cursor-pointer flex items-center justify-center gap-2"
             >
-              Apply Now
+              <span>Apply for Admissions</span>
+              <ArrowRight className="w-4 h-4" />
             </button>
+
+            {/* Fast Call Button inside drawer */}
+            <a
+              href="tel:+918891550060"
+              className="w-full py-2.5 px-3 rounded-xl bg-white/[0.05] border border-white/10 text-xs font-semibold text-white/90 flex items-center justify-center gap-2 active:scale-98 transition-all"
+            >
+              <Phone className="w-3.5 h-3.5 text-[#25D366]" />
+              <span>Call Desk: +91 88915 50060</span>
+            </a>
           </div>
         </div>
       )}
