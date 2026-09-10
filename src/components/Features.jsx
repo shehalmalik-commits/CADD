@@ -4,7 +4,7 @@ import CourseBottomSheet from './CourseBottomSheet';
 import Button from './ui/Button';
 
 // Complete Master Course Catalog matching authentic CADD Centre Manjeri curricula
-export const ALL_COURSES = [
+const ALL_COURSES = [
   {
     id: 'course-interior',
     title: 'Executive Diploma in Interior Design',
@@ -1121,6 +1121,18 @@ function CourseTile({ item, onSelectCourse }) {
   );
 }
 
+// Curated flagship programs for initial compact view on mobile viewports (< 640px)
+const FEATURED_MOBILE_COURSE_IDS = [
+  'course-interior',
+  'course-master-bim',
+  'course-mep-bim',
+  'course-product'
+];
+
+const FEATURED_MOBILE_COURSES = FEATURED_MOBILE_COURSE_IDS
+  .map((id) => ALL_COURSES.find((c) => c.id === id))
+  .filter(Boolean);
+
 export default function Features({ onOpenDemo }) {
   const initialLocation =
     typeof window === 'undefined'
@@ -1130,6 +1142,19 @@ export default function Features({ onOpenDemo }) {
   const [selectedCourseDetail, setSelectedCourseDetail] = useState(initialLocation.course);
   const [activeDiscipline, setActiveDiscipline] = useState(initialLocation.discipline);
   const [expandedDisciplines, setExpandedDisciplines] = useState({});
+  const [isMobile, setIsMobile] = useState(
+    typeof window !== 'undefined' ? window.innerWidth < 640 : false
+  );
+  const [showAllMobileCatalogue, setShowAllMobileCatalogue] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize, { passive: true });
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const toggleExpandDiscipline = useCallback((disciplineName) => {
     setExpandedDisciplines((prev) => ({
@@ -1170,6 +1195,9 @@ export default function Features({ onOpenDemo }) {
   // the page the visitor arrived from under a stack of dead entries.
   const selectDiscipline = useCallback((name) => {
     setActiveDiscipline(name);
+    if (name === 'all') {
+      setShowAllMobileCatalogue(false);
+    }
     window.history.replaceState({ discipline: name }, '', disciplinePath(name));
   }, []);
 
@@ -1265,92 +1293,151 @@ export default function Features({ onOpenDemo }) {
           ))}
         </div>
 
-        {/* THE CATALOGUE — uniform 4-column preview with View All per discipline */}
-        <div className="space-y-10 sm:space-y-14">
-          {visibleGroups.map((group) => {
-            const hasMore = group.courses.length > 4;
-            const isExpanded = !!expandedDisciplines[group.name] || activeDiscipline !== 'all';
-            const displayedCourses = isExpanded || !hasMore
-              ? group.courses
-              : group.courses.slice(0, 4);
-            const remainingCount = group.courses.length - 4;
+        {/* THE CATALOGUE — compact mobile preview with View All, or full multi-column grid */}
+        {isMobile && activeDiscipline === 'all' && !showAllMobileCatalogue ? (
+          /* Mobile Compact Initial View: Top 4 Featured Courses + View All Button */
+          <div className="space-y-4">
+            <div className="flex items-center justify-between mb-2 px-1">
+              <span className="text-[11px] font-extrabold text-[#FF7A5C] uppercase tracking-wider flex items-center gap-1.5">
+                <Sparkles className="w-3.5 h-3.5" />
+                Featured Programs
+              </span>
+              <span className="text-[11px] text-slate-400 font-medium">
+                4 of {ALL_COURSES.length} Courses
+              </span>
+            </div>
 
-            return (
-              <div key={group.name} id={`discipline-${group.shortName.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}>
-                {/* Discipline Group Header */}
-                <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2 mb-5">
-                  <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
-                    <div className="w-8 h-8 rounded-lg bg-[#FF5A36]/10 border border-[#FF5A36]/25 flex items-center justify-center shrink-0">
-                      <Layers className="w-4 h-4 text-[#FF5A36]" />
+            <div className="grid grid-cols-1 gap-4">
+              {FEATURED_MOBILE_COURSES.map((item) => (
+                <CourseTile
+                  key={item.id}
+                  item={item}
+                  onSelectCourse={openCourse}
+                />
+              ))}
+            </div>
+
+            {/* Prominent View All Courses Button */}
+            <div className="pt-3">
+              <button
+                type="button"
+                onClick={() => setShowAllMobileCatalogue(true)}
+                className="group w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-[#FF5A36] to-[#E94B3C] hover:from-[#E94B3C] hover:to-[#D4382A] text-white font-bold text-[14px] shadow-[0_6px_25px_rgba(233,75,60,0.4)] active:scale-[0.98] transition-all flex items-center justify-center gap-2.5 cursor-pointer"
+              >
+                <span>View All Courses ({ALL_COURSES.length})</span>
+                <span className="px-2 py-0.5 rounded-full bg-white/20 text-white text-[11px] font-extrabold backdrop-blur-sm">
+                  +{ALL_COURSES.length - FEATURED_MOBILE_COURSES.length} more
+                </span>
+                <ChevronDown className="w-4 h-4 text-white group-hover:translate-y-0.5 transition-transform" />
+              </button>
+            </div>
+          </div>
+        ) : (
+          <div className="space-y-10 sm:space-y-14">
+            {visibleGroups.map((group) => {
+              const defaultLimit = isMobile ? 2 : 4;
+              const hasMore = group.courses.length > defaultLimit;
+              const isExpanded = !!expandedDisciplines[group.name];
+              const displayedCourses = isExpanded || !hasMore
+                ? group.courses
+                : group.courses.slice(0, defaultLimit);
+              const remainingCount = group.courses.length - defaultLimit;
+
+              return (
+                <div key={group.name} id={`discipline-${group.shortName.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}>
+                  {/* Discipline Group Header */}
+                  <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2 mb-5">
+                    <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
+                      <div className="w-8 h-8 rounded-lg bg-[#FF5A36]/10 border border-[#FF5A36]/25 flex items-center justify-center shrink-0">
+                        <Layers className="w-4 h-4 text-[#FF5A36]" />
+                      </div>
+                      <h3 className="text-[14px] sm:text-[15px] font-extrabold text-white uppercase tracking-[0.14em] truncate">
+                        {group.name}
+                      </h3>
+                      <span className="text-[11px] font-semibold text-slate-400 px-2.5 py-0.5 rounded-full bg-white/5 border border-white/10 shrink-0">
+                        {group.courses.length} course{group.courses.length === 1 ? '' : 's'}
+                      </span>
                     </div>
-                    <h3 className="text-[14px] sm:text-[15px] font-extrabold text-white uppercase tracking-[0.14em] truncate">
-                      {group.name}
-                    </h3>
-                    <span className="text-[11px] font-semibold text-slate-400 px-2.5 py-0.5 rounded-full bg-white/5 border border-white/10 shrink-0">
-                      {group.courses.length} course{group.courses.length === 1 ? '' : 's'}
-                    </span>
+
+                    {/* Header quick toggle */}
+                    <div className="flex items-center gap-3">
+                      {hasMore && (
+                        <button
+                          type="button"
+                          onClick={() => toggleExpandDiscipline(group.name)}
+                          className="inline-flex items-center gap-1.5 text-xs font-bold text-[#FF7A5C] hover:text-[#FF5A36] px-3 py-1 rounded-full bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 transition-all cursor-pointer"
+                        >
+                          <span>{isExpanded ? 'Show Less' : `View All (${group.courses.length})`}</span>
+                          {isExpanded ? (
+                            <ChevronUp className="w-3.5 h-3.5 text-[#FF5A36]" />
+                          ) : (
+                            <ChevronDown className="w-3.5 h-3.5 text-[#FF5A36]" />
+                          )}
+                        </button>
+                      )}
+                      <span className="hidden sm:block w-12 lg:w-20 h-px bg-white/10" />
+                    </div>
                   </div>
 
-                  {/* Header quick toggle */}
-                  <div className="flex items-center gap-3">
-                    {hasMore && activeDiscipline === 'all' && (
+                  {/* Spacious 4-column course grid */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
+                    {displayedCourses.map((item) => (
+                      <CourseTile
+                        key={item.id}
+                        item={item}
+                        onSelectCourse={openCourse}
+                      />
+                    ))}
+                  </div>
+
+                  {/* Bottom View All / Show Less CTA for disciplines with > defaultLimit courses */}
+                  {hasMore && (
+                    <div className="mt-6 flex justify-center w-full px-2 sm:px-0">
                       <button
                         type="button"
                         onClick={() => toggleExpandDiscipline(group.name)}
-                        className="inline-flex items-center gap-1.5 text-xs font-bold text-[#FF7A5C] hover:text-[#FF5A36] px-3 py-1 rounded-full bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 transition-all cursor-pointer"
+                        className="group inline-flex items-center justify-center gap-2.5 w-full sm:w-auto px-6 py-3 sm:py-2.5 rounded-full text-xs sm:text-[13px] font-bold bg-white/[0.04] hover:bg-[#FF5A36]/15 border border-white/15 hover:border-[#FF5A36]/40 text-white transition-all duration-200 shadow-sm hover:shadow-[0_4px_20px_rgba(255,90,54,0.25)] active:scale-[0.98] cursor-pointer"
                       >
-                        <span>{isExpanded ? 'Show Less' : `View All (${group.courses.length})`}</span>
                         {isExpanded ? (
-                          <ChevronUp className="w-3.5 h-3.5 text-[#FF5A36]" />
+                          <>
+                            <span>Show Less</span>
+                            <ChevronUp className="w-4 h-4 text-[#FF5A36] group-hover:-translate-y-0.5 transition-transform" />
+                          </>
                         ) : (
-                          <ChevronDown className="w-3.5 h-3.5 text-[#FF5A36]" />
+                          <>
+                            <span>View All {group.name} Courses ({group.courses.length})</span>
+                            <span className="px-2 py-0.5 rounded-full bg-[#FF5A36]/20 text-[#FF7A5C] text-[10.5px] font-extrabold border border-[#FF5A36]/30">
+                              +{remainingCount} more
+                            </span>
+                            <ChevronDown className="w-4 h-4 text-[#FF5A36] group-hover:translate-y-0.5 transition-transform" />
+                          </>
                         )}
                       </button>
-                    )}
-                    <span className="hidden sm:block w-12 lg:w-20 h-px bg-white/10" />
-                  </div>
+                    </div>
+                  )}
                 </div>
+              );
+            })}
 
-                {/* Spacious 4-column course grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
-                  {displayedCourses.map((item) => (
-                    <CourseTile
-                      key={item.id}
-                      item={item}
-                      onSelectCourse={openCourse}
-                    />
-                  ))}
-                </div>
-
-                {/* Bottom View All / Show Less CTA for disciplines with > 4 courses */}
-                {hasMore && activeDiscipline === 'all' && (
-                  <div className="mt-6 flex justify-center w-full px-2 sm:px-0">
-                    <button
-                      type="button"
-                      onClick={() => toggleExpandDiscipline(group.name)}
-                      className="group inline-flex items-center justify-center gap-2.5 w-full sm:w-auto px-6 py-3 sm:py-2.5 rounded-full text-xs sm:text-[13px] font-bold bg-white/[0.04] hover:bg-[#FF5A36]/15 border border-white/15 hover:border-[#FF5A36]/40 text-white transition-all duration-200 shadow-sm hover:shadow-[0_4px_20px_rgba(255,90,54,0.25)] active:scale-[0.98] cursor-pointer"
-                    >
-                      {isExpanded ? (
-                        <>
-                          <span>Show Less</span>
-                          <ChevronUp className="w-4 h-4 text-[#FF5A36] group-hover:-translate-y-0.5 transition-transform" />
-                        </>
-                      ) : (
-                        <>
-                          <span>View All {group.name} Courses ({group.courses.length})</span>
-                          <span className="px-2 py-0.5 rounded-full bg-[#FF5A36]/20 text-[#FF7A5C] text-[10.5px] font-extrabold border border-[#FF5A36]/30">
-                            +{remainingCount} more
-                          </span>
-                          <ChevronDown className="w-4 h-4 text-[#FF5A36] group-hover:translate-y-0.5 transition-transform" />
-                        </>
-                      )}
-                    </button>
-                  </div>
-                )}
+            {/* Bottom Collapse Button when expanded on mobile */}
+            {isMobile && activeDiscipline === 'all' && showAllMobileCatalogue && (
+              <div className="mt-8 pt-4 text-center">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setShowAllMobileCatalogue(false);
+                    const section = document.getElementById('features');
+                    if (section) section.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/10 hover:bg-white/15 border border-white/20 text-white text-xs font-bold transition-all cursor-pointer active:scale-95 shadow-md"
+                >
+                  <span>Show Less (Collapse Courses)</span>
+                  <ChevronUp className="w-3.5 h-3.5 text-[#FF7A5C]" />
+                </button>
               </div>
-            );
-          })}
-        </div>
+            )}
+          </div>
+        )}
 
         {/* Footer note + enquiry CTA */}
         <div className="mt-9 pt-5 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3">

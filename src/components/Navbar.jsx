@@ -168,11 +168,11 @@ export default function Navbar({ onOpenDemo }) {
     <header
       className={`fixed top-0 inset-x-0 z-40 transition-all duration-300 ease-out ${
         scrolled
-          ? 'bg-[#080D14]/92 backdrop-blur-md border-b border-white/10 shadow-lg py-3 sm:py-3.5'
-          : 'bg-gradient-to-b from-black/85 via-black/40 to-transparent py-4.5 sm:py-6'
+          ? 'bg-[#080D14]/92 backdrop-blur-md border-b border-white/10 shadow-lg py-2.5 sm:py-3.5 pt-[max(env(safe-area-inset-top),0.625rem)]'
+          : 'bg-gradient-to-b from-black/85 via-black/40 to-transparent py-3 sm:py-5 pt-[max(env(safe-area-inset-top),0.75rem)]'
       }`}
     >
-      <div className="max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16 flex items-center justify-between">
+      <div className="max-w-[1680px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 flex items-center justify-between">
         {/* Brand Logo - CADD Centre Manjeri */}
         <a
           href="#"
@@ -183,7 +183,7 @@ export default function Navbar({ onOpenDemo }) {
           <img
             src="/CADD.png"
             alt="CADD Centre Manjeri"
-            className="h-9 sm:h-11 lg:h-[46px] w-auto object-contain transition-transform duration-200 group-hover:scale-105 drop-shadow-[0_2px_10px_rgba(0,0,0,0.75)]"
+            className="h-8 sm:h-11 lg:h-[46px] w-auto max-w-[135px] sm:max-w-none object-contain transition-transform duration-200 group-hover:scale-105 drop-shadow-[0_2px_10px_rgba(0,0,0,0.75)]"
           />
         </a>
 

@@ -115,6 +115,14 @@ export default function Hero({ onOpenDemo }) {
     setProgress(0);
   };
 
+  // Preload all hero slide images for seamless transitions
+  useEffect(() => {
+    COURSE_SLIDES.forEach((slide) => {
+      const img = new Image();
+      img.src = slide.image;
+    });
+  }, []);
+
   // Auto-play timer & progress bar
   useEffect(() => {
     if (isPaused) return;
@@ -160,7 +168,7 @@ export default function Hero({ onOpenDemo }) {
 
   return (
     <section 
-      className="relative w-full h-auto sm:h-[100dvh] min-h-0 sm:min-h-[580px] max-h-[1080px] overflow-hidden font-['Plus_Jakarta_Sans',sans-serif] select-none bg-[#080D14]"
+      className="relative w-full min-h-[100svh] sm:h-[100dvh] min-h-[620px] max-h-[1080px] flex flex-col justify-center sm:block overflow-hidden font-['Plus_Jakarta_Sans',sans-serif] select-none bg-[#080D14]"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       onTouchStart={handleTouchStart}
@@ -178,9 +186,12 @@ export default function Hero({ onOpenDemo }) {
           return (
             <div
               key={slide.id}
-              className={`absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out ${
-                isActive ? 'opacity-100 z-10' : 'opacity-0 z-0'
-              }`}
+              style={{
+                opacity: isActive ? 1 : 0,
+                zIndex: isActive ? 10 : 0,
+                transition: 'opacity 1000ms cubic-bezier(0.4, 0, 0.2, 1)'
+              }}
+              className="absolute inset-0 w-full h-full will-change-[opacity]"
             >
               <img
                 src={slide.image}
@@ -189,6 +200,7 @@ export default function Hero({ onOpenDemo }) {
                   isActive ? 'scale-105' : 'scale-100'
                 }`}
                 loading={idx === 0 ? 'eager' : 'lazy'}
+                fetchPriority={idx === 0 ? 'high' : 'auto'}
               />
             </div>
           );
@@ -198,25 +210,25 @@ export default function Hero({ onOpenDemo }) {
       {/* ========================================================= */}
       {/* 2. CINEMATIC GRADIENT OVERLAYS                            */}
       {/* ========================================================= */}
-      {/* Top navbar protection */}
+      {/* Top navbar protection (shared subtle gradient) */}
       <div 
-        className="absolute top-0 inset-x-0 h-32 pointer-events-none z-10"
+        className="absolute top-0 inset-x-0 h-28 sm:h-36 pointer-events-none z-10"
         style={{
-          background: 'linear-gradient(180deg, rgba(8, 13, 20, 0.75) 0%, rgba(8, 13, 20, 0.2) 60%, transparent 100%)'
+          background: 'linear-gradient(180deg, rgba(8, 13, 20, 0.70) 0%, rgba(8, 13, 20, 0.20) 65%, transparent 100%)'
         }}
       />
 
-      {/* Full-bleed left & bottom gradient for text contrast */}
+      {/* Desktop-only: Full-bleed left & bottom gradient for text contrast */}
       <div 
-        className="absolute inset-0 pointer-events-none z-10"
+        className="hidden sm:block absolute inset-0 pointer-events-none z-10"
         style={{
           background: 'radial-gradient(ellipse at 20% 70%, rgba(8, 13, 20, 0.95) 0%, rgba(8, 13, 20, 0.75) 45%, rgba(8, 13, 20, 0.35) 85%, transparent 100%)'
         }}
       />
 
-      {/* Horizontal subtle dark sweep from left */}
+      {/* Desktop-only: Horizontal subtle dark sweep from left */}
       <div 
-        className="absolute inset-y-0 left-0 w-full md:w-[75%] lg:w-[65%] pointer-events-none z-10"
+        className="hidden sm:block absolute inset-y-0 left-0 w-full md:w-[75%] lg:w-[65%] pointer-events-none z-10"
         style={{
           background: 'linear-gradient(90deg, rgba(8, 13, 20, 0.92) 0%, rgba(8, 13, 20, 0.70) 55%, transparent 100%)'
         }}
@@ -224,28 +236,31 @@ export default function Hero({ onOpenDemo }) {
 
       {/* Ambient glowing accent based on current slide */}
       <div 
-        className="absolute bottom-20 left-10 w-96 h-96 rounded-full blur-3xl opacity-20 transition-all duration-1000 pointer-events-none z-10"
+        className="absolute bottom-16 sm:bottom-20 left-1/2 -translate-x-1/2 sm:translate-x-0 sm:left-10 w-72 sm:w-96 h-72 sm:h-96 rounded-full blur-3xl opacity-25 sm:opacity-20 transition-all duration-1000 pointer-events-none z-10"
         style={{ backgroundColor: currentSlide.accent }}
       />
 
-      {/* Mobile center gradient scrim for perfect contrast (< 640px) */}
+      {/* Mobile-only: Crystal clear cinematic overlay - keeps background image vivid & recognizable */}
       <div 
-        className="sm:hidden absolute inset-0 pointer-events-none z-10 bg-gradient-to-t from-[#080D14] via-[#080D14]/75 to-[#080D14]/35"
+        className="sm:hidden absolute inset-0 pointer-events-none z-10"
+        style={{
+          background: 'linear-gradient(180deg, rgba(8, 13, 20, 0.40) 0%, rgba(8, 13, 20, 0.25) 28%, rgba(8, 13, 20, 0.55) 68%, rgba(8, 13, 20, 0.92) 100%)'
+        }}
       />
 
       {/* ========================================================= */}
       {/* 3. HERO CONTENT: CENTERED ON MOBILE, LEFT ON DESKTOP      */}
       {/* ========================================================= */}
-      <div className="relative z-20 flex flex-col items-center text-center px-5 pt-24 pb-8 sm:absolute sm:inset-auto sm:bottom-24 lg:bottom-32 sm:left-10 lg:left-14 xl:left-20 sm:right-auto sm:justify-start sm:items-start sm:text-left sm:p-0 max-w-md sm:max-w-2xl mx-auto sm:mx-0 pointer-events-auto">
+      <div className="relative z-20 flex flex-col items-center text-center px-5 pt-28 pb-8 sm:pt-0 sm:pb-0 sm:absolute sm:inset-auto sm:bottom-24 lg:bottom-32 sm:left-10 lg:left-14 xl:left-20 sm:right-auto sm:justify-start sm:items-start sm:text-left sm:p-0 max-w-md sm:max-w-2xl mx-auto sm:mx-0 pointer-events-auto">
 
         {/* Mobile Unified Pill Badge (< 640px) */}
-        <div className="sm:hidden inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.08] backdrop-blur-md border border-white/15 text-white shadow-sm mb-3">
+        <div className="sm:hidden inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#080D14]/75 backdrop-blur-md border border-white/20 text-white shadow-lg mb-3.5">
           <CurrentIcon className="w-3.5 h-3.5 text-[#FF6B5A]" />
           <span className="text-[11px] font-extrabold tracking-wider uppercase text-white">
             {currentSlide.category}
           </span>
           <span className="w-1 h-1 rounded-full bg-white/40" />
-          <span className="text-[10px] font-semibold text-[#FF8F80]">
+          <span className="text-[10.5px] font-semibold text-[#FF8F80]">
             25 Yrs in Manjeri
           </span>
         </div>
@@ -273,14 +288,14 @@ export default function Hero({ onOpenDemo }) {
         </div>
 
         {/* Dominant Main Headline */}
-        <h1 className="text-[32px] xs:text-[36px] sm:text-4xl lg:text-[44px] xl:text-[50px] font-bold text-white tracking-[-0.02em] leading-[1.12] sm:leading-[1.1] text-center sm:text-left">
+        <h1 className="text-[32px] xs:text-[36px] sm:text-4xl lg:text-[44px] xl:text-[50px] font-bold text-white tracking-[-0.02em] leading-[1.12] sm:leading-[1.1] text-center sm:text-left drop-shadow-[0_4px_18px_rgba(0,0,0,0.92)]">
           Learn the Skills.<br />
           Build Your Future.
         </h1>
 
         {/* Dynamic Slide Tagline (Desktop also gets description) */}
         <div className="mt-2.5 sm:mt-4 max-w-[520px] mx-auto sm:mx-0 text-center sm:text-left">
-          <p className="text-[13.5px] sm:text-[15px] font-medium text-slate-200/95 leading-snug">
+          <p className="text-[13.5px] sm:text-[15px] font-medium text-slate-100 sm:text-slate-200/95 leading-snug drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
             {currentSlide.tagline}
           </p>
           <p className="hidden sm:block mt-1.5 text-xs sm:text-[13px] text-slate-300 font-normal leading-relaxed line-clamp-2">
@@ -289,7 +304,7 @@ export default function Hero({ onOpenDemo }) {
         </div>
 
         {/* Software Stack Pills */}
-        <div className="mt-3 sm:mt-4 flex items-center justify-center sm:justify-start gap-1.5 flex-wrap">
+        <div className="mt-3.5 sm:mt-4 flex items-center justify-center sm:justify-start gap-1.5 flex-wrap">
           <span className="hidden sm:inline-block text-[11px] font-bold text-slate-400 uppercase tracking-wider mr-1">
             Software:
           </span>
@@ -298,13 +313,13 @@ export default function Hero({ onOpenDemo }) {
             {currentSlide.software.slice(0, 3).map((tool) => (
               <span 
                 key={tool}
-                className="text-[10.5px] font-medium px-2.5 py-0.5 rounded-full bg-white/[0.08] border border-white/10 text-slate-200"
+                className="text-[11px] font-medium px-2.5 py-0.5 rounded-full bg-[#080D14]/70 backdrop-blur-sm border border-white/20 text-slate-100 shadow-sm"
               >
                 {tool}
               </span>
             ))}
             {currentSlide.software.length > 3 && (
-              <span className="text-[10px] font-medium text-slate-400 px-1">
+              <span className="text-[10px] font-bold text-slate-300 px-1 drop-shadow-sm">
                 +{currentSlide.software.length - 3}
               </span>
             )}
@@ -327,7 +342,7 @@ export default function Hero({ onOpenDemo }) {
           {/* Primary CTA */}
           <a
             href="#features"
-            className="w-full sm:w-auto bg-[#E94B3C] hover:bg-[#D4382A] text-white px-7 py-3 rounded-full sm:rounded-[10px] text-[13.5px] font-bold inline-flex items-center justify-center gap-2 shadow-[0_4px_18px_rgba(233,75,60,0.4)] active:scale-[0.98] transition-all cursor-pointer group"
+            className="w-full sm:w-auto bg-[#E94B3C] hover:bg-[#D4382A] text-white px-7 py-3 rounded-full sm:rounded-[10px] text-[13.5px] font-bold inline-flex items-center justify-center gap-2 shadow-[0_6px_22px_rgba(233,75,60,0.5)] active:scale-[0.98] transition-all cursor-pointer group"
           >
             <span>Explore All Courses</span>
             <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -337,7 +352,7 @@ export default function Hero({ onOpenDemo }) {
           <button
             type="button"
             onClick={onOpenDemo}
-            className="w-full sm:w-auto bg-white/[0.07] hover:bg-white/[0.14] border border-white/20 hover:border-white/40 text-white px-6 py-2.5 sm:py-3 rounded-full sm:rounded-[10px] text-[13px] sm:text-[13.5px] font-semibold inline-flex items-center justify-center gap-2 backdrop-blur-md active:scale-[0.98] transition-all cursor-pointer group"
+            className="w-full sm:w-auto bg-[#080D14]/65 hover:bg-[#080D14]/85 border border-white/25 hover:border-white/45 text-white px-6 py-2.5 sm:py-3 rounded-full sm:rounded-[10px] text-[13px] sm:text-[13.5px] font-semibold inline-flex items-center justify-center gap-2 backdrop-blur-md active:scale-[0.98] transition-all cursor-pointer group shadow-md"
           >
             <span>Enquire Admissions</span>
             <ArrowUpRight className="w-3.5 h-3.5 text-slate-300" />
@@ -345,16 +360,16 @@ export default function Hero({ onOpenDemo }) {
         </div>
 
         {/* Minimalist Mobile Slide Indicator Dots (< 640px) */}
-        <div className="sm:hidden mt-5 flex items-center justify-center gap-2">
+        <div className="sm:hidden mt-6 flex items-center justify-center gap-2">
           {COURSE_SLIDES.map((slide, idx) => (
             <button
               key={slide.id}
               type="button"
               onClick={() => selectSlide(idx)}
-              className={`h-1.5 rounded-full transition-all duration-300 ${
+              className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
                 idx === currentIndex 
-                  ? 'w-6 bg-[#E94B3C] shadow-[0_0_8px_rgba(233,75,60,0.7)]' 
-                  : 'w-1.5 bg-white/30 hover:bg-white/50'
+                  ? 'w-7 bg-[#E94B3C] shadow-[0_0_10px_rgba(233,75,60,0.85)]' 
+                  : 'w-2 bg-white/40 hover:bg-white/60'
               }`}
               aria-label={`Slide ${idx + 1}`}
             />
