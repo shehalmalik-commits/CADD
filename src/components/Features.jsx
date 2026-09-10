@@ -1022,8 +1022,8 @@ function readLocation(pathname) {
   return { inCatalogue: true, discipline, course };
 }
 
-// High-Tech Architectural Bento Course Card matching the Reference Model (media_1789025327103.jpg)
-// Features pristine white cards, monospace technical badges, '+' software tags, and electric blue action triggers.
+// High-Tech Architectural Bento Course Card with Media Viewport
+// Incorporates the authentic course photograph in an ultra-modern framed bento layout
 function CourseTile({ item, onSelectCourse }) {
   const toolsList = item.tools ? item.tools.split('·').map((t) => t.trim()).filter(Boolean) : [];
 
@@ -1039,72 +1039,93 @@ function CourseTile({ item, onSelectCourse }) {
         }
       }}
       aria-label={`${item.title} — view syllabus`}
-      className="group relative flex flex-col justify-between w-full rounded-[26px] bg-white border border-slate-200/90 hover:border-[#0D62FE] text-left cursor-pointer transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_22px_50px_rgba(13,98,254,0.12)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0D62FE] p-5 sm:p-6 min-h-[310px] sm:min-h-[330px] select-none overflow-hidden"
+      className="group relative flex flex-col justify-between w-full rounded-[24px] bg-white border border-slate-200/90 hover:border-[#0D62FE] text-left cursor-pointer transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_22px_50px_rgba(13,98,254,0.14)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0D62FE] p-3 sm:p-3.5 select-none overflow-hidden"
     >
-      {/* Decorative Technical Corner Crosshair */}
-      <div className="absolute top-3.5 right-4 font-mono text-[9.5px] text-slate-300 group-hover:text-blue-300 transition-colors pointer-events-none">
-        +
-      </div>
-
       <div>
-        {/* Top Header Row: Category Badge + Duration Pill */}
-        <div className="flex items-center justify-between gap-2 mb-3.5 pr-4">
-          <span className="inline-flex items-center px-3 py-1 rounded-full bg-blue-50/90 border border-blue-200/70 font-mono text-[10px] sm:text-[10.5px] font-bold text-[#0D62FE] uppercase tracking-wider shadow-2xs">
-            [ {item.category || item.discipline} ]
-          </span>
+        {/* Framed 16:10 High-Definition Media Viewport */}
+        <div className="relative aspect-[16/10] w-full rounded-[18px] overflow-hidden bg-slate-950 mb-3.5 shadow-xs">
+          <img
+            src={item.img}
+            alt={item.title}
+            loading="lazy"
+            onError={(e) => {
+              e.currentTarget.onerror = null;
+              e.currentTarget.src = '/images/cad_bim_hero_bg.jpg';
+            }}
+            className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
+          />
 
-          {item.duration && (
-            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-slate-100/90 border border-slate-200 font-mono text-[10px] sm:text-[10.5px] font-semibold text-slate-700 shadow-2xs shrink-0">
-              <Clock className="w-3 h-3 text-[#0D62FE]" />
-              {item.duration}
+          {/* Scrim Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-transparent to-black/20 pointer-events-none" />
+
+          {/* Floating Category Pill */}
+          <div className="absolute top-2.5 left-2.5 z-10">
+            <span className="font-mono text-[9.5px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md bg-white/95 backdrop-blur-md text-[#0D62FE] border border-white/40 shadow-xs">
+              [ {item.category || item.discipline} ]
             </span>
+          </div>
+
+          {/* Duration Badge */}
+          {item.duration && (
+            <div className="absolute top-2.5 right-2.5 z-10">
+              <span className="inline-flex items-center gap-1 font-mono text-[9.5px] font-semibold px-2 py-1 rounded-md bg-black/60 backdrop-blur-md text-white border border-white/20 shadow-xs">
+                <Clock className="w-3 h-3 text-blue-400" />
+                {item.duration}
+              </span>
+            </div>
+          )}
+
+          {/* Bottom Accreditation watermark inside viewport */}
+          <div className="absolute bottom-2 left-2.5 right-2.5 z-10 flex items-center justify-between text-[10px] font-mono font-bold text-white/90">
+            <span className="inline-flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              <span>LIVE INDUSTRIAL CAD</span>
+            </span>
+          </div>
+        </div>
+
+        {/* Card Body (Inside Frame) */}
+        <div className="px-1.5 space-y-1.5">
+          <h4 className="text-[16px] sm:text-[17px] font-black text-slate-950 group-hover:text-[#0D62FE] transition-colors leading-snug tracking-tight line-clamp-1">
+            {item.title}
+          </h4>
+
+          <p className="text-xs text-slate-600 font-normal leading-relaxed line-clamp-2">
+            {item.description}
+          </p>
+
+          {/* Software Modules with '+' prefix */}
+          {toolsList.length > 0 && (
+            <div className="flex flex-wrap items-center gap-1.5 pt-2 font-mono">
+              {toolsList.slice(0, 3).map((tool, idx) => (
+                <span
+                  key={idx}
+                  className="text-[10px] font-bold text-slate-700 bg-slate-50 group-hover:bg-blue-50/60 border border-slate-200 px-2 py-0.5 rounded-md transition-colors flex items-center gap-0.5"
+                >
+                  <span className="text-[#0D62FE] font-black">+</span>
+                  <span>{tool}</span>
+                </span>
+              ))}
+              {toolsList.length > 3 && (
+                <span className="text-[10px] font-mono text-slate-400 px-1">
+                  +{toolsList.length - 3}
+                </span>
+              )}
+            </div>
           )}
         </div>
-
-        {/* Course Title */}
-        <h4 className="text-[17px] sm:text-[18px] font-black text-slate-950 group-hover:text-[#0D62FE] transition-colors leading-snug tracking-tight">
-          {item.title}
-        </h4>
-
-        {/* Course Description */}
-        <p className="text-xs sm:text-[12.5px] text-slate-600 font-normal leading-relaxed line-clamp-2 mt-2">
-          {item.description}
-        </p>
-
-        {/* Software & Module Tags with '+' prefix (Matching Reference Image) */}
-        {toolsList.length > 0 && (
-          <div className="flex flex-wrap items-center gap-1.5 pt-3.5 font-mono">
-            {toolsList.slice(0, 4).map((tool, idx) => (
-              <span
-                key={idx}
-                className="text-[10px] sm:text-[10.5px] font-bold text-slate-700 bg-slate-50 group-hover:bg-blue-50/60 border border-slate-200 group-hover:border-blue-200 px-2.5 py-1 rounded-lg transition-colors flex items-center gap-1 shadow-2xs"
-              >
-                <span className="text-[#0D62FE] font-black">+</span>
-                <span>{tool}</span>
-              </span>
-            ))}
-            {toolsList.length > 4 && (
-              <span className="text-[10px] font-bold text-slate-400 font-mono px-1">
-                +{toolsList.length - 4}
-              </span>
-            )}
-          </div>
-        )}
       </div>
 
-      {/* Card Footer: Live Verification & Electric Blue Syllabus Button */}
-      <div className="pt-3.5 mt-4 border-t border-slate-100 flex items-center justify-between gap-2">
-        <div className="flex items-center gap-1.5 text-[11px] font-mono font-bold text-emerald-700">
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-          </span>
+      {/* Card Footer: Live Verification & Electric Blue Action Trigger */}
+      <div className="pt-3 mt-3 mx-1.5 border-t border-slate-100 flex items-center justify-between gap-2">
+        <span className="inline-flex items-center gap-1 text-[10.5px] font-mono font-bold text-emerald-700">
+          <CheckCircle2 className="w-3 h-3 text-emerald-600" />
           <span>GOVT CERTIFIED</span>
-        </div>
+        </span>
 
-        <div className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-[#0D62FE] group-hover:bg-[#0052FF] text-white font-mono text-[11px] font-bold uppercase tracking-wider shadow-sm group-hover:shadow-md group-hover:shadow-blue-500/25 transition-all">
+        <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#0D62FE] group-hover:bg-[#0052FF] text-white font-mono text-[10.5px] font-bold uppercase tracking-wider shadow-sm group-hover:shadow-md group-hover:shadow-blue-500/25 transition-all">
           <span>SYLLABUS</span>
-          <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+          <ArrowUpRight className="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
         </div>
       </div>
     </div>
