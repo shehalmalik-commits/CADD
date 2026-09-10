@@ -1022,8 +1022,8 @@ function readLocation(pathname) {
   return { inCatalogue: true, discipline, course };
 }
 
-// High-tech, structured course card matching the reference design model with
-// monospace status chips, clear hierarchy, bracketed software tags, and interactive syllabus trigger.
+// High-Tech Architectural Bento Course Card matching the Reference Model (media_1789025327103.jpg)
+// Features pristine white cards, monospace technical badges, '+' software tags, and electric blue action triggers.
 function CourseTile({ item, onSelectCourse }) {
   const toolsList = item.tools ? item.tools.split('·').map((t) => t.trim()).filter(Boolean) : [];
 
@@ -1039,79 +1039,72 @@ function CourseTile({ item, onSelectCourse }) {
         }
       }}
       aria-label={`${item.title} — view syllabus`}
-      className="group relative flex flex-col w-full rounded-[22px] overflow-hidden border border-slate-200/90 bg-white hover:border-[#0D62FE] text-left cursor-pointer transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-blue-500/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0D62FE]"
+      className="group relative flex flex-col justify-between w-full rounded-[26px] bg-white border border-slate-200/90 hover:border-[#0D62FE] text-left cursor-pointer transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_22px_50px_rgba(13,98,254,0.12)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0D62FE] p-5 sm:p-6 min-h-[310px] sm:min-h-[330px] select-none overflow-hidden"
     >
-      {/* 16:10 Media Container */}
-      <div className="relative w-full aspect-[16/10] overflow-hidden bg-slate-100 shrink-0">
-        <img
-          src={item.img}
-          alt={item.title}
-          loading="lazy"
-          onError={(e) => {
-            e.currentTarget.onerror = null;
-            e.currentTarget.src = '/images/cad_bim_hero_bg.jpg';
-          }}
-          className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
-        />
+      {/* Decorative Technical Corner Crosshair */}
+      <div className="absolute top-3.5 right-4 font-mono text-[9.5px] text-slate-300 group-hover:text-blue-300 transition-colors pointer-events-none">
+        +
+      </div>
 
-        {/* Floating Category Pill */}
-        <div className="absolute top-3 left-3 z-10">
-          <span className="inline-flex items-center px-2.5 py-1 rounded-md bg-white/95 backdrop-blur-md border border-slate-200/80 font-mono text-[10px] font-bold text-[#0D62FE] uppercase tracking-wider shadow-sm">
-            [ {item.category} ]
+      <div>
+        {/* Top Header Row: Category Badge + Duration Pill */}
+        <div className="flex items-center justify-between gap-2 mb-3.5 pr-4">
+          <span className="inline-flex items-center px-3 py-1 rounded-full bg-blue-50/90 border border-blue-200/70 font-mono text-[10px] sm:text-[10.5px] font-bold text-[#0D62FE] uppercase tracking-wider shadow-2xs">
+            [ {item.category || item.discipline} ]
           </span>
-        </div>
 
-        {/* Floating Duration Pill */}
-        {item.duration && (
-          <div className="absolute top-3 right-3 z-10">
-            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-white/95 backdrop-blur-md border border-slate-200/80 font-mono text-[10px] font-semibold text-slate-700 shadow-sm">
+          {item.duration && (
+            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-slate-100/90 border border-slate-200 font-mono text-[10px] sm:text-[10.5px] font-semibold text-slate-700 shadow-2xs shrink-0">
               <Clock className="w-3 h-3 text-[#0D62FE]" />
               {item.duration}
             </span>
+          )}
+        </div>
+
+        {/* Course Title */}
+        <h4 className="text-[17px] sm:text-[18px] font-black text-slate-950 group-hover:text-[#0D62FE] transition-colors leading-snug tracking-tight">
+          {item.title}
+        </h4>
+
+        {/* Course Description */}
+        <p className="text-xs sm:text-[12.5px] text-slate-600 font-normal leading-relaxed line-clamp-2 mt-2">
+          {item.description}
+        </p>
+
+        {/* Software & Module Tags with '+' prefix (Matching Reference Image) */}
+        {toolsList.length > 0 && (
+          <div className="flex flex-wrap items-center gap-1.5 pt-3.5 font-mono">
+            {toolsList.slice(0, 4).map((tool, idx) => (
+              <span
+                key={idx}
+                className="text-[10px] sm:text-[10.5px] font-bold text-slate-700 bg-slate-50 group-hover:bg-blue-50/60 border border-slate-200 group-hover:border-blue-200 px-2.5 py-1 rounded-lg transition-colors flex items-center gap-1 shadow-2xs"
+              >
+                <span className="text-[#0D62FE] font-black">+</span>
+                <span>{tool}</span>
+              </span>
+            ))}
+            {toolsList.length > 4 && (
+              <span className="text-[10px] font-bold text-slate-400 font-mono px-1">
+                +{toolsList.length - 4}
+              </span>
+            )}
           </div>
         )}
       </div>
 
-      {/* Card Body */}
-      <div className="p-4 sm:p-5 flex flex-col flex-1 justify-between gap-3 bg-white">
-        <div className="space-y-2">
-          <h4 className="text-[15px] sm:text-[16px] font-extrabold text-slate-900 group-hover:text-[#0D62FE] transition-colors leading-snug line-clamp-2">
-            {item.title}
-          </h4>
-
-          <p className="text-[12px] text-slate-500 font-normal leading-relaxed line-clamp-2">
-            {item.description}
-          </p>
-
-          {/* Software Tools Pills */}
-          {toolsList.length > 0 && (
-            <div className="flex flex-wrap items-center gap-1.5 pt-1.5 font-mono">
-              {toolsList.slice(0, 3).map((tool, idx) => (
-                <span
-                  key={idx}
-                  className="text-[10px] font-medium text-slate-600 bg-slate-50 border border-slate-200 px-2 py-0.5 rounded"
-                >
-                  [ {tool} ]
-                </span>
-              ))}
-              {toolsList.length > 3 && (
-                <span className="text-[10px] font-medium text-slate-400">
-                  +{toolsList.length - 3}
-                </span>
-              )}
-            </div>
-          )}
+      {/* Card Footer: Live Verification & Electric Blue Syllabus Button */}
+      <div className="pt-3.5 mt-4 border-t border-slate-100 flex items-center justify-between gap-2">
+        <div className="flex items-center gap-1.5 text-[11px] font-mono font-bold text-emerald-700">
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+          </span>
+          <span>GOVT CERTIFIED</span>
         </div>
 
-        {/* Card Footer: Certification & CTA */}
-        <div className="pt-3 mt-1 border-t border-slate-100 flex items-center justify-between text-xs">
-          <span className="inline-flex items-center gap-1 text-[11px] font-mono font-semibold text-emerald-600">
-            <CheckCircle2 className="w-3.5 h-3.5" /> CERTIFIED
-          </span>
-
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-blue-50 group-hover:bg-[#0D62FE] text-[#0D62FE] group-hover:text-white font-mono text-[11px] font-bold uppercase tracking-wider transition-all">
-            SYLLABUS <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-          </span>
+        <div className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-[#0D62FE] group-hover:bg-[#0052FF] text-white font-mono text-[11px] font-bold uppercase tracking-wider shadow-sm group-hover:shadow-md group-hover:shadow-blue-500/25 transition-all">
+          <span>SYLLABUS</span>
+          <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
         </div>
       </div>
     </div>
@@ -1464,17 +1457,19 @@ export default function Features({ onOpenDemo }) {
               return (
                 <div key={group.name} id={`discipline-${group.shortName.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}>
                   {/* Discipline Group Header */}
-                  <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2 mb-5">
-                    <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
-                      <div className="w-8 h-8 rounded-lg bg-blue-50 border border-blue-100 flex items-center justify-center shrink-0">
-                        <Layers className="w-4 h-4 text-blue-600" />
+                  <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-3 mb-6 pb-3 border-b border-slate-200/90">
+                    <div className="flex items-center gap-3 min-w-0">
+                      <div className="w-9 h-9 rounded-xl bg-blue-50 border border-blue-200/80 flex items-center justify-center shrink-0 shadow-2xs">
+                        <Layers className="w-4 h-4 text-[#0D62FE]" />
                       </div>
-                      <h3 className="text-[14px] sm:text-[15px] font-extrabold text-slate-900 uppercase tracking-[0.14em] truncate">
-                        {group.name}
-                      </h3>
-                      <span className="text-[11px] font-semibold text-slate-600 px-2.5 py-0.5 rounded-full bg-slate-100 border border-slate-200 shrink-0">
-                        {group.courses.length} course{group.courses.length === 1 ? '' : 's'}
-                      </span>
+                      <div className="flex items-center gap-2.5 flex-wrap">
+                        <h3 className="text-[15px] sm:text-[17px] font-black text-slate-950 uppercase tracking-[0.1em] truncate">
+                          {group.name}
+                        </h3>
+                        <span className="font-mono text-[10.5px] font-bold text-[#0D62FE] px-2.5 py-0.5 rounded-md bg-blue-50/80 border border-blue-200/70 shrink-0">
+                          [ {group.courses.length} MODULES ]
+                        </span>
+                      </div>
                     </div>
 
                     {/* Header quick toggle */}
@@ -1483,13 +1478,13 @@ export default function Features({ onOpenDemo }) {
                         <button
                           type="button"
                           onClick={() => toggleExpandDiscipline(group.name)}
-                          className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-600 hover:text-blue-700 px-3 py-1 rounded-full bg-white hover:bg-slate-50 border border-slate-200 transition-all cursor-pointer shadow-2xs"
+                          className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-[#0D62FE] hover:text-[#0052FF] px-3.5 py-1.5 rounded-full bg-white hover:bg-slate-50 border border-slate-200 transition-all cursor-pointer shadow-2xs"
                         >
-                          <span>{isExpanded ? 'Show Less' : `View All (${group.courses.length})`}</span>
+                          <span>{isExpanded ? 'SHOW LESS' : `VIEW ALL (${group.courses.length})`}</span>
                           {isExpanded ? (
-                            <ChevronUp className="w-3.5 h-3.5 text-blue-600" />
+                            <ChevronUp className="w-3.5 h-3.5 text-[#0D62FE]" />
                           ) : (
-                            <ChevronDown className="w-3.5 h-3.5 text-blue-600" />
+                            <ChevronDown className="w-3.5 h-3.5 text-[#0D62FE]" />
                           )}
                         </button>
                       )}
