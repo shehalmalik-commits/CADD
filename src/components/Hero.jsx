@@ -259,16 +259,16 @@ export default function Hero({ onOpenDemo }) {
 
         {/* Desktop Top Eyebrow Tag (>= 640px) */}
         <div className="hidden sm:inline-flex items-center justify-start gap-2 mb-2 sm:mb-3">
-          <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
-          <span className="text-[12px] font-bold text-blue-600 uppercase tracking-[0.18em]">
-            PROUDLY SERVING MANJERI FOR 25 YEARS
+          <span className="w-2 h-2 rounded-full bg-[#0D62FE] animate-pulse" />
+          <span className="text-[11.5px] font-mono font-bold text-[#0D62FE] uppercase tracking-[0.2em]">
+            [ 01/10 CADD CENTRE MANJERI · EST. 2000 ]
           </span>
         </div>
 
         {/* Desktop Course Discipline Badge with Icon (>= 640px) */}
-        <div className="hidden sm:flex items-center justify-start gap-2 mb-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-blue-700 shadow-xs">
-            <CurrentIcon className="w-3.5 h-3.5 text-blue-600" />
+        <div className="hidden sm:flex items-center justify-start gap-2 mb-2">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-[#0D62FE] shadow-xs">
+            <CurrentIcon className="w-3.5 h-3.5 text-[#0D62FE]" />
             <span className="text-[11px] font-extrabold tracking-wider uppercase text-blue-900">
               {currentSlide.category}
             </span>
@@ -279,14 +279,35 @@ export default function Hero({ onOpenDemo }) {
           </span>
         </div>
 
-        {/* Dominant Main Headline */}
-        <h1 className="text-[32px] xs:text-[36px] sm:text-4xl lg:text-[44px] xl:text-[52px] font-extrabold text-slate-900 tracking-[-0.02em] leading-[1.12] sm:leading-[1.08] text-center sm:text-left">
-          Learn the Skills.<br />
-          <span className="text-blue-600">Build Your Future.</span>
+        {/* Dominant Main Headline (High-Tech Grotesque) */}
+        <h1 className="text-[34px] xs:text-[40px] sm:text-5xl lg:text-[54px] xl:text-[62px] font-black text-slate-900 tracking-[-0.03em] leading-[1.04] text-center sm:text-left">
+          ENGINEERING<br />
+          <span className="text-[#0D62FE]">INNOVATION.</span>
         </h1>
 
+        {/* Interactive Twin-Pill Feature Widget (matching Reference Model) */}
+        <div className="inline-flex flex-wrap sm:flex-nowrap items-center gap-2 p-1.5 rounded-2xl bg-white/95 backdrop-blur-xl border border-slate-200/90 shadow-md my-3 sm:my-4 text-left max-w-full">
+          <div className="flex items-center gap-2.5 px-3 py-1.5 rounded-xl bg-blue-50/90 border border-blue-200/70">
+            <div className="w-6 h-6 rounded-lg bg-[#0D62FE] text-white flex items-center justify-center shadow-xs shrink-0">
+              <Sparkles className="w-3.5 h-3.5" />
+            </div>
+            <div className="text-left min-w-0">
+              <span className="text-[11.5px] font-bold text-slate-900 block leading-tight truncate">Empowering Engineers</span>
+              <span className="text-[10px] text-slate-500 leading-tight block truncate">Hands-On CAD &amp; BIM Mastery</span>
+            </div>
+          </div>
+          
+          <div className="flex items-center gap-2 px-3 py-1.5 shrink-0">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
+            <span className="text-[11px] font-semibold text-slate-700">42+ Certified Programs</span>
+          </div>
+        </div>
+
         {/* Dynamic Slide Tagline */}
-        <div className="mt-2.5 sm:mt-4 max-w-[520px] mx-auto sm:mx-0 text-center sm:text-left">
+        <div className="max-w-[540px] mx-auto sm:mx-0 text-center sm:text-left">
           <p className="text-[14px] sm:text-[16px] font-semibold text-slate-700 leading-snug">
             {currentSlide.tagline}
           </p>
@@ -296,9 +317,9 @@ export default function Hero({ onOpenDemo }) {
         </div>
 
         {/* Software Stack Pills */}
-        <div className="mt-3.5 sm:mt-4 flex items-center justify-center sm:justify-start gap-1.5 flex-wrap">
-          <span className="hidden sm:inline-block text-[11px] font-bold text-slate-400 uppercase tracking-wider mr-1">
-            Software:
+        <div className="mt-3 sm:mt-3.5 flex items-center justify-center sm:justify-start gap-1.5 flex-wrap">
+          <span className="hidden sm:inline-block text-[11px] font-mono font-bold text-slate-400 uppercase tracking-wider mr-1">
+            SOFTWARE:
           </span>
           {/* Mobile view: top 3 tools with soft pills */}
           <div className="flex items-center justify-center gap-1.5 flex-wrap sm:hidden">
@@ -330,11 +351,11 @@ export default function Hero({ onOpenDemo }) {
         </div>
 
         {/* Primary & Secondary Call to Actions */}
-        <div className="mt-5 sm:mt-7 flex flex-col sm:flex-row items-center sm:items-center gap-2.5 sm:gap-4 w-full sm:w-auto max-w-xs sm:max-w-none mx-auto sm:mx-0">
+        <div className="mt-5 sm:mt-6 flex flex-col sm:flex-row items-center sm:items-center gap-2.5 sm:gap-4 w-full sm:w-auto max-w-xs sm:max-w-none mx-auto sm:mx-0">
           {/* Primary CTA */}
           <a
             href="#features"
-            className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-7 py-3 rounded-full text-[13.5px] font-bold inline-flex items-center justify-center gap-2 shadow-lg shadow-blue-500/25 active:scale-[0.98] transition-all cursor-pointer group"
+            className="w-full sm:w-auto bg-[#0D62FE] hover:bg-[#0045D8] text-white px-7 py-3 rounded-full text-[13.5px] font-bold inline-flex items-center justify-center gap-2 shadow-lg shadow-blue-500/25 active:scale-[0.98] transition-all cursor-pointer group"
           >
             <span>Explore All Courses</span>
             <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -347,7 +368,7 @@ export default function Hero({ onOpenDemo }) {
             className="w-full sm:w-auto bg-white hover:bg-slate-50 border border-slate-200 hover:border-slate-300 text-slate-800 px-6 py-2.5 sm:py-3 rounded-full text-[13px] sm:text-[13.5px] font-semibold inline-flex items-center justify-center gap-2 backdrop-blur-md active:scale-[0.98] transition-all cursor-pointer group shadow-xs"
           >
             <span>Enquire Admissions</span>
-            <ArrowUpRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-blue-600" />
+            <ArrowUpRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#0D62FE]" />
           </button>
         </div>
 

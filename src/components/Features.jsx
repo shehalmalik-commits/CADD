@@ -1,5 +1,5 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { Sparkles, Layers, ArrowRight, ArrowUpRight, GraduationCap, Clock, CheckCircle2, ChevronDown, ChevronUp } from 'lucide-react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { Sparkles, Layers, ArrowRight, ArrowUpRight, GraduationCap, Clock, CheckCircle2, ChevronDown, ChevronUp, Search, SlidersHorizontal, Terminal } from 'lucide-react';
 import CourseBottomSheet from './CourseBottomSheet';
 import Button from './ui/Button';
 
@@ -1022,8 +1022,8 @@ function readLocation(pathname) {
   return { inCatalogue: true, discipline, course };
 }
 
-// Modern, structured course card ("nalla model") with dedicated high-res media banner,
-// floating status chips, clear hierarchy, software tags, and interactive syllabus trigger.
+// High-tech, structured course card matching the reference design model with
+// monospace status chips, clear hierarchy, bracketed software tags, and interactive syllabus trigger.
 function CourseTile({ item, onSelectCourse }) {
   const toolsList = item.tools ? item.tools.split('·').map((t) => t.trim()).filter(Boolean) : [];
 
@@ -1039,7 +1039,7 @@ function CourseTile({ item, onSelectCourse }) {
         }
       }}
       aria-label={`${item.title} — view syllabus`}
-      className="group relative flex flex-col w-full rounded-2xl overflow-hidden border border-slate-200/90 bg-white hover:border-blue-500/50 text-left cursor-pointer transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
+      className="group relative flex flex-col w-full rounded-[22px] overflow-hidden border border-slate-200/90 bg-white hover:border-[#0D62FE] text-left cursor-pointer transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-blue-500/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0D62FE]"
     >
       {/* 16:10 Media Container */}
       <div className="relative w-full aspect-[16/10] overflow-hidden bg-slate-100 shrink-0">
@@ -1056,16 +1056,16 @@ function CourseTile({ item, onSelectCourse }) {
 
         {/* Floating Category Pill */}
         <div className="absolute top-3 left-3 z-10">
-          <span className="inline-flex items-center px-2.5 py-1 rounded-full bg-white/90 backdrop-blur-md border border-slate-200/80 text-[10.5px] font-bold text-blue-700 uppercase tracking-wider shadow-xs">
-            {item.category}
+          <span className="inline-flex items-center px-2.5 py-1 rounded-md bg-white/95 backdrop-blur-md border border-slate-200/80 font-mono text-[10px] font-bold text-[#0D62FE] uppercase tracking-wider shadow-sm">
+            [ {item.category} ]
           </span>
         </div>
 
         {/* Floating Duration Pill */}
         {item.duration && (
           <div className="absolute top-3 right-3 z-10">
-            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/90 backdrop-blur-md border border-slate-200/80 text-[10.5px] font-semibold text-slate-700 shadow-xs">
-              <Clock className="w-3 h-3 text-blue-600" />
+            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-white/95 backdrop-blur-md border border-slate-200/80 font-mono text-[10px] font-semibold text-slate-700 shadow-sm">
+              <Clock className="w-3 h-3 text-[#0D62FE]" />
               {item.duration}
             </span>
           </div>
@@ -1075,7 +1075,7 @@ function CourseTile({ item, onSelectCourse }) {
       {/* Card Body */}
       <div className="p-4 sm:p-5 flex flex-col flex-1 justify-between gap-3 bg-white">
         <div className="space-y-2">
-          <h4 className="text-[15px] sm:text-[16px] font-bold text-slate-900 group-hover:text-blue-600 transition-colors leading-snug line-clamp-2">
+          <h4 className="text-[15px] sm:text-[16px] font-extrabold text-slate-900 group-hover:text-[#0D62FE] transition-colors leading-snug line-clamp-2">
             {item.title}
           </h4>
 
@@ -1085,18 +1085,18 @@ function CourseTile({ item, onSelectCourse }) {
 
           {/* Software Tools Pills */}
           {toolsList.length > 0 && (
-            <div className="flex flex-wrap items-center gap-1.5 pt-1.5">
+            <div className="flex flex-wrap items-center gap-1.5 pt-1.5 font-mono">
               {toolsList.slice(0, 3).map((tool, idx) => (
                 <span
                   key={idx}
-                  className="text-[10px] font-semibold text-slate-600 bg-slate-100 border border-slate-200/70 px-2 py-0.5 rounded-md"
+                  className="text-[10px] font-medium text-slate-600 bg-slate-50 border border-slate-200 px-2 py-0.5 rounded"
                 >
-                  {tool}
+                  [ {tool} ]
                 </span>
               ))}
               {toolsList.length > 3 && (
                 <span className="text-[10px] font-medium text-slate-400">
-                  +{toolsList.length - 3} more
+                  +{toolsList.length - 3}
                 </span>
               )}
             </div>
@@ -1105,12 +1105,12 @@ function CourseTile({ item, onSelectCourse }) {
 
         {/* Card Footer: Certification & CTA */}
         <div className="pt-3 mt-1 border-t border-slate-100 flex items-center justify-between text-xs">
-          <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-600">
-            <CheckCircle2 className="w-3.5 h-3.5" /> Certified
+          <span className="inline-flex items-center gap-1 text-[11px] font-mono font-semibold text-emerald-600">
+            <CheckCircle2 className="w-3.5 h-3.5" /> CERTIFIED
           </span>
 
-          <span className="inline-flex items-center gap-1 text-[12px] font-bold text-blue-600 group-hover:text-blue-700 group-hover:translate-x-0.5 transition-all">
-            View Syllabus <ArrowRight className="w-3.5 h-3.5" />
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-blue-50 group-hover:bg-[#0D62FE] text-[#0D62FE] group-hover:text-white font-mono text-[11px] font-bold uppercase tracking-wider transition-all">
+            SYLLABUS <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
           </span>
         </div>
       </div>
@@ -1139,10 +1139,25 @@ export default function Features({ onOpenDemo }) {
   const [selectedCourseDetail, setSelectedCourseDetail] = useState(initialLocation.course);
   const [activeDiscipline, setActiveDiscipline] = useState(initialLocation.discipline);
   const [expandedDisciplines, setExpandedDisciplines] = useState({});
+  const [searchQuery, setSearchQuery] = useState('');
   const [isMobile, setIsMobile] = useState(
     typeof window !== 'undefined' ? window.innerWidth < 640 : false
   );
   const [showAllMobileCatalogue, setShowAllMobileCatalogue] = useState(false);
+
+  const searchFilteredCourses = useMemo(() => {
+    const q = searchQuery.trim().toLowerCase();
+    if (!q) return [];
+    return ALL_COURSES.filter((course) => {
+      return (
+        course.title.toLowerCase().includes(q) ||
+        (course.tools && course.tools.toLowerCase().includes(q)) ||
+        course.discipline.toLowerCase().includes(q) ||
+        course.category.toLowerCase().includes(q) ||
+        (course.description && course.description.toLowerCase().includes(q))
+      );
+    });
+  }, [searchQuery]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -1226,37 +1241,99 @@ export default function Features({ onOpenDemo }) {
   return (
     <section
       id="features"
-      className="relative py-10 sm:py-20 bg-slate-50/60 text-slate-900 font-['Plus_Jakarta_Sans',sans-serif] border-t border-slate-200/80"
+      className="relative py-12 sm:py-20 bg-white text-slate-900 font-['Plus_Jakarta_Sans',sans-serif] border-t border-slate-200"
     >
       <div id="portfolio" className="absolute -top-12 left-0 pointer-events-none" />
 
       <div className="max-w-[1440px] w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
-        {/* COMPACT SECTION HEADER — the catalogue must start high on the page */}
-        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-6">
-          <div className="max-w-2xl space-y-1.5 text-left">
-            <div className="inline-flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-blue-600" />
-              <span className="text-[10px] font-bold text-blue-600 uppercase tracking-[0.2em]">
-                Course Offerings
+        {/* NUMBERED TECHNICAL SECTION HEADER 02 */}
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-8 border-b border-slate-200/80 pb-6">
+          <div className="max-w-3xl space-y-2 text-left">
+            <div className="flex items-center gap-2.5 flex-wrap">
+              <span className="font-mono text-xs font-extrabold uppercase tracking-[0.25em] text-[#0D62FE] bg-blue-50 px-2.5 py-1 rounded-md border border-blue-100">
+                02 TECHNICAL CURRICULUM
+              </span>
+              <span className="text-[11px] font-mono text-slate-400 uppercase tracking-widest hidden sm:inline-block">
+                [ CAD BLUEPRINTS & WORKFLOWS ]
               </span>
             </div>
 
-            <h2 className="text-2xl sm:text-[32px] font-extrabold text-slate-900 tracking-tight leading-tight">
-              Find the Right Course for Your Career
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight uppercase">
+              PRECISION ENGINEERING DISCIPLINES.
             </h2>
 
-            <p className="text-xs sm:text-[13px] text-slate-500 font-normal leading-relaxed">
-              Practical, software-oriented programs in AutoCAD, Revit BIM, SolidWorks, MEP, and Project Planning tailored for real-world engineering careers.
+            <p className="text-xs sm:text-sm text-slate-500 font-normal leading-relaxed">
+              Explore authentic, industry-standard CAD, BIM, and structural modeling programs certified by Autodesk, Bentley, and PTC.
             </p>
           </div>
 
-          <div className="flex items-center gap-2 text-xs text-slate-500 shrink-0">
-            <GraduationCap className="w-4 h-4 text-blue-600" />
+          <div className="flex items-center gap-2 font-mono text-xs text-slate-600 shrink-0 bg-slate-50 border border-slate-200 px-3.5 py-2 rounded-xl">
+            <GraduationCap className="w-4 h-4 text-[#0D62FE]" />
             <span>
-              <strong className="text-slate-900 font-bold">{ALL_COURSES.length}</strong> courses across{' '}
-              <strong className="text-slate-900 font-bold">{COURSES_BY_DISCIPLINE.length}</strong> disciplines
+              <strong className="text-slate-900 font-bold">{ALL_COURSES.length}</strong> COURSES ·{' '}
+              <strong className="text-slate-900 font-bold">{COURSES_BY_DISCIPLINE.length}</strong> DISCIPLINES
             </span>
+          </div>
+        </div>
+
+        {/* FLOATING HIGH-TECH SEARCH / FILTER BOX */}
+        <div className="relative mb-8 max-w-2xl mx-auto">
+          <div className="relative bg-white rounded-2xl p-2 shadow-xl shadow-slate-200/60 border border-slate-200/90 flex flex-col sm:flex-row items-center gap-2">
+            <div className="relative flex-1 w-full flex items-center pl-3">
+              <Search className="w-4 h-4 text-slate-400 shrink-0" />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search any course, software (Revit, AutoCAD, SolidWorks)..."
+                className="w-full px-3 py-1.5 bg-transparent text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none font-medium"
+              />
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery('')}
+                  className="text-[11px] font-mono text-slate-400 hover:text-slate-600 px-2 py-1 cursor-pointer"
+                >
+                  CLEAR
+                </button>
+              )}
+            </div>
+            <div className="flex items-center gap-2 w-full sm:w-auto shrink-0 justify-end">
+              {searchQuery.trim() && (
+                <span className="text-[11px] font-mono text-[#0D62FE] font-bold px-2">
+                  {searchFilteredCourses.length} FOUND
+                </span>
+              )}
+              <button
+                type="button"
+                onClick={() => {
+                  if (activeDiscipline !== 'all') selectDiscipline('all');
+                }}
+                className="px-4 py-2 rounded-xl bg-[#0D62FE] hover:bg-[#0045D8] text-white text-xs font-mono font-bold uppercase tracking-wider transition-all flex items-center gap-1.5 shadow-md shadow-blue-500/20 cursor-pointer"
+              >
+                <span>EXPLORE</span>
+                <ArrowRight className="w-3 h-3" />
+              </button>
+            </div>
+          </div>
+
+          {/* Software stack quick tags */}
+          <div className="flex items-center justify-center gap-1.5 flex-wrap pt-2.5 text-[11px] font-mono">
+            <span className="text-slate-400 font-semibold mr-1">STACK:</span>
+            {['REVIT', 'AUTOCAD', 'SOLIDWORKS', 'NAVISWORKS', 'STAAD.PRO', '3DS MAX', 'MEP'].map((tool) => (
+              <button
+                key={tool}
+                type="button"
+                onClick={() => setSearchQuery(tool.toLowerCase() === searchQuery.toLowerCase() ? '' : tool.toLowerCase())}
+                className={`px-2 py-0.5 rounded border transition-all cursor-pointer ${
+                  searchQuery.toLowerCase() === tool.toLowerCase()
+                    ? 'bg-[#0D62FE] text-white border-[#0D62FE]'
+                    : 'bg-white text-slate-600 border-slate-200 hover:border-[#0D62FE] hover:text-[#0D62FE]'
+                }`}
+              >
+                [ {tool} ]
+              </button>
+            ))}
           </div>
         </div>
 
@@ -1264,34 +1341,78 @@ export default function Features({ onOpenDemo }) {
         <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-3 mb-8 -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap border-b border-slate-200/80">
           <button
             type="button"
-            onClick={() => selectDiscipline('all')}
-            className={`shrink-0 px-3.5 py-1.5 rounded-full text-[12px] font-bold transition-all cursor-pointer ${
-              activeDiscipline === 'all'
-                ? 'bg-blue-600 text-white shadow-sm'
-                : 'bg-white text-slate-700 hover:bg-slate-100 hover:text-blue-600 border border-slate-200 shadow-2xs'
+            onClick={() => {
+              setSearchQuery('');
+              selectDiscipline('all');
+            }}
+            className={`shrink-0 px-3.5 py-1.5 rounded-full font-mono text-[11px] font-bold transition-all cursor-pointer ${
+              activeDiscipline === 'all' && !searchQuery
+                ? 'bg-[#0D62FE] text-white shadow-sm'
+                : 'bg-white text-slate-700 hover:bg-slate-100 hover:text-[#0D62FE] border border-slate-200 shadow-2xs'
             }`}
           >
-            All Courses ({ALL_COURSES.length})
+            [ ALL COURSES ({ALL_COURSES.length}) ]
           </button>
           {COURSES_BY_DISCIPLINE.map((group) => (
             <button
               key={group.name}
               type="button"
-              onClick={() => selectDiscipline(group.name)}
-              className={`shrink-0 px-3.5 py-1.5 rounded-full text-[12px] font-bold transition-all cursor-pointer ${
-                activeDiscipline === group.name
-                  ? 'bg-blue-600 text-white shadow-sm'
-                  : 'bg-white text-slate-700 hover:bg-slate-100 hover:text-blue-600 border border-slate-200 shadow-2xs'
+              onClick={() => {
+                setSearchQuery('');
+                selectDiscipline(group.name);
+              }}
+              className={`shrink-0 px-3.5 py-1.5 rounded-full font-mono text-[11px] font-bold transition-all cursor-pointer ${
+                activeDiscipline === group.name && !searchQuery
+                  ? 'bg-[#0D62FE] text-white shadow-sm'
+                  : 'bg-white text-slate-700 hover:bg-slate-100 hover:text-[#0D62FE] border border-slate-200 shadow-2xs'
               }`}
             >
-              {group.shortName}
-              <span className="ml-1.5 opacity-60">({group.courses.length})</span>
+              [ {group.shortName} ({group.courses.length}) ]
             </button>
           ))}
         </div>
 
-        {/* THE CATALOGUE — compact mobile preview with View All, or full multi-column grid */}
-        {isMobile && activeDiscipline === 'all' && !showAllMobileCatalogue ? (
+        {/* THE CATALOGUE — Search results, compact mobile preview with View All, or full multi-column grid */}
+        {searchQuery.trim() ? (
+          <div className="space-y-6">
+            <div className="flex items-center justify-between pb-3 border-b border-slate-200">
+              <span className="text-xs font-mono font-bold text-slate-700 uppercase tracking-wider">
+                SEARCH RESULTS: &ldquo;{searchQuery}&rdquo; ({searchFilteredCourses.length} COURSES FOUND)
+              </span>
+              <button
+                type="button"
+                onClick={() => setSearchQuery('')}
+                className="text-xs font-mono text-[#0D62FE] hover:underline cursor-pointer font-bold"
+              >
+                [ CLEAR FILTER ]
+              </button>
+            </div>
+
+            {searchFilteredCourses.length > 0 ? (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
+                {searchFilteredCourses.map((item) => (
+                  <CourseTile
+                    key={item.id}
+                    item={item}
+                    onSelectCourse={openCourse}
+                  />
+                ))}
+              </div>
+            ) : (
+              <div className="py-16 text-center bg-slate-50 rounded-2xl border border-dashed border-slate-300">
+                <p className="text-sm font-bold text-slate-700">No courses match &ldquo;{searchQuery}&rdquo;</p>
+                <p className="text-xs text-slate-500 mt-1">Try searching for &lsquo;Revit&rsquo;, &lsquo;AutoCAD&rsquo;, &lsquo;Civil&rsquo;, or &lsquo;Interior&rsquo;.</p>
+                <button
+                  type="button"
+                  onClick={() => setSearchQuery('')}
+                  className="mt-4 px-4 py-2 rounded-xl bg-[#0D62FE] text-white text-xs font-mono font-bold uppercase tracking-wider cursor-pointer"
+                >
+                  VIEW ALL COURSES
+                </button>
+              </div>
+            )}
+          </div>
+        ) : isMobile && activeDiscipline === 'all' && !showAllMobileCatalogue ? (
           /* Mobile Compact Initial View: Top 4 Featured Courses + View All Button */
           <div className="space-y-4">
             <div className="flex items-center justify-between mb-2 px-1">
@@ -1439,12 +1560,16 @@ export default function Features({ onOpenDemo }) {
         {/* Footer note + enquiry CTA */}
         <div className="mt-9 pt-5 border-t border-slate-200/80 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-[11px] text-slate-500 flex items-center gap-1.5 text-center sm:text-left">
-            <Sparkles className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+            <Sparkles className="w-3.5 h-3.5 text-[#0D62FE] shrink-0" />
             Click any course to see its syllabus, tools, workflow and career outcomes.
           </p>
-          <Button onClick={onOpenDemo} variant="primary" size="sm">
-            Enquire About Admissions
-          </Button>
+          <button
+            type="button"
+            onClick={onOpenDemo}
+            className="px-5 py-2.5 rounded-full bg-[#0D62FE] hover:bg-[#0045D8] text-white font-mono text-xs font-bold uppercase tracking-wider shadow-lg shadow-blue-500/20 transition-all cursor-pointer"
+          >
+            ENQUIRE ABOUT ADMISSIONS
+          </button>
         </div>
 
       </div>

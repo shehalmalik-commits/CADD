@@ -79,7 +79,7 @@ export default function DemoModal({ isOpen, onClose }) {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={handleResetAndClose}
-          className="absolute inset-0 bg-slate-950/60 backdrop-blur-sm"
+          className="absolute inset-0 bg-black/85 backdrop-blur-md"
         />
 
         {/* Modal Dialog — 2-Column Split Academy Model */}
@@ -89,16 +89,16 @@ export default function DemoModal({ isOpen, onClose }) {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 15 }}
           transition={{ duration: 0.25, ease: 'easeOut' }}
-          className="relative w-full max-w-4xl bg-white text-slate-900 rounded-[24px] shadow-2xl border border-slate-200 z-10 overflow-hidden max-h-[92vh] flex flex-col md:flex-row overscroll-contain"
+          className="relative w-full max-w-4xl bg-[#090E17] text-white rounded-[24px] shadow-[0_25px_60px_rgba(0,0,0,0.85)] border border-white/10 z-10 overflow-hidden max-h-[92vh] flex flex-col md:flex-row overscroll-contain"
         >
           {/* Subtle Ambient Light Gradients */}
-          <div className="absolute -top-24 -left-24 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute -bottom-24 -right-24 w-72 h-72 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -top-24 -left-24 w-72 h-72 bg-[#0D62FE]/20 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -bottom-24 -right-24 w-72 h-72 bg-[#0052FF]/15 rounded-full blur-3xl pointer-events-none" />
 
           {/* Close Button (Universal) */}
           <button
             onClick={handleResetAndClose}
-            className="absolute top-4 right-4 z-30 p-2 rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer"
+            className="absolute top-4 right-4 z-30 p-2 rounded-full text-slate-400 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
             aria-label="Close modal"
           >
             <X className="w-5 h-5" />
@@ -109,66 +109,66 @@ export default function DemoModal({ isOpen, onClose }) {
               {/* =========================================
                   LEFT PANEL: Trust, Credentials & Highlights
                  ========================================= */}
-              <div className="md:w-5/12 bg-slate-50 p-6 sm:p-8 flex flex-col justify-between relative border-b md:border-b-0 md:border-r border-slate-200">
+              <div className="md:w-5/12 bg-gradient-to-br from-[#121B2B] via-[#0D1522] to-[#080D14] p-6 sm:p-8 flex flex-col justify-between relative border-b md:border-b-0 md:border-r border-white/10">
                 <div className="relative z-10">
                   {/* Verified Badge */}
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200/80 text-blue-700 text-[11px] font-bold tracking-wider uppercase mb-3.5 shadow-xs">
-                    <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
-                    <span>CADD Centre Manjeri</span>
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0D62FE]/15 border border-[#0D62FE]/40 text-blue-400 text-[11px] font-mono font-bold tracking-wider uppercase mb-3.5 shadow-sm">
+                    <span className="w-2 h-2 rounded-full bg-[#0D62FE] animate-pulse" />
+                    <span>[ CADD CENTRE MANJERI ]</span>
                   </div>
 
-                  <h3 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight leading-tight">
+                  <h3 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight leading-tight">
                     Start Your Engineering Journey
                   </h3>
-                  <p className="text-xs text-slate-600 mt-2 leading-relaxed">
+                  <p className="text-xs text-slate-400 mt-2 leading-relaxed">
                     Kerala’s top training hub for professional CAD, BIM, MEP, and Project Management certifications.
                   </p>
 
                   {/* 4 Value Pillars */}
                   <div className="my-6 space-y-3.5">
                     <div className="flex items-start gap-3">
-                      <div className="w-7 h-7 rounded-lg bg-blue-50 border border-blue-200/80 text-blue-600 flex items-center justify-center shrink-0 mt-0.5 shadow-xs">
+                      <div className="w-7 h-7 rounded-lg bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 flex items-center justify-center shrink-0 mt-0.5 shadow-sm">
                         <Award className="w-3.5 h-3.5" />
                       </div>
                       <div>
-                        <h4 className="text-xs font-bold text-slate-900">Global Certification</h4>
-                        <p className="text-[11px] text-slate-500 leading-snug">
+                        <h4 className="text-xs font-bold text-white">Global Certification</h4>
+                        <p className="text-[11px] text-slate-400 leading-snug">
                           Internationally recognized in 30+ countries & Gulf
                         </p>
                       </div>
                     </div>
 
                     <div className="flex items-start gap-3">
-                      <div className="w-7 h-7 rounded-lg bg-blue-50 border border-blue-200/80 text-blue-600 flex items-center justify-center shrink-0 mt-0.5 shadow-xs">
+                      <div className="w-7 h-7 rounded-lg bg-blue-500/15 border border-blue-500/30 text-blue-400 flex items-center justify-center shrink-0 mt-0.5 shadow-sm">
                         <Briefcase className="w-3.5 h-3.5" />
                       </div>
                       <div>
-                        <h4 className="text-xs font-bold text-slate-900">100% Placement Support</h4>
-                        <p className="text-[11px] text-slate-500 leading-snug">
+                        <h4 className="text-xs font-bold text-white">100% Placement Support</h4>
+                        <p className="text-[11px] text-slate-400 leading-snug">
                           Direct job referrals across Kerala & GCC firms
                         </p>
                       </div>
                     </div>
 
                     <div className="flex items-start gap-3">
-                      <div className="w-7 h-7 rounded-lg bg-blue-50 border border-blue-200/80 text-blue-600 flex items-center justify-center shrink-0 mt-0.5 shadow-xs">
+                      <div className="w-7 h-7 rounded-lg bg-[#0D62FE]/15 border border-[#0D62FE]/30 text-blue-400 flex items-center justify-center shrink-0 mt-0.5 shadow-sm">
                         <MonitorCheck className="w-3.5 h-3.5" />
                       </div>
                       <div>
-                        <h4 className="text-xs font-bold text-slate-900">Live Industry Projects</h4>
-                        <p className="text-[11px] text-slate-500 leading-snug">
+                        <h4 className="text-xs font-bold text-white">Live Industry Projects</h4>
+                        <p className="text-[11px] text-slate-400 leading-snug">
                           Hands-on training with real construction & CAD plans
                         </p>
                       </div>
                     </div>
 
                     <div className="flex items-start gap-3">
-                      <div className="w-7 h-7 rounded-lg bg-blue-50 border border-blue-200/80 text-blue-600 flex items-center justify-center shrink-0 mt-0.5 shadow-xs">
+                      <div className="w-7 h-7 rounded-lg bg-amber-500/15 border border-amber-500/30 text-amber-400 flex items-center justify-center shrink-0 mt-0.5 shadow-sm">
                         <Sparkles className="w-3.5 h-3.5" />
                       </div>
                       <div>
-                        <h4 className="text-xs font-bold text-slate-900">Free Demo &amp; Counseling</h4>
-                        <p className="text-[11px] text-slate-500 leading-snug">
+                        <h4 className="text-xs font-bold text-white">Free Demo & Counseling</h4>
+                        <p className="text-[11px] text-slate-400 leading-snug">
                           1-on-1 guidance with certified senior faculty
                         </p>
                       </div>
@@ -177,14 +177,14 @@ export default function DemoModal({ isOpen, onClose }) {
                 </div>
 
                 {/* Live Status Indicator */}
-                <div className="relative z-10 pt-3 border-t border-slate-200 flex items-center gap-3 bg-white -mx-2 px-3 py-2 rounded-xl shadow-xs border">
+                <div className="relative z-10 pt-3 border-t border-white/10 flex items-center gap-3 bg-white/[0.02] -mx-2 px-3 py-2 rounded-xl">
                   <span className="relative flex h-2.5 w-2.5 shrink-0">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                     <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
                   </span>
                   <div className="min-w-0">
-                    <p className="text-[11px] font-bold text-slate-900 leading-none">Admission Desk Active</p>
-                    <p className="text-[10px] text-slate-500 mt-0.5">Expect counselor callback within 15 mins</p>
+                    <p className="text-[11px] font-bold text-white leading-none">Admission Desk Active</p>
+                    <p className="text-[10px] text-slate-400 mt-0.5">Expect counselor callback within 15 mins</p>
                   </div>
                 </div>
               </div>
@@ -192,18 +192,18 @@ export default function DemoModal({ isOpen, onClose }) {
               {/* =========================================
                   RIGHT PANEL: Interactive Course Enquiry Form
                  ========================================= */}
-              <div className="md:w-7/12 p-6 sm:p-8 flex flex-col justify-between overflow-y-auto max-h-[85vh] md:max-h-[90vh] bg-white">
+              <div className="md:w-7/12 p-6 sm:p-8 flex flex-col justify-between overflow-y-auto max-h-[85vh] md:max-h-[90vh]">
                 <div>
                   {/* Form Header */}
                   <div className="mb-5 text-left pr-8">
-                    <div className="inline-flex items-center gap-1.5 text-[11px] font-bold text-blue-600 uppercase tracking-wider mb-1">
+                    <div className="inline-flex items-center gap-1.5 text-[11px] font-bold text-blue-400 uppercase tracking-wider mb-1 font-mono">
                       <BookOpen className="w-3.5 h-3.5" />
-                      <span>Admissions &amp; Course Enquiry</span>
+                      <span>[ ADMISSIONS &amp; COURSE ENQUIRY ]</span>
                     </div>
-                    <h3 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
+                    <h3 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
                       Enquire at CADD Centre
                     </h3>
-                    <p className="text-xs text-slate-500 mt-1 leading-relaxed">
+                    <p className="text-xs text-slate-400 mt-1 leading-relaxed">
                       Enter your details below to receive syllabus breakdown, fee structure, and batch timings.
                     </p>
                   </div>
@@ -212,8 +212,8 @@ export default function DemoModal({ isOpen, onClose }) {
                   <form onSubmit={handleSubmit} className="space-y-3.5 text-left">
                     {/* 1. Full Name */}
                     <div>
-                      <label className="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">
-                        Full Name <span className="text-blue-600">*</span>
+                      <label className="block text-[11px] font-bold text-slate-300 uppercase tracking-wider mb-1">
+                        Full Name <span className="text-blue-400">*</span>
                       </label>
                       <div className="relative">
                         <User className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
@@ -223,7 +223,7 @@ export default function DemoModal({ isOpen, onClose }) {
                           placeholder="Your full name"
                           value={formData.name}
                           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                          className="w-full pl-10 pr-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs font-medium text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 focus:bg-white transition-all shadow-xs"
+                          className="w-full pl-10 pr-3.5 py-2.5 rounded-xl bg-white/[0.05] border border-white/10 text-xs font-medium text-white placeholder-slate-500 focus:outline-none focus:border-[#0D62FE] focus:ring-1 focus:ring-[#0D62FE] focus:bg-[#0E1624] transition-all"
                         />
                       </div>
                     </div>
@@ -231,8 +231,8 @@ export default function DemoModal({ isOpen, onClose }) {
                     {/* 2. Phone & Qualification Row */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <div>
-                        <label className="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">
-                          Phone Number <span className="text-blue-600">*</span>
+                        <label className="block text-[11px] font-bold text-slate-300 uppercase tracking-wider mb-1">
+                          Phone Number <span className="text-blue-400">*</span>
                         </label>
                         <div className="relative">
                           <Phone className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
@@ -242,13 +242,13 @@ export default function DemoModal({ isOpen, onClose }) {
                             placeholder="+91 98765 43210"
                             value={formData.phone}
                             onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                            className="w-full pl-10 pr-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs font-medium text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 focus:bg-white transition-all shadow-xs"
+                            className="w-full pl-10 pr-3.5 py-2.5 rounded-xl bg-white/[0.05] border border-white/10 text-xs font-medium text-white placeholder-slate-500 focus:outline-none focus:border-[#0D62FE] focus:ring-1 focus:ring-[#0D62FE] focus:bg-[#0E1624] transition-all"
                           />
                         </div>
                       </div>
 
                       <div>
-                        <label className="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">
+                        <label className="block text-[11px] font-bold text-slate-300 uppercase tracking-wider mb-1">
                           Qualification
                         </label>
                         <div className="relative">
@@ -256,14 +256,26 @@ export default function DemoModal({ isOpen, onClose }) {
                           <select
                             value={formData.qualification}
                             onChange={(e) => setFormData({ ...formData, qualification: e.target.value })}
-                            className="w-full pl-10 pr-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs font-medium text-slate-900 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 transition-all cursor-pointer shadow-xs"
+                            className="w-full pl-10 pr-3.5 py-2.5 rounded-xl bg-[#0E1624] border border-white/10 text-xs font-medium text-white focus:outline-none focus:border-[#0D62FE] focus:ring-1 focus:ring-[#0D62FE] transition-all cursor-pointer"
                           >
-                            <option value="Diploma / B.Tech / BE">Diploma / B.Tech / BE</option>
-                            <option value="Plus Two / Higher Secondary">Plus Two / Higher Secondary</option>
-                            <option value="Degree / Graduate">Degree / Graduate</option>
-                            <option value="ITI / Technical Diploma">ITI / Technical Diploma</option>
-                            <option value="Working Professional">Working Professional</option>
-                            <option value="Other">Other</option>
+                            <option value="Diploma / B.Tech / BE" className="bg-[#0E1624] text-white">
+                              Diploma / B.Tech / BE
+                            </option>
+                            <option value="Plus Two / Higher Secondary" className="bg-[#0E1624] text-white">
+                              Plus Two / Higher Secondary
+                            </option>
+                            <option value="Degree / Graduate" className="bg-[#0E1624] text-white">
+                              Degree / Graduate
+                            </option>
+                            <option value="ITI / Technical Diploma" className="bg-[#0E1624] text-white">
+                              ITI / Technical Diploma
+                            </option>
+                            <option value="Working Professional" className="bg-[#0E1624] text-white">
+                              Working Professional
+                            </option>
+                            <option value="Other" className="bg-[#0E1624] text-white">
+                              Other
+                            </option>
                           </select>
                         </div>
                       </div>
@@ -272,8 +284,8 @@ export default function DemoModal({ isOpen, onClose }) {
                     {/* 3. Location & Preferred Course Row */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <div>
-                        <label className="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">
-                          Location <span className="text-blue-600">*</span>
+                        <label className="block text-[11px] font-bold text-slate-300 uppercase tracking-wider mb-1">
+                          Location <span className="text-blue-400">*</span>
                         </label>
                         <div className="relative">
                           <MapPin className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
@@ -283,13 +295,13 @@ export default function DemoModal({ isOpen, onClose }) {
                             placeholder="e.g. Manjeri, Malappuram"
                             value={formData.location}
                             onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                            className="w-full pl-10 pr-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs font-medium text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 focus:bg-white transition-all shadow-xs"
+                            className="w-full pl-10 pr-3.5 py-2.5 rounded-xl bg-white/[0.05] border border-white/10 text-xs font-medium text-white placeholder-slate-500 focus:outline-none focus:border-[#0D62FE] focus:ring-1 focus:ring-[#0D62FE] focus:bg-[#0E1624] transition-all"
                           />
                         </div>
                       </div>
 
                       <div>
-                        <label className="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">
+                        <label className="block text-[11px] font-bold text-slate-300 uppercase tracking-wider mb-1">
                           Preferred Course
                         </label>
                         <div className="relative">
@@ -297,16 +309,16 @@ export default function DemoModal({ isOpen, onClose }) {
                           <select
                             value={formData.discipline}
                             onChange={(e) => setFormData({ ...formData, discipline: e.target.value })}
-                            className="w-full pl-10 pr-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs font-medium text-slate-900 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 transition-all cursor-pointer shadow-xs"
+                            className="w-full pl-10 pr-3.5 py-2.5 rounded-xl bg-[#0E1624] border border-white/10 text-xs font-medium text-white focus:outline-none focus:border-[#0D62FE] focus:ring-1 focus:ring-[#0D62FE] transition-all cursor-pointer"
                           >
-                            <option value="Interior Design">Interior Design</option>
-                            <option value="BIM [Building Information Modelling]">BIM [Building Information Modelling]</option>
-                            <option value="MEP with BIM">MEP with BIM</option>
-                            <option value="Structural Design">Structural Design</option>
-                            <option value="Project Planning &amp; Management">Project Planning &amp; Management</option>
-                            <option value="Surveying &amp; Transportation">Surveying &amp; Transportation</option>
-                            <option value="Product Design">Product Design</option>
-                            <option value="AutoCAD">AutoCAD (Civil / Mech / Elec)</option>
+                            <option value="Interior Design" className="bg-[#0E1624] text-white">Interior Design</option>
+                            <option value="BIM [Building Information Modelling]" className="bg-[#0E1624] text-white">BIM [Building Information Modelling]</option>
+                            <option value="MEP with BIM" className="bg-[#0E1624] text-white">MEP with BIM</option>
+                            <option value="Structural Design" className="bg-[#0E1624] text-white">Structural Design</option>
+                            <option value="Project Planning & Management" className="bg-[#0E1624] text-white">Project Planning & Management</option>
+                            <option value="Surveying & Transportation" className="bg-[#0E1624] text-white">Surveying & Transportation</option>
+                            <option value="Product Design" className="bg-[#0E1624] text-white">Product Design</option>
+                            <option value="AutoCAD" className="bg-[#0E1624] text-white">AutoCAD (Civil / Mech / Elec)</option>
                           </select>
                         </div>
                       </div>
@@ -314,18 +326,17 @@ export default function DemoModal({ isOpen, onClose }) {
 
                     {/* 4. Training Mode Choice */}
                     <div>
-                      <label className="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                      <label className="block text-[11px] font-bold text-slate-300 uppercase tracking-wider mb-1.5">
                         Preferred Training Mode
                       </label>
                       <div className="grid grid-cols-2 gap-2">
                         <button
                           type="button"
                           onClick={() => setFormData({ ...formData, mode: 'Classroom (Manjeri)' })}
-                          className={`flex items-center justify-center gap-2 py-2 px-3 rounded-xl text-xs font-semibold border transition-all cursor-pointer ${
-                            formData.mode === 'Classroom (Manjeri)'
-                              ? 'bg-blue-50 border-blue-600 text-blue-700 shadow-xs'
-                              : 'bg-slate-50 border-slate-200 text-slate-600 hover:bg-slate-100'
-                          }`}
+                          className={`flex items-center justify-center gap-2 py-2 px-3 rounded-xl text-xs font-semibold border transition-all cursor-pointer ${formData.mode === 'Classroom (Manjeri)'
+                              ? 'bg-[#0D62FE]/20 border-[#0D62FE] text-blue-400'
+                              : 'bg-white/[0.03] border-white/10 text-slate-300 hover:bg-white/[0.08]'
+                            }`}
                         >
                           <Building2 className="w-3.5 h-3.5 shrink-0" />
                           <span>Classroom (Manjeri)</span>
@@ -334,11 +345,10 @@ export default function DemoModal({ isOpen, onClose }) {
                         <button
                           type="button"
                           onClick={() => setFormData({ ...formData, mode: 'Live Online' })}
-                          className={`flex items-center justify-center gap-2 py-2 px-3 rounded-xl text-xs font-semibold border transition-all cursor-pointer ${
-                            formData.mode === 'Live Online'
-                              ? 'bg-blue-50 border-blue-600 text-blue-700 shadow-xs'
-                              : 'bg-slate-50 border-slate-200 text-slate-600 hover:bg-slate-100'
-                          }`}
+                          className={`flex items-center justify-center gap-2 py-2 px-3 rounded-xl text-xs font-semibold border transition-all cursor-pointer ${formData.mode === 'Live Online'
+                              ? 'bg-[#0D62FE]/20 border-[#0D62FE] text-blue-400'
+                              : 'bg-white/[0.03] border-white/10 text-slate-300 hover:bg-white/[0.08]'
+                            }`}
                         >
                           <Laptop className="w-3.5 h-3.5 shrink-0" />
                           <span>Live Online</span>
@@ -350,7 +360,7 @@ export default function DemoModal({ isOpen, onClose }) {
                     <div className="pt-2">
                       <button
                         type="submit"
-                        className="group w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 text-white text-xs sm:text-sm font-bold shadow-lg shadow-blue-600/25 transition-all cursor-pointer active:scale-98 flex items-center justify-center gap-2"
+                        className="group w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-[#0D62FE] to-[#0052FF] hover:from-[#0052FF] hover:to-[#0D62FE] text-white text-xs sm:text-sm font-bold shadow-[0_10px_25px_rgba(13,98,254,0.35)] transition-all cursor-pointer active:scale-98 flex items-center justify-center gap-2"
                       >
                         <span>Submit Course Enquiry &amp; Get Syllabus</span>
                         <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -358,8 +368,8 @@ export default function DemoModal({ isOpen, onClose }) {
                     </div>
 
                     {/* Trust Footnote */}
-                    <div className="flex items-center justify-center gap-1.5 text-[11px] text-slate-500 pt-1">
-                      <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                    <div className="flex items-center justify-center gap-1.5 text-[11px] text-slate-400 pt-1">
+                      <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
                       <span>100% Confidential • Official CADD Centre Support • Zero Spam</span>
                     </div>
                   </form>
@@ -370,24 +380,24 @@ export default function DemoModal({ isOpen, onClose }) {
             /* =========================================
                 SUCCESS STATE: Confirmation + WhatsApp Action
                ========================================= */
-            <div className="w-full p-8 sm:p-12 text-center space-y-4 max-w-xl mx-auto bg-white">
-              <div className="w-16 h-16 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-600 flex items-center justify-center mx-auto shadow-sm">
+            <div className="w-full p-8 sm:p-12 text-center space-y-4 max-w-xl mx-auto">
+              <div className="w-16 h-16 rounded-full bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 flex items-center justify-center mx-auto shadow-lg shadow-emerald-500/10">
                 <CheckCircle2 className="w-9 h-9" />
               </div>
 
-              <h3 className="text-2xl font-black text-slate-900">Enquiry Received!</h3>
+              <h3 className="text-2xl font-extrabold text-white">Enquiry Received!</h3>
 
-              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 text-left space-y-1.5 max-w-md mx-auto">
-                <p className="text-xs text-slate-700">
-                  <span className="text-slate-500">Student:</span> <strong className="text-slate-900">{formData.name}</strong>
+              <div className="p-4 rounded-2xl bg-white/[0.04] border border-white/10 text-left space-y-1.5 max-w-md mx-auto">
+                <p className="text-xs text-slate-300">
+                  <span className="text-slate-400">Student:</span> <strong className="text-white">{formData.name}</strong>
                 </p>
-                <p className="text-xs text-slate-700">
-                  <span className="text-slate-500">Course:</span> <strong className="text-blue-700">{formData.discipline}</strong> ({formData.mode})
+                <p className="text-xs text-slate-300">
+                  <span className="text-slate-400">Course:</span> <strong className="text-blue-400">{formData.discipline}</strong> ({formData.mode})
                 </p>
-                <p className="text-xs text-slate-700">
-                  <span className="text-slate-500">Contact:</span> <strong className="text-slate-900">{formData.phone}</strong>
+                <p className="text-xs text-slate-300">
+                  <span className="text-slate-400">Contact:</span> <strong className="text-white">{formData.phone}</strong>
                 </p>
-                <p className="text-[11px] text-emerald-600 pt-1 flex items-center gap-1 font-medium">
+                <p className="text-[11px] text-emerald-400/90 pt-1 flex items-center gap-1">
                   <CheckCircle2 className="w-3.5 h-3.5 shrink-0" /> Our senior counselor will call you within 15 minutes.
                 </p>
               </div>
@@ -398,7 +408,7 @@ export default function DemoModal({ isOpen, onClose }) {
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs sm:text-sm font-bold shadow-lg shadow-emerald-600/20 transition-all cursor-pointer"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs sm:text-sm font-bold shadow-lg shadow-emerald-600/25 transition-all cursor-pointer"
                 >
                   <WhatsAppGlyph className="w-4 h-4 shrink-0" />
                   <span>Chat on WhatsApp Now</span>
@@ -406,7 +416,7 @@ export default function DemoModal({ isOpen, onClose }) {
 
                 <button
                   onClick={handleResetAndClose}
-                  className="w-full sm:w-auto px-6 py-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs sm:text-sm font-semibold border border-slate-200 transition-colors cursor-pointer"
+                  className="w-full sm:w-auto px-6 py-3 rounded-xl bg-white/10 hover:bg-white/15 text-white text-xs sm:text-sm font-semibold border border-white/10 transition-colors cursor-pointer"
                 >
                   Close Window
                 </button>

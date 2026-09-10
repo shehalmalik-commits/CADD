@@ -4,15 +4,17 @@
   :root {
     --brand-red: #E94B3C;
     --brand-red-hover: #D4382A;
-    --brand-blue: #1D63ED;
-    --brand-blue-hover: #154EC8;
-    --brand-blue-soft: #EFF6FF;
+    --brand-blue: #0D62FE;
+    --brand-blue-hover: #0045D8;
+    --brand-blue-soft: #F0F6FE;
     --brand-blue-border: #BFDBFE;
+    --brand-electric: #0052FF;
 
     --background: #FFFFFF;
     --surface: #FFFFFF;
     --surface-muted: #F8FAFC;
     --surface-ice: #F0F6FE;
+    --surface-electric: #0D62FE;
 
     --text-primary: #0F172A;
     --text-secondary: #475569;
@@ -23,7 +25,7 @@
 
     --radius-sm: 8px;
     --radius-md: 16px;
-    --radius-lg: 24px;
+    --radius-lg: 20px;
     --radius-xl: 28px;
   }
 

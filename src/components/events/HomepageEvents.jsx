@@ -15,7 +15,7 @@ function EventReelCard({ evt }) {
   return (
     <Wrapper
       {...wrapperProps}
-      className="group relative block aspect-[9/16] w-full rounded-[18px] overflow-hidden border border-slate-200 bg-slate-900 shadow-md transition-all duration-300 hover:border-blue-500/60 hover:-translate-y-1.5 hover:shadow-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 select-none cursor-pointer"
+      className="group relative block aspect-[9/16] w-full rounded-[16px] overflow-hidden border border-slate-200/80 bg-slate-900 shadow-[0_8px_24px_rgba(0,0,0,0.15)] transition-all duration-300 hover:border-[#0D62FE] hover:-translate-y-1.5 hover:shadow-[0_18px_44px_rgba(13,98,254,0.25)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0D62FE] select-none cursor-pointer"
     >
       <img
         src={evt.cover_image}
@@ -25,16 +25,16 @@ function EventReelCard({ evt }) {
       />
 
       {/* Reel scrim: keeps the caption legible over any post artwork */}
-      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#0B0E14] via-[#0B0E14]/65 to-transparent pointer-events-none" />
 
       {/* Category Tag */}
-      <span className="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[9.5px] font-bold uppercase tracking-wider bg-white/90 backdrop-blur-md text-blue-700 border border-slate-200/80 z-10 shadow-xs">
+      <span className="absolute top-3 left-3 px-2.5 py-0.5 rounded-[4px] text-[9.5px] font-mono font-bold uppercase tracking-wider bg-black/75 backdrop-blur-md text-white border border-white/15 z-10 shadow-xs">
         {evt.category}
       </span>
 
       {/* Instagram Reel Icon Badge */}
       {evt.instagram_url && (
-        <span className="absolute top-3 right-3 w-7 h-7 rounded-full bg-white/90 backdrop-blur-md border border-slate-200/80 text-blue-600 flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white group-hover:scale-110 transition-all z-10 shadow-xs">
+        <span className="absolute top-3 right-3 w-7 h-7 rounded-full bg-black/55 backdrop-blur-md border border-white/15 text-white flex items-center justify-center group-hover:bg-[#0D62FE] group-hover:scale-110 transition-all z-10 shadow-sm">
           <svg
             className="w-3.5 h-3.5 fill-none stroke-current stroke-2"
             viewBox="0 0 24 24"
@@ -55,16 +55,16 @@ function EventReelCard({ evt }) {
           {evt.title}
         </h3>
 
-        <p className="text-[10.5px] text-slate-300 font-normal leading-relaxed line-clamp-2">
+        <p className="text-[10.5px] text-[#A0A6B2] font-normal leading-relaxed line-clamp-2">
           {evt.description}
         </p>
 
         {evt.instagram_url && (
-          <div className="pt-2 mt-1 border-t border-white/20 flex items-center justify-between">
-            <span className="text-[9.5px] font-semibold text-white/80">
+          <div className="pt-2 mt-1 border-t border-white/15 flex items-center justify-between">
+            <span className="text-[9.5px] font-semibold text-white/60">
               Watch on Instagram
             </span>
-            <span className="inline-flex items-center gap-0.5 text-[10.5px] font-bold text-blue-300 group-hover:text-white transition-colors">
+            <span className="inline-flex items-center gap-0.5 text-[10.5px] font-bold text-[#0D62FE] group-hover:text-white transition-colors">
               <span>Watch</span>
               <ArrowUpRight className="w-3 h-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </span>
@@ -109,7 +109,7 @@ export default function HomepageEvents({ events = [], onOpenDemo }) {
   return (
     <section
       id="events"
-      className="py-10 sm:py-24 bg-slate-50/70 text-slate-900 font-['Plus_Jakarta_Sans',sans-serif] relative overflow-hidden border-t border-slate-200/80"
+      className="py-12 sm:py-24 bg-slate-50/80 border-y border-slate-200/80 text-slate-900 font-['Plus_Jakarta_Sans',sans-serif] relative overflow-hidden"
     >
       <div id="news" className="absolute -top-12 left-0 pointer-events-none" />
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -117,22 +117,22 @@ export default function HomepageEvents({ events = [], onOpenDemo }) {
         {/* ========================================================= */}
         {/* TOP SECTION HEADER                                        */}
         {/* ========================================================= */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-6 sm:mb-8 gap-6">
-          <div className="max-w-2xl space-y-2 text-left">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-10 gap-6">
+          <div className="max-w-2xl space-y-2">
             <div className="inline-flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-blue-600" />
-              <span className="text-[11px] font-bold text-blue-600 uppercase tracking-wider">
-                CAMPUS HAPPENINGS &amp; REELS
+              <span className="w-2 h-2 rounded-full bg-[#0D62FE] animate-pulse" />
+              <span className="text-[11px] font-mono font-bold text-[#0D62FE] uppercase tracking-[0.14em]">
+                [ CAMPUS DISPATCH &amp; REELS ]
               </span>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-[1.2]">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-950 tracking-tight leading-[1.2]">
               More Than a Classroom.<br />
-              <span className="text-blue-600">A Community That Builds Careers.</span>
+              <span className="text-[#0D62FE]">A Community That Builds Careers.</span>
             </h2>
 
-            <p className="text-xs sm:text-sm text-slate-500 font-normal leading-relaxed max-w-xl">
-              Workshops, industry visits, practical setting-out, celebrations and campus life reels from CADD Centre Manjeri.
+            <p className="text-xs sm:text-sm text-slate-600 font-normal leading-relaxed max-w-xl">
+              Workshops, industry visits, practical setting-out, celebrations, and campus life reels from CADD Centre Manjeri.
             </p>
           </div>
 
@@ -143,7 +143,7 @@ export default function HomepageEvents({ events = [], onOpenDemo }) {
                 type="button"
                 onClick={scrollLeft}
                 aria-label="Previous reels"
-                className="w-9 h-9 rounded-full bg-white border border-slate-200 hover:bg-blue-600 hover:text-white text-slate-700 flex items-center justify-center transition-all cursor-pointer active:scale-90 shadow-2xs"
+                className="w-10 h-10 rounded-full bg-white border border-slate-200 hover:bg-[#0D62FE] hover:border-[#0D62FE] hover:text-white text-slate-700 flex items-center justify-center transition-all cursor-pointer shadow-xs active:scale-90"
               >
                 <ChevronLeft className="w-4 h-4" />
               </button>
@@ -151,13 +151,13 @@ export default function HomepageEvents({ events = [], onOpenDemo }) {
                 type="button"
                 onClick={scrollRight}
                 aria-label="Next reels"
-                className="w-9 h-9 rounded-full bg-white border border-slate-200 hover:bg-blue-600 hover:text-white text-slate-700 flex items-center justify-center transition-all cursor-pointer active:scale-90 shadow-2xs"
+                className="w-10 h-10 rounded-full bg-white border border-slate-200 hover:bg-[#0D62FE] hover:border-[#0D62FE] hover:text-white text-slate-700 flex items-center justify-center transition-all cursor-pointer shadow-xs active:scale-90"
               >
                 <ChevronRight className="w-4 h-4" />
               </button>
             </div>
 
-            <Button onClick={onOpenDemo} variant="primary" size="md">
+            <Button onClick={onOpenDemo} variant="primary" size="md" className="bg-[#0D62FE] hover:bg-[#0052FF] text-white shadow-md shadow-blue-500/20">
               Enquire Admissions
             </Button>
           </div>
@@ -174,11 +174,10 @@ export default function HomepageEvents({ events = [], onOpenDemo }) {
                 key={cat}
                 type="button"
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${
-                  isSelected
-                    ? 'bg-blue-600 text-white shadow-sm'
-                    : 'bg-white text-slate-700 hover:bg-slate-100 hover:text-blue-600 border border-slate-200 shadow-2xs'
-                }`}
+                className={`px-4 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${isSelected
+                    ? 'bg-[#0D62FE] text-white shadow-sm shadow-blue-600/30'
+                    : 'bg-white text-slate-600 hover:bg-slate-100 hover:text-slate-900 border border-slate-200 shadow-2xs'
+                  }`}
               >
                 {cat}
               </button>
@@ -200,9 +199,8 @@ export default function HomepageEvents({ events = [], onOpenDemo }) {
                 {displayEvents.map((evt, idx) => (
                   <div
                     key={evt.id}
-                    className={`snap-center shrink-0 w-[calc((100%-0.75rem)/2)] transition-opacity duration-300 ${
-                      idx === slide ? 'opacity-100' : 'opacity-75'
-                    }`}
+                    className={`snap-center shrink-0 w-[calc((100%-0.75rem)/2)] transition-opacity duration-300 ${idx === slide ? 'opacity-100' : 'opacity-75'
+                      }`}
                   >
                     <EventReelCard evt={evt} />
                   </div>
@@ -217,9 +215,8 @@ export default function HomepageEvents({ events = [], onOpenDemo }) {
                       type="button"
                       onClick={() => goTo(idx)}
                       aria-label={`Show ${evt.title}`}
-                      className={`h-1.5 rounded-full transition-all duration-200 cursor-pointer ${
-                        idx === slide ? 'w-4 bg-blue-600' : 'w-1.5 bg-slate-300 hover:bg-slate-400'
-                      }`}
+                      className={`h-1.5 rounded-full transition-all duration-200 cursor-pointer ${idx === slide ? 'w-5 bg-[#0D62FE]' : 'w-1.5 bg-slate-300 hover:bg-slate-400'
+                        }`}
                     />
                   ))}
                 </div>
@@ -242,22 +239,22 @@ export default function HomepageEvents({ events = [], onOpenDemo }) {
             </div>
           </>
         ) : (
-          <div className="text-center py-12 bg-white rounded-[16px] border border-slate-200 p-8">
-            <p className="text-slate-500">No events found in this category.</p>
+          <div className="text-center py-12 bg-white rounded-[20px] border border-slate-200 p-8 shadow-xs">
+            <p className="text-slate-500 font-mono text-sm">No events found in this category.</p>
           </div>
         )}
 
         {/* ========================================================= */}
         {/* REFINED BOTTOM ARCHIVE BAR                                */}
         {/* ========================================================= */}
-        <div className="mt-10 sm:mt-14 pt-6 border-t border-slate-200/80 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="mt-10 sm:mt-14 pt-6 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="space-y-0.5 text-center sm:text-left">
-            <h4 className="text-sm font-bold text-slate-900 flex items-center justify-center sm:justify-start gap-1.5">
-              <Sparkles className="w-3.5 h-3.5 text-blue-600" />
+            <h4 className="text-sm font-bold text-slate-900 flex items-center justify-center sm:justify-start gap-2">
+              <Sparkles className="w-4 h-4 text-[#0D62FE]" />
               <span>Explore the CADD Centre Experience</span>
             </h4>
-            <p className="text-xs text-slate-500">
-              Workshops · Industry Visits · Competitions · Celebrations · Placement Sessions
+            <p className="text-xs text-slate-500 font-mono">
+              WORKSHOPS · INDUSTRY VISITS · COMPETITIONS · CELEBRATIONS · PLACEMENTS
             </p>
           </div>
 
@@ -265,7 +262,7 @@ export default function HomepageEvents({ events = [], onOpenDemo }) {
             href="https://www.instagram.com/caddcentremanjeri/"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-600 hover:text-blue-700 transition-colors cursor-pointer group py-2"
+            className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0D62FE] hover:text-[#0052FF] transition-colors cursor-pointer group py-2"
           >
             <span>Follow @caddcentremanjeri</span>
             <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />

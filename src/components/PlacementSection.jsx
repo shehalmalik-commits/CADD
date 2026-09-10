@@ -173,11 +173,11 @@ export default function PlacementSection({ onOpenDemo }) {
   useOverlayHistory(allModalOpen, () => setAllModalOpen(false));
 
   const categories = [
-    { id: 'all', label: 'All Placements' },
-    { id: 'bim', label: 'BIM & Architectural' },
-    { id: 'civil', label: 'Civil & Site' },
-    { id: 'mechanical', label: 'Mechanical & Product' },
-    { id: 'interior', label: 'MEP & Interior' },
+    { id: 'all', label: 'ALL PLACEMENTS (17)' },
+    { id: 'bim', label: 'BIM ARCHITECTURE' },
+    { id: 'civil', label: 'CIVIL & STRUCTURAL' },
+    { id: 'mechanical', label: 'MECHANICAL CAD' },
+    { id: 'interior', label: 'MEP & INTERIOR' },
   ];
 
   const filteredStudents = useMemo(() => {
@@ -212,157 +212,194 @@ export default function PlacementSection({ onOpenDemo }) {
   return (
     <section
       id="placement"
-      className="relative py-16 sm:py-24 lg:py-28 bg-white text-slate-900 font-['Plus_Jakarta_Sans',sans-serif] overflow-hidden border-t border-slate-200/80 select-none"
+      className="relative py-16 sm:py-24 lg:py-28 bg-[#0D62FE] text-white font-['Plus_Jakarta_Sans',sans-serif] overflow-hidden select-none"
     >
+      {/* Subtle CAD / Engineering dot grid pattern */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-20"
+        style={{
+          backgroundImage: 'radial-gradient(rgba(255, 255, 255, 0.45) 1px, transparent 1px)',
+          backgroundSize: '28px 28px',
+        }}
+        aria-hidden="true"
+      />
+
+      {/* Ambient soft glow */}
+      <div
+        className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[400px] rounded-full bg-white/10 blur-[150px] pointer-events-none"
+        aria-hidden="true"
+      />
+
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         {/* ========================================================= */}
-        {/* MAIN PLACEMENT HERO HEADLINE & METRICS                    */}
+        {/* NUMBERED TECHNICAL HEADER 03                              */}
         {/* ========================================================= */}
-        <div className="text-center max-w-4xl mx-auto space-y-4 mb-10">
-          
-          {/* Eyebrow */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 border border-blue-100">
-            <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
-            <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-blue-700">
-              PLACEMENT CELL 2026
-            </span>
-          </div>
-
-          {/* Bold 2-Line Headline matching Screenshot 1 */}
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.08] uppercase text-slate-900">
-            ENGINEERING<br />
-            <span className="text-blue-600">
-              100+ SUCCESS STORIES.
-            </span>
-          </h2>
-
-          {/* Subtitle Description */}
-          <p className="text-xs sm:text-sm lg:text-[15px] text-slate-600 font-normal leading-relaxed max-w-2xl mx-auto pt-1">
-            Practical training is only the beginning. Our dedicated placement cell helps students prepare for technical interviews, portfolio presentations, and professional engineering opportunities across India &amp; the Middle East.
-          </p>
-
-          {/* 4-Metric Floating Scorecard Card */}
-          <div className="pt-6">
-            <div className="rounded-[22px] bg-[#F0F6FE] border border-blue-100 p-5 sm:p-7 shadow-sm grid grid-cols-2 sm:grid-cols-4 gap-6 text-center max-w-3xl mx-auto">
-              <div>
-                <div className="text-3xl sm:text-4xl font-black text-blue-600 tracking-tight">
-                  100+
-                </div>
-                <div className="text-[10.5px] sm:text-[11px] text-slate-600 font-bold tracking-wider uppercase mt-1">
-                  CAREERS LAUNCHED
-                </div>
-              </div>
-
-              <div>
-                <div className="text-3xl sm:text-4xl font-black text-blue-600 tracking-tight">
-                  100+
-                </div>
-                <div className="text-[10.5px] sm:text-[11px] text-slate-600 font-bold tracking-wider uppercase mt-1">
-                  PARTNER NETWORK
-                </div>
-              </div>
-
-              <div>
-                <div className="text-3xl sm:text-4xl font-black text-blue-600 tracking-tight">
-                  100%
-                </div>
-                <div className="text-[10.5px] sm:text-[11px] text-slate-600 font-bold tracking-wider uppercase mt-1">
-                  PLACEMENT ASSISTANCE
-                </div>
-              </div>
-
-              <div>
-                <div className="text-3xl sm:text-4xl font-black text-blue-600 tracking-tight">
-                  TOP
-                </div>
-                <div className="text-[10.5px] sm:text-[11px] text-slate-600 font-bold tracking-wider uppercase mt-1">
-                  INDUSTRY PACKAGES
-                </div>
-              </div>
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-10 border-b border-white/20 pb-8">
+          <div className="max-w-3xl space-y-2 text-left">
+            <div className="flex items-center gap-2.5 flex-wrap">
+              <span className="font-mono text-xs font-bold uppercase tracking-[0.25em] text-[#0D62FE] bg-white px-2.5 py-1 rounded-md shadow-sm">
+                03 PLACEMENT TELEMETRY
+              </span>
+              <span className="text-[11px] font-mono text-white/75 uppercase tracking-widest hidden sm:inline-block">
+                [ VERIFIED CAREER TRAJECTORY ]
+              </span>
             </div>
-          </div>
 
-        </div>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-[1.08] uppercase text-white">
+              ANALYZING CAREER PLACEMENT TRAJECTORY.
+            </h2>
 
-        {/* ========================================================= */}
-        {/* VERIFIED GRADUATES HEADER & FILTER TABS                   */}
-        {/* ========================================================= */}
-        <div className="pt-10 sm:pt-14 pb-6">
-          <div className="text-center max-w-3xl mx-auto space-y-2 mb-8">
-            <h3 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight uppercase">
-              VERIFIED GRADUATES
-            </h3>
-            <p className="text-xs sm:text-sm text-slate-500 max-w-xl mx-auto">
-              Meet our engineering &amp; design training graduates placed directly into CAD drafting, BIM modeling, MEP engineering, and interior design zones.
+            <p className="text-xs sm:text-sm lg:text-[15px] text-white/90 font-normal leading-relaxed max-w-2xl">
+              Real-time career telemetry of certified CADD Centre Manjeri alumni placed across architectural consultants, BIM firms, and EPC contractors in India &amp; the GCC.
             </p>
           </div>
 
-          {/* Filter Bar */}
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-6">
-            
-            {/* Category Filter Pills */}
-            <div className="flex items-center gap-2 overflow-x-auto max-w-full pb-1 no-scrollbar">
-              {categories.map((cat) => {
-                const isActive = selectedCategory === cat.id;
-                return (
-                  <button
-                    key={cat.id}
-                    type="button"
-                    onClick={() => setSelectedCategory(cat.id)}
-                    className={`px-4 py-2 rounded-full text-xs font-semibold transition-all whitespace-nowrap cursor-pointer ${
-                      isActive
-                        ? 'bg-blue-600 text-white shadow-sm scale-[1.02]'
-                        : 'bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 hover:text-blue-600'
-                    }`}
-                  >
-                    {cat.label}
-                  </button>
-                );
-              })}
+          <div className="flex items-center gap-3 shrink-0">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 text-white font-mono text-xs">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_#34d399]" />
+              <span>LIVE ALUMNI TELEMETRY</span>
             </div>
-
-            {/* View All (17) Button */}
-            <button
-              type="button"
-              onClick={() => setAllModalOpen(true)}
-              className="px-4.5 py-2 rounded-full text-xs font-bold bg-white border border-slate-200 text-slate-800 hover:text-blue-600 hover:border-blue-400 transition-all inline-flex items-center gap-1.5 cursor-pointer shrink-0 shadow-2xs"
-            >
-              <span>View All ({placedStudentsList.length})</span>
-              <ArrowUpRight className="w-3.5 h-3.5 text-blue-600" />
-            </button>
-
           </div>
         </div>
 
         {/* ========================================================= */}
-        {/* CAROUSEL SLIDER OF PLACED STUDENT POSTERS                 */}
+        {/* HIGH-TECH TELEMETRY SCORECARD CARD                        */}
         {/* ========================================================= */}
+        <div className="mb-12">
+          <div className="rounded-[24px] bg-white text-slate-900 p-6 sm:p-8 shadow-2xl border border-white/30 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Metric 1 */}
+            <div className="space-y-2 text-left">
+              <div className="flex items-baseline justify-between">
+                <span className="font-mono text-3xl sm:text-4xl font-black text-[#0D62FE] tracking-tight">98%</span>
+                <span className="text-[10px] font-mono text-emerald-600 bg-emerald-50 border border-emerald-200 px-1.5 py-0.5 rounded font-bold">10/10 RATED</span>
+              </div>
+              <div className="text-xs font-mono font-bold uppercase tracking-wider text-slate-800">
+                PLACEMENT ASSISTANCE
+              </div>
+              {/* Segmented meter */}
+              <div className="flex gap-1 pt-1">
+                {[...Array(10)].map((_, i) => (
+                  <div key={i} className="h-1.5 flex-1 rounded-sm bg-[#0D62FE]" />
+                ))}
+              </div>
+              <p className="text-[11px] text-slate-500 font-medium">Over 98% of active diploma students secure interviews within 60 days of graduation.</p>
+            </div>
+
+            {/* Metric 2 */}
+            <div className="space-y-2 text-left">
+              <div className="flex items-baseline justify-between">
+                <span className="font-mono text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">25,000+</span>
+                <span className="text-[10px] font-mono text-blue-600 bg-blue-50 border border-blue-200 px-1.5 py-0.5 rounded font-bold">GLOBAL</span>
+              </div>
+              <div className="text-xs font-mono font-bold uppercase tracking-wider text-slate-800">
+                CERTIFIED ALUMNI
+              </div>
+              <div className="flex gap-1 pt-1">
+                {[...Array(10)].map((_, i) => (
+                  <div key={i} className="h-1.5 flex-1 rounded-sm bg-[#0D62FE]" />
+                ))}
+              </div>
+              <p className="text-[11px] text-slate-500 font-medium">Largest network of CAD &amp; BIM certified professionals in Malappuram district.</p>
+            </div>
+
+            {/* Metric 3 */}
+            <div className="space-y-2 text-left">
+              <div className="flex items-baseline justify-between">
+                <span className="font-mono text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">150+</span>
+                <span className="text-[10px] font-mono text-indigo-600 bg-indigo-50 border border-indigo-200 px-1.5 py-0.5 rounded font-bold">HIRING</span>
+              </div>
+              <div className="text-xs font-mono font-bold uppercase tracking-wider text-slate-800">
+                CORPORATE PARTNERS
+              </div>
+              <div className="flex gap-1 pt-1">
+                {[...Array(9)].map((_, i) => (
+                  <div key={i} className="h-1.5 flex-1 rounded-sm bg-[#0D62FE]" />
+                ))}
+                <div className="h-1.5 flex-1 rounded-sm bg-slate-200" />
+              </div>
+              <p className="text-[11px] text-slate-500 font-medium">Direct campus recruitment with architectural firms and MEP consultancies.</p>
+            </div>
+
+            {/* Metric 4 */}
+            <div className="space-y-2 text-left">
+              <div className="flex items-baseline justify-between">
+                <span className="font-mono text-3xl sm:text-4xl font-black text-[#0D62FE] tracking-tight">3.5x</span>
+                <span className="text-[10px] font-mono text-amber-600 bg-amber-50 border border-amber-200 px-1.5 py-0.5 rounded font-bold">GROWTH</span>
+              </div>
+              <div className="text-xs font-mono font-bold uppercase tracking-wider text-slate-800">
+                SALARY ACCELERATION
+              </div>
+              <div className="flex gap-1 pt-1">
+                {[...Array(8)].map((_, i) => (
+                  <div key={i} className="h-1.5 flex-1 rounded-sm bg-[#0D62FE]" />
+                ))}
+                {[...Array(2)].map((_, i) => (
+                  <div key={i} className="h-1.5 flex-1 rounded-sm bg-slate-200" />
+                ))}
+              </div>
+              <p className="text-[11px] text-slate-500 font-medium">Average compensation uplift reported after completing Master BIM &amp; MEP Diplomas.</p>
+            </div>
+          </div>
+        </div>
+
+        {/* ========================================================= */}
+        {/* FILTER BAR & VERIFIED GRADUATES CAROUSEL                  */}
+        {/* ========================================================= */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-6">
+          <div className="flex items-center gap-2 overflow-x-auto max-w-full pb-1 no-scrollbar">
+            {categories.map((cat) => {
+              const isActive = selectedCategory === cat.id;
+              return (
+                <button
+                  key={cat.id}
+                  type="button"
+                  onClick={() => setSelectedCategory(cat.id)}
+                  className={`px-4 py-2 rounded-full font-mono text-xs font-bold transition-all whitespace-nowrap cursor-pointer ${
+                    isActive
+                      ? 'bg-white text-[#0D62FE] shadow-lg scale-[1.02]'
+                      : 'bg-white/10 border border-white/20 text-white/80 hover:text-white hover:bg-white/20'
+                  }`}
+                >
+                  [ {cat.label} ]
+                </button>
+              );
+            })}
+          </div>
+
+          <button
+            type="button"
+            onClick={() => setAllModalOpen(true)}
+            className="px-4.5 py-2 rounded-full font-mono text-xs font-bold bg-white text-[#0D62FE] hover:bg-blue-50 transition-all inline-flex items-center gap-1.5 cursor-pointer shrink-0 shadow-md"
+          >
+            <span>[ VIEW ALL ({placedStudentsList.length}) ]</span>
+            <ArrowUpRight className="w-3.5 h-3.5 text-[#0D62FE]" />
+          </button>
+        </div>
+
+        {/* Carousel Slider */}
         <div className="relative group/slider">
-          
-          {/* Left Arrow Button */}
           <button
             type="button"
             onClick={scrollLeft}
-            className="absolute left-2 top-1/2 -translate-y-1/2 z-30 w-11 h-11 rounded-full bg-white hover:bg-blue-600 border border-slate-200 text-slate-700 hover:text-white flex items-center justify-center transition-all duration-200 shadow-md hover:scale-110 active:scale-95 cursor-pointer"
+            className="absolute left-2 top-1/2 -translate-y-1/2 z-30 w-11 h-11 rounded-full bg-white hover:bg-slate-100 text-[#0D62FE] border border-slate-200 flex items-center justify-center transition-all duration-200 shadow-xl hover:scale-110 active:scale-95 cursor-pointer"
             aria-label="Previous placed students"
           >
-            <ChevronLeft className="w-5 h-5" />
+            <ChevronLeft className="w-5 h-5 text-[#0D62FE]" />
           </button>
 
-          {/* Right Arrow Button */}
           <button
             type="button"
             onClick={scrollRight}
-            className="absolute right-2 top-1/2 -translate-y-1/2 z-30 w-11 h-11 rounded-full bg-white hover:bg-blue-600 border border-slate-200 text-slate-700 hover:text-white flex items-center justify-center transition-all duration-200 shadow-md hover:scale-110 active:scale-95 cursor-pointer"
+            className="absolute right-2 top-1/2 -translate-y-1/2 z-30 w-11 h-11 rounded-full bg-white hover:bg-slate-100 text-[#0D62FE] border border-slate-200 flex items-center justify-center transition-all duration-200 shadow-xl hover:scale-110 active:scale-95 cursor-pointer"
             aria-label="Next placed students"
           >
-            <ChevronRight className="w-5 h-5" />
+            <ChevronRight className="w-5 h-5 text-[#0D62FE]" />
           </button>
 
           {/* Edge Fade Vignettes */}
-          <div className="absolute top-0 bottom-0 left-0 w-8 sm:w-16 bg-gradient-to-r from-white to-transparent z-20 pointer-events-none" />
-          <div className="absolute top-0 bottom-0 right-0 w-8 sm:w-16 bg-gradient-to-l from-white to-transparent z-20 pointer-events-none" />
+          <div className="absolute top-0 bottom-0 left-0 w-8 sm:w-16 bg-gradient-to-r from-[#0D62FE] to-transparent z-20 pointer-events-none" />
+          <div className="absolute top-0 bottom-0 right-0 w-8 sm:w-16 bg-gradient-to-l from-[#0D62FE] to-transparent z-20 pointer-events-none" />
 
           {/* Horizontal Scrolling Track */}
           <div
@@ -374,40 +411,39 @@ export default function PlacementSection({ onOpenDemo }) {
               <div
                 key={student.id}
                 onClick={() => setSelectedStudent(student)}
-                className="w-[260px] sm:w-[290px] lg:w-[310px] shrink-0 rounded-[22px] overflow-hidden border border-slate-200 bg-white shadow-md relative group cursor-pointer transition-all duration-300 hover:border-blue-500/60 hover:scale-[1.02] hover:shadow-xl text-left"
+                className="w-[260px] sm:w-[290px] lg:w-[310px] shrink-0 rounded-[22px] overflow-hidden border border-white/30 bg-white shadow-2xl relative group cursor-pointer transition-all duration-300 hover:scale-[1.03] text-left"
                 style={{ scrollSnapAlign: 'start' }}
               >
                 {/* Poster Graphic Image */}
-                <div className="relative aspect-[4/5] w-full overflow-hidden bg-slate-50">
+                <div className="relative aspect-[4/5] w-full overflow-hidden bg-slate-100">
                   <img
                     src={student.img}
                     alt={`${student.name} - ${student.role} Placed`}
                     loading="lazy"
                     className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
                 </div>
 
                 {/* Bottom Student Bar */}
-                <div className="p-3.5 sm:p-4 bg-white border-t border-slate-100 flex items-center justify-between">
+                <div className="p-4 bg-white border-t border-slate-100 flex items-center justify-between">
                   <div>
-                    <h4 className="text-sm sm:text-base font-bold text-slate-900 tracking-tight group-hover:text-blue-600 transition-colors">
+                    <h4 className="text-sm sm:text-base font-extrabold text-slate-900 tracking-tight group-hover:text-[#0D62FE] transition-colors">
                       {student.name}
                     </h4>
-                    <p className="text-[11px] text-slate-500 font-medium">
+                    <p className="text-[11px] font-mono text-slate-500 font-semibold uppercase">
                       {student.role}
                     </p>
                   </div>
 
-                  {/* Verified Placement Badge */}
-                  <div className="px-2 py-0.5 rounded-full bg-blue-50 text-blue-600 text-[10px] font-bold border border-blue-100">
-                    Placed
+                  {/* Verified Badge */}
+                  <div className="w-7 h-7 rounded-lg bg-blue-50 border border-blue-100 text-[#0D62FE] flex items-center justify-center shrink-0">
+                    <CheckCircle2 className="w-4 h-4 text-[#0D62FE]" />
                   </div>
                 </div>
               </div>
             ))}
           </div>
-
         </div>
 
       </div>
@@ -424,7 +460,7 @@ export default function PlacementSection({ onOpenDemo }) {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setSelectedStudent(null)}
-              className="absolute inset-0 bg-black/75 backdrop-blur-md"
+              className="absolute inset-0 bg-black/85 backdrop-blur-md"
             />
 
             {/* Modal Box */}
@@ -445,7 +481,7 @@ export default function PlacementSection({ onOpenDemo }) {
               </button>
 
               {/* Poster Image */}
-              <div className="w-full aspect-[4/5] bg-slate-100 overflow-hidden">
+              <div className="w-full aspect-[4/5] bg-slate-900 overflow-hidden">
                 <img
                   src={selectedStudent.img}
                   alt={selectedStudent.name}
@@ -457,10 +493,10 @@ export default function PlacementSection({ onOpenDemo }) {
               <div className="p-5 bg-white border-t border-slate-100 flex items-center justify-between">
                 <div>
                   <div className="flex items-center gap-1.5">
-                    <h3 className="text-lg font-bold text-slate-900">{selectedStudent.name}</h3>
-                    <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                    <h3 className="text-lg font-extrabold text-slate-900">{selectedStudent.name}</h3>
+                    <CheckCircle2 className="w-4 h-4 text-emerald-500" />
                   </div>
-                  <p className="text-xs text-blue-600 font-semibold mt-0.5">
+                  <p className="text-xs text-[#0D62FE] font-mono font-semibold mt-0.5 uppercase">
                     {selectedStudent.role} &bull; {selectedStudent.company}
                   </p>
                 </div>
@@ -468,7 +504,7 @@ export default function PlacementSection({ onOpenDemo }) {
                 <button
                   type="button"
                   onClick={() => { setSelectedStudent(null); onOpenDemo(); }}
-                  className="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold px-5 py-2.5 rounded-full transition-all shadow-md shadow-blue-500/25"
+                  className="bg-[#0D62FE] hover:bg-[#0045D8] text-white text-xs font-mono font-bold uppercase tracking-wider px-4 py-2 rounded-xl transition-all shadow-md shadow-blue-500/20 cursor-pointer"
                 >
                   Join Course
                 </button>
@@ -489,7 +525,7 @@ export default function PlacementSection({ onOpenDemo }) {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setAllModalOpen(false)}
-              className="absolute inset-0 bg-black/75 backdrop-blur-md"
+              className="absolute inset-0 bg-black/85 backdrop-blur-md"
             />
 
             <motion.div
@@ -501,7 +537,12 @@ export default function PlacementSection({ onOpenDemo }) {
               {/* Header */}
               <div className="p-5 sm:p-6 border-b border-slate-100 flex items-center justify-between">
                 <div>
-                  <h3 className="text-xl font-bold text-slate-900">All Placed Students (17)</h3>
+                  <div className="flex items-center gap-2">
+                    <span className="text-[10px] font-mono font-bold text-[#0D62FE] uppercase bg-blue-50 px-2 py-0.5 rounded border border-blue-100">
+                      TELEMETRY DATABASE
+                    </span>
+                  </div>
+                  <h3 className="text-xl font-extrabold text-slate-900 mt-1">Verified Placed Alumni (17)</h3>
                   <p className="text-xs text-slate-500">CADD Centre Manjeri Verified Placement Hall of Fame</p>
                 </div>
                 <button
@@ -519,14 +560,14 @@ export default function PlacementSection({ onOpenDemo }) {
                   <div
                     key={st.id}
                     onClick={() => { setAllModalOpen(false); setSelectedStudent(st); }}
-                    className="rounded-[18px] overflow-hidden border border-slate-200 bg-white group cursor-pointer hover:border-blue-500/60 shadow-xs hover:shadow-md transition-all text-left"
+                    className="rounded-[18px] overflow-hidden border border-slate-200 bg-white group cursor-pointer hover:border-[#0D62FE] hover:shadow-lg transition-all text-left"
                   >
-                    <div className="aspect-[4/5] w-full overflow-hidden bg-slate-50">
+                    <div className="aspect-[4/5] w-full overflow-hidden bg-slate-100">
                       <img src={st.img} alt={st.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
                     </div>
-                    <div className="p-3 bg-white">
+                    <div className="p-3">
                       <div className="text-xs font-bold text-slate-900 truncate">{st.name}</div>
-                      <div className="text-[10.5px] text-blue-600 font-semibold truncate">{st.role}</div>
+                      <div className="text-[10.5px] font-mono text-[#0D62FE] truncate uppercase font-semibold">{st.role}</div>
                     </div>
                   </div>
                 ))}

@@ -51,14 +51,14 @@ export default function FloatingContact() {
       style={{ bottom: 'max(0.75rem, env(safe-area-inset-bottom))' }}
     >
       <div className="mx-auto max-w-[1680px] px-3 sm:px-6 flex justify-end">
-        
+
         {/* Mobile View (< 640px): Compact, sleek glassmorphic mini-dock */}
-        <div className="sm:hidden pointer-events-auto flex items-center gap-1.5 p-1.5 rounded-full bg-white/95 backdrop-blur-xl border border-slate-200/90 shadow-[0_10px_30px_rgba(0,0,0,0.12)]">
+        <div className="sm:hidden pointer-events-auto flex items-center gap-1.5 p-1.5 rounded-full bg-[#080D14]/92 backdrop-blur-xl border border-white/20 shadow-[0_10px_30px_rgba(0,0,0,0.75)]">
           {/* Call */}
           <a
             href={`tel:${PHONE}`}
             aria-label={`Call CADD Centre Manjeri on ${PHONE_DISPLAY}`}
-            className="w-10 h-10 rounded-full bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center shadow-md active:scale-95 transition-transform"
+            className="w-10 h-10 rounded-full bg-[#E94B3C] hover:bg-[#D4382A] text-white flex items-center justify-center shadow-md active:scale-95 transition-transform"
           >
             <Phone className="w-4 h-4" />
           </a>
@@ -93,7 +93,7 @@ export default function FloatingContact() {
             href={`tel:${PHONE}`}
             aria-label={`Call CADD Centre Manjeri on ${PHONE_DISPLAY}`}
             title={`Call ${PHONE_DISPLAY}`}
-            className="pointer-events-auto w-[54px] h-[54px] lg:w-[58px] lg:h-[58px] rounded-full bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center shadow-[0_6px_20px_rgba(29,99,237,0.28)] transition-transform duration-200 hover:scale-105 active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
+            className="pointer-events-auto w-[54px] h-[54px] lg:w-[58px] lg:h-[58px] rounded-full bg-[#E94B3C] hover:bg-[#D4382A] text-white flex items-center justify-center shadow-[0_6px_20px_rgba(0,0,0,0.28)] transition-transform duration-200 hover:scale-105 active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#E94B3C] focus-visible:ring-offset-2"
           >
             <Phone className="w-6 h-6" />
           </a>

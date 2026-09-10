@@ -8,7 +8,7 @@ function ReviewCard({ item, onSelect }) {
   return (
     <div
       onClick={() => onSelect(item)}
-      className="w-[310px] sm:w-[370px] lg:w-[390px] shrink-0 bg-white border border-slate-200/90 rounded-[22px] p-5 sm:p-6 flex flex-col justify-between transition-all duration-300 hover:border-blue-500/50 hover:shadow-[0_16px_36px_rgba(29,99,237,0.12)] hover:-translate-y-1 cursor-pointer text-left select-none relative group"
+      className="w-[310px] sm:w-[370px] lg:w-[390px] shrink-0 bg-white border border-slate-200 rounded-[22px] p-5 sm:p-6 flex flex-col justify-between transition-all duration-300 hover:border-[#0D62FE] hover:shadow-xl hover:-translate-y-1 cursor-pointer text-left select-none relative group"
     >
       {/* Subtle Quote Watermark in Background */}
       <Quote className="absolute top-4 right-4 w-12 h-12 text-slate-100 group-hover:text-blue-50 transition-colors pointer-events-none" />
@@ -31,24 +31,24 @@ function ReviewCard({ item, onSelect }) {
 
             <div className="min-w-0">
               <div className="flex items-center gap-1.5">
-                <h3 className="text-sm sm:text-base font-bold text-slate-900 tracking-tight leading-tight truncate">
+                <h3 className="text-sm sm:text-base font-extrabold text-slate-900 tracking-tight leading-tight truncate">
                   {item.name}
                 </h3>
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" title="Verified Reviewer" />
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0" title="Verified Reviewer" />
               </div>
-              <span className="inline-block text-[11px] font-semibold text-blue-700 bg-blue-50 border border-blue-200/80 px-2 py-0.5 rounded-full mt-1 truncate max-w-[200px]">
-                {item.role}
+              <span className="inline-block font-mono text-[10px] font-bold text-[#0D62FE] bg-blue-50 border border-blue-100 px-2 py-0.5 rounded mt-1 truncate max-w-[200px]">
+                [ {item.role} ]
               </span>
             </div>
           </div>
 
           {/* Google G Logo Badge */}
-          <div className="w-7 h-7 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center p-1.5 shrink-0 shadow-xs" title="Verified Google Review">
+          <div className="w-7 h-7 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center p-1.5 shrink-0" title="Verified Google Review">
             <svg className="w-full h-full" viewBox="0 0 24 24">
-              <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-              <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-              <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
-              <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+              <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
+              <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
+              <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" />
+              <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" />
             </svg>
           </div>
         </div>
@@ -61,23 +61,23 @@ function ReviewCard({ item, onSelect }) {
             ))}
           </div>
           <span className="text-xs font-black text-slate-900">5.0</span>
-          <span className="text-[11px] text-slate-500 font-normal">• {item.time}</span>
+          <span className="text-[11px] text-slate-400 font-normal font-mono">• {item.time}</span>
         </div>
 
         {/* Quotation text */}
-        <p className="text-xs sm:text-[13px] text-slate-600 font-normal leading-relaxed line-clamp-4 group-hover:text-slate-800 transition-colors">
-          "{item.quote}"
+        <p className="text-xs sm:text-[13px] text-slate-600 font-normal leading-relaxed line-clamp-4 group-hover:text-slate-900 transition-colors">
+          &ldquo;{item.quote}&rdquo;
         </p>
       </div>
 
       {/* Card Footer */}
-      <div className="flex items-center justify-between pt-3.5 mt-3.5 border-t border-slate-100 text-[11px] text-slate-500">
-        <span className="flex items-center gap-1.5">
+      <div className="flex items-center justify-between pt-3.5 mt-3.5 border-t border-slate-100 text-[11px] text-slate-400 font-mono">
+        <span className="flex items-center gap-1 font-semibold text-emerald-600">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-          <span className="font-medium">Verified Student Review</span>
+          <span>VERIFIED REVIEW</span>
         </span>
-        <span className="text-blue-600 font-semibold group-hover:translate-x-0.5 transition-transform inline-flex items-center gap-0.5">
-          Read full &rarr;
+        <span className="text-[#0D62FE] font-bold group-hover:translate-x-0.5 transition-transform inline-flex items-center gap-0.5">
+          FULL &rarr;
         </span>
       </div>
     </div>
@@ -275,9 +275,9 @@ export default function Testimonials() {
   const row2 = useMemo(() => testimonials.slice(8, 16), [testimonials]);
 
   return (
-    <section 
-      id="testimonials" 
-      className="relative py-16 sm:py-24 lg:py-28 bg-slate-50/70 text-slate-900 font-['Plus_Jakarta_Sans',sans-serif] overflow-hidden border-t border-slate-200/80"
+    <section
+      id="testimonials"
+      className="relative py-16 sm:py-24 bg-slate-50/70 text-slate-900 font-['Plus_Jakarta_Sans',sans-serif] overflow-hidden border-t border-slate-200"
     >
       {/* Dynamic CSS for seamless infinite marquee */}
       <style>{`
@@ -305,68 +305,37 @@ export default function Testimonials() {
         }
       `}</style>
 
-      {/* Ambient Blue Glow Accent */}
-      <div 
-        className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[350px] rounded-full bg-blue-500/5 blur-[150px] pointer-events-none" 
-        aria-hidden="true" 
-      />
-
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        {/* ========================================================= */}
-        {/* SECTION HEADER & GOOGLE TRUST METRICS                     */}
-        {/* ========================================================= */}
-        <div className="text-center max-w-3xl mx-auto space-y-3.5 mb-8 sm:mb-12">
-          
-          {/* Eyebrow */}
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200/60 shadow-xs">
-            <span className="w-1.5 h-1.5 rounded-full bg-blue-600" />
-            <span className="text-[11px] font-bold text-blue-700 uppercase tracking-wider">
-              GOOGLE REVIEWS &amp; TESTIMONIALS
-            </span>
-          </div>
 
-          {/* Title */}
-          <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-black tracking-tight leading-[1.12] text-slate-900">
-            Words of Appreciation from Our Students
-          </h2>
-
-          <p className="text-xs sm:text-sm text-slate-600 font-normal leading-relaxed max-w-xl mx-auto">
-            Verified Google reviews from engineering and architecture students trained at CADD Centre Manjeri.
-          </p>
-
-          {/* Google Verified Rating Scorecard Badge */}
-          <div className="pt-2 flex justify-center">
-            <div className="inline-flex items-center gap-3.5 px-4.5 py-2 rounded-full bg-white border border-slate-200/90 shadow-sm">
-              <svg className="w-4.5 h-4.5 shrink-0" viewBox="0 0 24 24">
-                <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
-                <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
-              </svg>
-              <div className="flex items-center gap-1.5">
-                <span className="text-xs sm:text-sm font-extrabold text-slate-900">4.9</span>
-                <div className="flex gap-0.5">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-3 h-3 fill-[#FBBC05] text-[#FBBC05]" />
-                  ))}
-                </div>
-              </div>
-              <span className="text-slate-300">•</span>
-              <span className="text-[11px] sm:text-xs font-semibold text-slate-700">
-                500+ Verified Reviews
+        {/* NUMBERED TECHNICAL HEADER 05 */}
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-10 border-b border-slate-200 pb-6 text-left">
+          <div className="max-w-2xl space-y-2">
+            <div className="flex items-center gap-2.5">
+              <span className="font-mono text-xs font-bold uppercase tracking-[0.25em] text-[#0D62FE] bg-blue-50 px-2.5 py-1 rounded-md border border-blue-100">
+                05 STUDENT REVIEWS
+              </span>
+              <span className="text-[11px] font-mono text-slate-400 uppercase tracking-widest hidden sm:inline-block">
+                [ VERIFIED GOOGLE TELEMETRY ]
               </span>
             </div>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight uppercase">
+              STUDENT FEEDBACK &amp; RATINGS.
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-500 leading-relaxed">
+              Real reviews from engineers and architects trained at CADD Centre Manjeri with authentic 4.9/5.0 Google rating.
+            </p>
           </div>
 
+          <div className="flex items-center gap-3 shrink-0">
+            <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white border border-slate-200 shadow-xs font-mono text-xs text-slate-700">
+              <span className="text-amber-500 font-bold text-sm">4.9 ★</span>
+              <span>GOOGLE VERIFIED (450+ REVIEWS)</span>
+            </div>
+          </div>
         </div>
 
-        {/* ========================================================= */}
-        {/* INTERACTIVE CONTROLS: Category Filters & View Toggle      */}
-        {/* ========================================================= */}
+        {/* INTERACTIVE CONTROLS: Category Filters */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-8">
-          
-          {/* Category Filter Pills */}
           <div className="flex items-center gap-2 overflow-x-auto max-w-full pb-1 no-scrollbar">
             {categories.map((cat) => {
               const isActive = selectedCategory === cat.id;
@@ -375,58 +344,54 @@ export default function Testimonials() {
                   key={cat.id}
                   type="button"
                   onClick={() => setSelectedCategory(cat.id)}
-                  className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all whitespace-nowrap cursor-pointer ${
+                  className={`px-3.5 py-1.5 rounded-full font-mono text-xs font-bold transition-all whitespace-nowrap cursor-pointer ${
                     isActive
-                      ? 'bg-blue-600 text-white shadow-md shadow-blue-600/20'
-                      : 'bg-white border border-slate-200 text-slate-700 hover:text-slate-900 hover:bg-slate-50'
+                      ? 'bg-[#0D62FE] text-white shadow-sm'
+                      : 'bg-white border border-slate-200 text-slate-600 hover:text-[#0D62FE] hover:bg-slate-100'
                   }`}
                 >
-                  {cat.label} ({cat.count})
+                  [ {cat.label} ({cat.count}) ]
                 </button>
               );
             })}
           </div>
 
           {/* View Mode Toggle Button */}
-          <div className="hidden sm:inline-flex items-center p-1 rounded-full bg-white border border-slate-200 shrink-0 shadow-xs">
+          <div className="hidden sm:inline-flex items-center p-1 rounded-full bg-white border border-slate-200 shadow-xs shrink-0 font-mono text-xs">
             <button
               type="button"
               onClick={() => setViewMode('stream')}
-              className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold transition-all cursor-pointer ${
+              className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full font-bold transition-all cursor-pointer ${
                 viewMode === 'stream'
-                  ? 'bg-blue-600 text-white shadow-xs'
+                  ? 'bg-[#0D62FE] text-white'
                   : 'text-slate-600 hover:text-slate-900'
               }`}
             >
               <Radio className="w-3.5 h-3.5" />
-              <span>Live Stream</span>
+              <span>STREAM</span>
             </button>
 
             <button
               type="button"
               onClick={() => setViewMode('grid')}
-              className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold transition-all cursor-pointer ${
+              className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full font-bold transition-all cursor-pointer ${
                 viewMode === 'grid'
-                  ? 'bg-blue-600 text-white shadow-xs'
+                  ? 'bg-[#0D62FE] text-white'
                   : 'text-slate-600 hover:text-slate-900'
               }`}
             >
               <LayoutGrid className="w-3.5 h-3.5" />
-              <span>All Grid</span>
+              <span>GRID</span>
             </button>
           </div>
-
         </div>
 
       </div>
 
-      {/* ========================================================= */}
-      {/* SHOWCASE SECTION: Stream Mode vs Grid View                */}
-      {/* ========================================================= */}
+      {/* SHOWCASE SECTION: Stream Mode vs Grid View */}
       {viewMode === 'stream' && selectedCategory === 'all' ? (
         <div className="space-y-5 sm:space-y-6 relative overflow-hidden py-2">
-          
-          {/* Gradient Edge Vignettes to create sleek infinite fade */}
+          {/* Gradient Edge Vignettes */}
           <div className="absolute top-0 bottom-0 left-0 w-12 sm:w-28 bg-gradient-to-r from-slate-50 to-transparent z-20 pointer-events-none" />
           <div className="absolute top-0 bottom-0 right-0 w-12 sm:w-28 bg-gradient-to-l from-slate-50 to-transparent z-20 pointer-events-none" />
 
@@ -434,10 +399,10 @@ export default function Testimonials() {
           <div className="overflow-hidden">
             <div className="stream-track-left gap-4 sm:gap-6">
               {[...row1, ...row1].map((item, idx) => (
-                <ReviewCard 
-                  key={`r1-${item.id}-${idx}`} 
-                  item={item} 
-                  onSelect={setActiveModalReview} 
+                <ReviewCard
+                  key={`r1-${item.id}-${idx}`}
+                  item={item}
+                  onSelect={setActiveModalReview}
                 />
               ))}
             </div>
@@ -447,10 +412,10 @@ export default function Testimonials() {
           <div className="overflow-hidden">
             <div className="stream-track-right gap-4 sm:gap-6">
               {[...row2, ...row2].map((item, idx) => (
-                <ReviewCard 
-                  key={`r2-${item.id}-${idx}`} 
-                  item={item} 
-                  onSelect={setActiveModalReview} 
+                <ReviewCard
+                  key={`r2-${item.id}-${idx}`}
+                  item={item}
+                  onSelect={setActiveModalReview}
                 />
               ))}
             </div>
@@ -462,10 +427,10 @@ export default function Testimonials() {
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
             {filteredReviews.map((item) => (
-              <ReviewCard 
-                key={item.id} 
-                item={item} 
-                onSelect={setActiveModalReview} 
+              <ReviewCard
+                key={item.id}
+                item={item}
+                onSelect={setActiveModalReview}
               />
             ))}
           </div>
@@ -478,14 +443,14 @@ export default function Testimonials() {
       <AnimatePresence>
         {activeModalReview && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 font-['Plus_Jakarta_Sans',sans-serif]">
-            
+
             {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setActiveModalReview(null)}
-              className="absolute inset-0 bg-slate-950/60 backdrop-blur-sm"
+              className="absolute inset-0 bg-black/75 backdrop-blur-md"
             />
 
             {/* Modal Card */}
@@ -499,7 +464,7 @@ export default function Testimonials() {
               <button
                 type="button"
                 onClick={() => setActiveModalReview(null)}
-                className="absolute top-4 right-4 w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-700 flex items-center justify-center transition-colors cursor-pointer"
+                className="absolute top-4 right-4 w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center transition-colors cursor-pointer"
                 aria-label="Close review"
               >
                 <X className="w-5 h-5" />
@@ -507,7 +472,7 @@ export default function Testimonials() {
 
               {/* Reviewer Header */}
               <div className="flex items-center gap-3.5 mb-4">
-                <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-slate-200 shadow-sm shrink-0 bg-slate-100">
+                <div className="w-14 h-14 rounded-full overflow-hidden border border-slate-200 shadow-sm shrink-0 bg-slate-100">
                   <img
                     src={activeModalReview.avatar}
                     alt={activeModalReview.name}
@@ -516,13 +481,13 @@ export default function Testimonials() {
                 </div>
                 <div>
                   <div className="flex items-center gap-1.5">
-                    <h3 className="text-base sm:text-lg font-bold text-slate-900 tracking-tight">
+                    <h3 className="text-base sm:text-lg font-extrabold text-slate-900 tracking-tight">
                       {activeModalReview.name}
                     </h3>
-                    <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                    <CheckCircle2 className="w-4 h-4 text-emerald-500" />
                   </div>
-                  <span className="inline-block text-xs font-semibold text-blue-700 bg-blue-50 border border-blue-200/80 px-2.5 py-0.5 rounded-full mt-1">
-                    {activeModalReview.role}
+                  <span className="inline-block font-mono text-xs font-bold text-[#0D62FE] bg-blue-50 border border-blue-100 px-2.5 py-0.5 rounded mt-1">
+                    [ {activeModalReview.role} ]
                   </span>
                 </div>
               </div>
@@ -534,28 +499,28 @@ export default function Testimonials() {
                     <Star key={i} className="w-4 h-4 fill-[#FBBC05] text-[#FBBC05]" />
                   ))}
                 </div>
-                <span className="text-sm font-black text-slate-900">5.0 Star Rating</span>
-                <span className="text-xs text-slate-500">• {activeModalReview.time}</span>
+                <span className="text-sm font-black text-slate-900 font-mono">5.0 RATING</span>
+                <span className="text-xs text-slate-400 font-mono">• {activeModalReview.time}</span>
               </div>
 
               {/* Full Review Text */}
               <p className="text-sm sm:text-base text-slate-700 font-normal leading-relaxed">
-                "{activeModalReview.quote}"
+                &ldquo;{activeModalReview.quote}&rdquo;
               </p>
 
               {/* Footer Trust Link */}
-              <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
-                <span className="flex items-center gap-1.5">
+              <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500 font-mono">
+                <span className="flex items-center gap-1.5 text-emerald-600 font-semibold">
                   <span className="w-2 h-2 rounded-full bg-emerald-500" />
-                  <span className="font-medium">Verified Google Review</span>
+                  <span>VERIFIED GOOGLE REVIEW</span>
                 </span>
                 <a
                   href="https://maps.google.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-600 hover:text-blue-700 font-semibold inline-flex items-center gap-1"
+                  className="text-[#0D62FE] hover:underline font-bold inline-flex items-center gap-1"
                 >
-                  <span>Google Maps</span>
+                  <span>GOOGLE MAPS</span>
                   <ArrowUpRight className="w-3.5 h-3.5" />
                 </a>
               </div>
