@@ -21,6 +21,7 @@ import {
   ChevronRight
 } from 'lucide-react';
 import CourseBottomSheet from './CourseBottomSheet';
+import FacultyModal from './FacultyModal';
 import useOverlayHistory from '../hooks/useOverlayHistory';
 import { disciplinesData } from '../data/disciplinesData';
 
@@ -33,52 +34,134 @@ const FACULTY_MEMBERS = [
     role: 'Lead BIM Architect & ISO 19650 Specialist',
     department: 'Civil & Architectural BIM',
     exp: '12+ Years Industry Exp',
-    credentials: 'Autodesk Certified Instructor · Revit Professional',
+    credentials: 'Autodesk Certified Instructor · Revit Professional · ISO 19650',
+    education: 'B.Tech Civil Engineering & Certified BIM Manager',
     img: '/images/cand1.png',
     status: 'ACTIVE MENTOR',
-    tag: 'BIM ARCHITECTURE'
+    tag: 'BIM ARCHITECTURE',
+    bio: 'Specializing in multi-disciplinary BIM coordination, computational parametric design, and LOD 300–500 construction documentation. Er. Suhaib has managed complex commercial and residential infrastructure modeling across India and the GCC, preparing students for tier-1 engineering consulting roles.',
+    skills: [
+      'Autodesk Revit',
+      'Navisworks Manage',
+      'BIM 360 / ACC',
+      'Dynamo Scripting',
+      'AutoCAD Civil 3D',
+      'ISO 19650 CDE'
+    ],
+    projects: [
+      'G+18 Commercial Mixed-Use Tower BIM Coordination (Dubai)',
+      'Airport Terminal Expansion Multi-Disciplinary Clash Resolution',
+      'Smart City Transportation Infrastructure 3D Information Modeling'
+    ],
+    highlights: [
+      'Trained 3,800+ civil & architectural engineers',
+      'Official Autodesk Certified Instructor',
+      '96% placement success rate across UAE, Qatar & Bangalore'
+    ]
   },
   {
     id: 'fac-2',
     name: 'Er. Rahul M.',
     role: 'Senior Structural Engineer & STAAD Specialist',
-    department: 'Structural Analysis & Design',
+    department: 'Structural Analysis & Earthquake Design',
     exp: '10+ Years Industry Exp',
-    credentials: 'Bentley STAAD.Pro Certified · ETABS Master',
+    credentials: 'Bentley STAAD.Pro Certified · ETABS Master · IS 456 & Eurocodes',
+    education: 'M.Tech Structural Engineering',
     img: '/images/cand2.png',
     status: 'ACTIVE MENTOR',
-    tag: 'STRUCTURAL CAD'
+    tag: 'STRUCTURAL CAD',
+    bio: 'Dedicated structural engineering specialist with a decade of expertise in seismic analysis, wind load modeling, high-rise shear wall design, and deep foundation engineering. Mentors students on practical structural setting-out, bar bending schedules (BBS), and site auditing.',
+    skills: [
+      'STAAD.Pro Connect',
+      'CSI ETABS',
+      'CSI SAFE Foundation',
+      'Tekla Structures',
+      'AutoCAD Structural Detailing',
+      'IS 1893 Seismic Code'
+    ],
+    projects: [
+      'Multi-Storey IT Park Seismic Design & Wind Analysis',
+      'Pre-Engineered Building (PEB) Industrial Warehouses',
+      'Cable-Stayed Bridge Superstructure Feasibility Modeling'
+    ],
+    highlights: [
+      'Trained 2,900+ structural design engineers & draftspersons',
+      'Specialized Eurocode & Gulf structural standards training',
+      '100% live load calculation workshops from actual architectural plans'
+    ]
   },
   {
     id: 'fac-3',
     name: 'Ar. Fathima N.',
     role: 'Interior Architecture & High-End Visualizer',
-    department: 'Interior Design & 3D V-Ray',
+    department: 'Interior Design, Spatial Planning & 3D V-Ray',
     exp: '8+ Years Industry Exp',
-    credentials: '3ds Max Specialist · Chaos Group V-Ray Pro',
+    credentials: 'Chaos Group V-Ray Certified · Autodesk 3ds Max Pro · Lumion Master',
+    education: 'B.Arch (Architecture & Spatial Design)',
     img: '/images/cand3.png',
     status: 'ACTIVE MENTOR',
-    tag: 'INTERIOR VISUALS'
+    tag: 'INTERIOR VISUALS',
+    bio: 'Interior visualizer and spatial designer specializing in photorealistic ray-traced rendering, mood lighting simulations, luxury residential spatial layouts, and virtual client walkthroughs for high-end architecture and interior design firms.',
+    skills: [
+      'Autodesk 3ds Max',
+      'Chaos V-Ray',
+      'Corona Renderer',
+      'SketchUp Pro',
+      'Lumion 3D Studio',
+      'Photoshop Post-Production'
+    ],
+    projects: [
+      'Luxury Penthouse & Villa Interior Walkthroughs (Calicut & Kochi)',
+      '5-Star Hospitality Resort Spatial Planning & Visualization',
+      'Corporate Headquarters Workspace Spatial Layout & Acoustic Detailing'
+    ],
+    highlights: [
+      'Trained 2,400+ interior designers & architects',
+      'Hands-on portfolio creation for high-end design studios',
+      'Mastery of PBR materials and realistic camera composition'
+    ]
   },
   {
     id: 'fac-4',
     name: 'Er. Akhil P.',
     role: 'MEP Systems & Building Services Coordinator',
-    department: 'Mechanical, Electrical & Plumbing',
+    department: 'Mechanical, Electrical & Plumbing (MEP)',
     exp: '9+ Years Industry Exp',
-    credentials: 'Revit MEP Certified · ASHRAE & NFPA Standards',
+    credentials: 'Revit MEP Certified · ASHRAE & NFPA Standards · HVAC Sizer',
+    education: 'B.Tech Mechanical Engineering, ASHRAE Member',
     img: '/images/cand4.png',
     status: 'ACTIVE MENTOR',
-    tag: 'MEP COORDINATOR'
+    tag: 'MEP COORDINATOR',
+    bio: 'Senior building services coordinator with extensive domain experience in central HVAC chilling systems, fire-fighting hydraulics, electrical distribution schematics, and sanitary plumbing networks with real-world clash resolution in 3D Revit.',
+    skills: [
+      'Revit MEP (HVAC/Elec/Plumb)',
+      'AutoCAD MEP',
+      'Carrier HAP Heat Load',
+      'Duct Sizer & Pipe Sizer',
+      'Elite Fire Hydraulic Sizing',
+      'NFPA 13 & 72 Standards'
+    ],
+    projects: [
+      'Super-Specialty Hospital HVAC & Medical Gas Piping Coordination',
+      'Commercial Data Centre Fire Protection & Precision Cooling',
+      'High-Rise Residential Substation & Electrical Panel Layouts'
+    ],
+    highlights: [
+      'Trained 2,700+ MEP draftspersons & design engineers',
+      'Direct referrals to top MEP contracting firms in Saudi Arabia & UAE',
+      'Real-world clash detection workflows using live Navisworks models'
+    ]
   }
 ];
 
 export default function AboutUs({ onOpenDemo }) {
   const [selectedCourse, setSelectedCourse] = useState(null);
   const [facultyIndex, setFacultyIndex] = useState(0);
+  const [selectedFaculty, setSelectedFaculty] = useState(null);
 
   // Back / swipe-back closes the sheet instead of leaving the site.
   useOverlayHistory(!!selectedCourse, () => setSelectedCourse(null));
+  useOverlayHistory(!!selectedFaculty, () => setSelectedFaculty(null));
   const containerRef = useRef(null);
   const headerRef = useRef(null);
   const disciplinesGridRef = useRef(null);
@@ -202,7 +285,10 @@ export default function AboutUs({ onOpenDemo }) {
             return (
               <div
                 key={mentor.id}
-                onClick={() => setFacultyIndex(idx)}
+                onClick={() => {
+                  setFacultyIndex(idx);
+                  setSelectedFaculty(mentor);
+                }}
                 className={`group rounded-[24px] bg-white border p-4 sm:p-5 transition-all duration-300 cursor-pointer flex flex-col justify-between text-left shadow-lg hover:shadow-2xl hover:-translate-y-1.5 ${
                   isHighlighted
                     ? 'border-[#0D62FE] ring-2 ring-blue-500/20 shadow-blue-500/10'
@@ -248,9 +334,16 @@ export default function AboutUs({ onOpenDemo }) {
 
                 <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-mono">
                   <span className="text-slate-500 font-semibold">{mentor.exp}</span>
-                  <span className="text-[#0D62FE] font-bold group-hover:translate-x-0.5 transition-transform inline-flex items-center gap-1">
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedFaculty(mentor);
+                    }}
+                    className="text-[#0D62FE] font-bold group-hover:translate-x-0.5 transition-transform inline-flex items-center gap-1 cursor-pointer hover:underline"
+                  >
                     PROFILE &rarr;
-                  </span>
+                  </button>
                 </div>
               </div>
             );
@@ -431,6 +524,14 @@ export default function AboutUs({ onOpenDemo }) {
         onClose={() => setSelectedCourse(null)}
         course={selectedCourse}
         badgeLabel={selectedCourse?.title}
+        onOpenDemo={onOpenDemo}
+      />
+
+      {/* Faculty Full Dossier / Profile Modal */}
+      <FacultyModal
+        isOpen={!!selectedFaculty}
+        onClose={() => setSelectedFaculty(null)}
+        faculty={selectedFaculty}
         onOpenDemo={onOpenDemo}
       />
     </section>
