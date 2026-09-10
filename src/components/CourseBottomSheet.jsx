@@ -180,15 +180,15 @@ export default function CourseBottomSheet({ isOpen, onClose, course, onOpenDemo,
             {/* Top Bar chip & Close Button. `badgeLabel` pins the chip to the canonical
                 name of the record that was clicked (disciplines pass their `title`), so the
                 chip, the heading below and the card can never show different names. */}
-            <div className="px-6 sm:px-8 pt-5 pb-4 bg-[#F5F4F1] border-b border-[rgba(28,37,51,0.08)] flex items-center justify-between shrink-0">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-[6px] bg-[#E94B3C]/10 border border-[#E94B3C]/20 text-[#E94B3C] text-[11px] font-bold tracking-wide">
-                <span className="w-1.5 h-1.5 rounded-sm bg-[#E94B3C]" />
+            <div className="px-6 sm:px-8 pt-5 pb-4 bg-slate-50 border-b border-slate-200 flex items-center justify-between shrink-0">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-[6px] bg-blue-50 border border-blue-200 text-blue-700 text-[11px] font-bold tracking-wide">
+                <span className="w-1.5 h-1.5 rounded-sm bg-blue-600" />
                 {badgeLabel || course.category}
               </span>
               
               <button
                 onClick={onClose}
-                className="w-8 h-8 rounded-[8px] bg-white hover:bg-slate-200 text-[#1C2533] flex items-center justify-center transition-colors cursor-pointer border border-[rgba(28,37,51,0.08)] shadow-2xs"
+                className="w-8 h-8 rounded-[8px] bg-white hover:bg-slate-100 text-slate-800 flex items-center justify-center transition-colors cursor-pointer border border-slate-200 shadow-2xs"
                 aria-label="Close"
               >
                 <X className="w-4 h-4" />
@@ -205,11 +205,11 @@ export default function CourseBottomSheet({ isOpen, onClose, course, onOpenDemo,
               
               {/* Title & Description Header */}
               <div className="space-y-1.5">
-                <h3 className="text-2xl sm:text-3xl font-extrabold text-[#1C2533] tracking-tight leading-tight">
+                <h3 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight leading-tight">
                   {course.title}
                 </h3>
                 {(course.description || course.tagline) && (
-                  <p className="text-xs sm:text-sm text-[#687282] leading-relaxed font-normal">
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
                     {course.description || course.tagline}
                   </p>
                 )}
@@ -218,8 +218,8 @@ export default function CourseBottomSheet({ isOpen, onClose, course, onOpenDemo,
               {/* Popular Areas & Tools Covered (Grouped or Badges) */}
               {(course.toolGroups || course.toolsCovered) && (course.toolGroups || course.toolsCovered).length > 0 ? (
                 <div className="space-y-3 pt-1">
-                  <h4 className="text-[11px] font-bold text-[#1C2533] uppercase tracking-wider flex items-center gap-1.5">
-                    <Layers className="w-3.5 h-3.5 text-[#E94B3C]" />
+                  <h4 className="text-[11px] font-bold text-slate-900 uppercase tracking-wider flex items-center gap-1.5">
+                    <Layers className="w-3.5 h-3.5 text-blue-600" />
                     <span>Popular Areas &amp; Tools Covered</span>
                   </h4>
                   {/* items-start keeps each card at its natural content height; min-w-0
@@ -230,16 +230,16 @@ export default function CourseBottomSheet({ isOpen, onClose, course, onOpenDemo,
                     {(course.toolGroups || course.toolsCovered).map((group, idx, arr) => (
                       <div
                         key={idx}
-                        className={`min-w-0 bg-[#F5F4F1] p-3.5 rounded-[12px] border border-[rgba(28,37,51,0.08)] space-y-2 ${
+                        className={`min-w-0 bg-slate-50 p-3.5 rounded-[12px] border border-slate-200 space-y-2 ${
                           arr.length % 2 === 1 && idx === arr.length - 1 ? 'sm:col-span-2' : ''
                         }`}
                       >
-                        <span className="text-xs font-bold text-[#1C2533] block leading-snug break-words">{group.category}</span>
+                        <span className="text-xs font-bold text-slate-900 block leading-snug break-words">{group.category}</span>
                         <div className="flex flex-wrap gap-1.5">
                           {group.tools.map((tool, tIdx) => (
                             <span 
                               key={tIdx}
-                              className="inline-flex items-center max-w-full px-2.5 py-1 rounded-[6px] bg-white border border-[rgba(28,37,51,0.10)] text-[11px] font-semibold text-[#1C2533] shadow-2xs leading-normal text-left break-words"
+                              className="inline-flex items-center max-w-full px-2.5 py-1 rounded-[6px] bg-white border border-slate-200 text-[11px] font-semibold text-slate-800 shadow-2xs leading-normal text-left break-words"
                             >
                               {tool}
                             </span>
@@ -251,17 +251,17 @@ export default function CourseBottomSheet({ isOpen, onClose, course, onOpenDemo,
                 </div>
               ) : course.popularAreas && course.popularAreas.length > 0 ? (
                 <div className="space-y-2.5 pt-1">
-                  <h4 className="text-[11px] font-bold text-[#1C2533] uppercase tracking-wider flex items-center gap-1.5">
-                    <Layers className="w-3.5 h-3.5 text-[#E94B3C]" />
+                  <h4 className="text-[11px] font-bold text-slate-900 uppercase tracking-wider flex items-center gap-1.5">
+                    <Layers className="w-3.5 h-3.5 text-blue-600" />
                     <span>Popular Areas &amp; Tools Covered</span>
                   </h4>
                   <div className="flex flex-wrap gap-2">
                     {course.popularAreas.map((area, idx) => (
                       <span
                         key={idx}
-                        className="px-3 py-1.5 rounded-[8px] bg-[#F5F4F1] border border-[rgba(28,37,51,0.10)] text-xs font-bold text-[#1C2533] shadow-2xs flex items-center gap-1.5"
+                        className="px-3 py-1.5 rounded-[8px] bg-slate-50 border border-slate-200 text-xs font-bold text-slate-800 shadow-2xs flex items-center gap-1.5"
                       >
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#E94B3C]" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-blue-600" />
                         {area}
                       </span>
                     ))}
@@ -271,23 +271,23 @@ export default function CourseBottomSheet({ isOpen, onClose, course, onOpenDemo,
 
               {/* Complete End-to-End Workflow Pipeline */}
               {course.workflow && course.workflow.length > 0 && (
-                <div className="space-y-3 pt-3 border-t border-[rgba(28,37,51,0.08)]">
-                  <h4 className="text-[11px] font-bold text-[#1C2533] uppercase tracking-wider flex items-center gap-1.5">
-                    <Sparkles className="w-3.5 h-3.5 text-[#E94B3C]" />
+                <div className="space-y-3 pt-3 border-t border-slate-200">
+                  <h4 className="text-[11px] font-bold text-slate-900 uppercase tracking-wider flex items-center gap-1.5">
+                    <Sparkles className="w-3.5 h-3.5 text-blue-600" />
                     <span>Complete Industry Workflow</span>
                   </h4>
-                  <div className="bg-[#F5F4F1] p-4 rounded-[14px] border border-[rgba(28,37,51,0.08)]">
+                  <div className="bg-slate-50 p-4 rounded-[14px] border border-slate-200">
                     <div className="flex flex-wrap items-center gap-2">
                       {course.workflow.map((step, idx) => (
                         <React.Fragment key={idx}>
-                          <div className="px-3 py-1.5 bg-white rounded-[8px] border border-[rgba(28,37,51,0.10)] text-xs font-bold text-[#1C2533] shadow-2xs flex items-center gap-1.5">
-                            <span className="w-4 h-4 rounded-full bg-[#E94B3C] text-white text-[9px] font-black flex items-center justify-center">
+                          <div className="px-3 py-1.5 bg-white rounded-[8px] border border-slate-200 text-xs font-bold text-slate-800 shadow-2xs flex items-center gap-1.5">
+                            <span className="w-4 h-4 rounded-full bg-blue-600 text-white text-[9px] font-black flex items-center justify-center">
                               {idx + 1}
                             </span>
                             <span>{step}</span>
                           </div>
                           {idx < course.workflow.length - 1 && (
-                            <ArrowRight className="w-3.5 h-3.5 text-[#E94B3C] shrink-0" />
+                            <ArrowRight className="w-3.5 h-3.5 text-blue-600 shrink-0" />
                           )}
                         </React.Fragment>
                       ))}
@@ -298,19 +298,19 @@ export default function CourseBottomSheet({ isOpen, onClose, course, onOpenDemo,
 
               {/* Key Learning Outcomes */}
               {((course.keyModules && course.keyModules.length > 0) || (course.outcomes && course.outcomes.length > 0)) && (
-                <div className="space-y-2.5 pt-3 border-t border-[rgba(28,37,51,0.08)]">
-                  <h4 className="text-[11px] font-bold text-[#1C2533] uppercase tracking-wider flex items-center gap-1.5">
-                    <GraduationCap className="w-3.5 h-3.5 text-[#E94B3C]" />
+                <div className="space-y-2.5 pt-3 border-t border-slate-200">
+                  <h4 className="text-[11px] font-bold text-slate-900 uppercase tracking-wider flex items-center gap-1.5">
+                    <GraduationCap className="w-3.5 h-3.5 text-blue-600" />
                     <span>Key Learning Outcomes &amp; Workflows</span>
                   </h4>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                     {(course.keyModules || course.outcomes.map(o => typeof o === 'string' ? o : `${o.title} — ${o.description}`)).map((module, idx) => (
                       <div 
                         key={idx} 
-                        className="flex items-start gap-2 bg-[#F5F4F1] p-3 rounded-[10px] border border-[rgba(28,37,51,0.08)] shadow-2xs"
+                        className="flex items-start gap-2 bg-slate-50 p-3 rounded-[10px] border border-slate-200 shadow-2xs"
                       >
                         <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                        <span className="text-xs font-medium text-[#1C2533] leading-snug">{module}</span>
+                        <span className="text-xs font-medium text-slate-800 leading-snug">{module}</span>
                       </div>
                     ))}
                   </div>
@@ -319,9 +319,9 @@ export default function CourseBottomSheet({ isOpen, onClose, course, onOpenDemo,
 
               {/* Career Opportunities */}
               {course.careerPaths && course.careerPaths.length > 0 && (
-                <div className="space-y-2.5 pt-3 border-t border-[rgba(28,37,51,0.08)]">
-                  <h4 className="text-[11px] font-bold text-[#1C2533] uppercase tracking-wider flex items-center gap-1.5">
-                    <Briefcase className="w-3.5 h-3.5 text-[#E94B3C]" />
+                <div className="space-y-2.5 pt-3 border-t border-slate-200">
+                  <h4 className="text-[11px] font-bold text-slate-900 uppercase tracking-wider flex items-center gap-1.5">
+                    <Briefcase className="w-3.5 h-3.5 text-blue-600" />
                     <span>Career Opportunities</span>
                   </h4>
                   <div className="flex flex-wrap gap-2">
@@ -339,8 +339,8 @@ export default function CourseBottomSheet({ isOpen, onClose, course, onOpenDemo,
 
               {/* Local SEO Badge */}
               {course.seoLocation && (
-                <div className="p-3 rounded-[10px] bg-[#F5F4F1] border border-[rgba(28,37,51,0.08)] text-[#687282] text-xs font-medium flex items-center gap-2">
-                  <MapPin className="w-4 h-4 text-[#E94B3C] shrink-0" />
+                <div className="p-3 rounded-[10px] bg-slate-50 border border-slate-200 text-slate-600 text-xs font-medium flex items-center gap-2">
+                  <MapPin className="w-4 h-4 text-blue-600 shrink-0" />
                   <span className="leading-relaxed">{course.seoLocation}</span>
                 </div>
               )}
@@ -348,13 +348,13 @@ export default function CourseBottomSheet({ isOpen, onClose, course, onOpenDemo,
             </div>
 
             {/* Bottom Sticky Action Bar */}
-            <div className="p-4 sm:p-5 bg-[#F5F4F1] border-t border-[rgba(28,37,51,0.08)] flex items-center justify-between gap-4 shrink-0">
+            <div className="p-4 sm:p-5 bg-slate-50 border-t border-slate-200 flex items-center justify-between gap-4 shrink-0">
               <div>
-                <p className="text-xs font-bold text-[#1C2533] flex items-center gap-1.5">
-                  <ShieldCheck className="w-4 h-4 text-[#E94B3C]" />
+                <p className="text-xs font-bold text-slate-900 flex items-center gap-1.5">
+                  <ShieldCheck className="w-4 h-4 text-blue-600" />
                   <span>CADD Centre Manjeri</span>
                 </p>
-                <p className="text-[11px] text-[#687282]">Admissions &amp; Placement Guidance Open</p>
+                <p className="text-[11px] text-slate-500">Admissions &amp; Placement Guidance Open</p>
               </div>
 
               <Button

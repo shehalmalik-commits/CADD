@@ -2,24 +2,24 @@
 
 @layer base {
   :root {
-    --brand: #E94B3C;
-    --brand-hover: #D4382A;
-    --brand-soft: rgba(233, 75, 60, 0.08);
-    --brand-border: rgba(233, 75, 60, 0.20);
+    --brand-red: #E94B3C;
+    --brand-red-hover: #D4382A;
+    --brand-blue: #1D63ED;
+    --brand-blue-hover: #154EC8;
+    --brand-blue-soft: #EFF6FF;
+    --brand-blue-border: #BFDBFE;
 
-    --ink: #171A20;
-    --ink-soft: #28303A;
-
-    --background: #F5F4F1;
+    --background: #FFFFFF;
     --surface: #FFFFFF;
-    --surface-muted: #EEEDE9;
+    --surface-muted: #F8FAFC;
+    --surface-ice: #F0F6FE;
 
-    --text-primary: #1C2533;
-    --text-secondary: #687282;
-    --text-muted: #9299A3;
+    --text-primary: #0F172A;
+    --text-secondary: #475569;
+    --text-muted: #94A3B8;
 
-    --border: rgba(28, 37, 51, 0.10);
-    --border-strong: rgba(28, 37, 51, 0.18);
+    --border: #E2E8F0;
+    --border-strong: #CBD5E1;
 
     --radius-sm: 8px;
     --radius-md: 16px;

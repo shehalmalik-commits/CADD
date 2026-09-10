@@ -274,7 +274,7 @@ export default function FaqSection({ onOpenDemo }) {
     : filteredFaqs.slice(0, 6);
 
   return (
-    <section id="faq" className="relative py-16 sm:py-24 bg-[#080D14] text-white font-['Plus_Jakarta_Sans',sans-serif] border-t border-white/5 overflow-hidden">
+    <section id="faq" className="relative py-16 sm:py-24 bg-white text-slate-900 font-['Plus_Jakarta_Sans',sans-serif] border-t border-slate-200/80 overflow-hidden">
       {/* Schema.org JSON-LD Structured Data for Google Rich Results */}
       <script
         type="application/ld+json"
@@ -287,18 +287,18 @@ export default function FaqSection({ onOpenDemo }) {
           {/* LEFT COLUMN: Got Questions Badge, Photo Card with Floating Advisor Badge & Subtext */}
           <div className="lg:col-span-5 flex flex-col items-start">
             {/* Got Questions Pill Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#181014] border border-[#E94B3C]/40 text-[#FF6B5A] text-xs font-semibold tracking-wider mb-6 shadow-sm">
-              <Sparkles className="w-3.5 h-3.5 text-[#FF6B5A]" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200/80 text-blue-700 text-xs font-semibold tracking-wider mb-6 shadow-xs">
+              <Sparkles className="w-3.5 h-3.5 text-blue-600" />
               <span>GOT QUESTIONS?</span>
             </div>
 
             {/* Photo Card with Layered Frame Effect */}
             <div className="relative w-full max-w-[420px] mx-auto lg:mx-0 group">
               {/* Layered tilted background frame */}
-              <div className="absolute inset-0 rounded-[28px] border border-white/10 bg-white/[0.02] transform -rotate-3 scale-[1.01] pointer-events-none hidden sm:block" />
+              <div className="absolute inset-0 rounded-[28px] border border-slate-200 bg-slate-50 transform -rotate-3 scale-[1.01] pointer-events-none hidden sm:block" />
 
               {/* Main Photo Card */}
-              <div className="relative rounded-[28px] overflow-hidden border border-white/10 bg-[#0E1624] shadow-2xl">
+              <div className="relative rounded-[28px] overflow-hidden border border-slate-200/90 bg-white shadow-xl">
                 <img
                   src="/images/faq-advisor.jpg"
                   alt="CADD Career Advisor"
@@ -307,21 +307,21 @@ export default function FaqSection({ onOpenDemo }) {
                 />
 
                 {/* Subtle gradient vignette at bottom */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#080D14]/90 via-[#080D14]/25 to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent pointer-events-none" />
 
                 {/* Floating Glassmorphism Advisor Badge */}
                 <div 
                   onClick={onOpenDemo}
-                  className="absolute bottom-3.5 left-3.5 right-3.5 sm:bottom-4 sm:left-4 sm:right-4 p-3.5 rounded-2xl bg-[#080D14]/90 backdrop-blur-md border border-white/15 shadow-2xl flex items-center gap-3.5 cursor-pointer hover:border-[#E94B3C]/50 hover:bg-[#080D14]/95 transition-all group/badge"
+                  className="absolute bottom-3.5 left-3.5 right-3.5 sm:bottom-4 sm:left-4 sm:right-4 p-3.5 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200/90 shadow-xl flex items-center gap-3.5 cursor-pointer hover:border-blue-500/50 hover:bg-white transition-all group/badge"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-[#E94B3C]/20 border border-[#E94B3C]/35 flex items-center justify-center shrink-0 text-[#FF6B5A] group-hover/badge:scale-105 transition-transform">
+                  <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-200/80 flex items-center justify-center shrink-0 text-blue-600 group-hover/badge:scale-105 transition-transform shadow-xs">
                     <MessageSquare className="w-5 h-5" />
                   </div>
                   <div className="min-w-0">
-                    <h4 className="text-xs sm:text-sm font-bold text-white leading-tight flex items-center gap-1.5">
+                    <h4 className="text-xs sm:text-sm font-bold text-slate-900 leading-tight flex items-center gap-1.5">
                       Need Expert Advice?
                     </h4>
-                    <p className="text-[11px] sm:text-xs text-slate-300 leading-snug mt-0.5">
+                    <p className="text-[11px] sm:text-xs text-slate-600 leading-snug mt-0.5">
                       Our counsellors are ready to guide your career path.
                     </p>
                   </div>
@@ -330,7 +330,7 @@ export default function FaqSection({ onOpenDemo }) {
             </div>
 
             {/* Sub-caption Text beneath Card */}
-            <p className="mt-5 text-xs sm:text-[13px] text-slate-400 leading-relaxed max-w-[420px]">
+            <p className="mt-5 text-xs sm:text-[13px] text-slate-500 leading-relaxed max-w-[420px]">
               CADD Centre Manjeri offers industry-certified training in AutoCAD, BIM, Revit, MEP &amp; 3ds Max with 100% placement support.
             </p>
           </div>
@@ -338,12 +338,12 @@ export default function FaqSection({ onOpenDemo }) {
           {/* RIGHT COLUMN: Headline, Subtitle, Search, Category Pills, Accordion */}
           <div className="lg:col-span-7 flex flex-col">
             {/* Title */}
-            <h2 className="text-4xl sm:text-5xl lg:text-[56px] font-['Playfair_Display',serif] font-medium text-white tracking-tight leading-tight">
-              Ask away<span className="text-[#E94B3C]">.</span>
+            <h2 className="text-4xl sm:text-5xl lg:text-[56px] font-['Playfair_Display',serif] font-medium text-slate-900 tracking-tight leading-tight">
+              Ask away<span className="text-blue-600">.</span>
             </h2>
 
             {/* Subtitle */}
-            <p className="mt-3 text-xs sm:text-sm text-slate-400 leading-relaxed max-w-xl">
+            <p className="mt-3 text-xs sm:text-sm text-slate-600 leading-relaxed max-w-xl">
               Everything you need to know about CAD, BIM, MEP, Interior Design, and Placement Support at CADD Centre Manjeri.
             </p>
 
@@ -355,13 +355,13 @@ export default function FaqSection({ onOpenDemo }) {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search AutoCAD, BIM, MEP, Interior, Placement..."
-                className="w-full pl-11 pr-10 py-3 rounded-xl bg-[#0E1624] border border-white/10 text-xs sm:text-sm text-white placeholder-slate-400 shadow-inner focus:outline-none focus:ring-2 focus:ring-[#E94B3C]/30 focus:border-[#E94B3C] transition-all"
+                className="w-full pl-11 pr-10 py-3 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm text-slate-900 placeholder-slate-400 shadow-xs focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 transition-all"
               />
               {searchQuery && (
                 <button
                   type="button"
                   onClick={() => setSearchQuery('')}
-                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white cursor-pointer"
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700 cursor-pointer"
                   aria-label="Clear search"
                 >
                   <X className="w-4 h-4" />
@@ -383,8 +383,8 @@ export default function FaqSection({ onOpenDemo }) {
                     }}
                     className={`px-3.5 py-1.5 rounded-full text-xs flex items-center gap-1.5 transition-all duration-200 cursor-pointer ${
                       isActive
-                        ? 'bg-[#E94B3C] text-white font-semibold shadow-md shadow-[#E94B3C]/25 border border-[#E94B3C]'
-                        : 'bg-white/[0.04] text-slate-300 hover:text-white hover:bg-white/[0.08] border border-white/10 font-medium'
+                        ? 'bg-blue-600 text-white font-semibold shadow-md shadow-blue-600/25 border border-blue-600'
+                        : 'bg-slate-100/80 text-slate-600 hover:text-slate-900 hover:bg-slate-200/70 border border-slate-200 font-medium'
                     }`}
                   >
                     <span>{cat.icon}</span>
@@ -397,7 +397,7 @@ export default function FaqSection({ onOpenDemo }) {
             {/* Accordion Questions List */}
             {filteredFaqs.length > 0 ? (
               <>
-                <div className="divide-y divide-white/10 border-t border-b border-white/10">
+                <div className="divide-y divide-slate-200/80 border-t border-b border-slate-200/80">
                   {visibleFaqs.map((item, idx) => {
                     const isOpen = openIdx === idx;
 
@@ -405,7 +405,7 @@ export default function FaqSection({ onOpenDemo }) {
                       <div
                         key={item.id}
                         className={`transition-colors duration-200 ${
-                          isOpen ? 'bg-white/[0.015]' : 'hover:bg-white/[0.01]'
+                          isOpen ? 'bg-blue-50/30' : 'hover:bg-slate-50/60'
                         }`}
                       >
                         {/* Question Header */}
@@ -416,16 +416,16 @@ export default function FaqSection({ onOpenDemo }) {
                         >
                           <span className={`transition-colors leading-snug ${
                             isOpen
-                              ? "font-['Playfair_Display',serif] text-base sm:text-lg lg:text-[19px] font-semibold text-[#FF6B5A]"
-                              : "font-['Playfair_Display',serif] text-sm sm:text-base font-normal text-slate-200 group-hover:text-white"
+                              ? "font-['Playfair_Display',serif] text-base sm:text-lg lg:text-[19px] font-semibold text-blue-600"
+                              : "font-['Playfair_Display',serif] text-sm sm:text-base font-normal text-slate-800 group-hover:text-blue-600"
                           }`}>
                             {item.question}
                           </span>
 
                           <div className={`w-7 h-7 rounded-full border flex items-center justify-center shrink-0 transition-all duration-200 ${
                             isOpen
-                              ? 'border-[#E94B3C]/50 bg-[#E94B3C]/15 text-[#FF6B5A]'
-                              : 'border-white/15 text-slate-400 group-hover:border-white/30 group-hover:text-white group-hover:bg-white/[0.03]'
+                              ? 'border-blue-200 bg-blue-50 text-blue-600'
+                              : 'border-slate-200 text-slate-400 group-hover:border-slate-300 group-hover:text-slate-700 group-hover:bg-slate-100/50'
                           }`}>
                             {isOpen ? (
                               <X className="w-3.5 h-3.5" />
@@ -444,11 +444,11 @@ export default function FaqSection({ onOpenDemo }) {
                               exit={{ height: 0, opacity: 0 }}
                               transition={{ duration: 0.22, ease: "easeInOut" }}
                             >
-                              <div className="pb-5 px-1 text-xs sm:text-sm text-slate-300 leading-relaxed space-y-3.5">
+                              <div className="pb-5 px-1 text-xs sm:text-sm text-slate-600 leading-relaxed space-y-3.5">
                                 <p>{item.answer}</p>
 
                                 <div className="pt-2 flex flex-wrap items-center justify-between gap-3">
-                                  <div className="flex items-center gap-1.5 text-emerald-400 font-medium text-xs sm:text-[13px]">
+                                  <div className="flex items-center gap-1.5 text-emerald-600 font-medium text-xs sm:text-[13px]">
                                     <CheckCircle2 className="w-4 h-4 shrink-0" />
                                     <span>Authorized International Certification &amp; Placements</span>
                                   </div>
@@ -456,7 +456,7 @@ export default function FaqSection({ onOpenDemo }) {
                                   <button
                                     type="button"
                                     onClick={onOpenDemo}
-                                    className="text-xs sm:text-[13px] font-semibold text-[#FF6B5A] hover:text-[#E94B3C] inline-flex items-center gap-1 cursor-pointer transition-colors group/link"
+                                    className="text-xs sm:text-[13px] font-semibold text-blue-600 hover:text-blue-700 inline-flex items-center gap-1 cursor-pointer transition-colors group/link"
                                   >
                                     <span>Enquire Course</span>
                                     <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
@@ -477,18 +477,18 @@ export default function FaqSection({ onOpenDemo }) {
                     <button
                       type="button"
                       onClick={() => setIsExpanded(!isExpanded)}
-                      className="w-full py-3 px-6 rounded-full bg-white/[0.03] hover:bg-white/[0.07] border border-white/10 hover:border-white/20 text-xs sm:text-sm font-semibold text-white flex items-center justify-center gap-2 transition-all duration-200 cursor-pointer group"
+                      className="w-full py-3 px-6 rounded-full bg-slate-50 hover:bg-slate-100 border border-slate-200 text-xs sm:text-sm font-semibold text-slate-800 flex items-center justify-center gap-2 transition-all duration-200 cursor-pointer group shadow-xs"
                     >
                       <span>
                         {isExpanded ? (
                           'Show Fewer Questions'
                         ) : (
                           <>
-                            See More Questions <span className="ml-1.5 px-2 py-0.5 rounded-full bg-[#E94B3C]/20 text-[#FF6B5A] text-[11px] font-bold">+{filteredFaqs.length - 6} More</span>
+                            See More Questions <span className="ml-1.5 px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 text-[11px] font-bold border border-blue-200/60">+{filteredFaqs.length - 6} More</span>
                           </>
                         )}
                       </span>
-                      <ChevronDown className={`w-4 h-4 text-slate-400 group-hover:text-white transition-transform duration-200 ${
+                      <ChevronDown className={`w-4 h-4 text-slate-400 group-hover:text-slate-700 transition-transform duration-200 ${
                         isExpanded ? 'rotate-180' : 'rotate-0'
                       }`} />
                     </button>
@@ -496,15 +496,15 @@ export default function FaqSection({ onOpenDemo }) {
                 )}
               </>
             ) : (
-              <div className="bg-[#0E1624] rounded-[16px] p-8 text-center border border-white/10 shadow-xl my-4">
-                <p className="text-sm font-semibold text-slate-300">No matching questions found for "{searchQuery}".</p>
+              <div className="bg-slate-50 rounded-[16px] p-8 text-center border border-slate-200 shadow-sm my-4">
+                <p className="text-sm font-semibold text-slate-700">No matching questions found for "{searchQuery}".</p>
                 <button
                   type="button"
                   onClick={() => {
                     setSearchQuery('');
                     setActiveCategory('all');
                   }}
-                  className="mt-3 text-xs font-bold text-[#FF6B5A] hover:underline cursor-pointer"
+                  className="mt-3 text-xs font-bold text-blue-600 hover:underline cursor-pointer"
                 >
                   Reset Search &amp; Category Filters
                 </button>
@@ -515,10 +515,10 @@ export default function FaqSection({ onOpenDemo }) {
         </div>
 
         {/* POPULAR SEARCHES & KEYWORDS CLOUD */}
-        <div className="mt-14 pt-8 border-t border-white/10">
-          <div className="flex items-center gap-2 mb-3.5 text-slate-400">
-            <Tag className="w-3.5 h-3.5 text-[#E94B3C]" />
-            <span className="text-[11px] font-bold uppercase tracking-wider text-slate-300">
+        <div className="mt-14 pt-8 border-t border-slate-200">
+          <div className="flex items-center gap-2 mb-3.5 text-slate-500">
+            <Tag className="w-3.5 h-3.5 text-blue-600" />
+            <span className="text-[11px] font-bold uppercase tracking-wider text-slate-700">
               Popular Training Searches in Manjeri &amp; Malappuram
             </span>
           </div>
@@ -526,7 +526,7 @@ export default function FaqSection({ onOpenDemo }) {
             {popularSearchTags.map((tag, idx) => (
               <span
                 key={idx}
-                className="px-3 py-1.5 rounded-full bg-[#0E1624] border border-white/10 text-[11.5px] font-medium text-slate-300 hover:text-white hover:border-[#E94B3C]/50 hover:bg-[#E94B3C]/10 transition-colors shadow-xs cursor-default"
+                className="px-3 py-1.5 rounded-full bg-slate-100/80 border border-slate-200 text-[11.5px] font-medium text-slate-600 hover:text-blue-700 hover:border-blue-300 hover:bg-blue-50/50 transition-colors shadow-xs cursor-default"
               >
                 {tag}
               </span>

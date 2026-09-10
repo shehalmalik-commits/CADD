@@ -8,17 +8,17 @@ function ReviewCard({ item, onSelect }) {
   return (
     <div
       onClick={() => onSelect(item)}
-      className="w-[310px] sm:w-[370px] lg:w-[390px] shrink-0 bg-[#0E1624]/85 backdrop-blur-xl border border-white/10 rounded-[22px] p-5 sm:p-6 flex flex-col justify-between transition-all duration-300 hover:border-[#E94B3C]/60 hover:bg-[#121D30] hover:shadow-[0_12px_32px_rgba(233,75,60,0.18)] hover:-translate-y-1 cursor-pointer text-left select-none relative group"
+      className="w-[310px] sm:w-[370px] lg:w-[390px] shrink-0 bg-white border border-slate-200/90 rounded-[22px] p-5 sm:p-6 flex flex-col justify-between transition-all duration-300 hover:border-blue-500/50 hover:shadow-[0_16px_36px_rgba(29,99,237,0.12)] hover:-translate-y-1 cursor-pointer text-left select-none relative group"
     >
       {/* Subtle Quote Watermark in Background */}
-      <Quote className="absolute top-4 right-4 w-12 h-12 text-white/[0.04] group-hover:text-[#E94B3C]/[0.08] transition-colors pointer-events-none" />
+      <Quote className="absolute top-4 right-4 w-12 h-12 text-slate-100 group-hover:text-blue-50 transition-colors pointer-events-none" />
 
       <div>
         {/* Reviewer Header: Avatar + Info + Google Badge */}
         <div className="flex items-center justify-between gap-3 mb-3.5">
           <div className="flex items-center gap-3 min-w-0">
             {/* Student Avatar */}
-            <div className="w-12 h-12 rounded-full overflow-hidden border border-white/20 shadow-md shrink-0 bg-slate-800">
+            <div className="w-12 h-12 rounded-full overflow-hidden border border-slate-200 shadow-sm shrink-0 bg-slate-100">
               <img
                 src={item.avatar}
                 alt={item.name}
@@ -31,19 +31,19 @@ function ReviewCard({ item, onSelect }) {
 
             <div className="min-w-0">
               <div className="flex items-center gap-1.5">
-                <h3 className="text-sm sm:text-base font-bold text-white tracking-tight leading-tight truncate">
+                <h3 className="text-sm sm:text-base font-bold text-slate-900 tracking-tight leading-tight truncate">
                   {item.name}
                 </h3>
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" title="Verified Reviewer" />
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" title="Verified Reviewer" />
               </div>
-              <span className="inline-block text-[11px] font-semibold text-[#FF7A5C] bg-[#E94B3C]/10 border border-[#E94B3C]/20 px-2 py-0.5 rounded-full mt-1 truncate max-w-[200px]">
+              <span className="inline-block text-[11px] font-semibold text-blue-700 bg-blue-50 border border-blue-200/80 px-2 py-0.5 rounded-full mt-1 truncate max-w-[200px]">
                 {item.role}
               </span>
             </div>
           </div>
 
           {/* Google G Logo Badge */}
-          <div className="w-7 h-7 rounded-full bg-white/[0.08] border border-white/15 flex items-center justify-center p-1.5 shrink-0" title="Verified Google Review">
+          <div className="w-7 h-7 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center p-1.5 shrink-0 shadow-xs" title="Verified Google Review">
             <svg className="w-full h-full" viewBox="0 0 24 24">
               <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
               <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
@@ -60,23 +60,23 @@ function ReviewCard({ item, onSelect }) {
               <Star key={i} className="w-3.5 h-3.5 fill-[#FBBC05] text-[#FBBC05]" />
             ))}
           </div>
-          <span className="text-xs font-black text-white">5.0</span>
-          <span className="text-[11px] text-white/50 font-normal">• {item.time}</span>
+          <span className="text-xs font-black text-slate-900">5.0</span>
+          <span className="text-[11px] text-slate-500 font-normal">• {item.time}</span>
         </div>
 
         {/* Quotation text */}
-        <p className="text-xs sm:text-[13px] text-white/75 font-normal leading-relaxed line-clamp-4 group-hover:text-white/95 transition-colors">
+        <p className="text-xs sm:text-[13px] text-slate-600 font-normal leading-relaxed line-clamp-4 group-hover:text-slate-800 transition-colors">
           "{item.quote}"
         </p>
       </div>
 
       {/* Card Footer */}
-      <div className="flex items-center justify-between pt-3.5 mt-3.5 border-t border-white/10 text-[11px] text-white/50">
-        <span className="flex items-center gap-1">
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-          <span>Verified Student Review</span>
+      <div className="flex items-center justify-between pt-3.5 mt-3.5 border-t border-slate-100 text-[11px] text-slate-500">
+        <span className="flex items-center gap-1.5">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+          <span className="font-medium">Verified Student Review</span>
         </span>
-        <span className="text-[#FF7A5C] font-semibold group-hover:translate-x-0.5 transition-transform inline-flex items-center gap-0.5">
+        <span className="text-blue-600 font-semibold group-hover:translate-x-0.5 transition-transform inline-flex items-center gap-0.5">
           Read full &rarr;
         </span>
       </div>
@@ -277,7 +277,7 @@ export default function Testimonials() {
   return (
     <section 
       id="testimonials" 
-      className="relative py-16 sm:py-24 lg:py-28 bg-[#080D14] text-white font-['Plus_Jakarta_Sans',sans-serif] overflow-hidden border-t border-white/5"
+      className="relative py-16 sm:py-24 lg:py-28 bg-slate-50/70 text-slate-900 font-['Plus_Jakarta_Sans',sans-serif] overflow-hidden border-t border-slate-200/80"
     >
       {/* Dynamic CSS for seamless infinite marquee */}
       <style>{`
@@ -305,9 +305,9 @@ export default function Testimonials() {
         }
       `}</style>
 
-      {/* Ambient Red Glow Accents */}
+      {/* Ambient Blue Glow Accent */}
       <div 
-        className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[350px] rounded-full bg-[#E94B3C]/10 blur-[150px] pointer-events-none" 
+        className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[350px] rounded-full bg-blue-500/5 blur-[150px] pointer-events-none" 
         aria-hidden="true" 
       />
 
@@ -319,25 +319,25 @@ export default function Testimonials() {
         <div className="text-center max-w-3xl mx-auto space-y-3.5 mb-8 sm:mb-12">
           
           {/* Eyebrow */}
-          <div className="inline-flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#E94B3C]" />
-            <span className="text-[11px] font-bold text-[#E94B3C] uppercase tracking-[0.16em]">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200/60 shadow-xs">
+            <span className="w-1.5 h-1.5 rounded-full bg-blue-600" />
+            <span className="text-[11px] font-bold text-blue-700 uppercase tracking-wider">
               GOOGLE REVIEWS &amp; TESTIMONIALS
             </span>
           </div>
 
           {/* Title */}
-          <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-black tracking-tight leading-[1.12] text-white">
+          <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-black tracking-tight leading-[1.12] text-slate-900">
             Words of Appreciation from Our Students
           </h2>
 
-          <p className="text-xs sm:text-sm text-white/70 font-normal leading-relaxed max-w-xl mx-auto">
+          <p className="text-xs sm:text-sm text-slate-600 font-normal leading-relaxed max-w-xl mx-auto">
             Verified Google reviews from engineering and architecture students trained at CADD Centre Manjeri.
           </p>
 
           {/* Google Verified Rating Scorecard Badge */}
           <div className="pt-2 flex justify-center">
-            <div className="inline-flex items-center gap-3.5 px-4.5 py-2 rounded-full bg-white/[0.05] border border-white/12 backdrop-blur-md shadow-sm">
+            <div className="inline-flex items-center gap-3.5 px-4.5 py-2 rounded-full bg-white border border-slate-200/90 shadow-sm">
               <svg className="w-4.5 h-4.5 shrink-0" viewBox="0 0 24 24">
                 <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
                 <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
@@ -345,15 +345,15 @@ export default function Testimonials() {
                 <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
               </svg>
               <div className="flex items-center gap-1.5">
-                <span className="text-xs sm:text-sm font-extrabold text-white">4.9</span>
+                <span className="text-xs sm:text-sm font-extrabold text-slate-900">4.9</span>
                 <div className="flex gap-0.5">
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} className="w-3 h-3 fill-[#FBBC05] text-[#FBBC05]" />
                   ))}
                 </div>
               </div>
-              <span className="text-white/25">•</span>
-              <span className="text-[11px] sm:text-xs font-semibold text-white/85">
+              <span className="text-slate-300">•</span>
+              <span className="text-[11px] sm:text-xs font-semibold text-slate-700">
                 500+ Verified Reviews
               </span>
             </div>
@@ -377,8 +377,8 @@ export default function Testimonials() {
                   onClick={() => setSelectedCategory(cat.id)}
                   className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all whitespace-nowrap cursor-pointer ${
                     isActive
-                      ? 'bg-[#E94B3C] text-white shadow-md shadow-red-500/25'
-                      : 'bg-white/[0.05] border border-white/10 text-white/70 hover:text-white hover:bg-white/[0.08]'
+                      ? 'bg-blue-600 text-white shadow-md shadow-blue-600/20'
+                      : 'bg-white border border-slate-200 text-slate-700 hover:text-slate-900 hover:bg-slate-50'
                   }`}
                 >
                   {cat.label} ({cat.count})
@@ -388,14 +388,14 @@ export default function Testimonials() {
           </div>
 
           {/* View Mode Toggle Button */}
-          <div className="hidden sm:inline-flex items-center p-1 rounded-full bg-white/[0.05] border border-white/10 shrink-0">
+          <div className="hidden sm:inline-flex items-center p-1 rounded-full bg-white border border-slate-200 shrink-0 shadow-xs">
             <button
               type="button"
               onClick={() => setViewMode('stream')}
               className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold transition-all cursor-pointer ${
                 viewMode === 'stream'
-                  ? 'bg-[#E94B3C] text-white shadow-xs'
-                  : 'text-white/60 hover:text-white'
+                  ? 'bg-blue-600 text-white shadow-xs'
+                  : 'text-slate-600 hover:text-slate-900'
               }`}
             >
               <Radio className="w-3.5 h-3.5" />
@@ -407,8 +407,8 @@ export default function Testimonials() {
               onClick={() => setViewMode('grid')}
               className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold transition-all cursor-pointer ${
                 viewMode === 'grid'
-                  ? 'bg-[#E94B3C] text-white shadow-xs'
-                  : 'text-white/60 hover:text-white'
+                  ? 'bg-blue-600 text-white shadow-xs'
+                  : 'text-slate-600 hover:text-slate-900'
               }`}
             >
               <LayoutGrid className="w-3.5 h-3.5" />
@@ -427,8 +427,8 @@ export default function Testimonials() {
         <div className="space-y-5 sm:space-y-6 relative overflow-hidden py-2">
           
           {/* Gradient Edge Vignettes to create sleek infinite fade */}
-          <div className="absolute top-0 bottom-0 left-0 w-12 sm:w-28 bg-gradient-to-r from-[#080D14] to-transparent z-20 pointer-events-none" />
-          <div className="absolute top-0 bottom-0 right-0 w-12 sm:w-28 bg-gradient-to-l from-[#080D14] to-transparent z-20 pointer-events-none" />
+          <div className="absolute top-0 bottom-0 left-0 w-12 sm:w-28 bg-gradient-to-r from-slate-50 to-transparent z-20 pointer-events-none" />
+          <div className="absolute top-0 bottom-0 right-0 w-12 sm:w-28 bg-gradient-to-l from-slate-50 to-transparent z-20 pointer-events-none" />
 
           {/* Row 1: Leftward Streaming Marquee */}
           <div className="overflow-hidden">
@@ -485,7 +485,7 @@ export default function Testimonials() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setActiveModalReview(null)}
-              className="absolute inset-0 bg-black/80 backdrop-blur-md"
+              className="absolute inset-0 bg-slate-950/60 backdrop-blur-sm"
             />
 
             {/* Modal Card */}
@@ -493,13 +493,13 @@ export default function Testimonials() {
               initial={{ opacity: 0, scale: 0.94, y: 15 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.94, y: 15 }}
-              className="relative w-full max-w-lg bg-[#0E1726] border border-white/15 rounded-[24px] p-6 sm:p-8 shadow-2xl z-10 text-left"
+              className="relative w-full max-w-lg bg-white border border-slate-200 rounded-[24px] p-6 sm:p-8 shadow-2xl z-10 text-left"
             >
               {/* Close Button */}
               <button
                 type="button"
                 onClick={() => setActiveModalReview(null)}
-                className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 text-white flex items-center justify-center transition-colors cursor-pointer"
+                className="absolute top-4 right-4 w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-700 flex items-center justify-center transition-colors cursor-pointer"
                 aria-label="Close review"
               >
                 <X className="w-5 h-5" />
@@ -507,7 +507,7 @@ export default function Testimonials() {
 
               {/* Reviewer Header */}
               <div className="flex items-center gap-3.5 mb-4">
-                <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-white/20 shadow-md shrink-0 bg-slate-800">
+                <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-slate-200 shadow-sm shrink-0 bg-slate-100">
                   <img
                     src={activeModalReview.avatar}
                     alt={activeModalReview.name}
@@ -516,44 +516,44 @@ export default function Testimonials() {
                 </div>
                 <div>
                   <div className="flex items-center gap-1.5">
-                    <h3 className="text-base sm:text-lg font-bold text-white tracking-tight">
+                    <h3 className="text-base sm:text-lg font-bold text-slate-900 tracking-tight">
                       {activeModalReview.name}
                     </h3>
-                    <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600" />
                   </div>
-                  <span className="inline-block text-xs font-semibold text-[#FF7A5C] bg-[#E94B3C]/10 border border-[#E94B3C]/20 px-2.5 py-0.5 rounded-full mt-1">
+                  <span className="inline-block text-xs font-semibold text-blue-700 bg-blue-50 border border-blue-200/80 px-2.5 py-0.5 rounded-full mt-1">
                     {activeModalReview.role}
                   </span>
                 </div>
               </div>
 
               {/* Star Rating & Time */}
-              <div className="flex items-center gap-2 mb-4 pb-4 border-b border-white/10">
+              <div className="flex items-center gap-2 mb-4 pb-4 border-b border-slate-100">
                 <div className="flex gap-1">
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} className="w-4 h-4 fill-[#FBBC05] text-[#FBBC05]" />
                   ))}
                 </div>
-                <span className="text-sm font-black text-white">5.0 Star Rating</span>
-                <span className="text-xs text-white/50">• {activeModalReview.time}</span>
+                <span className="text-sm font-black text-slate-900">5.0 Star Rating</span>
+                <span className="text-xs text-slate-500">• {activeModalReview.time}</span>
               </div>
 
               {/* Full Review Text */}
-              <p className="text-sm sm:text-base text-white/85 font-normal leading-relaxed">
+              <p className="text-sm sm:text-base text-slate-700 font-normal leading-relaxed">
                 "{activeModalReview.quote}"
               </p>
 
               {/* Footer Trust Link */}
-              <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs text-white/60">
+              <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
                 <span className="flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400" />
-                  <span>Verified Google Review</span>
+                  <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                  <span className="font-medium">Verified Google Review</span>
                 </span>
                 <a
                   href="https://maps.google.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[#FF7A5C] hover:text-[#ff9282] font-semibold inline-flex items-center gap-1"
+                  className="text-blue-600 hover:text-blue-700 font-semibold inline-flex items-center gap-1"
                 >
                   <span>Google Maps</span>
                   <ArrowUpRight className="w-3.5 h-3.5" />

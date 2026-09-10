@@ -14,8 +14,8 @@ export default function SectionHeading({
     <div className={`flex flex-col max-w-3xl space-y-3 ${alignClasses} ${className}`}>
       {eyebrow && (
         <div className="inline-flex items-center gap-2">
-          <span className="w-1.5 h-1.5 rounded-sm bg-[#E94B3C]" />
-          <span className="text-[11px] font-bold text-[#E94B3C] uppercase tracking-[0.14em]">
+          <span className="w-1.5 h-1.5 rounded-full bg-blue-600" />
+          <span className="text-[11px] font-bold text-blue-600 uppercase tracking-[0.14em]">
             {eyebrow}
           </span>
         </div>
@@ -23,7 +23,7 @@ export default function SectionHeading({
 
       {title && (
         <h2 className={`text-3xl sm:text-4xl lg:text-[42px] font-extrabold tracking-tight leading-[1.15] ${
-          light ? 'text-white' : 'text-[#1C2533]'
+          light ? 'text-white' : 'text-slate-900'
         }`}>
           {title}
         </h2>
@@ -31,7 +31,7 @@ export default function SectionHeading({
 
       {description && (
         <p className={`text-sm sm:text-base font-normal leading-relaxed max-w-2xl ${
-          light ? 'text-slate-300' : 'text-[#687282]'
+          light ? 'text-slate-200' : 'text-slate-600'
         }`}>
           {description}
         </p>

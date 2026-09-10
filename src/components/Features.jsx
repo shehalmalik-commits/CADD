@@ -1039,10 +1039,10 @@ function CourseTile({ item, onSelectCourse }) {
         }
       }}
       aria-label={`${item.title} — view syllabus`}
-      className="group relative flex flex-col w-full rounded-2xl overflow-hidden border border-white/10 bg-[#0D131F]/90 hover:border-[#FF5A36]/60 text-left cursor-pointer transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.6),0_0_25px_rgba(255,90,54,0.12)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF5A36] focus-visible:ring-offset-2 focus-visible:ring-offset-[#080D14]"
+      className="group relative flex flex-col w-full rounded-2xl overflow-hidden border border-slate-200/90 bg-white hover:border-blue-500/50 text-left cursor-pointer transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
     >
       {/* 16:10 Media Container */}
-      <div className="relative w-full aspect-[16/10] overflow-hidden bg-slate-900 shrink-0">
+      <div className="relative w-full aspect-[16/10] overflow-hidden bg-slate-100 shrink-0">
         <img
           src={item.img}
           alt={item.title}
@@ -1054,12 +1054,9 @@ function CourseTile({ item, onSelectCourse }) {
           className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
         />
 
-        {/* Subtle vignette scrim */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0D131F] via-transparent to-black/30 pointer-events-none" />
-
         {/* Floating Category Pill */}
         <div className="absolute top-3 left-3 z-10">
-          <span className="inline-flex items-center px-2.5 py-1 rounded-full bg-black/65 backdrop-blur-md border border-white/15 text-[10.5px] font-bold text-[#FF7A5C] uppercase tracking-wider shadow-sm">
+          <span className="inline-flex items-center px-2.5 py-1 rounded-full bg-white/90 backdrop-blur-md border border-slate-200/80 text-[10.5px] font-bold text-blue-700 uppercase tracking-wider shadow-xs">
             {item.category}
           </span>
         </div>
@@ -1067,8 +1064,8 @@ function CourseTile({ item, onSelectCourse }) {
         {/* Floating Duration Pill */}
         {item.duration && (
           <div className="absolute top-3 right-3 z-10">
-            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-black/65 backdrop-blur-md border border-white/15 text-[10.5px] font-semibold text-slate-200 shadow-sm">
-              <Clock className="w-3 h-3 text-[#FF7A5C]" />
+            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/90 backdrop-blur-md border border-slate-200/80 text-[10.5px] font-semibold text-slate-700 shadow-xs">
+              <Clock className="w-3 h-3 text-blue-600" />
               {item.duration}
             </span>
           </div>
@@ -1076,13 +1073,13 @@ function CourseTile({ item, onSelectCourse }) {
       </div>
 
       {/* Card Body */}
-      <div className="p-4 sm:p-5 flex flex-col flex-1 justify-between gap-3 bg-gradient-to-b from-[#0D131F] to-[#0A0E17]">
+      <div className="p-4 sm:p-5 flex flex-col flex-1 justify-between gap-3 bg-white">
         <div className="space-y-2">
-          <h4 className="text-[15px] sm:text-[16px] font-bold text-white group-hover:text-[#FF7A5C] transition-colors leading-snug line-clamp-2">
+          <h4 className="text-[15px] sm:text-[16px] font-bold text-slate-900 group-hover:text-blue-600 transition-colors leading-snug line-clamp-2">
             {item.title}
           </h4>
 
-          <p className="text-[12px] text-slate-400 font-normal leading-relaxed line-clamp-2">
+          <p className="text-[12px] text-slate-500 font-normal leading-relaxed line-clamp-2">
             {item.description}
           </p>
 
@@ -1092,7 +1089,7 @@ function CourseTile({ item, onSelectCourse }) {
               {toolsList.slice(0, 3).map((tool, idx) => (
                 <span
                   key={idx}
-                  className="text-[10px] font-medium text-slate-300 bg-white/5 border border-white/8 px-2 py-0.5 rounded-md"
+                  className="text-[10px] font-semibold text-slate-600 bg-slate-100 border border-slate-200/70 px-2 py-0.5 rounded-md"
                 >
                   {tool}
                 </span>
@@ -1107,12 +1104,12 @@ function CourseTile({ item, onSelectCourse }) {
         </div>
 
         {/* Card Footer: Certification & CTA */}
-        <div className="pt-3 mt-1 border-t border-white/8 flex items-center justify-between text-xs">
-          <span className="inline-flex items-center gap-1 text-[11px] font-medium text-emerald-400/90">
+        <div className="pt-3 mt-1 border-t border-slate-100 flex items-center justify-between text-xs">
+          <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-600">
             <CheckCircle2 className="w-3.5 h-3.5" /> Certified
           </span>
 
-          <span className="inline-flex items-center gap-1 text-[12px] font-semibold text-[#FF7A5C] group-hover:text-[#FF5A36] group-hover:translate-x-0.5 transition-all">
+          <span className="inline-flex items-center gap-1 text-[12px] font-bold text-blue-600 group-hover:text-blue-700 group-hover:translate-x-0.5 transition-all">
             View Syllabus <ArrowRight className="w-3.5 h-3.5" />
           </span>
         </div>
@@ -1229,7 +1226,7 @@ export default function Features({ onOpenDemo }) {
   return (
     <section
       id="features"
-      className="relative py-10 sm:py-20 bg-[#080D14] text-white font-['Plus_Jakarta_Sans',sans-serif] border-t border-white/5"
+      className="relative py-10 sm:py-20 bg-slate-50/60 text-slate-900 font-['Plus_Jakarta_Sans',sans-serif] border-t border-slate-200/80"
     >
       <div id="portfolio" className="absolute -top-12 left-0 pointer-events-none" />
 
@@ -1237,41 +1234,41 @@ export default function Features({ onOpenDemo }) {
 
         {/* COMPACT SECTION HEADER — the catalogue must start high on the page */}
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-6">
-          <div className="max-w-2xl space-y-1.5">
+          <div className="max-w-2xl space-y-1.5 text-left">
             <div className="inline-flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#E94B3C]" />
-              <span className="text-[10px] font-bold text-[#E94B3C] uppercase tracking-[0.2em]">
+              <span className="w-1.5 h-1.5 rounded-full bg-blue-600" />
+              <span className="text-[10px] font-bold text-blue-600 uppercase tracking-[0.2em]">
                 Course Offerings
               </span>
             </div>
 
-            <h2 className="text-2xl sm:text-[32px] font-extrabold text-white tracking-tight leading-tight">
+            <h2 className="text-2xl sm:text-[32px] font-extrabold text-slate-900 tracking-tight leading-tight">
               Find the Right Course for Your Career
             </h2>
 
-            <p className="text-xs sm:text-[13px] text-slate-400 font-normal leading-relaxed">
+            <p className="text-xs sm:text-[13px] text-slate-500 font-normal leading-relaxed">
               Practical, software-oriented programs in AutoCAD, Revit BIM, SolidWorks, MEP, and Project Planning tailored for real-world engineering careers.
             </p>
           </div>
 
-          <div className="flex items-center gap-2 text-xs text-slate-400 shrink-0">
-            <GraduationCap className="w-4 h-4 text-[#E94B3C]" />
+          <div className="flex items-center gap-2 text-xs text-slate-500 shrink-0">
+            <GraduationCap className="w-4 h-4 text-blue-600" />
             <span>
-              <strong className="text-white font-bold">{ALL_COURSES.length}</strong> courses across{' '}
-              <strong className="text-white font-bold">{COURSES_BY_DISCIPLINE.length}</strong> disciplines
+              <strong className="text-slate-900 font-bold">{ALL_COURSES.length}</strong> courses across{' '}
+              <strong className="text-slate-900 font-bold">{COURSES_BY_DISCIPLINE.length}</strong> disciplines
             </span>
           </div>
         </div>
 
         {/* DISCIPLINE FILTER — horizontal swipeable pill carousel on mobile, flex-wrap on desktop */}
-        <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-3 mb-8 -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap border-b border-white/10">
+        <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-3 mb-8 -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap border-b border-slate-200/80">
           <button
             type="button"
             onClick={() => selectDiscipline('all')}
             className={`shrink-0 px-3.5 py-1.5 rounded-full text-[12px] font-bold transition-all cursor-pointer ${
               activeDiscipline === 'all'
-                ? 'bg-[#FF5A36] text-white shadow-[0_4px_16px_rgba(255,90,54,0.35)]'
-                : 'bg-white/5 text-slate-300 hover:bg-white/10 hover:text-white border border-white/10'
+                ? 'bg-blue-600 text-white shadow-sm'
+                : 'bg-white text-slate-700 hover:bg-slate-100 hover:text-blue-600 border border-slate-200 shadow-2xs'
             }`}
           >
             All Courses ({ALL_COURSES.length})
@@ -1283,8 +1280,8 @@ export default function Features({ onOpenDemo }) {
               onClick={() => selectDiscipline(group.name)}
               className={`shrink-0 px-3.5 py-1.5 rounded-full text-[12px] font-bold transition-all cursor-pointer ${
                 activeDiscipline === group.name
-                  ? 'bg-[#FF5A36] text-white shadow-[0_4px_16px_rgba(255,90,54,0.35)]'
-                  : 'bg-white/5 text-slate-300 hover:bg-white/10 hover:text-white border border-white/10'
+                  ? 'bg-blue-600 text-white shadow-sm'
+                  : 'bg-white text-slate-700 hover:bg-slate-100 hover:text-blue-600 border border-slate-200 shadow-2xs'
               }`}
             >
               {group.shortName}
@@ -1298,11 +1295,11 @@ export default function Features({ onOpenDemo }) {
           /* Mobile Compact Initial View: Top 4 Featured Courses + View All Button */
           <div className="space-y-4">
             <div className="flex items-center justify-between mb-2 px-1">
-              <span className="text-[11px] font-extrabold text-[#FF7A5C] uppercase tracking-wider flex items-center gap-1.5">
+              <span className="text-[11px] font-extrabold text-blue-600 uppercase tracking-wider flex items-center gap-1.5">
                 <Sparkles className="w-3.5 h-3.5" />
                 Featured Programs
               </span>
-              <span className="text-[11px] text-slate-400 font-medium">
+              <span className="text-[11px] text-slate-500 font-medium">
                 4 of {ALL_COURSES.length} Courses
               </span>
             </div>
@@ -1322,7 +1319,7 @@ export default function Features({ onOpenDemo }) {
               <button
                 type="button"
                 onClick={() => setShowAllMobileCatalogue(true)}
-                className="group w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-[#FF5A36] to-[#E94B3C] hover:from-[#E94B3C] hover:to-[#D4382A] text-white font-bold text-[14px] shadow-[0_6px_25px_rgba(233,75,60,0.4)] active:scale-[0.98] transition-all flex items-center justify-center gap-2.5 cursor-pointer"
+                className="group w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold text-[14px] shadow-lg shadow-blue-500/25 active:scale-[0.98] transition-all flex items-center justify-center gap-2.5 cursor-pointer"
               >
                 <span>View All Courses ({ALL_COURSES.length})</span>
                 <span className="px-2 py-0.5 rounded-full bg-white/20 text-white text-[11px] font-extrabold backdrop-blur-sm">
@@ -1348,13 +1345,13 @@ export default function Features({ onOpenDemo }) {
                   {/* Discipline Group Header */}
                   <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2 mb-5">
                     <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
-                      <div className="w-8 h-8 rounded-lg bg-[#FF5A36]/10 border border-[#FF5A36]/25 flex items-center justify-center shrink-0">
-                        <Layers className="w-4 h-4 text-[#FF5A36]" />
+                      <div className="w-8 h-8 rounded-lg bg-blue-50 border border-blue-100 flex items-center justify-center shrink-0">
+                        <Layers className="w-4 h-4 text-blue-600" />
                       </div>
-                      <h3 className="text-[14px] sm:text-[15px] font-extrabold text-white uppercase tracking-[0.14em] truncate">
+                      <h3 className="text-[14px] sm:text-[15px] font-extrabold text-slate-900 uppercase tracking-[0.14em] truncate">
                         {group.name}
                       </h3>
-                      <span className="text-[11px] font-semibold text-slate-400 px-2.5 py-0.5 rounded-full bg-white/5 border border-white/10 shrink-0">
+                      <span className="text-[11px] font-semibold text-slate-600 px-2.5 py-0.5 rounded-full bg-slate-100 border border-slate-200 shrink-0">
                         {group.courses.length} course{group.courses.length === 1 ? '' : 's'}
                       </span>
                     </div>
@@ -1365,17 +1362,17 @@ export default function Features({ onOpenDemo }) {
                         <button
                           type="button"
                           onClick={() => toggleExpandDiscipline(group.name)}
-                          className="inline-flex items-center gap-1.5 text-xs font-bold text-[#FF7A5C] hover:text-[#FF5A36] px-3 py-1 rounded-full bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 transition-all cursor-pointer"
+                          className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-600 hover:text-blue-700 px-3 py-1 rounded-full bg-white hover:bg-slate-50 border border-slate-200 transition-all cursor-pointer shadow-2xs"
                         >
                           <span>{isExpanded ? 'Show Less' : `View All (${group.courses.length})`}</span>
                           {isExpanded ? (
-                            <ChevronUp className="w-3.5 h-3.5 text-[#FF5A36]" />
+                            <ChevronUp className="w-3.5 h-3.5 text-blue-600" />
                           ) : (
-                            <ChevronDown className="w-3.5 h-3.5 text-[#FF5A36]" />
+                            <ChevronDown className="w-3.5 h-3.5 text-blue-600" />
                           )}
                         </button>
                       )}
-                      <span className="hidden sm:block w-12 lg:w-20 h-px bg-white/10" />
+                      <span className="hidden sm:block w-12 lg:w-20 h-px bg-slate-200" />
                     </div>
                   </div>
 
@@ -1396,20 +1393,20 @@ export default function Features({ onOpenDemo }) {
                       <button
                         type="button"
                         onClick={() => toggleExpandDiscipline(group.name)}
-                        className="group inline-flex items-center justify-center gap-2.5 w-full sm:w-auto px-6 py-3 sm:py-2.5 rounded-full text-xs sm:text-[13px] font-bold bg-white/[0.04] hover:bg-[#FF5A36]/15 border border-white/15 hover:border-[#FF5A36]/40 text-white transition-all duration-200 shadow-sm hover:shadow-[0_4px_20px_rgba(255,90,54,0.25)] active:scale-[0.98] cursor-pointer"
+                        className="group inline-flex items-center justify-center gap-2.5 w-full sm:w-auto px-6 py-3 sm:py-2.5 rounded-full text-xs sm:text-[13px] font-bold bg-white hover:bg-blue-50/50 border border-slate-200 hover:border-blue-400 text-slate-800 hover:text-blue-700 transition-all duration-200 shadow-2xs active:scale-[0.98] cursor-pointer"
                       >
                         {isExpanded ? (
                           <>
                             <span>Show Less</span>
-                            <ChevronUp className="w-4 h-4 text-[#FF5A36] group-hover:-translate-y-0.5 transition-transform" />
+                            <ChevronUp className="w-4 h-4 text-blue-600 group-hover:-translate-y-0.5 transition-transform" />
                           </>
                         ) : (
                           <>
                             <span>View All {group.name} Courses ({group.courses.length})</span>
-                            <span className="px-2 py-0.5 rounded-full bg-[#FF5A36]/20 text-[#FF7A5C] text-[10.5px] font-extrabold border border-[#FF5A36]/30">
+                            <span className="px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 text-[10.5px] font-extrabold border border-blue-100">
                               +{remainingCount} more
                             </span>
-                            <ChevronDown className="w-4 h-4 text-[#FF5A36] group-hover:translate-y-0.5 transition-transform" />
+                            <ChevronDown className="w-4 h-4 text-blue-600 group-hover:translate-y-0.5 transition-transform" />
                           </>
                         )}
                       </button>
@@ -1429,10 +1426,10 @@ export default function Features({ onOpenDemo }) {
                     const section = document.getElementById('features');
                     if (section) section.scrollIntoView({ behavior: 'smooth' });
                   }}
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/10 hover:bg-white/15 border border-white/20 text-white text-xs font-bold transition-all cursor-pointer active:scale-95 shadow-md"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 text-xs font-bold transition-all cursor-pointer active:scale-95 shadow-xs"
                 >
                   <span>Show Less (Collapse Courses)</span>
-                  <ChevronUp className="w-3.5 h-3.5 text-[#FF7A5C]" />
+                  <ChevronUp className="w-3.5 h-3.5 text-blue-600" />
                 </button>
               </div>
             )}
@@ -1440,9 +1437,9 @@ export default function Features({ onOpenDemo }) {
         )}
 
         {/* Footer note + enquiry CTA */}
-        <div className="mt-9 pt-5 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-[11px] text-slate-400 flex items-center gap-1.5 text-center sm:text-left">
-            <Sparkles className="w-3.5 h-3.5 text-[#E94B3C] shrink-0" />
+        <div className="mt-9 pt-5 border-t border-slate-200/80 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p className="text-[11px] text-slate-500 flex items-center gap-1.5 text-center sm:text-left">
+            <Sparkles className="w-3.5 h-3.5 text-blue-600 shrink-0" />
             Click any course to see its syllabus, tools, workflow and career outcomes.
           </p>
           <Button onClick={onOpenDemo} variant="primary" size="sm">

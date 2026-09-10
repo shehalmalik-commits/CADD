@@ -25,8 +25,8 @@ export default function App() {
 
   return (
     <SmoothScroll>
-      <div className="min-h-screen bg-[#080D14] text-white font-['Plus_Jakarta_Sans',sans-serif] selection:bg-[#E94B3C]/30 selection:text-[#FF7A5C] overflow-x-hidden">
-        {/* Navigation Bar (Floating Top Header) */}
+      <div className="min-h-screen bg-white text-slate-900 font-['Plus_Jakarta_Sans',sans-serif] selection:bg-blue-600/20 selection:text-blue-700 overflow-x-hidden">
+        {/* Navigation Bar (Floating Capsule Top Header) */}
         <Navbar onOpenDemo={() => setDemoOpen(true)} />
 
         {/* Main Landing Page Flow */}

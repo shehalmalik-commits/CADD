@@ -168,7 +168,7 @@ export default function Hero({ onOpenDemo }) {
 
   return (
     <section 
-      className="relative w-full min-h-[100svh] sm:h-[100dvh] min-h-[620px] max-h-[1080px] flex flex-col justify-center sm:block overflow-hidden font-['Plus_Jakarta_Sans',sans-serif] select-none bg-[#080D14]"
+      className="relative w-full min-h-[100svh] sm:h-[100dvh] min-h-[620px] max-h-[1080px] flex flex-col justify-center sm:block overflow-hidden font-['Plus_Jakarta_Sans',sans-serif] select-none bg-white"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       onTouchStart={handleTouchStart}
@@ -187,8 +187,8 @@ export default function Hero({ onOpenDemo }) {
             <div
               key={slide.id}
               style={{
-                opacity: isActive ? 1 : 0,
-                zIndex: isActive ? 10 : 0,
+                opacity: isActive ? 0.35 : 0,
+                zIndex: isActive ? 5 : 0,
                 transition: 'opacity 1000ms cubic-bezier(0.4, 0, 0.2, 1)'
               }}
               className="absolute inset-0 w-full h-full will-change-[opacity]"
@@ -208,97 +208,89 @@ export default function Hero({ onOpenDemo }) {
       </div>
 
       {/* ========================================================= */}
-      {/* 2. CINEMATIC GRADIENT OVERLAYS                            */}
+      {/* 2. CINEMATIC LIGHT GRADIENT OVERLAYS                      */}
       {/* ========================================================= */}
-      {/* Top navbar protection (shared subtle gradient) */}
+      {/* Top capsule navbar protection */}
       <div 
-        className="absolute top-0 inset-x-0 h-28 sm:h-36 pointer-events-none z-10"
+        className="absolute top-0 inset-x-0 h-32 pointer-events-none z-10"
         style={{
-          background: 'linear-gradient(180deg, rgba(8, 13, 20, 0.70) 0%, rgba(8, 13, 20, 0.20) 65%, transparent 100%)'
+          background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.6) 65%, transparent 100%)'
         }}
       />
 
-      {/* Desktop-only: Full-bleed left & bottom gradient for text contrast */}
+      {/* Overall light aesthetic wash for pure legibility */}
       <div 
-        className="hidden sm:block absolute inset-0 pointer-events-none z-10"
+        className="absolute inset-0 pointer-events-none z-10"
         style={{
-          background: 'radial-gradient(ellipse at 20% 70%, rgba(8, 13, 20, 0.95) 0%, rgba(8, 13, 20, 0.75) 45%, rgba(8, 13, 20, 0.35) 85%, transparent 100%)'
+          background: 'linear-gradient(180deg, rgba(240, 246, 254, 0.65) 0%, rgba(255, 255, 255, 0.88) 50%, #FFFFFF 100%)'
         }}
       />
 
-      {/* Desktop-only: Horizontal subtle dark sweep from left */}
+      {/* Desktop horizontal contrast sweep from left */}
       <div 
         className="hidden sm:block absolute inset-y-0 left-0 w-full md:w-[75%] lg:w-[65%] pointer-events-none z-10"
         style={{
-          background: 'linear-gradient(90deg, rgba(8, 13, 20, 0.92) 0%, rgba(8, 13, 20, 0.70) 55%, transparent 100%)'
+          background: 'linear-gradient(90deg, rgba(255, 255, 255, 0.96) 0%, rgba(255, 255, 255, 0.82) 60%, transparent 100%)'
         }}
       />
 
       {/* Ambient glowing accent based on current slide */}
       <div 
-        className="absolute bottom-16 sm:bottom-20 left-1/2 -translate-x-1/2 sm:translate-x-0 sm:left-10 w-72 sm:w-96 h-72 sm:h-96 rounded-full blur-3xl opacity-25 sm:opacity-20 transition-all duration-1000 pointer-events-none z-10"
+        className="absolute bottom-16 sm:bottom-20 left-1/2 -translate-x-1/2 sm:translate-x-0 sm:left-10 w-72 sm:w-96 h-72 sm:h-96 rounded-full blur-3xl opacity-15 transition-all duration-1000 pointer-events-none z-10"
         style={{ backgroundColor: currentSlide.accent }}
-      />
-
-      {/* Mobile-only: Crystal clear cinematic overlay - keeps background image vivid & recognizable */}
-      <div 
-        className="sm:hidden absolute inset-0 pointer-events-none z-10"
-        style={{
-          background: 'linear-gradient(180deg, rgba(8, 13, 20, 0.40) 0%, rgba(8, 13, 20, 0.25) 28%, rgba(8, 13, 20, 0.55) 68%, rgba(8, 13, 20, 0.92) 100%)'
-        }}
       />
 
       {/* ========================================================= */}
       {/* 3. HERO CONTENT: CENTERED ON MOBILE, LEFT ON DESKTOP      */}
       {/* ========================================================= */}
-      <div className="relative z-20 flex flex-col items-center text-center px-5 pt-28 pb-8 sm:pt-0 sm:pb-0 sm:absolute sm:inset-auto sm:bottom-24 lg:bottom-32 sm:left-10 lg:left-14 xl:left-20 sm:right-auto sm:justify-start sm:items-start sm:text-left sm:p-0 max-w-md sm:max-w-2xl mx-auto sm:mx-0 pointer-events-auto">
+      <div className="relative z-20 flex flex-col items-center text-center px-5 pt-24 pb-8 sm:pt-0 sm:pb-0 sm:absolute sm:inset-auto sm:bottom-24 lg:bottom-32 sm:left-10 lg:left-14 xl:left-20 sm:right-auto sm:justify-start sm:items-start sm:text-left sm:p-0 max-w-md sm:max-w-2xl mx-auto sm:mx-0 pointer-events-auto">
 
         {/* Mobile Unified Pill Badge (< 640px) */}
-        <div className="sm:hidden inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#080D14]/75 backdrop-blur-md border border-white/20 text-white shadow-lg mb-3.5">
-          <CurrentIcon className="w-3.5 h-3.5 text-[#FF6B5A]" />
-          <span className="text-[11px] font-extrabold tracking-wider uppercase text-white">
+        <div className="sm:hidden inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50/90 backdrop-blur-md border border-blue-100 text-blue-800 shadow-xs mb-3.5">
+          <CurrentIcon className="w-3.5 h-3.5 text-blue-600" />
+          <span className="text-[11px] font-extrabold tracking-wider uppercase text-blue-900">
             {currentSlide.category}
           </span>
-          <span className="w-1 h-1 rounded-full bg-white/40" />
-          <span className="text-[10.5px] font-semibold text-[#FF8F80]">
+          <span className="w-1 h-1 rounded-full bg-blue-300" />
+          <span className="text-[10.5px] font-semibold text-blue-600">
             25 Yrs in Manjeri
           </span>
         </div>
 
         {/* Desktop Top Eyebrow Tag (>= 640px) */}
         <div className="hidden sm:inline-flex items-center justify-start gap-2 mb-2 sm:mb-3">
-          <span className="w-2 h-2 rounded-full bg-[#E94B3C] animate-pulse" />
-          <span className="text-[12px] font-bold text-[#FF6B5A] uppercase tracking-[0.18em]">
+          <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
+          <span className="text-[12px] font-bold text-blue-600 uppercase tracking-[0.18em]">
             PROUDLY SERVING MANJERI FOR 25 YEARS
           </span>
         </div>
 
         {/* Desktop Course Discipline Badge with Icon (>= 640px) */}
         <div className="hidden sm:flex items-center justify-start gap-2 mb-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.08] backdrop-blur-md border border-white/15 text-white shadow-sm">
-            <CurrentIcon className="w-3.5 h-3.5 text-[#FF6B5A]" />
-            <span className="text-[11px] font-extrabold tracking-wider uppercase text-white">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-blue-700 shadow-xs">
+            <CurrentIcon className="w-3.5 h-3.5 text-blue-600" />
+            <span className="text-[11px] font-extrabold tracking-wider uppercase text-blue-900">
               {currentSlide.category}
             </span>
           </div>
 
-          <span className="text-[11px] font-medium text-slate-300">
+          <span className="text-[11px] font-medium text-slate-500">
             {currentSlide.batchInfo}
           </span>
         </div>
 
         {/* Dominant Main Headline */}
-        <h1 className="text-[32px] xs:text-[36px] sm:text-4xl lg:text-[44px] xl:text-[50px] font-bold text-white tracking-[-0.02em] leading-[1.12] sm:leading-[1.1] text-center sm:text-left drop-shadow-[0_4px_18px_rgba(0,0,0,0.92)]">
+        <h1 className="text-[32px] xs:text-[36px] sm:text-4xl lg:text-[44px] xl:text-[52px] font-extrabold text-slate-900 tracking-[-0.02em] leading-[1.12] sm:leading-[1.08] text-center sm:text-left">
           Learn the Skills.<br />
-          Build Your Future.
+          <span className="text-blue-600">Build Your Future.</span>
         </h1>
 
-        {/* Dynamic Slide Tagline (Desktop also gets description) */}
+        {/* Dynamic Slide Tagline */}
         <div className="mt-2.5 sm:mt-4 max-w-[520px] mx-auto sm:mx-0 text-center sm:text-left">
-          <p className="text-[13.5px] sm:text-[15px] font-medium text-slate-100 sm:text-slate-200/95 leading-snug drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
+          <p className="text-[14px] sm:text-[16px] font-semibold text-slate-700 leading-snug">
             {currentSlide.tagline}
           </p>
-          <p className="hidden sm:block mt-1.5 text-xs sm:text-[13px] text-slate-300 font-normal leading-relaxed line-clamp-2">
+          <p className="hidden sm:block mt-1.5 text-xs sm:text-[13px] text-slate-500 font-normal leading-relaxed line-clamp-2">
             {currentSlide.description}
           </p>
         </div>
@@ -313,13 +305,13 @@ export default function Hero({ onOpenDemo }) {
             {currentSlide.software.slice(0, 3).map((tool) => (
               <span 
                 key={tool}
-                className="text-[11px] font-medium px-2.5 py-0.5 rounded-full bg-[#080D14]/70 backdrop-blur-sm border border-white/20 text-slate-100 shadow-sm"
+                className="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-slate-100 border border-slate-200 text-slate-700 shadow-xs"
               >
                 {tool}
               </span>
             ))}
             {currentSlide.software.length > 3 && (
-              <span className="text-[10px] font-bold text-slate-300 px-1 drop-shadow-sm">
+              <span className="text-[10px] font-bold text-slate-500 px-1">
                 +{currentSlide.software.length - 3}
               </span>
             )}
@@ -329,7 +321,7 @@ export default function Hero({ onOpenDemo }) {
             {currentSlide.software.map((tool) => (
               <span 
                 key={tool}
-                className="text-[11px] font-medium px-2.5 py-0.5 rounded-md bg-white/[0.07] backdrop-blur-sm border border-white/10 text-slate-200"
+                className="text-[11px] font-semibold px-2.5 py-0.5 rounded-md bg-slate-100 border border-slate-200 text-slate-700"
               >
                 {tool}
               </span>
@@ -342,7 +334,7 @@ export default function Hero({ onOpenDemo }) {
           {/* Primary CTA */}
           <a
             href="#features"
-            className="w-full sm:w-auto bg-[#E94B3C] hover:bg-[#D4382A] text-white px-7 py-3 rounded-full sm:rounded-[10px] text-[13.5px] font-bold inline-flex items-center justify-center gap-2 shadow-[0_6px_22px_rgba(233,75,60,0.5)] active:scale-[0.98] transition-all cursor-pointer group"
+            className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-7 py-3 rounded-full text-[13.5px] font-bold inline-flex items-center justify-center gap-2 shadow-lg shadow-blue-500/25 active:scale-[0.98] transition-all cursor-pointer group"
           >
             <span>Explore All Courses</span>
             <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -352,10 +344,10 @@ export default function Hero({ onOpenDemo }) {
           <button
             type="button"
             onClick={onOpenDemo}
-            className="w-full sm:w-auto bg-[#080D14]/65 hover:bg-[#080D14]/85 border border-white/25 hover:border-white/45 text-white px-6 py-2.5 sm:py-3 rounded-full sm:rounded-[10px] text-[13px] sm:text-[13.5px] font-semibold inline-flex items-center justify-center gap-2 backdrop-blur-md active:scale-[0.98] transition-all cursor-pointer group shadow-md"
+            className="w-full sm:w-auto bg-white hover:bg-slate-50 border border-slate-200 hover:border-slate-300 text-slate-800 px-6 py-2.5 sm:py-3 rounded-full text-[13px] sm:text-[13.5px] font-semibold inline-flex items-center justify-center gap-2 backdrop-blur-md active:scale-[0.98] transition-all cursor-pointer group shadow-xs"
           >
             <span>Enquire Admissions</span>
-            <ArrowUpRight className="w-3.5 h-3.5 text-slate-300" />
+            <ArrowUpRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-blue-600" />
           </button>
         </div>
 
@@ -368,8 +360,8 @@ export default function Hero({ onOpenDemo }) {
               onClick={() => selectSlide(idx)}
               className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
                 idx === currentIndex 
-                  ? 'w-7 bg-[#E94B3C] shadow-[0_0_10px_rgba(233,75,60,0.85)]' 
-                  : 'w-2 bg-white/40 hover:bg-white/60'
+                  ? 'w-7 bg-blue-600 shadow-sm' 
+                  : 'w-2 bg-slate-300 hover:bg-slate-400'
               }`}
               aria-label={`Slide ${idx + 1}`}
             />
@@ -384,13 +376,13 @@ export default function Hero({ onOpenDemo }) {
       <div className="hidden lg:block absolute bottom-24 lg:bottom-32 right-6 sm:right-10 lg:left-auto lg:right-14 xl:right-20 z-20 pointer-events-auto">
         <div 
           onClick={onOpenDemo}
-          className="w-[280px] bg-[#0E1624]/90 backdrop-blur-md border border-white/20 hover:border-[#E94B3C]/50 rounded-[16px] p-4.5 shadow-2xl text-left transition-all duration-300 hover:scale-[1.02] group cursor-pointer"
+          className="w-[280px] bg-white/95 backdrop-blur-md border border-slate-200/90 hover:border-blue-500/50 rounded-2xl p-4.5 shadow-xl text-left transition-all duration-300 hover:scale-[1.02] group cursor-pointer"
         >
           {/* Header */}
           <div className="flex items-center justify-between mb-2">
             <div className="flex items-center gap-1.5">
-              <Sparkles className="w-3.5 h-3.5 text-[#FF6B5A]" />
-              <span className="text-[10px] font-extrabold uppercase tracking-wider text-slate-300">
+              <Sparkles className="w-3.5 h-3.5 text-blue-600" />
+              <span className="text-[10px] font-extrabold uppercase tracking-wider text-slate-500">
                 Course Spotlight
               </span>
             </div>
@@ -400,16 +392,16 @@ export default function Hero({ onOpenDemo }) {
           </div>
 
           {/* Active Course Title */}
-          <h4 className="text-[13px] font-bold text-white group-hover:text-[#FF6B5A] transition-colors leading-snug line-clamp-1">
+          <h4 className="text-[13px] font-bold text-slate-900 group-hover:text-blue-600 transition-colors leading-snug line-clamp-1">
             {currentSlide.title}
           </h4>
 
-          <p className="mt-1 text-[11px] text-slate-400 line-clamp-2 leading-relaxed">
+          <p className="mt-1 text-[11px] text-slate-500 line-clamp-2 leading-relaxed">
             {currentSlide.tagline}
           </p>
 
           {/* Bottom Action */}
-          <div className="mt-3 pt-2.5 border-t border-white/10 flex items-center justify-between text-[11px] font-bold text-[#FF6B5A]">
+          <div className="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-[11px] font-bold text-blue-600">
             <span>Book Free Demo</span>
             <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
           </div>
@@ -417,7 +409,7 @@ export default function Hero({ onOpenDemo }) {
       </div>
 
       {/* ========================================================= */}
-      {/* 6. DESKTOP BOTTOM COURSE SLIDER TABS & CONTROLS (>= 640px) */}
+      {/* 5. DESKTOP BOTTOM COURSE SLIDER TABS & CONTROLS (>= 640px) */}
       {/* ========================================================= */}
       <div className="hidden sm:block absolute bottom-4 sm:bottom-6 inset-x-0 z-20 px-4 sm:px-10 lg:px-14 xl:px-20 pointer-events-auto">
         <div className="max-w-[1360px] mx-auto flex items-center justify-between gap-4">
@@ -433,13 +425,13 @@ export default function Hero({ onOpenDemo }) {
                   onClick={() => selectSlide(idx)}
                   className={`group relative text-left py-2 px-3 sm:px-3.5 rounded-xl transition-all duration-200 cursor-pointer shrink-0 border ${
                     isActive
-                      ? 'bg-white/10 border-white/25 text-white shadow-lg'
-                      : 'bg-black/30 hover:bg-white/[0.06] border-white/10 text-slate-400 hover:text-slate-200'
+                      ? 'bg-white border-blue-500 text-blue-900 shadow-md ring-1 ring-blue-500/20'
+                      : 'bg-white/80 hover:bg-white border-slate-200 text-slate-600 hover:text-slate-900 shadow-xs'
                   }`}
                   aria-label={`Go to slide ${idx + 1}: ${slide.title}`}
                 >
                   <div className="flex items-center gap-2">
-                    <span className={`text-[10px] font-mono font-bold ${isActive ? 'text-[#FF6B5A]' : 'text-slate-500'}`}>
+                    <span className={`text-[10px] font-mono font-bold ${isActive ? 'text-blue-600' : 'text-slate-400'}`}>
                       0{idx + 1}
                     </span>
                     <span className="text-[11px] sm:text-[12px] font-bold tracking-tight whitespace-nowrap">
@@ -449,9 +441,9 @@ export default function Hero({ onOpenDemo }) {
 
                   {/* Animated Progress Bar on Active Tab */}
                   {isActive && (
-                    <div className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-white/10 rounded-b-xl overflow-hidden">
+                    <div className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-slate-100 rounded-b-xl overflow-hidden">
                       <div 
-                        className="h-full bg-[#E94B3C] transition-all duration-75 ease-linear"
+                        className="h-full bg-blue-600 transition-all duration-75 ease-linear"
                         style={{ width: `${progress}%` }}
                       />
                     </div>
@@ -467,7 +459,7 @@ export default function Hero({ onOpenDemo }) {
               type="button"
               onClick={goToPrevSlide}
               aria-label="Previous Course"
-              className="w-8 h-8 rounded-lg bg-black/40 hover:bg-white/15 border border-white/15 text-white flex items-center justify-center transition-all cursor-pointer"
+              className="w-8 h-8 rounded-lg bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 flex items-center justify-center transition-all cursor-pointer shadow-xs"
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
@@ -476,7 +468,7 @@ export default function Hero({ onOpenDemo }) {
               type="button"
               onClick={() => setIsPaused(!isPaused)}
               aria-label={isPaused ? 'Play slide rotation' : 'Pause slide rotation'}
-              className="w-8 h-8 rounded-lg bg-black/40 hover:bg-white/15 border border-white/15 text-slate-300 hover:text-white flex items-center justify-center transition-all cursor-pointer"
+              className="w-8 h-8 rounded-lg bg-white hover:bg-slate-50 border border-slate-200 text-slate-500 hover:text-slate-800 flex items-center justify-center transition-all cursor-pointer shadow-xs"
               title={isPaused ? 'Resume autoplay' : 'Pause autoplay'}
             >
               {isPaused ? <Play className="w-3.5 h-3.5" /> : <Pause className="w-3.5 h-3.5" />}
@@ -486,7 +478,7 @@ export default function Hero({ onOpenDemo }) {
               type="button"
               onClick={goToNextSlide}
               aria-label="Next Course"
-              className="w-8 h-8 rounded-lg bg-black/40 hover:bg-white/15 border border-white/15 text-white flex items-center justify-center transition-all cursor-pointer"
+              className="w-8 h-8 rounded-lg bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 flex items-center justify-center transition-all cursor-pointer shadow-xs"
             >
               <ChevronRight className="w-4 h-4" />
             </button>

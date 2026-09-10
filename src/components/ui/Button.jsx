@@ -23,15 +23,15 @@ export default function Button({
   const baseClasses =
     'group inline-flex items-center justify-center font-bold tracking-wide cursor-pointer select-none ' +
     'transition-[transform,box-shadow,background-color,border-color,color] duration-200 ease-out ' +
-    'focus:outline-none focus-visible:ring-2 focus-visible:ring-[#E94B3C] focus-visible:ring-offset-2';
+    'focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2';
 
   const variantClasses = {
     primary:
-      'bg-[#E94B3C] hover:bg-[#D4382A] text-white rounded-[8px] shadow-sm hover:shadow-lg hover:shadow-[#E94B3C]/25 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97]',
+      'bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-md hover:shadow-lg hover:shadow-blue-500/25 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97]',
     secondary:
-      'bg-white hover:bg-slate-50 text-[#1C2533] border border-[rgba(28,37,51,0.18)] hover:border-[#E94B3C]/50 rounded-[8px] shadow-2xs hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97]',
+      'bg-white hover:bg-slate-50 text-slate-800 border border-slate-200 hover:border-blue-500/50 rounded-full shadow-2xs hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97]',
     link:
-      'bg-transparent text-[#1C2533] hover:text-[#E94B3C] p-0 font-bold underline underline-offset-4 decoration-1 hover:decoration-[#E94B3C] hover:underline-offset-[6px] active:scale-[0.98] focus-visible:ring-offset-0'
+      'bg-transparent text-blue-600 hover:text-blue-700 p-0 font-bold underline underline-offset-4 decoration-1 hover:decoration-blue-600 hover:underline-offset-[6px] active:scale-[0.98] focus-visible:ring-offset-0'
   };
 
   const combinedClasses = `${baseClasses} ${variant !== 'link' ? sizeClasses[size] : ''} ${variantClasses[variant]} ${className}`;
