@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { Sparkles, Layers, ArrowRight, ArrowUpRight, GraduationCap, Clock, CheckCircle2, ChevronDown, ChevronUp, Search, SlidersHorizontal, Terminal } from 'lucide-react';
+import { Sparkles, Layers, ArrowRight, ArrowUpRight, GraduationCap, Clock, CheckCircle2, ChevronDown, ChevronUp, Search, SlidersHorizontal, Terminal, Monitor, LayoutGrid } from 'lucide-react';
 import CourseBottomSheet from './CourseBottomSheet';
 import Button from './ui/Button';
 
@@ -1015,18 +1015,247 @@ function readLocation(pathname) {
   const discipline = match[1] ? SLUG_TO_DISCIPLINE[match[1]] || 'all' : 'all';
   const course = match[2]
     ? ALL_COURSES.find(
-        (c) => c.discipline === discipline && courseSlug(c.title) === match[2]
-      ) || null
+      (c) => c.discipline === discipline && courseSlug(c.title) === match[2]
+    ) || null
     : null;
 
   return { inCatalogue: true, discipline, course };
 }
 
-// High-Tech Architectural Bento Course Card with Media Viewport
-// Redesigned wide split architecture:
-// Left: Framed high-definition media viewport with live telemetry & HUD badges (preserving authentic course image)
-// Right: Full untruncated grotesque typography, rich engineering specs, technical software pills, and electric blue action trigger
-function CourseTile({ item, onSelectCourse }) {
+// Interactive Master Engineering Studio Console
+// An ultra-futuristic CAD Workstation Deck:
+// Left: Interactive module switch deck with real-time selection
+// Right: Master live CAD viewport with authentic photograph, deep syllabus modules, software stack, and syllabus trigger
+function StudioConsole({ group, activeCourse, onSelectCourse, onOpenCourse, onOpenDemo }) {
+  const currentCourse = activeCourse || group.courses[0];
+  const toolsList = currentCourse.tools ? currentCourse.tools.split('·').map((t) => t.trim()).filter(Boolean) : [];
+  const modulesList = currentCourse.keyModules ? currentCourse.keyModules.slice(0, 4) : [];
+
+  return (
+    <div className="w-full rounded-[26px] bg-white border border-slate-200/90 shadow-xl shadow-blue-500/5 overflow-hidden p-4 sm:p-6 lg:p-7">
+      <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 items-stretch">
+        {/* LEFT NAVIGATOR DECK */}
+        <div className="w-full lg:w-[38%] shrink-0 flex flex-col justify-between space-y-3">
+          <div>
+            <div className="flex items-center justify-between pb-2.5 mb-2 border-b border-slate-100 font-mono text-[10.5px] font-extrabold text-slate-500 uppercase tracking-wider">
+              <span>MODULE SELECTOR</span>
+              <span className="text-[#0D62FE]">{group.courses.length} PROGRAMS</span>
+            </div>
+
+            {/* Mobile Horizontal Pill Selector */}
+            <div className="flex lg:hidden items-center gap-2 overflow-x-auto no-scrollbar pb-2 mb-2">
+              {group.courses.map((course, idx) => {
+                const isActive = course.id === currentCourse.id;
+                return (
+                  <button
+                    key={course.id}
+                    type="button"
+                    onClick={() => onSelectCourse(course)}
+                    className={`shrink-0 px-3 py-1.5 rounded-full font-mono text-[10.5px] font-bold transition-all cursor-pointer ${
+                      isActive
+                        ? 'bg-[#0D62FE] text-white shadow-xs'
+                        : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                    }`}
+                  >
+                    [ 0{idx + 1} {course.title.split(' ')[0]} ]
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Desktop / Tablet Vertical Module Stack */}
+            <div className="hidden lg:flex flex-col space-y-2.5">
+              {group.courses.map((course, idx) => {
+                const isActive = course.id === currentCourse.id;
+                return (
+                  <button
+                    key={course.id}
+                    type="button"
+                    onClick={() => onSelectCourse(course)}
+                    className={`w-full text-left p-3.5 sm:p-4 rounded-2xl transition-all duration-200 cursor-pointer border ${
+                      isActive
+                        ? 'bg-blue-50/70 border-[#0D62FE] shadow-sm ring-1 ring-[#0D62FE]/30'
+                        : 'bg-white hover:bg-slate-50 border-slate-200/80 hover:border-slate-300'
+                    }`}
+                  >
+                    <div className="flex items-center justify-between gap-2 mb-1.5 font-mono text-[9.5px]">
+                      <span className={`font-black ${isActive ? 'text-[#0D62FE]' : 'text-slate-400'}`}>
+                        [ MOD // 0{idx + 1} ]
+                      </span>
+                      {course.duration && (
+                        <span className="px-2 py-0.5 rounded bg-white/90 border border-slate-200 font-semibold text-slate-600">
+                          {course.duration}
+                        </span>
+                      )}
+                    </div>
+
+                    <h4 className={`text-[15px] sm:text-[16px] font-black leading-snug tracking-tight transition-colors ${
+                      isActive ? 'text-slate-950' : 'text-slate-700'
+                    }`}>
+                      {course.title}
+                    </h4>
+
+                    <div className="flex items-center justify-between mt-2.5 pt-2 border-t border-slate-100/80 font-mono text-[10px]">
+                      <span className="text-slate-500 truncate max-w-[200px]">
+                        {course.category || course.discipline}
+                      </span>
+                      {isActive && (
+                        <span className="inline-flex items-center gap-1 font-bold text-[#0D62FE]">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#0D62FE] animate-pulse" />
+                          <span>ACTIVE SPEC</span>
+                        </span>
+                      )}
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Quick Accreditation Banner */}
+          <div className="hidden lg:flex items-center gap-2 p-3 rounded-xl bg-slate-50 border border-slate-100 font-mono text-[11px] text-slate-600">
+            <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+            <span>Govt &amp; GCC Accredited · 100% Placement Support</span>
+          </div>
+        </div>
+
+        {/* RIGHT MASTER CAD VIEWPORT & SPEC SHEET */}
+        <div className="flex-1 flex flex-col justify-between bg-slate-50/60 rounded-2xl border border-slate-200/80 p-4 sm:p-6">
+          <div>
+            {/* Precision Viewport Header */}
+            <div className="flex flex-wrap items-center justify-between gap-2 pb-3 mb-3.5 border-b border-slate-200">
+              <span className="font-mono text-[10.5px] font-extrabold text-[#0D62FE] uppercase tracking-wider">
+                [ SPEC VIEWPORT // {currentCourse.discipline?.toUpperCase() || 'CAD'} ]
+              </span>
+              <span className="inline-flex items-center gap-1 font-mono text-[10.5px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200/70 px-2.5 py-0.5 rounded-md">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                <span>GOVT &amp; GCC ACCREDITED</span>
+              </span>
+            </div>
+
+            {/* Framed Cinematic Media Viewport */}
+            <div className="relative aspect-[16/9] w-full rounded-[18px] overflow-hidden bg-slate-950 mb-4 shadow-md">
+              <img
+                src={currentCourse.img}
+                alt={currentCourse.title}
+                className="w-full h-full object-cover object-center transition-transform duration-700 hover:scale-105"
+                onError={(e) => {
+                  e.currentTarget.onerror = null;
+                  e.currentTarget.src = '/images/cad_bim_hero_bg.jpg';
+                }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-black/25 pointer-events-none" />
+
+              {/* Viewport HUD Overlays */}
+              <div className="absolute top-3 left-3 z-10">
+                <span className="font-mono text-[10px] font-extrabold uppercase tracking-wider px-3 py-1 rounded-lg bg-white/95 backdrop-blur-md text-[#0D62FE] border border-white/50 shadow-xs">
+                  [ {currentCourse.category || currentCourse.discipline} ]
+                </span>
+              </div>
+
+              {currentCourse.duration && (
+                <div className="absolute top-3 right-3 z-10">
+                  <span className="inline-flex items-center gap-1.5 font-mono text-[10px] font-bold px-3 py-1 rounded-lg bg-black/70 backdrop-blur-md text-white border border-white/20 shadow-xs">
+                    <Clock className="w-3.5 h-3.5 text-blue-400" />
+                    {currentCourse.duration}
+                  </span>
+                </div>
+              )}
+
+              <div className="absolute bottom-3 left-3 right-3 z-10 flex items-center justify-between text-[10px] font-mono font-bold text-white/90">
+                <span className="inline-flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
+                  <span>LIVE INDUSTRIAL CAD WORKSTATION</span>
+                </span>
+                <span className="text-white/60 uppercase tracking-widest hidden sm:inline-block">
+                  CADD LAB MANJERI
+                </span>
+              </div>
+            </div>
+
+            {/* Full Untruncated Course Title */}
+            <h3 className="text-[20px] sm:text-[23px] font-black text-slate-950 tracking-tight leading-snug">
+              {currentCourse.title}
+            </h3>
+
+            {/* Description */}
+            <p className="text-xs sm:text-[13.5px] text-slate-600 font-normal leading-relaxed mt-2">
+              {currentCourse.description}
+            </p>
+
+            {/* Key Curriculum Highlights */}
+            {modulesList.length > 0 && (
+              <div className="mt-4 pt-3.5 border-t border-slate-200/80">
+                <span className="text-[10px] font-mono font-extrabold text-slate-400 uppercase tracking-wider block mb-2">
+                  CORE CURRICULUM HIGHLIGHTS:
+                </span>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 font-mono text-[11px] text-slate-700">
+                  {modulesList.map((mod, i) => (
+                    <div key={i} className="flex items-start gap-2 bg-white p-2 rounded-lg border border-slate-200/70 shadow-2xs">
+                      <span className="text-[#0D62FE] font-black text-xs shrink-0 mt-0.5">✓</span>
+                      <span className="line-clamp-2">{mod}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Software Stack Covered */}
+            {toolsList.length > 0 && (
+              <div className="mt-4 pt-3 border-t border-slate-200/80">
+                <span className="text-[10px] font-mono font-extrabold text-slate-400 uppercase tracking-wider block mb-2">
+                  SOFTWARE &amp; TOOLS MASTERED:
+                </span>
+                <div className="flex flex-wrap items-center gap-1.5 font-mono">
+                  {toolsList.map((tool, idx) => (
+                    <span
+                      key={idx}
+                      className="text-[10.5px] font-bold text-slate-700 bg-white border border-slate-200/80 px-2.5 py-0.5 rounded-lg flex items-center gap-1 shadow-2xs"
+                    >
+                      <span className="text-[#0D62FE] font-black">+</span>
+                      <span>{tool}</span>
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Action Row */}
+          <div className="mt-6 pt-4 border-t border-slate-200 flex flex-wrap items-center justify-between gap-3">
+            <div className="flex items-center gap-2 font-mono text-[11px] font-bold text-slate-500">
+              <span className="w-2 h-2 rounded-full bg-blue-600" />
+              <span>100% Placement Support &amp; Live Industry Projects</span>
+            </div>
+
+            <div className="flex items-center gap-2.5">
+              {onOpenDemo && (
+                <button
+                  type="button"
+                  onClick={onOpenDemo}
+                  className="px-4 py-2.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-300 text-slate-700 font-mono text-[11px] font-bold uppercase tracking-wider transition-all cursor-pointer shadow-2xs"
+                >
+                  FREE DEMO
+                </button>
+              )}
+              <button
+                type="button"
+                onClick={() => onOpenCourse(currentCourse)}
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#0D62FE] hover:bg-[#0052FF] text-white font-mono text-[11px] font-bold uppercase tracking-wider shadow-sm hover:shadow-md hover:shadow-blue-500/25 transition-all cursor-pointer"
+              >
+                <span>EXPLORE SYLLABUS SHEET</span>
+                <ArrowUpRight className="w-3.5 h-3.5" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Stark White High-Tech Architectural Spec Card matching Section 01 of the reference design
+function ArchitecturalSpecCard({ item, onSelectCourse }) {
   const toolsList = item.tools ? item.tools.split('·').map((t) => t.trim()).filter(Boolean) : [];
 
   return (
@@ -1041,113 +1270,85 @@ function CourseTile({ item, onSelectCourse }) {
         }
       }}
       aria-label={`${item.title} — view syllabus`}
-      className="group relative flex flex-col sm:flex-row w-full rounded-[24px] bg-white border border-slate-200/90 hover:border-[#0D62FE] text-left cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_22px_48px_rgba(13,98,254,0.13)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0D62FE] p-3.5 sm:p-4 select-none overflow-hidden gap-4 sm:gap-4.5"
+      className="group relative flex flex-col justify-between w-full rounded-[24px] bg-white border border-slate-200/90 hover:border-[#0D62FE] text-left cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/10 p-5 select-none overflow-hidden"
     >
-      {/* Left Media Viewport Frame (preserving authentic course photograph) */}
-      <div className="relative w-full sm:w-[40%] md:w-[38%] shrink-0 aspect-[16/10] sm:aspect-auto sm:min-h-[220px] rounded-[18px] overflow-hidden bg-slate-950 shadow-2xs">
-        <img
-          src={item.img}
-          alt={item.title}
-          loading="lazy"
-          onError={(e) => {
-            e.currentTarget.onerror = null;
-            e.currentTarget.src = '/images/cad_bim_hero_bg.jpg';
-          }}
-          className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
-        />
-
-        {/* Ambient Scrim Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/25 to-black/25 pointer-events-none" />
-
-        {/* Floating Category Pill */}
-        <div className="absolute top-2.5 left-2.5 z-10">
-          <span className="font-mono text-[9px] sm:text-[9.5px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md bg-white/95 backdrop-blur-md text-[#0D62FE] border border-white/40 shadow-xs">
-            [ {item.category || item.discipline} ]
+      <div>
+        {/* Top Technical Header Row */}
+        <div className="flex items-center justify-between gap-2 mb-3.5">
+          <span className="font-mono text-[10px] font-extrabold uppercase tracking-wider px-2 py-0.5 rounded bg-blue-50/80 text-[#0D62FE] border border-blue-200/70">
+            [ SPEC // {item.discipline?.replace(/[^a-zA-Z]/g, '').substring(0, 4)?.toUpperCase() || 'CAD'} ]
           </span>
-        </div>
-
-        {/* Duration Badge */}
-        {item.duration && (
-          <div className="absolute top-2.5 right-2.5 z-10">
-            <span className="inline-flex items-center gap-1 font-mono text-[9px] sm:text-[9.5px] font-semibold px-2 py-1 rounded-md bg-black/60 backdrop-blur-md text-white border border-white/20 shadow-xs">
-              <Clock className="w-3 h-3 text-blue-400" />
+          {item.duration && (
+            <span className="font-mono text-[10px] font-bold text-slate-500 flex items-center gap-1">
+              <Clock className="w-3 h-3 text-[#0D62FE]" />
               {item.duration}
             </span>
-          </div>
-        )}
-
-        {/* Bottom Accreditation watermark inside viewport */}
-        <div className="absolute bottom-2 left-2.5 right-2.5 z-10 flex items-center justify-between text-[9.5px] font-mono font-bold text-white/90">
-          <span className="inline-flex items-center gap-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_6px_rgba(52,211,153,0.8)]" />
-            <span>LIVE INDUSTRIAL CAD</span>
-          </span>
-          <span className="text-white/60 text-[8.5px] uppercase tracking-wider hidden sm:inline">
-            CADD LAB
-          </span>
-        </div>
-      </div>
-
-      {/* Right Technical Specifications & Curriculum Details */}
-      <div className="flex-1 flex flex-col justify-between min-w-0 py-0.5">
-        <div>
-          {/* Technical Metadata Header */}
-          <div className="flex items-center justify-between gap-2 mb-1.5">
-            <span className="font-mono text-[10px] font-extrabold text-[#0D62FE] uppercase tracking-wider px-2 py-0.5 rounded bg-blue-50/80 border border-blue-200/70">
-              [ SPEC // {item.discipline?.replace(/[^a-zA-Z]/g, '').substring(0, 4)?.toUpperCase() || 'CAD'} ]
-            </span>
-
-            <span className="inline-flex items-center gap-1 text-[10px] font-mono font-bold text-emerald-700 bg-emerald-50 border border-emerald-200/70 px-2 py-0.5 rounded">
-              <CheckCircle2 className="w-3 h-3 text-emerald-600" />
-              <span>GOVT CERTIFIED</span>
-            </span>
-          </div>
-
-          {/* Full Course Title - NO TRUNCATION */}
-          <h4 className="text-[17px] sm:text-[18px] lg:text-[19px] font-black text-slate-950 group-hover:text-[#0D62FE] transition-colors leading-snug tracking-tight">
-            {item.title}
-          </h4>
-
-          {/* Clean Description */}
-          <p className="text-xs sm:text-[13px] text-slate-600 font-normal leading-relaxed mt-1.5 line-clamp-2 sm:line-clamp-3">
-            {item.description}
-          </p>
-
-          {/* Software Modules with '+' prefix */}
-          {toolsList.length > 0 && (
-            <div className="mt-3 pt-2 border-t border-slate-100">
-              <div className="flex flex-wrap items-center gap-1.5 font-mono">
-                {toolsList.slice(0, 4).map((tool, idx) => (
-                  <span
-                    key={idx}
-                    className="text-[10px] font-bold text-slate-700 bg-slate-50 group-hover:bg-blue-50/60 border border-slate-200 group-hover:border-blue-200/80 px-2 py-0.5 rounded-md transition-colors flex items-center gap-0.5"
-                  >
-                    <span className="text-[#0D62FE] font-black">+</span>
-                    <span>{tool}</span>
-                  </span>
-                ))}
-                {toolsList.length > 4 && (
-                  <span className="text-[10px] font-mono font-bold text-slate-400 bg-slate-50 px-1.5 py-0.5 rounded border border-slate-200">
-                    +{toolsList.length - 4}
-                  </span>
-                )}
-              </div>
-            </div>
           )}
         </div>
 
-        {/* Card Footer: Live Verification & Electric Blue Action Trigger */}
-        <div className="pt-3 mt-3 border-t border-slate-100 flex items-center justify-between gap-2">
-          <span className="text-[10.5px] font-mono font-bold text-slate-500 flex items-center gap-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-blue-600" />
-            <span className="hidden sm:inline">100% Placement Assistance</span>
-            <span className="sm:hidden">Placement Assist</span>
-          </span>
-
-          <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-[#0D62FE] group-hover:bg-[#0052FF] text-white font-mono text-[10.5px] font-bold uppercase tracking-wider shadow-sm group-hover:shadow-md group-hover:shadow-blue-500/25 transition-all shrink-0">
-            <span>SYLLABUS</span>
-            <ArrowUpRight className="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+        {/* Framed Image Viewport */}
+        <div className="relative aspect-[16/9] w-full rounded-[16px] overflow-hidden bg-slate-950 mb-4 shadow-xs">
+          <img
+            src={item.img}
+            alt={item.title}
+            loading="lazy"
+            onError={(e) => {
+              e.currentTarget.onerror = null;
+              e.currentTarget.src = '/images/cad_bim_hero_bg.jpg';
+            }}
+            className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-black/20 pointer-events-none" />
+          <div className="absolute bottom-2 left-2.5 right-2.5 z-10 flex items-center justify-between text-[9px] font-mono font-bold text-white/90">
+            <span className="inline-flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              <span>LIVE INDUSTRIAL CAD</span>
+            </span>
+            <span className="text-white/60 uppercase">CADD LAB</span>
           </div>
+        </div>
+
+        {/* Full Untruncated Title */}
+        <h4 className="text-[17px] sm:text-[18px] font-black text-slate-950 group-hover:text-[#0D62FE] transition-colors leading-snug tracking-tight">
+          {item.title}
+        </h4>
+
+        {/* Description */}
+        <p className="text-xs text-slate-600 font-normal leading-relaxed mt-2 line-clamp-2">
+          {item.description}
+        </p>
+
+        {/* Software Pills */}
+        {toolsList.length > 0 && (
+          <div className="flex flex-wrap items-center gap-1.5 pt-3 font-mono">
+            {toolsList.slice(0, 3).map((tool, idx) => (
+              <span
+                key={idx}
+                className="text-[10px] font-bold text-slate-700 bg-slate-50 border border-slate-200 px-2 py-0.5 rounded flex items-center gap-0.5"
+              >
+                <span className="text-[#0D62FE] font-black">+</span>
+                <span>{tool}</span>
+              </span>
+            ))}
+            {toolsList.length > 3 && (
+              <span className="text-[10px] font-mono font-bold text-slate-400 bg-slate-50 px-1.5 py-0.5 rounded border border-slate-200">
+                +{toolsList.length - 3}
+              </span>
+            )}
+          </div>
+        )}
+      </div>
+
+      {/* Card Footer with Signature Blue Square Arrow Button matching Section 01 of reference */}
+      <div className="pt-3.5 mt-4 border-t border-slate-100 flex items-center justify-between">
+        <span className="inline-flex items-center gap-1 text-[10.5px] font-mono font-bold text-emerald-700">
+          <CheckCircle2 className="w-3 h-3 text-emerald-600" />
+          <span>GOVT CERTIFIED</span>
+        </span>
+
+        {/* Signature blue square arrow button from reference image */}
+        <div className="w-8 h-8 rounded-lg bg-[#0D62FE] group-hover:bg-[#0052FF] text-white flex items-center justify-center transition-all shadow-sm group-hover:shadow-md group-hover:shadow-blue-500/30">
+          <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
         </div>
       </div>
     </div>
@@ -1176,6 +1377,8 @@ export default function Features({ onOpenDemo }) {
   const [activeDiscipline, setActiveDiscipline] = useState(initialLocation.discipline);
   const [expandedDisciplines, setExpandedDisciplines] = useState({});
   const [searchQuery, setSearchQuery] = useState('');
+  const [activeCourseByGroup, setActiveCourseByGroup] = useState({});
+  const [curriculumViewMode, setCurriculumViewMode] = useState('studio'); // 'studio' | 'matrix'
   const [isMobile, setIsMobile] = useState(
     typeof window !== 'undefined' ? window.innerWidth < 640 : false
   );
@@ -1361,11 +1564,10 @@ export default function Features({ onOpenDemo }) {
                 key={tool}
                 type="button"
                 onClick={() => setSearchQuery(tool.toLowerCase() === searchQuery.toLowerCase() ? '' : tool.toLowerCase())}
-                className={`px-2 py-0.5 rounded border transition-all cursor-pointer ${
-                  searchQuery.toLowerCase() === tool.toLowerCase()
+                className={`px-2 py-0.5 rounded border transition-all cursor-pointer ${searchQuery.toLowerCase() === tool.toLowerCase()
                     ? 'bg-[#0D62FE] text-white border-[#0D62FE]'
                     : 'bg-white text-slate-600 border-slate-200 hover:border-[#0D62FE] hover:text-[#0D62FE]'
-                }`}
+                  }`}
               >
                 [ {tool} ]
               </button>
@@ -1373,39 +1575,70 @@ export default function Features({ onOpenDemo }) {
           </div>
         </div>
 
-        {/* DISCIPLINE FILTER — horizontal swipeable pill carousel on mobile, flex-wrap on desktop */}
-        <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-3 mb-8 -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap border-b border-slate-200/80">
-          <button
-            type="button"
-            onClick={() => {
-              setSearchQuery('');
-              selectDiscipline('all');
-            }}
-            className={`shrink-0 px-3.5 py-1.5 rounded-full font-mono text-[11px] font-bold transition-all cursor-pointer ${
-              activeDiscipline === 'all' && !searchQuery
-                ? 'bg-[#0D62FE] text-white shadow-sm'
-                : 'bg-white text-slate-700 hover:bg-slate-100 hover:text-[#0D62FE] border border-slate-200 shadow-2xs'
-            }`}
-          >
-            [ ALL COURSES ({ALL_COURSES.length}) ]
-          </button>
-          {COURSES_BY_DISCIPLINE.map((group) => (
+        {/* DISCIPLINE FILTER & VIEW MODE SWITCHER */}
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-3 mb-8 border-b border-slate-200/80">
+          {/* Horizontal scrollable discipline pills */}
+          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap">
             <button
-              key={group.name}
               type="button"
               onClick={() => {
                 setSearchQuery('');
-                selectDiscipline(group.name);
+                selectDiscipline('all');
               }}
-              className={`shrink-0 px-3.5 py-1.5 rounded-full font-mono text-[11px] font-bold transition-all cursor-pointer ${
-                activeDiscipline === group.name && !searchQuery
+              className={`shrink-0 px-3.5 py-1.5 rounded-full font-mono text-[11px] font-bold transition-all cursor-pointer ${activeDiscipline === 'all' && !searchQuery
                   ? 'bg-[#0D62FE] text-white shadow-sm'
                   : 'bg-white text-slate-700 hover:bg-slate-100 hover:text-[#0D62FE] border border-slate-200 shadow-2xs'
+                }`}
+            >
+              [ ALL COURSES ({ALL_COURSES.length}) ]
+            </button>
+            {COURSES_BY_DISCIPLINE.map((group) => (
+              <button
+                key={group.name}
+                type="button"
+                onClick={() => {
+                  setSearchQuery('');
+                  selectDiscipline(group.name);
+                }}
+                className={`shrink-0 px-3.5 py-1.5 rounded-full font-mono text-[11px] font-bold transition-all cursor-pointer ${activeDiscipline === group.name && !searchQuery
+                    ? 'bg-[#0D62FE] text-white shadow-sm'
+                    : 'bg-white text-slate-700 hover:bg-slate-100 hover:text-[#0D62FE] border border-slate-200 shadow-2xs'
+                  }`}
+              >
+                [ {group.shortName} ({group.courses.length}) ]
+              </button>
+            ))}
+          </div>
+
+          {/* View Mode Toggle: Interactive Studio Console vs Stark White Spec Matrix */}
+          <div className="flex items-center gap-1 p-1 rounded-xl bg-slate-100/90 border border-slate-200 shrink-0 self-start md:self-auto">
+            <button
+              type="button"
+              onClick={() => setCurriculumViewMode('studio')}
+              aria-label="Studio Console View"
+              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-mono text-[10.5px] font-bold transition-all cursor-pointer ${
+                curriculumViewMode === 'studio'
+                  ? 'bg-[#0D62FE] text-white shadow-xs'
+                  : 'text-slate-600 hover:text-slate-900'
               }`}
             >
-              [ {group.shortName} ({group.courses.length}) ]
+              <Monitor className="w-3.5 h-3.5" />
+              <span>STUDIO CONSOLE</span>
             </button>
-          ))}
+            <button
+              type="button"
+              onClick={() => setCurriculumViewMode('matrix')}
+              aria-label="Bento Spec Matrix View"
+              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-mono text-[10.5px] font-bold transition-all cursor-pointer ${
+                curriculumViewMode === 'matrix'
+                  ? 'bg-[#0D62FE] text-white shadow-xs'
+                  : 'text-slate-600 hover:text-slate-900'
+              }`}
+            >
+              <LayoutGrid className="w-3.5 h-3.5" />
+              <span>SPEC MATRIX</span>
+            </button>
+          </div>
         </div>
 
         {/* THE CATALOGUE — Search results, compact mobile preview with View All, or full multi-column grid */}
@@ -1425,9 +1658,9 @@ export default function Features({ onOpenDemo }) {
             </div>
 
             {searchFilteredCourses.length > 0 ? (
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
                 {searchFilteredCourses.map((item) => (
-                  <CourseTile
+                  <ArchitecturalSpecCard
                     key={item.id}
                     item={item}
                     onSelectCourse={openCourse}
@@ -1463,7 +1696,7 @@ export default function Features({ onOpenDemo }) {
 
             <div className="grid grid-cols-1 gap-4">
               {FEATURED_MOBILE_COURSES.map((item) => (
-                <CourseTile
+                <ArchitecturalSpecCard
                   key={item.id}
                   item={item}
                   onSelectCourse={openCourse}
@@ -1496,6 +1729,7 @@ export default function Features({ onOpenDemo }) {
                 ? group.courses
                 : group.courses.slice(0, defaultLimit);
               const remainingCount = group.courses.length - defaultLimit;
+              const activeCourse = activeCourseByGroup[group.name] || group.courses[0];
 
               return (
                 <div key={group.name} id={`discipline-${group.shortName.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}>
@@ -1515,9 +1749,9 @@ export default function Features({ onOpenDemo }) {
                       </div>
                     </div>
 
-                    {/* Header quick toggle */}
+                    {/* Header quick action */}
                     <div className="flex items-center gap-3">
-                      {hasMore && (
+                      {curriculumViewMode === 'matrix' && hasMore && (
                         <button
                           type="button"
                           onClick={() => toggleExpandDiscipline(group.name)}
@@ -1535,19 +1769,31 @@ export default function Features({ onOpenDemo }) {
                     </div>
                   </div>
 
-                  {/* Spacious 2-column architectural bento course grid */}
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-6">
-                    {displayedCourses.map((item) => (
-                      <CourseTile
-                        key={item.id}
-                        item={item}
-                        onSelectCourse={openCourse}
-                      />
-                    ))}
-                  </div>
+                  {/* Render either Interactive Studio Console or Bento Spec Matrix */}
+                  {curriculumViewMode === 'studio' ? (
+                    <StudioConsole
+                      group={group}
+                      activeCourse={activeCourse}
+                      onSelectCourse={(course) =>
+                        setActiveCourseByGroup((prev) => ({ ...prev, [group.name]: course }))
+                      }
+                      onOpenCourse={openCourse}
+                      onOpenDemo={onOpenDemo}
+                    />
+                  ) : (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+                      {displayedCourses.map((item) => (
+                        <ArchitecturalSpecCard
+                          key={item.id}
+                          item={item}
+                          onSelectCourse={openCourse}
+                        />
+                      ))}
+                    </div>
+                  )}
 
-                  {/* Bottom View All / Show Less CTA for disciplines with > defaultLimit courses */}
-                  {hasMore && (
+                  {/* Bottom View All / Show Less CTA for Matrix mode with > defaultLimit courses */}
+                  {curriculumViewMode === 'matrix' && hasMore && (
                     <div className="mt-6 flex justify-center w-full px-2 sm:px-0">
                       <button
                         type="button"
