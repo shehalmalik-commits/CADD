@@ -1,76 +1,84 @@
 import React, { useState } from 'react';
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import StatsBanner from './components/StatsBanner';
-import AboutUs from './components/AboutUs';
-import PlacementSection from './components/PlacementSection';
-import HomepageEvents from './components/events/HomepageEvents';
-import Features from './components/Features';
-import Integrations from './components/Integrations';
-import Testimonials from './components/Testimonials';
-import FaqSection from './components/FaqSection';
-import Footer from './components/Footer';
+import HeaderFinbiz from './components/finbiz/HeaderFinbiz';
+import HeroFinbiz from './components/finbiz/HeroFinbiz';
+import ServicesCards from './components/finbiz/ServicesCards';
+import AboutFinbiz from './components/finbiz/AboutFinbiz';
+import TeamFinbiz from './components/finbiz/TeamFinbiz';
+import PortfolioFinbiz from './components/finbiz/PortfolioFinbiz';
+import TestimonialsFinbiz from './components/finbiz/TestimonialsFinbiz';
+import RevolutionaryFinbiz from './components/finbiz/RevolutionaryFinbiz';
+import BlogFinbiz from './components/finbiz/BlogFinbiz';
+import NewsletterFinbiz from './components/finbiz/NewsletterFinbiz';
+import FooterFinbiz from './components/finbiz/FooterFinbiz';
 import DemoModal from './components/DemoModal';
 import FloatingContact from './components/FloatingContact';
-import { getStoredEvents } from './data/mockEvents';
 import SmoothScroll from './components/motion/SmoothScroll';
 import useOverlayHistory from './hooks/useOverlayHistory';
 
 export default function App() {
   const [demoOpen, setDemoOpen] = useState(false);
-  const [events] = useState(() => getStoredEvents());
+  const [demoInterest, setDemoInterest] = useState('');
+
+  const handleOpenDemo = (interest = '') => {
+    if (typeof interest === 'string' && interest.trim().length > 0) {
+      setDemoInterest(interest);
+    }
+    setDemoOpen(true);
+  };
 
   // Back / swipe-back closes the enquiry modal instead of leaving the site.
   useOverlayHistory(demoOpen, () => setDemoOpen(false));
 
   return (
     <SmoothScroll>
-      <div className="min-h-screen bg-white text-slate-900 font-['Plus_Jakarta_Sans',sans-serif] selection:bg-blue-600/20 selection:text-blue-700 overflow-x-hidden">
-        {/* Navigation Bar (Floating Capsule Top Header) */}
-        <Navbar onOpenDemo={() => setDemoOpen(true)} />
+      <div className="min-h-screen bg-white text-[#111827] font-['Plus_Jakarta_Sans',sans-serif] selection:bg-[#C4161C]/15 selection:text-[#C4161C] overflow-x-hidden">
+        
+        {/* Finbiz Header with Left Angled Crimson Ribbon */}
+        <HeaderFinbiz onOpenDemo={() => handleOpenDemo()} />
 
-        {/* Main Landing Page Flow */}
         <main>
-          {/* Section 1: Hero Section */}
-          <Hero onOpenDemo={() => setDemoOpen(true)} />
+          {/* Section 1: Hero Section ("Let's create your success." + Wave Mask) */}
+          <HeroFinbiz onOpenDemo={() => handleOpenDemo()} />
 
-          {/* Section 2: Why Choose Us & Career Journey (StatsBanner) */}
-          <StatsBanner onOpenDemo={() => setDemoOpen(true)} />
+          {/* Section 2: Services Section ("Together we can envision your business" + 3 Cards) */}
+          <ServicesCards onOpenDemo={() => handleOpenDemo()} />
 
-          {/* Section 3: Course Offerings */}
-          <Features onOpenDemo={() => setDemoOpen(true)} />
+          {/* Section 3: More About Us (Checklist + 78% Tilted Tablet + Rating Cards) */}
+          <AboutFinbiz onOpenDemo={() => handleOpenDemo()} />
 
-          {/* Section 4: Placement & Career Preparation */}
-          <PlacementSection onOpenDemo={() => setDemoOpen(true)} />
+          {/* Section 4: Placements Section (Executive Alumni Dossier) */}
+          <TeamFinbiz onOpenDemo={handleOpenDemo} />
 
-          {/* Section 5: Events & Campus Happenings */}
-          <HomepageEvents
-            events={events}
-            onOpenDemo={() => setDemoOpen(true)}
-          />
+          {/* Section 5: Portfolio Section (Awesome HR Portfolio + Mid Dark CTA Banner) */}
+          <PortfolioFinbiz onOpenDemo={handleOpenDemo} />
 
-          {/* Section 6: About Us */}
-          <AboutUs onOpenDemo={() => setDemoOpen(true)} />
+          {/* Section 6: Testimonials Section (Customer Testimonials with Floating Avatars) */}
+          <TestimonialsFinbiz />
 
-          {/* Section 7: Specialized Disciplines Course Explorer (Hidden for now, preserved for future use) */}
-          {/* <Integrations onOpenDemo={() => setDemoOpen(true)} /> */}
+          {/* Section 7: Revolutionary Solution Section (3D Cube + 2 Stat Boxes) */}
+          <RevolutionaryFinbiz onOpenDemo={() => handleOpenDemo()} />
 
-          {/* Section 8: Words of Appreciation Testimonials */}
-          <Testimonials />
+          {/* Section 8: Blog Section (Latest Blog Posts with Red Date Badges) */}
+          <BlogFinbiz onOpenDemo={() => handleOpenDemo()} />
 
-          {/* Section 9: Frequently Asked Questions & SEO */}
-          <FaqSection onOpenDemo={() => setDemoOpen(true)} />
+          {/* Section 9: Floating Red Newsletter Banner */}
+          <NewsletterFinbiz />
         </main>
 
-        {/* Footer with Floating Overlapping Newsletter */}
-        <Footer onOpenDemo={() => setDemoOpen(true)} />
+        {/* Section 10: Deep Dark 3-Column Footer */}
+        <FooterFinbiz onOpenDemo={() => handleOpenDemo()} />
 
-        {/* Always-available call & WhatsApp buttons */}
+        {/* Floating Call / WhatsApp / Instagram contact dock */}
         <FloatingContact />
 
-        {/* Admission & Enquiry Request Modal */}
-        <DemoModal isOpen={demoOpen} onClose={() => setDemoOpen(false)} />
+        {/* Admissions & Demo Enquiry Modal */}
+        <DemoModal
+          isOpen={demoOpen}
+          onClose={() => setDemoOpen(false)}
+          initialInterest={demoInterest}
+        />
       </div>
     </SmoothScroll>
   );
 }
+

@@ -344,11 +344,10 @@ export default function Testimonials() {
                   key={cat.id}
                   type="button"
                   onClick={() => setSelectedCategory(cat.id)}
-                  className={`px-3.5 py-1.5 rounded-full font-mono text-xs font-bold transition-all whitespace-nowrap cursor-pointer ${
-                    isActive
-                      ? 'bg-[#0D62FE] text-white shadow-sm'
-                      : 'bg-white border border-slate-200 text-slate-600 hover:text-[#0D62FE] hover:bg-slate-100'
-                  }`}
+                  className={`px-3.5 py-1.5 rounded-full font-mono text-xs font-bold transition-all whitespace-nowrap cursor-pointer ${isActive
+                    ? 'bg-[#0D62FE] text-white shadow-sm'
+                    : 'bg-white border border-slate-200 text-slate-600 hover:text-[#0D62FE] hover:bg-slate-100'
+                    }`}
                 >
                   [ {cat.label} ({cat.count}) ]
                 </button>
@@ -361,11 +360,10 @@ export default function Testimonials() {
             <button
               type="button"
               onClick={() => setViewMode('stream')}
-              className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full font-bold transition-all cursor-pointer ${
-                viewMode === 'stream'
-                  ? 'bg-[#0D62FE] text-white'
-                  : 'text-slate-600 hover:text-slate-900'
-              }`}
+              className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full font-bold transition-all cursor-pointer ${viewMode === 'stream'
+                ? 'bg-[#0D62FE] text-white'
+                : 'text-slate-600 hover:text-slate-900'
+                }`}
             >
               <Radio className="w-3.5 h-3.5" />
               <span>STREAM</span>
@@ -374,11 +372,10 @@ export default function Testimonials() {
             <button
               type="button"
               onClick={() => setViewMode('grid')}
-              className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full font-bold transition-all cursor-pointer ${
-                viewMode === 'grid'
-                  ? 'bg-[#0D62FE] text-white'
-                  : 'text-slate-600 hover:text-slate-900'
-              }`}
+              className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full font-bold transition-all cursor-pointer ${viewMode === 'grid'
+                ? 'bg-[#0D62FE] text-white'
+                : 'text-slate-600 hover:text-slate-900'
+                }`}
             >
               <LayoutGrid className="w-3.5 h-3.5" />
               <span>GRID</span>

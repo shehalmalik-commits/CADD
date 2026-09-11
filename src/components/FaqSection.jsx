@@ -382,8 +382,8 @@ export default function FaqSection({ onOpenDemo }) {
                       setOpenIdx(0);
                     }}
                     className={`px-3.5 py-1.5 rounded-full font-mono text-xs flex items-center gap-1.5 transition-all duration-200 cursor-pointer ${isActive
-                        ? 'bg-[#0D62FE] text-white font-bold shadow-md shadow-blue-500/20 border border-[#0D62FE]'
-                        : 'bg-slate-50 text-slate-600 hover:text-[#0D62FE] hover:bg-slate-100 border border-slate-200 font-medium'
+                      ? 'bg-[#0D62FE] text-white font-bold shadow-md shadow-blue-500/20 border border-[#0D62FE]'
+                      : 'bg-slate-50 text-slate-600 hover:text-[#0D62FE] hover:bg-slate-100 border border-slate-200 font-medium'
                       }`}
                   >
                     <span>{cat.icon}</span>
@@ -413,15 +413,15 @@ export default function FaqSection({ onOpenDemo }) {
                           className="w-full text-left py-4.5 px-1 flex items-start sm:items-center justify-between gap-4 cursor-pointer group"
                         >
                           <span className={`transition-colors leading-snug font-bold ${isOpen
-                              ? "text-base sm:text-lg text-[#0D62FE]"
-                              : "text-sm sm:text-base text-slate-800 group-hover:text-[#0D62FE]"
+                            ? "text-base sm:text-lg text-[#0D62FE]"
+                            : "text-sm sm:text-base text-slate-800 group-hover:text-[#0D62FE]"
                             }`}>
                             {item.question}
                           </span>
 
                           <div className={`w-7 h-7 rounded-full border flex items-center justify-center shrink-0 transition-all duration-200 ${isOpen
-                              ? 'border-blue-200 bg-blue-50 text-[#0D62FE]'
-                              : 'border-slate-200 text-slate-400 group-hover:border-slate-300 group-hover:text-[#0D62FE]'
+                            ? 'border-blue-200 bg-blue-50 text-[#0D62FE]'
+                            : 'border-slate-200 text-slate-400 group-hover:border-slate-300 group-hover:text-[#0D62FE]'
                             }`}>
                             {isOpen ? (
                               <X className="w-3.5 h-3.5" />

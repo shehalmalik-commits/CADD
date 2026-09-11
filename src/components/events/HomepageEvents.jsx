@@ -175,8 +175,8 @@ export default function HomepageEvents({ events = [], onOpenDemo }) {
                 type="button"
                 onClick={() => setSelectedCategory(cat)}
                 className={`px-4 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${isSelected
-                    ? 'bg-[#0D62FE] text-white shadow-sm shadow-blue-600/30'
-                    : 'bg-white text-slate-600 hover:bg-slate-100 hover:text-slate-900 border border-slate-200 shadow-2xs'
+                  ? 'bg-[#0D62FE] text-white shadow-sm shadow-blue-600/30'
+                  : 'bg-white text-slate-600 hover:bg-slate-100 hover:text-slate-900 border border-slate-200 shadow-2xs'
                   }`}
               >
                 {cat}

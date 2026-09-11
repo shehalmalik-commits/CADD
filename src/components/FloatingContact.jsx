@@ -58,7 +58,7 @@ export default function FloatingContact() {
           <a
             href={`tel:${PHONE}`}
             aria-label={`Call CADD Centre Manjeri on ${PHONE_DISPLAY}`}
-            className="w-10 h-10 rounded-full bg-[#E94B3C] hover:bg-[#D4382A] text-white flex items-center justify-center shadow-md active:scale-95 transition-transform"
+            className="w-10 h-10 rounded-full bg-[#C4161C] hover:bg-[#A81217] text-white flex items-center justify-center shadow-md active:scale-95 transition-transform"
           >
             <Phone className="w-4 h-4" />
           </a>
@@ -86,16 +86,16 @@ export default function FloatingContact() {
           </a>
         </div>
 
-        {/* Desktop View (>= 640px): Full-size vertical stacked floating buttons */}
-        <div className="hidden sm:flex flex-col items-end gap-3">
+        {/* Desktop View (>= 640px): Compact, sleek glassmorphic pill dock tucked in bottom right */}
+        <div className="hidden sm:flex pointer-events-auto items-center gap-2 p-1.5 rounded-full bg-[#080D14]/90 backdrop-blur-xl border border-white/20 shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
           {/* Call */}
           <a
             href={`tel:${PHONE}`}
             aria-label={`Call CADD Centre Manjeri on ${PHONE_DISPLAY}`}
             title={`Call ${PHONE_DISPLAY}`}
-            className="pointer-events-auto w-[54px] h-[54px] lg:w-[58px] lg:h-[58px] rounded-full bg-[#E94B3C] hover:bg-[#D4382A] text-white flex items-center justify-center shadow-[0_6px_20px_rgba(0,0,0,0.28)] transition-transform duration-200 hover:scale-105 active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#E94B3C] focus-visible:ring-offset-2"
+            className="w-10 h-10 rounded-full bg-[#C4161C] hover:bg-[#A81217] text-white flex items-center justify-center shadow-md transition-transform duration-200 hover:scale-105 active:scale-95"
           >
-            <Phone className="w-6 h-6" />
+            <Phone className="w-4 h-4" />
           </a>
 
           {/* WhatsApp */}
@@ -105,9 +105,9 @@ export default function FloatingContact() {
             rel="noopener noreferrer"
             aria-label={`Chat with CADD Centre Manjeri on WhatsApp at ${PHONE_DISPLAY}`}
             title={`WhatsApp ${PHONE_DISPLAY}`}
-            className="pointer-events-auto w-[54px] h-[54px] lg:w-[58px] lg:h-[58px] rounded-full bg-[#25D366] hover:bg-[#1EBE5A] text-white flex items-center justify-center shadow-[0_6px_20px_rgba(0,0,0,0.28)] transition-transform duration-200 hover:scale-105 active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366] focus-visible:ring-offset-2"
+            className="w-10 h-10 rounded-full bg-[#25D366] hover:bg-[#1EBE5A] text-white flex items-center justify-center shadow-md transition-transform duration-200 hover:scale-105 active:scale-95"
           >
-            <WhatsAppGlyph className="w-7 h-7" />
+            <WhatsAppGlyph className="w-5 h-5" />
           </a>
 
           {/* Instagram */}
@@ -117,9 +117,9 @@ export default function FloatingContact() {
             rel="noopener noreferrer"
             aria-label={`Message CADD Centre Manjeri on Instagram at ${INSTAGRAM_HANDLE}`}
             title={`Instagram ${INSTAGRAM_HANDLE}`}
-            className="pointer-events-auto w-[54px] h-[54px] lg:w-[58px] lg:h-[58px] rounded-full bg-[linear-gradient(45deg,#F58529_0%,#DD2A7B_45%,#8134AF_70%,#515BD4_100%)] text-white flex items-center justify-center shadow-[0_6px_20px_rgba(0,0,0,0.28)] transition-transform duration-200 hover:scale-105 active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DD2A7B] focus-visible:ring-offset-2"
+            className="w-10 h-10 rounded-full bg-[linear-gradient(45deg,#F58529_0%,#DD2A7B_45%,#8134AF_70%,#515BD4_100%)] text-white flex items-center justify-center shadow-md transition-transform duration-200 hover:scale-105 active:scale-95"
           >
-            <InstagramGlyph className="w-6 h-6" />
+            <InstagramGlyph className="w-4 h-4" />
           </a>
         </div>
 

@@ -92,8 +92,8 @@ export default function DemoModal({ isOpen, onClose }) {
           className="relative w-full max-w-4xl bg-[#090E17] text-white rounded-[24px] shadow-[0_25px_60px_rgba(0,0,0,0.85)] border border-white/10 z-10 overflow-hidden max-h-[92vh] flex flex-col md:flex-row overscroll-contain"
         >
           {/* Subtle Ambient Light Gradients */}
-          <div className="absolute -top-24 -left-24 w-72 h-72 bg-[#0D62FE]/20 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute -bottom-24 -right-24 w-72 h-72 bg-[#0052FF]/15 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -top-24 -left-24 w-72 h-72 bg-[#C4161C]/20 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -bottom-24 -right-24 w-72 h-72 bg-[#C4161C]/15 rounded-full blur-3xl pointer-events-none" />
 
           {/* Close Button (Universal) */}
           <button
@@ -112,8 +112,8 @@ export default function DemoModal({ isOpen, onClose }) {
               <div className="md:w-5/12 bg-gradient-to-br from-[#121B2B] via-[#0D1522] to-[#080D14] p-6 sm:p-8 flex flex-col justify-between relative border-b md:border-b-0 md:border-r border-white/10">
                 <div className="relative z-10">
                   {/* Verified Badge */}
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0D62FE]/15 border border-[#0D62FE]/40 text-blue-400 text-[11px] font-mono font-bold tracking-wider uppercase mb-3.5 shadow-sm">
-                    <span className="w-2 h-2 rounded-full bg-[#0D62FE] animate-pulse" />
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#C4161C]/15 border border-[#C4161C]/40 text-[#C4161C] text-[11px] font-mono font-bold tracking-wider uppercase mb-3.5 shadow-sm">
+                    <span className="w-2 h-2 rounded-full bg-[#C4161C] animate-pulse" />
                     <span>[ CADD CENTRE MANJERI ]</span>
                   </div>
 
@@ -124,8 +124,8 @@ export default function DemoModal({ isOpen, onClose }) {
                     Kerala’s top training hub for professional CAD, BIM, MEP, and Project Management certifications.
                   </p>
 
-                  {/* 4 Value Pillars */}
-                  <div className="my-6 space-y-3.5">
+                  {/* 4 Value Pillars - visible on sm+, compact pills on mobile */}
+                  <div className="hidden sm:block my-6 space-y-3.5">
                     <div className="flex items-start gap-3">
                       <div className="w-7 h-7 rounded-lg bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 flex items-center justify-center shrink-0 mt-0.5 shadow-sm">
                         <Award className="w-3.5 h-3.5" />
@@ -139,7 +139,7 @@ export default function DemoModal({ isOpen, onClose }) {
                     </div>
 
                     <div className="flex items-start gap-3">
-                      <div className="w-7 h-7 rounded-lg bg-blue-500/15 border border-blue-500/30 text-blue-400 flex items-center justify-center shrink-0 mt-0.5 shadow-sm">
+                      <div className="w-7 h-7 rounded-lg bg-[#C4161C]/15 border border-[#C4161C]/30 text-[#C4161C] flex items-center justify-center shrink-0 mt-0.5 shadow-sm">
                         <Briefcase className="w-3.5 h-3.5" />
                       </div>
                       <div>
@@ -151,7 +151,7 @@ export default function DemoModal({ isOpen, onClose }) {
                     </div>
 
                     <div className="flex items-start gap-3">
-                      <div className="w-7 h-7 rounded-lg bg-[#0D62FE]/15 border border-[#0D62FE]/30 text-blue-400 flex items-center justify-center shrink-0 mt-0.5 shadow-sm">
+                      <div className="w-7 h-7 rounded-lg bg-[#C4161C]/15 border border-[#C4161C]/30 text-[#C4161C] flex items-center justify-center shrink-0 mt-0.5 shadow-sm">
                         <MonitorCheck className="w-3.5 h-3.5" />
                       </div>
                       <div>
@@ -174,10 +174,23 @@ export default function DemoModal({ isOpen, onClose }) {
                       </div>
                     </div>
                   </div>
+
+                  {/* Mobile Compact Value Badges */}
+                  <div className="sm:hidden flex items-center gap-2 overflow-x-auto no-scrollbar py-2 mt-2">
+                    <span className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-slate-300 text-[10px] font-bold shrink-0">
+                      ✓ 100% Placement
+                    </span>
+                    <span className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-slate-300 text-[10px] font-bold shrink-0">
+                      ✓ Global Certificate
+                    </span>
+                    <span className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-slate-300 text-[10px] font-bold shrink-0">
+                      ✓ Free Demo
+                    </span>
+                  </div>
                 </div>
 
                 {/* Live Status Indicator */}
-                <div className="relative z-10 pt-3 border-t border-white/10 flex items-center gap-3 bg-white/[0.02] -mx-2 px-3 py-2 rounded-xl">
+                <div className="relative z-10 pt-2.5 sm:pt-3 border-t border-white/10 flex items-center gap-3 bg-white/[0.02] -mx-2 px-3 py-1.5 sm:py-2 rounded-xl mt-2 sm:mt-0">
                   <span className="relative flex h-2.5 w-2.5 shrink-0">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                     <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
@@ -192,12 +205,12 @@ export default function DemoModal({ isOpen, onClose }) {
               {/* =========================================
                   RIGHT PANEL: Interactive Course Enquiry Form
                  ========================================= */}
-              <div className="md:w-7/12 p-6 sm:p-8 flex flex-col justify-between overflow-y-auto max-h-[85vh] md:max-h-[90vh]">
+              <div className="md:w-7/12 p-5 sm:p-8 flex flex-col justify-between overflow-y-auto max-h-[85vh] md:max-h-[90vh]">
                 <div>
                   {/* Form Header */}
-                  <div className="mb-5 text-left pr-8">
-                    <div className="inline-flex items-center gap-1.5 text-[11px] font-bold text-blue-400 uppercase tracking-wider mb-1 font-mono">
-                      <BookOpen className="w-3.5 h-3.5" />
+                  <div className="mb-4 sm:mb-5 text-left pr-8">
+                    <div className="inline-flex items-center gap-1.5 text-[11px] font-bold text-[#C4161C] uppercase tracking-wider mb-1 font-mono">
+                      <BookOpen className="w-3.5 h-3.5 text-[#C4161C]" />
                       <span>[ ADMISSIONS &amp; COURSE ENQUIRY ]</span>
                     </div>
                     <h3 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
@@ -213,7 +226,7 @@ export default function DemoModal({ isOpen, onClose }) {
                     {/* 1. Full Name */}
                     <div>
                       <label className="block text-[11px] font-bold text-slate-300 uppercase tracking-wider mb-1">
-                        Full Name <span className="text-blue-400">*</span>
+                        Full Name <span className="text-[#C4161C]">*</span>
                       </label>
                       <div className="relative">
                         <User className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
@@ -223,7 +236,7 @@ export default function DemoModal({ isOpen, onClose }) {
                           placeholder="Your full name"
                           value={formData.name}
                           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                          className="w-full pl-10 pr-3.5 py-2.5 rounded-xl bg-white/[0.05] border border-white/10 text-xs font-medium text-white placeholder-slate-500 focus:outline-none focus:border-[#0D62FE] focus:ring-1 focus:ring-[#0D62FE] focus:bg-[#0E1624] transition-all"
+                          className="w-full pl-10 pr-3.5 py-2.5 rounded-xl bg-white/[0.05] border border-white/10 text-xs font-medium text-white placeholder-slate-500 focus:outline-none focus:border-[#C4161C] focus:ring-1 focus:ring-[#C4161C] focus:bg-[#0E1624] transition-all"
                         />
                       </div>
                     </div>
@@ -232,7 +245,7 @@ export default function DemoModal({ isOpen, onClose }) {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <div>
                         <label className="block text-[11px] font-bold text-slate-300 uppercase tracking-wider mb-1">
-                          Phone Number <span className="text-blue-400">*</span>
+                          Phone Number <span className="text-[#C4161C]">*</span>
                         </label>
                         <div className="relative">
                           <Phone className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
@@ -242,7 +255,7 @@ export default function DemoModal({ isOpen, onClose }) {
                             placeholder="+91 98765 43210"
                             value={formData.phone}
                             onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                            className="w-full pl-10 pr-3.5 py-2.5 rounded-xl bg-white/[0.05] border border-white/10 text-xs font-medium text-white placeholder-slate-500 focus:outline-none focus:border-[#0D62FE] focus:ring-1 focus:ring-[#0D62FE] focus:bg-[#0E1624] transition-all"
+                            className="w-full pl-10 pr-3.5 py-2.5 rounded-xl bg-white/[0.05] border border-white/10 text-xs font-medium text-white placeholder-slate-500 focus:outline-none focus:border-[#C4161C] focus:ring-1 focus:ring-[#C4161C] focus:bg-[#0E1624] transition-all"
                           />
                         </div>
                       </div>
@@ -256,7 +269,7 @@ export default function DemoModal({ isOpen, onClose }) {
                           <select
                             value={formData.qualification}
                             onChange={(e) => setFormData({ ...formData, qualification: e.target.value })}
-                            className="w-full pl-10 pr-3.5 py-2.5 rounded-xl bg-[#0E1624] border border-white/10 text-xs font-medium text-white focus:outline-none focus:border-[#0D62FE] focus:ring-1 focus:ring-[#0D62FE] transition-all cursor-pointer"
+                            className="w-full pl-10 pr-3.5 py-2.5 rounded-xl bg-[#0E1624] border border-white/10 text-xs font-medium text-white focus:outline-none focus:border-[#C4161C] focus:ring-1 focus:ring-[#C4161C] transition-all cursor-pointer"
                           >
                             <option value="Diploma / B.Tech / BE" className="bg-[#0E1624] text-white">
                               Diploma / B.Tech / BE
@@ -285,7 +298,7 @@ export default function DemoModal({ isOpen, onClose }) {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <div>
                         <label className="block text-[11px] font-bold text-slate-300 uppercase tracking-wider mb-1">
-                          Location <span className="text-blue-400">*</span>
+                          Location <span className="text-[#C4161C]">*</span>
                         </label>
                         <div className="relative">
                           <MapPin className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
@@ -295,7 +308,7 @@ export default function DemoModal({ isOpen, onClose }) {
                             placeholder="e.g. Manjeri, Malappuram"
                             value={formData.location}
                             onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                            className="w-full pl-10 pr-3.5 py-2.5 rounded-xl bg-white/[0.05] border border-white/10 text-xs font-medium text-white placeholder-slate-500 focus:outline-none focus:border-[#0D62FE] focus:ring-1 focus:ring-[#0D62FE] focus:bg-[#0E1624] transition-all"
+                            className="w-full pl-10 pr-3.5 py-2.5 rounded-xl bg-white/[0.05] border border-white/10 text-xs font-medium text-white placeholder-slate-500 focus:outline-none focus:border-[#C4161C] focus:ring-1 focus:ring-[#C4161C] focus:bg-[#0E1624] transition-all"
                           />
                         </div>
                       </div>
@@ -309,7 +322,7 @@ export default function DemoModal({ isOpen, onClose }) {
                           <select
                             value={formData.discipline}
                             onChange={(e) => setFormData({ ...formData, discipline: e.target.value })}
-                            className="w-full pl-10 pr-3.5 py-2.5 rounded-xl bg-[#0E1624] border border-white/10 text-xs font-medium text-white focus:outline-none focus:border-[#0D62FE] focus:ring-1 focus:ring-[#0D62FE] transition-all cursor-pointer"
+                            className="w-full pl-10 pr-3.5 py-2.5 rounded-xl bg-[#0E1624] border border-white/10 text-xs font-medium text-white focus:outline-none focus:border-[#C4161C] focus:ring-1 focus:ring-[#C4161C] transition-all cursor-pointer"
                           >
                             <option value="Interior Design" className="bg-[#0E1624] text-white">Interior Design</option>
                             <option value="BIM [Building Information Modelling]" className="bg-[#0E1624] text-white">BIM [Building Information Modelling]</option>
@@ -334,8 +347,8 @@ export default function DemoModal({ isOpen, onClose }) {
                           type="button"
                           onClick={() => setFormData({ ...formData, mode: 'Classroom (Manjeri)' })}
                           className={`flex items-center justify-center gap-2 py-2 px-3 rounded-xl text-xs font-semibold border transition-all cursor-pointer ${formData.mode === 'Classroom (Manjeri)'
-                              ? 'bg-[#0D62FE]/20 border-[#0D62FE] text-blue-400'
-                              : 'bg-white/[0.03] border-white/10 text-slate-300 hover:bg-white/[0.08]'
+                            ? 'bg-[#C4161C]/25 border-[#C4161C] text-white shadow-md'
+                            : 'bg-white/[0.03] border-white/10 text-slate-300 hover:bg-white/[0.08]'
                             }`}
                         >
                           <Building2 className="w-3.5 h-3.5 shrink-0" />
@@ -346,8 +359,8 @@ export default function DemoModal({ isOpen, onClose }) {
                           type="button"
                           onClick={() => setFormData({ ...formData, mode: 'Live Online' })}
                           className={`flex items-center justify-center gap-2 py-2 px-3 rounded-xl text-xs font-semibold border transition-all cursor-pointer ${formData.mode === 'Live Online'
-                              ? 'bg-[#0D62FE]/20 border-[#0D62FE] text-blue-400'
-                              : 'bg-white/[0.03] border-white/10 text-slate-300 hover:bg-white/[0.08]'
+                            ? 'bg-[#C4161C]/25 border-[#C4161C] text-white shadow-md'
+                            : 'bg-white/[0.03] border-white/10 text-slate-300 hover:bg-white/[0.08]'
                             }`}
                         >
                           <Laptop className="w-3.5 h-3.5 shrink-0" />
@@ -360,7 +373,7 @@ export default function DemoModal({ isOpen, onClose }) {
                     <div className="pt-2">
                       <button
                         type="submit"
-                        className="group w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-[#0D62FE] to-[#0052FF] hover:from-[#0052FF] hover:to-[#0D62FE] text-white text-xs sm:text-sm font-bold shadow-[0_10px_25px_rgba(13,98,254,0.35)] transition-all cursor-pointer active:scale-98 flex items-center justify-center gap-2"
+                        className="group w-full py-3.5 px-4 rounded-xl bg-[#C4161C] hover:bg-[#A81217] text-white text-xs sm:text-sm font-bold shadow-[0_10px_25px_rgba(196,22,28,0.35)] transition-all cursor-pointer active:scale-98 flex items-center justify-center gap-2"
                       >
                         <span>Submit Course Enquiry &amp; Get Syllabus</span>
                         <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

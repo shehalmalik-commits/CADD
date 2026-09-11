@@ -11,7 +11,7 @@ export default function StatsBanner({ onOpenDemo }) {
 
   return (
     <div id="disciplines" className="relative font-['Plus_Jakarta_Sans',sans-serif] select-none">
-      
+
       {/* ========================================================= */}
       {/* STATS COUNTER STRIP (Clean Ice White on Top)              */}
       {/* ========================================================= */}
@@ -40,7 +40,7 @@ export default function StatsBanner({ onOpenDemo }) {
       {/* ========================================================= */}
       <section className="bg-[#0D62FE] text-white py-16 sm:py-24 relative overflow-hidden">
         {/* Subtle geometric grid background overlay */}
-        <div 
+        <div
           className="absolute inset-0 opacity-10 pointer-events-none"
           style={{
             backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)',
@@ -49,7 +49,7 @@ export default function StatsBanner({ onOpenDemo }) {
         />
 
         <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          
+
           {/* 01 Technical Header & Paragraph (Matching Reference) */}
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-12 border-b border-white/20 mb-10 sm:mb-14">
             <div className="flex items-start sm:items-center gap-4">
@@ -73,10 +73,10 @@ export default function StatsBanner({ onOpenDemo }) {
 
           {/* Grid of Stark Pure White Cards (Matching Reference Section 01) */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-stretch">
-            
+
             {/* LEFT COLUMN: 2 Stacked White Cards */}
             <div className="lg:col-span-6 flex flex-col gap-6">
-              
+
               {/* Card 1: Civil CADD & BIM Architecture */}
               <div className="bg-white rounded-[24px] p-6 sm:p-8 text-slate-900 shadow-2xl flex flex-col justify-between text-left hover:shadow-3xl transition-all group">
                 <div>
@@ -213,9 +213,9 @@ export default function StatsBanner({ onOpenDemo }) {
 
                   {/* Screen Content Graphic */}
                   <div className="relative aspect-[16/9] rounded-xl overflow-hidden bg-slate-900 border border-slate-800/80 flex items-center justify-center">
-                    <img 
-                      src="/interior_render.jpg" 
-                      alt="CAD Project Simulation" 
+                    <img
+                      src="/interior_render.jpg"
+                      alt="CAD Project Simulation"
                       className="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700"
                     />
 
@@ -226,7 +226,7 @@ export default function StatsBanner({ onOpenDemo }) {
                           COORDINATION: 100%
                         </span>
                       </div>
-                      
+
                       <div className="space-y-1">
                         <p className="text-xs font-bold text-white leading-tight">
                           Parametric BIM &amp; MEP Clash Resolution

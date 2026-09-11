@@ -289,11 +289,10 @@ export default function AboutUs({ onOpenDemo }) {
                   setFacultyIndex(idx);
                   setSelectedFaculty(mentor);
                 }}
-                className={`group rounded-[24px] bg-white border p-4 sm:p-5 transition-all duration-300 cursor-pointer flex flex-col justify-between text-left shadow-lg hover:shadow-2xl hover:-translate-y-1.5 ${
-                  isHighlighted
-                    ? 'border-[#0D62FE] ring-2 ring-blue-500/20 shadow-blue-500/10'
-                    : 'border-slate-200 hover:border-slate-300'
-                }`}
+                className={`group rounded-[24px] bg-white border p-4 sm:p-5 transition-all duration-300 cursor-pointer flex flex-col justify-between text-left shadow-lg hover:shadow-2xl hover:-translate-y-1.5 ${isHighlighted
+                  ? 'border-[#0D62FE] ring-2 ring-blue-500/20 shadow-blue-500/10'
+                  : 'border-slate-200 hover:border-slate-300'
+                  }`}
               >
                 <div>
                   {/* Portrait Container */}

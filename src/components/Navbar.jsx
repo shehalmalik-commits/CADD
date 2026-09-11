@@ -182,16 +182,15 @@ export default function Navbar({ onOpenDemo }) {
         </a>
 
         {/* Desktop Navigation Links with Active Scrollspy & Hover Dropdown */}
-        <nav className="hidden md:flex items-center gap-1 lg:gap-1.5 text-[13.5px] font-semibold text-slate-700">
+        <nav className="hidden md:flex items-center gap-1 lg:gap-1.5 text-[13.5px] font-semibold text-neutral-800">
           {/* 1. Home */}
           <a
             href="#"
             onClick={(e) => navTo(e, 'home')}
-            className={`px-3.5 py-1.5 rounded-full transition-all duration-200 cursor-pointer ${
-              activeSection === 'home'
-                ? 'bg-blue-50 text-blue-600 font-bold'
-                : 'hover:text-blue-600 hover:bg-slate-50'
-            }`}
+            className={`px-3.5 py-1.5 rounded-full transition-all duration-200 cursor-pointer ${activeSection === 'home'
+                ? 'bg-black/10 text-black font-extrabold'
+                : 'hover:text-black hover:bg-black/5'
+              }`}
           >
             Home
           </a>
@@ -207,17 +206,15 @@ export default function Navbar({ onOpenDemo }) {
               type="button"
               onClick={handleCoursesTouchOrClick}
               aria-expanded={coursesHovered}
-              className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full transition-all duration-200 cursor-pointer ${
-                activeSection === 'features' || coursesHovered
-                  ? 'bg-blue-50 text-blue-600 font-bold'
-                  : 'hover:text-blue-600 hover:bg-slate-50'
-              }`}
+              className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full transition-all duration-200 cursor-pointer ${activeSection === 'features' || coursesHovered
+                  ? 'bg-black/10 text-black font-extrabold'
+                  : 'hover:text-black hover:bg-black/5'
+                }`}
             >
               <span>Courses</span>
               <ChevronDown
-                className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                  coursesHovered ? 'rotate-180 text-blue-600' : 'text-slate-400'
-                }`}
+                className={`w-3.5 h-3.5 transition-transform duration-200 ${coursesHovered ? 'rotate-180 text-black' : 'text-neutral-500'
+                  }`}
               />
             </button>
 
@@ -304,11 +301,10 @@ export default function Navbar({ onOpenDemo }) {
           <a
             href="#about"
             onClick={(e) => navTo(e, 'about')}
-            className={`px-3.5 py-1.5 rounded-full transition-all duration-200 cursor-pointer ${
-              activeSection === 'about'
-                ? 'bg-blue-50 text-blue-600 font-bold'
-                : 'hover:text-blue-600 hover:bg-slate-50'
-            }`}
+            className={`px-3.5 py-1.5 rounded-full transition-all duration-200 cursor-pointer ${activeSection === 'about'
+                ? 'bg-black/10 text-black font-extrabold'
+                : 'hover:text-black hover:bg-black/5'
+              }`}
           >
             About Us
           </a>
@@ -317,11 +313,10 @@ export default function Navbar({ onOpenDemo }) {
           <a
             href="#placement"
             onClick={(e) => navTo(e, 'placement')}
-            className={`px-3.5 py-1.5 rounded-full transition-all duration-200 cursor-pointer ${
-              activeSection === 'placement'
-                ? 'bg-blue-50 text-blue-600 font-bold'
-                : 'hover:text-blue-600 hover:bg-slate-50'
-            }`}
+            className={`px-3.5 py-1.5 rounded-full transition-all duration-200 cursor-pointer ${activeSection === 'placement'
+                ? 'bg-black/10 text-black font-extrabold'
+                : 'hover:text-black hover:bg-black/5'
+              }`}
           >
             Placements
           </a>
@@ -330,11 +325,10 @@ export default function Navbar({ onOpenDemo }) {
           <a
             href="#events"
             onClick={(e) => navTo(e, 'events')}
-            className={`px-3.5 py-1.5 rounded-full transition-all duration-200 cursor-pointer ${
-              activeSection === 'events'
-                ? 'bg-blue-50 text-blue-600 font-bold'
-                : 'hover:text-blue-600 hover:bg-slate-50'
-            }`}
+            className={`px-3.5 py-1.5 rounded-full transition-all duration-200 cursor-pointer ${activeSection === 'events'
+                ? 'bg-black/10 text-black font-extrabold'
+                : 'hover:text-black hover:bg-black/5'
+              }`}
           >
             Events
           </a>
@@ -343,11 +337,10 @@ export default function Navbar({ onOpenDemo }) {
           <a
             href="#testimonials"
             onClick={(e) => navTo(e, 'testimonials')}
-            className={`px-3.5 py-1.5 rounded-full transition-all duration-200 cursor-pointer ${
-              activeSection === 'testimonials'
-                ? 'bg-blue-50 text-blue-600 font-bold'
-                : 'hover:text-blue-600 hover:bg-slate-50'
-            }`}
+            className={`px-3.5 py-1.5 rounded-full transition-all duration-200 cursor-pointer ${activeSection === 'testimonials'
+                ? 'bg-black/10 text-black font-extrabold'
+                : 'hover:text-black hover:bg-black/5'
+              }`}
           >
             Reviews
           </a>
@@ -356,18 +349,18 @@ export default function Navbar({ onOpenDemo }) {
           <button
             type="button"
             onClick={onOpenDemo}
-            className="px-3.5 py-1.5 rounded-full text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-semibold transition-colors duration-200 cursor-pointer"
+            className="px-3.5 py-1.5 rounded-full text-neutral-700 hover:text-black hover:bg-black/5 font-semibold transition-colors duration-200 cursor-pointer"
           >
             Contact
           </button>
         </nav>
 
-        {/* Right CTA Button - Royal Blue Pill Capsule */}
+        {/* Right CTA Button - Architectural Black Capsule */}
         <div className="hidden md:flex items-center">
           <button
             type="button"
             onClick={onOpenDemo}
-            className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white text-[13px] font-bold px-5 sm:px-6 py-2 rounded-full shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/30 active:scale-[0.98] transition-all cursor-pointer"
+            className="bg-black hover:bg-neutral-800 text-[#fdf0d5] text-[13px] font-bold px-5 sm:px-6 py-2 rounded-full shadow-md active:scale-[0.98] transition-all cursor-pointer"
           >
             Apply Now
           </button>
@@ -378,7 +371,7 @@ export default function Navbar({ onOpenDemo }) {
           <button
             type="button"
             onClick={onOpenDemo}
-            className="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold px-3.5 py-1.5 rounded-full shadow-xs active:scale-95 transition-all"
+            className="bg-black hover:bg-neutral-800 text-[#fdf0d5] text-xs font-bold px-3.5 py-1.5 rounded-full shadow-xs active:scale-95 transition-all"
           >
             Apply Now
           </button>
@@ -401,11 +394,10 @@ export default function Navbar({ onOpenDemo }) {
           <a
             href="#"
             onClick={(e) => navTo(e, 'home')}
-            className={`flex items-center gap-3 py-2.5 px-3.5 rounded-xl text-sm font-semibold transition-all ${
-              activeSection === 'home'
+            className={`flex items-center gap-3 py-2.5 px-3.5 rounded-xl text-sm font-semibold transition-all ${activeSection === 'home'
                 ? 'bg-blue-50 text-blue-600 font-bold'
                 : 'text-slate-700 hover:bg-slate-50'
-            }`}
+              }`}
           >
             <Home className="w-4 h-4 text-blue-600" />
             <span>Home</span>
@@ -416,11 +408,10 @@ export default function Navbar({ onOpenDemo }) {
             <button
               type="button"
               onClick={() => setMobileCoursesOpen(!mobileCoursesOpen)}
-              className={`w-full flex items-center justify-between py-2.5 px-3.5 text-sm font-semibold transition-all cursor-pointer ${
-                activeSection === 'features' || mobileCoursesOpen
+              className={`w-full flex items-center justify-between py-2.5 px-3.5 text-sm font-semibold transition-all cursor-pointer ${activeSection === 'features' || mobileCoursesOpen
                   ? 'bg-blue-50 text-blue-600'
                   : 'text-slate-700 hover:bg-slate-100'
-              }`}
+                }`}
             >
               <div className="flex items-center gap-3">
                 <Layers className="w-4 h-4 text-blue-600" />
@@ -430,9 +421,8 @@ export default function Navbar({ onOpenDemo }) {
                 </span>
               </div>
               <ChevronDown
-                className={`w-4 h-4 transition-transform duration-200 ${
-                  mobileCoursesOpen ? 'rotate-180 text-blue-600' : 'text-slate-400'
-                }`}
+                className={`w-4 h-4 transition-transform duration-200 ${mobileCoursesOpen ? 'rotate-180 text-blue-600' : 'text-slate-400'
+                  }`}
               />
             </button>
 
@@ -494,11 +484,10 @@ export default function Navbar({ onOpenDemo }) {
           <a
             href="#about"
             onClick={(e) => navTo(e, 'about')}
-            className={`flex items-center gap-3 py-2.5 px-3.5 rounded-xl text-sm font-semibold transition-all ${
-              activeSection === 'about'
+            className={`flex items-center gap-3 py-2.5 px-3.5 rounded-xl text-sm font-semibold transition-all ${activeSection === 'about'
                 ? 'bg-blue-50 text-blue-600 font-bold'
                 : 'text-slate-700 hover:bg-slate-50'
-            }`}
+              }`}
           >
             <Compass className="w-4 h-4 text-blue-600" />
             <span>About Us</span>
@@ -508,11 +497,10 @@ export default function Navbar({ onOpenDemo }) {
           <a
             href="#placement"
             onClick={(e) => navTo(e, 'placement')}
-            className={`flex items-center gap-3 py-2.5 px-3.5 rounded-xl text-sm font-semibold transition-all ${
-              activeSection === 'placement'
+            className={`flex items-center gap-3 py-2.5 px-3.5 rounded-xl text-sm font-semibold transition-all ${activeSection === 'placement'
                 ? 'bg-blue-50 text-blue-600 font-bold'
                 : 'text-slate-700 hover:bg-slate-50'
-            }`}
+              }`}
           >
             <Award className="w-4 h-4 text-blue-600" />
             <span>Placements</span>
@@ -522,11 +510,10 @@ export default function Navbar({ onOpenDemo }) {
           <a
             href="#events"
             onClick={(e) => navTo(e, 'events')}
-            className={`flex items-center gap-3 py-2.5 px-3.5 rounded-xl text-sm font-semibold transition-all ${
-              activeSection === 'events'
+            className={`flex items-center gap-3 py-2.5 px-3.5 rounded-xl text-sm font-semibold transition-all ${activeSection === 'events'
                 ? 'bg-blue-50 text-blue-600 font-bold'
                 : 'text-slate-700 hover:bg-slate-50'
-            }`}
+              }`}
           >
             <CalendarCheck className="w-4 h-4 text-blue-600" />
             <span>Events</span>
@@ -536,11 +523,10 @@ export default function Navbar({ onOpenDemo }) {
           <a
             href="#testimonials"
             onClick={(e) => navTo(e, 'testimonials')}
-            className={`flex items-center gap-3 py-2.5 px-3.5 rounded-xl text-sm font-semibold transition-all ${
-              activeSection === 'testimonials'
+            className={`flex items-center gap-3 py-2.5 px-3.5 rounded-xl text-sm font-semibold transition-all ${activeSection === 'testimonials'
                 ? 'bg-blue-50 text-blue-600 font-bold'
                 : 'text-slate-700 hover:bg-slate-50'
-            }`}
+              }`}
           >
             <Sparkles className="w-4 h-4 text-blue-600" />
             <span>Reviews</span>

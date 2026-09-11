@@ -1051,11 +1051,10 @@ function StudioConsole({ group, activeCourse, onSelectCourse, onOpenCourse, onOp
                     key={course.id}
                     type="button"
                     onClick={() => onSelectCourse(course)}
-                    className={`shrink-0 px-3 py-1.5 rounded-full font-mono text-[10.5px] font-bold transition-all cursor-pointer ${
-                      isActive
-                        ? 'bg-[#0D62FE] text-white shadow-xs'
-                        : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                    }`}
+                    className={`shrink-0 px-3 py-1.5 rounded-full font-mono text-[10.5px] font-bold transition-all cursor-pointer ${isActive
+                      ? 'bg-[#0D62FE] text-white shadow-xs'
+                      : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                      }`}
                   >
                     [ 0{idx + 1} {course.title.split(' ')[0]} ]
                   </button>
@@ -1072,11 +1071,10 @@ function StudioConsole({ group, activeCourse, onSelectCourse, onOpenCourse, onOp
                     key={course.id}
                     type="button"
                     onClick={() => onSelectCourse(course)}
-                    className={`w-full text-left p-3.5 sm:p-4 rounded-2xl transition-all duration-200 cursor-pointer border ${
-                      isActive
-                        ? 'bg-blue-50/70 border-[#0D62FE] shadow-sm ring-1 ring-[#0D62FE]/30'
-                        : 'bg-white hover:bg-slate-50 border-slate-200/80 hover:border-slate-300'
-                    }`}
+                    className={`w-full text-left p-3.5 sm:p-4 rounded-2xl transition-all duration-200 cursor-pointer border ${isActive
+                      ? 'bg-blue-50/70 border-[#0D62FE] shadow-sm ring-1 ring-[#0D62FE]/30'
+                      : 'bg-white hover:bg-slate-50 border-slate-200/80 hover:border-slate-300'
+                      }`}
                   >
                     <div className="flex items-center justify-between gap-2 mb-1.5 font-mono text-[9.5px]">
                       <span className={`font-black ${isActive ? 'text-[#0D62FE]' : 'text-slate-400'}`}>
@@ -1089,9 +1087,8 @@ function StudioConsole({ group, activeCourse, onSelectCourse, onOpenCourse, onOp
                       )}
                     </div>
 
-                    <h4 className={`text-[15px] sm:text-[16px] font-black leading-snug tracking-tight transition-colors ${
-                      isActive ? 'text-slate-950' : 'text-slate-700'
-                    }`}>
+                    <h4 className={`text-[15px] sm:text-[16px] font-black leading-snug tracking-tight transition-colors ${isActive ? 'text-slate-950' : 'text-slate-700'
+                      }`}>
                       {course.title}
                     </h4>
 
@@ -1565,8 +1562,8 @@ export default function Features({ onOpenDemo }) {
                 type="button"
                 onClick={() => setSearchQuery(tool.toLowerCase() === searchQuery.toLowerCase() ? '' : tool.toLowerCase())}
                 className={`px-2 py-0.5 rounded border transition-all cursor-pointer ${searchQuery.toLowerCase() === tool.toLowerCase()
-                    ? 'bg-[#0D62FE] text-white border-[#0D62FE]'
-                    : 'bg-white text-slate-600 border-slate-200 hover:border-[#0D62FE] hover:text-[#0D62FE]'
+                  ? 'bg-[#0D62FE] text-white border-[#0D62FE]'
+                  : 'bg-white text-slate-600 border-slate-200 hover:border-[#0D62FE] hover:text-[#0D62FE]'
                   }`}
               >
                 [ {tool} ]
@@ -1586,8 +1583,8 @@ export default function Features({ onOpenDemo }) {
                 selectDiscipline('all');
               }}
               className={`shrink-0 px-3.5 py-1.5 rounded-full font-mono text-[11px] font-bold transition-all cursor-pointer ${activeDiscipline === 'all' && !searchQuery
-                  ? 'bg-[#0D62FE] text-white shadow-sm'
-                  : 'bg-white text-slate-700 hover:bg-slate-100 hover:text-[#0D62FE] border border-slate-200 shadow-2xs'
+                ? 'bg-[#0D62FE] text-white shadow-sm'
+                : 'bg-white text-slate-700 hover:bg-slate-100 hover:text-[#0D62FE] border border-slate-200 shadow-2xs'
                 }`}
             >
               [ ALL COURSES ({ALL_COURSES.length}) ]
@@ -1601,8 +1598,8 @@ export default function Features({ onOpenDemo }) {
                   selectDiscipline(group.name);
                 }}
                 className={`shrink-0 px-3.5 py-1.5 rounded-full font-mono text-[11px] font-bold transition-all cursor-pointer ${activeDiscipline === group.name && !searchQuery
-                    ? 'bg-[#0D62FE] text-white shadow-sm'
-                    : 'bg-white text-slate-700 hover:bg-slate-100 hover:text-[#0D62FE] border border-slate-200 shadow-2xs'
+                  ? 'bg-[#0D62FE] text-white shadow-sm'
+                  : 'bg-white text-slate-700 hover:bg-slate-100 hover:text-[#0D62FE] border border-slate-200 shadow-2xs'
                   }`}
               >
                 [ {group.shortName} ({group.courses.length}) ]
@@ -1616,11 +1613,10 @@ export default function Features({ onOpenDemo }) {
               type="button"
               onClick={() => setCurriculumViewMode('studio')}
               aria-label="Studio Console View"
-              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-mono text-[10.5px] font-bold transition-all cursor-pointer ${
-                curriculumViewMode === 'studio'
-                  ? 'bg-[#0D62FE] text-white shadow-xs'
-                  : 'text-slate-600 hover:text-slate-900'
-              }`}
+              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-mono text-[10.5px] font-bold transition-all cursor-pointer ${curriculumViewMode === 'studio'
+                ? 'bg-[#0D62FE] text-white shadow-xs'
+                : 'text-slate-600 hover:text-slate-900'
+                }`}
             >
               <Monitor className="w-3.5 h-3.5" />
               <span>STUDIO CONSOLE</span>
@@ -1629,11 +1625,10 @@ export default function Features({ onOpenDemo }) {
               type="button"
               onClick={() => setCurriculumViewMode('matrix')}
               aria-label="Bento Spec Matrix View"
-              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-mono text-[10.5px] font-bold transition-all cursor-pointer ${
-                curriculumViewMode === 'matrix'
-                  ? 'bg-[#0D62FE] text-white shadow-xs'
-                  : 'text-slate-600 hover:text-slate-900'
-              }`}
+              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-mono text-[10.5px] font-bold transition-all cursor-pointer ${curriculumViewMode === 'matrix'
+                ? 'bg-[#0D62FE] text-white shadow-xs'
+                : 'text-slate-600 hover:text-slate-900'
+                }`}
             >
               <LayoutGrid className="w-3.5 h-3.5" />
               <span>SPEC MATRIX</span>
