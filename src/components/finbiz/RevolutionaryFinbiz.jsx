@@ -70,7 +70,7 @@ export default function RevolutionaryFinbiz({ onOpenDemo }) {
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
 
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         {/* ========================================================= */}
         {/* SECTION HEADER & INSTAGRAM METRICS DOCK                   */}
         {/* ========================================================= */}
@@ -148,11 +148,10 @@ export default function RevolutionaryFinbiz({ onOpenDemo }) {
                 key={cat}
                 type="button"
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-4 sm:px-5 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all cursor-pointer shrink-0 ${
-                  isSelected
-                    ? 'bg-[#C4161C] text-white shadow-lg shadow-red-950/40 ring-2 ring-[#C4161C]/30'
-                    : 'bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white border border-white/10'
-                }`}
+                className={`px-4 sm:px-5 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all cursor-pointer shrink-0 ${isSelected
+                  ? 'bg-[#C4161C] text-white shadow-lg shadow-red-950/40 ring-2 ring-[#C4161C]/30'
+                  : 'bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white border border-white/10'
+                  }`}
               >
                 {cat}
               </button>

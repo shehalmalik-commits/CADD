@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 176 36" fill="none">
+  <!-- PTC Interlocking Dual Loop Icon -->
+  <g transform="translate(2, 4)">
+    <!-- Green Left Loop ('p') -->
+    <path d="M12 28C5.37 28 0 22.63 0 16C0 9.37 5.37 4 12 4C14.8 4 17.36 4.96 19.4 6.57L15.8 10.6C14.7 9.6 13.4 9 12 9C8.13 9 5 12.13 5 16C5 19.87 8.13 23 12 23C13.4 23 14.7 22.4 15.8 21.4L19.4 25.43C17.36 27.04 14.8 28 12 28Z" fill="#78BE20"/>
+    <!-- Dark Right Loop and Inner Stem -->
+    <circle cx="19" cy="16" r="6" fill="#2D3135"/>
+    <path d="M19 10C22.31 10 25 12.69 25 16C25 19.31 22.31 22 19 22H16V27H28V5H16V10H19Z" fill="#2D3135"/>
+  </g>
+  <!-- ptc university Wordmark -->
+  <text x="38" y="24" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="20" font-weight="900" letter-spacing="-0.5" fill="#2D3135">
+    ptc
+  </text>
+  <text x="74" y="24" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" letter-spacing="1.2" text-anchor="start" fill="#78BE20">
+    UNIVERSITY
+  </text>
+</svg>

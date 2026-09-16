@@ -36,14 +36,14 @@ function InstagramGlyph({ className }) {
 export default function FooterFinbiz({ onOpenDemo }) {
   return (
     <footer id="footer" className="bg-[#090D14] text-white pt-20 sm:pt-28 pb-12 relative overflow-hidden select-none text-left font-['Plus_Jakarta_Sans',sans-serif]">
-      
+
       {/* Background Blueprint Mesh & Ambient Radial Glows */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,#C4161C/10,transparent_50%)] pointer-events-none" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,#FF5A43/6,transparent_50%)] pointer-events-none" />
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:48px_48px] pointer-events-none" />
 
       <div className="relative max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 z-10">
-        
+
         {/* ========================================================= */}
         {/* 1. TOP ACCREDITATION & CREDENTIALS STRIP                  */}
         {/* ========================================================= */}
@@ -93,7 +93,7 @@ export default function FooterFinbiz({ onOpenDemo }) {
         {/* 2. 4-COLUMN RICH INFORMATION ARCHITECTURE                 */}
         {/* ========================================================= */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 pb-16 border-b border-white/10">
-          
+
           {/* COLUMN 1: INSTITUTE BRAND & DIRECT CONTACT DIRECTORY */}
           <div className="space-y-4">
             <div className="flex items-center gap-2.5">
@@ -113,9 +113,15 @@ export default function FooterFinbiz({ onOpenDemo }) {
             <div className="space-y-2.5 pt-2 text-xs text-gray-300">
               <div className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 text-[#C4161C] shrink-0 mt-0.5" />
-                <span className="text-gray-400 leading-snug">
-                  2nd Floor, Calicut Road, Near New Bus Stand, Manjeri, Malappuram — 676121
-                </span>
+                <a
+                  href="https://www.google.com/maps/dir//CADD+Centre+%7C+CAD+%7C+Interior+Design+%7C+BIM+%7C+MEP+%7C+Primavera+%7C+Product+Design+Training+in+Manjeri,+Malappuram,+2nd+Floor,+KORAMBAYIL+CORPORATE+MALL,+Calicut+Rd,+above+Dhanlaxmi+Bank,+Karuvambram,+Manjeri,+Kerala+676121/@11.2716965,75.7557343,13.03z/data=!4m8!4m7!1m0!1m5!1m1!1s0x3ba6366fe440b235:0x125ad996626e368c!2m2!1d76.1194379!2d11.120027?entry=ttu&g_ep=EgoyMDI2MDkwOS4wIKXMDSoASAFQAw%3D%3D"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-white leading-snug transition-colors"
+                  title="Open Google Maps directions to CADD Centre Manjeri"
+                >
+                  2nd Floor, Korambayil Corporate Mall, Calicut Rd, Above Dhanlaxmi Bank, Manjeri — 676121
+                </a>
               </div>
 
               <div className="flex items-center gap-2.5">

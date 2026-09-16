@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 168 36" fill="none">
+  <!-- Autodesk Official Geometric Folded Mark -->
+  <g transform="translate(0, 3)">
+    <!-- Top-left facet -->
+    <path d="M4 27L14 3L22 3L12 27H4Z" fill="#000000"/>
+    <!-- Diagonal cross fold -->
+    <path d="M12 17L22 3L26 3L20 17H12Z" fill="#0696D7"/>
+    <!-- Right leg and fold facet -->
+    <path d="M18 17L26 3L30 3L24 27H18L21 17Z" fill="#000000"/>
+    <!-- Lower horizontal cross-connector -->
+    <path d="M8 20H23L21 24H9.7L8 20Z" fill="#0696D7"/>
+  </g>
+  <!-- AUTODESK Typography -->
+  <text x="38" y="24" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="18" font-weight="900" letter-spacing="1.2" fill="#000000">
+    AUTODESK
+  </text>
+</svg>

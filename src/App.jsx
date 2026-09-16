@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import HeaderFinbiz from './components/finbiz/HeaderFinbiz';
 import HeroFinbiz from './components/finbiz/HeroFinbiz';
-import ServicesCards from './components/finbiz/ServicesCards';
 import AboutFinbiz from './components/finbiz/AboutFinbiz';
 import TeamFinbiz from './components/finbiz/TeamFinbiz';
 import PortfolioFinbiz from './components/finbiz/PortfolioFinbiz';
@@ -31,26 +30,23 @@ export default function App() {
 
   return (
     <SmoothScroll>
-      <div className="min-h-screen bg-white text-[#111827] font-['Plus_Jakarta_Sans',sans-serif] selection:bg-[#C4161C]/15 selection:text-[#C4161C] overflow-x-hidden">
-        
+      <div className="min-h-screen bg-white text-[#111827] font-['Plus_Jakarta_Sans',sans-serif] selection:bg-[#C4161C]/15 selection:text-[#C4161C] overflow-x-clip">
+
         {/* Finbiz Header with Left Angled Crimson Ribbon */}
         <HeaderFinbiz onOpenDemo={() => handleOpenDemo()} />
 
         <main>
-          {/* Section 1: Hero Section ("Let's create your success." + Wave Mask) */}
+          {/* Section 1: Hero Section */}
           <HeroFinbiz onOpenDemo={() => handleOpenDemo()} />
 
-          {/* Section 2: Services Section ("Together we can envision your business" + 3 Cards) */}
-          <ServicesCards onOpenDemo={() => handleOpenDemo()} />
-
-          {/* Section 3: More About Us (Checklist + 78% Tilted Tablet + Rating Cards) */}
+          {/* Section 2: More About Us (Checklist + Tilted Tablet + Rating Cards) */}
           <AboutFinbiz onOpenDemo={() => handleOpenDemo()} />
+
+          {/* Section 3: Courses Section (Awesome HR Portfolio + Mid Dark CTA Banner) */}
+          <PortfolioFinbiz onOpenDemo={handleOpenDemo} />
 
           {/* Section 4: Placements Section (Executive Alumni Dossier) */}
           <TeamFinbiz onOpenDemo={handleOpenDemo} />
-
-          {/* Section 5: Portfolio Section (Awesome HR Portfolio + Mid Dark CTA Banner) */}
-          <PortfolioFinbiz onOpenDemo={handleOpenDemo} />
 
           {/* Section 6: Testimonials Section (Customer Testimonials with Floating Avatars) */}
           <TestimonialsFinbiz />

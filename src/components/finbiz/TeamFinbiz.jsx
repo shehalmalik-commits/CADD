@@ -1,672 +1,401 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useRef, useEffect } from 'react';
 import {
   Target,
-  MapPin,
-  TrendingUp,
   Building2,
   CheckCircle2,
-  Award,
   ChevronLeft,
   ChevronRight,
   ArrowUpRight,
   X,
-  Sparkles,
-  Layers,
-  Users
+  Users,
+  TrendingUp,
+  Award,
+  Play,
+  Pause,
+  Radio
 } from 'lucide-react';
 
-// Authentic Placed Student Poster Images from assets/placestudents
-import imgHanna from '../../assets/placestudents/Hanna.png';
-import imgHijas from '../../assets/placestudents/Hijas.png';
-import imgJasmin from '../../assets/placestudents/Jasmin.png';
-import imgJithin from '../../assets/placestudents/Jithin.png';
-import imgPeter from '../../assets/placestudents/Peter.png';
-import imgVipin from '../../assets/placestudents/Vipin.png';
-import imgShahla from '../../assets/placestudents/Shahla.png';
-import imgSalman from '../../assets/placestudents/Salman.png';
-import imgDilshad from '../../assets/placestudents/IMG_0058.PNG';
-import imgAnsar from '../../assets/placestudents/IMG_0059.PNG';
-import imgAnshad from '../../assets/placestudents/IMG_0060.PNG';
-import imgZiyad from '../../assets/placestudents/IMG_0061.PNG';
-import imgSreni from '../../assets/placestudents/IMG_0063.JPEG';
-import imgVignesh from '../../assets/placestudents/IMG_0065.JPEG';
-import imgSuhail from '../../assets/placestudents/IMG_0069.JPEG';
-import imgAshique from '../../assets/placestudents/IMG_0070.PNG';
-import imgShehin from '../../assets/placestudents/IMG_0071.PNG';
+// Authentic Placed & Certified Student Posters from CADD Centre Manjeri
+import imgAthul from '../../assets/placestudents/Athul.png';
+import imgShanib from '../../assets/placestudents/Shanib.png';
+import imgAswathi from '../../assets/placestudents/Aswathi.png';
+import imgShamna from '../../assets/placestudents/Shamna.png';
+import imgAjsal from '../../assets/placestudents/Ajsal.png';
+import imgUnnimaya from '../../assets/placestudents/Unnimaya.png';
+import imgMinha from '../../assets/placestudents/Minha.png';
+import imgPooja from '../../assets/placestudents/Pooja.png';
+import imgThafsal from '../../assets/placestudents/Thafsal.png';
+import imgZamil from '../../assets/placestudents/Zamil.png';
+import imgMeerza from '../../assets/placestudents/Meerza.png';
+import imgBasim from '../../assets/placestudents/Basim.png';
+import imgDrisya from '../../assets/placestudents/Drisya.png';
 
-export const PLACED_ALUMNI = [
+const PLACED_ALUMNI = [
   {
-    id: 'hanna',
-    name: 'Hanna',
+    id: 'athul',
+    name: 'Athul',
+    role: '3D Designer',
+    category: 'interior',
+    company: 'Leading Architecture & 3D Studio',
+    location: 'Dubai, UAE',
+    flag: '🇦🇪',
+    uplift: '+3.5x Salary',
+    course: 'Executive Diploma in 3D Design & Interior CAD',
+    tools: ['3ds Max', 'AutoCAD', 'V-Ray', 'SketchUp'],
+    badge: 'Successfully Placed',
+    img: imgAthul,
+    description: 'Specialized in photorealistic 3D architectural visualization, spatial planning, and high-impact client walk-throughs.'
+  },
+  {
+    id: 'shanib',
+    name: 'Shanib',
+    role: '3D Designer',
+    category: 'interior',
+    company: 'Leading 3D Architectural Studio',
+    location: 'Dubai, UAE',
+    flag: '🇦🇪',
+    uplift: '+3.5x Salary',
+    course: 'Professional in 3D Design & Interior CAD',
+    tools: ['3ds Max', 'V-Ray', 'AutoCAD', 'SketchUp'],
+    badge: 'Successfully Placed',
+    img: imgShanib,
+    description: 'Successfully placed as 3D Designer specializing in photorealistic architectural visualization, 3D spatial modeling, and rendering.'
+  },
+  {
+    id: 'aswathi',
+    name: 'Aswathi',
     role: 'Interior Designer',
     category: 'interior',
-    company: 'Design & Architecture Studio',
-    location: 'Dubai, UAE',
-    flag: '🇦🇪',
+    company: 'Interior & Architectural Studio',
+    location: 'Kerala & UAE',
+    flag: '🇮🇳',
     uplift: '+3.4x Salary',
-    course: 'Master Diploma in Interior BIM',
-    tools: ['AutoCAD', '3ds Max', 'V-Ray', 'Revit'],
-    badge: 'Top Placement',
-    img: imgHanna
+    course: 'Professional in Interior Design',
+    tools: ['AutoCAD Interior', '3ds Max', 'SketchUp', 'V-Ray'],
+    badge: 'Successfully Placed',
+    img: imgAswathi,
+    description: 'Successfully placed as Interior Designer mastering spatial layout, residential interiors, modular planning, and client walk-throughs.'
   },
   {
-    id: 'hijas',
-    name: 'Hijas',
-    role: 'BIM Modeler',
+    id: 'shamna',
+    name: 'Shamna',
+    role: 'Interior Designer',
+    category: 'interior',
+    company: 'Interior Architecture & Decor Studio',
+    location: 'Kerala & GCC',
+    flag: '🇮🇳',
+    uplift: '+3.3x Salary',
+    course: 'Interior Designing',
+    tools: ['AutoCAD Interior', '3ds Max', 'SketchUp', 'V-Ray'],
+    badge: 'Interior Design Pro',
+    img: imgShamna,
+    description: 'Congratulations! Shamna has successfully completed Interior Designing with outstanding performance, mastering space planning, interior drafting, and styling.'
+  },
+  {
+    id: 'ajsal',
+    name: 'Ajsal',
+    role: '5D BIM Engineer',
     category: 'bim',
-    company: 'BIM Global Engineering Consultancy',
+    company: 'Global BIM & VDC Engineering Consultancy',
     location: 'Abu Dhabi, UAE',
     flag: '🇦🇪',
-    uplift: '+3.6x Salary',
-    course: 'Master Diploma in BIM Architecture',
-    tools: ['Revit Architecture', 'Navisworks', 'AutoCAD'],
-    badge: 'GCC Career',
-    img: imgHijas
+    uplift: '+3.8x Salary',
+    course: 'Master Certificate in 5D BIM',
+    tools: ['Revit BIM', 'Navisworks Manage', 'CostX', 'BIM 360'],
+    badge: '5D BIM Specialist',
+    img: imgAjsal,
+    description: 'Completed 5D BIM with outstanding performance covering digital cost integration, 4D timeliner, and clash resolution.'
   },
   {
-    id: 'shehin',
-    name: 'Shehin',
-    role: 'Interior BIM Designer',
-    category: 'interior',
-    company: 'Ajiro Design Solutions',
-    location: 'Calicut, India',
-    flag: '🇮🇳',
-    uplift: '+3.1x Salary',
-    course: 'Executive Diploma in Interior CAD',
-    tools: ['3ds Max', 'Revit', 'SketchUp', 'V-Ray'],
-    badge: 'MNC Studio',
-    img: imgShehin
-  },
-  {
-    id: 'ziyad',
-    name: 'Ziyad',
-    role: 'Civil Structural Engineer',
-    category: 'civil',
-    company: 'Smart Design & Build Contracting',
-    location: 'Dubai, UAE',
-    flag: '🇦🇪',
-    uplift: '+3.7x Salary',
-    course: 'Master Diploma in Structural Analysis',
-    tools: ['AutoCAD', 'ETABS', 'SAFE', 'Tekla'],
-    badge: 'High Package',
-    img: imgZiyad
-  },
-  {
-    id: 'jasmin',
-    name: 'Jasmin',
-    role: 'CAD Draftsman',
+    id: 'unnimaya',
+    name: 'Unnimaya',
+    role: 'BIM Architectural Modeler',
     category: 'bim',
-    company: 'Apex Engineering Consultancy',
-    location: 'Kochi & GCC',
-    flag: '🇦🇪',
-    uplift: '+2.8x Salary',
-    course: 'Professional in Architectural CAD',
-    tools: ['AutoCAD', 'Revit', 'Lumion'],
-    badge: 'Gulf Track',
-    img: imgJasmin
+    company: 'BIM & Architectural Consultancy',
+    location: 'Kerala & UAE',
+    flag: '🇮🇳',
+    uplift: '+3.4x Salary',
+    course: 'BIM For ARCH',
+    tools: ['Revit Architecture', 'Navisworks', 'AutoCAD', 'BIM 360'],
+    badge: 'BIM For ARCH',
+    img: imgUnnimaya,
+    description: 'Proud moment! Unnimaya has successfully completed BIM For ARCH course with great achievement, mastering building information modeling and parametric architecture.'
   },
   {
-    id: 'jithin',
-    name: 'Jithin',
-    role: 'Site Engineer',
-    category: 'civil',
-    company: 'Al-Bayan Infrastructure & Construction',
+    id: 'minha',
+    name: 'Minha',
+    role: 'BIM Architectural Modeler',
+    category: 'bim',
+    company: 'BIM Engineering Consultancy',
+    location: 'GCC & India',
+    flag: '🇮🇳',
+    uplift: '+3.5x Salary',
+    course: 'BIM For ARCH',
+    tools: ['Revit Architecture', 'Navisworks', 'AutoCAD', 'BIM 360'],
+    badge: 'BIM For ARCH',
+    img: imgMinha,
+    description: 'Congratulations! Minha has successfully completed BIM For ARCH course with outstanding performance, excelling in BIM modeling and parametric design.'
+  },
+  {
+    id: 'pooja',
+    name: 'Pooja',
+    role: 'BIM Architectural Modeler',
+    category: 'bim',
+    company: 'Architectural & BIM Studio',
+    location: 'Kerala & GCC',
+    flag: '🇮🇳',
+    uplift: '+3.4x Salary',
+    course: 'BIM For ARCH',
+    tools: ['Revit Architecture', 'Navisworks', 'Enscape', 'BIM 360'],
+    badge: 'BIM For ARCH',
+    img: imgPooja,
+    description: 'Congratulations! Pooja has successfully completed BIM For ARCH with outstanding performance, delivering high quality architectural models.'
+  },
+  {
+    id: 'thafsal',
+    name: 'Thafsal',
+    role: 'BIM Architectural Modeler',
+    category: 'bim',
+    company: 'GCC Architectural Consortium',
     location: 'Doha, Qatar',
     flag: '🇶🇦',
-    uplift: '+3.5x Salary',
-    course: 'Civil & Structural Master Program',
-    tools: ['AutoCAD Civil', 'STAAD.Pro', 'ETABS'],
-    badge: 'Infrastructure',
-    img: imgJithin
+    uplift: '+3.6x Salary',
+    course: 'BIM for Architecture',
+    tools: ['Revit Architecture', 'Navisworks', 'Enscape', 'BIM 360'],
+    badge: 'BIM Architecture',
+    img: imgThafsal,
+    description: 'Completed BIM for Architecture with flying colours, delivering high-precision architectural models and ISO 19650 standards.'
   },
   {
-    id: 'peter',
-    name: 'Peter',
-    role: 'Structural Detailer',
+    id: 'zamil',
+    name: 'Zamil',
+    role: 'Planning & Scheduling Engineer',
     category: 'civil',
-    company: 'Sterling Construction Group',
-    location: 'Bangalore, India',
-    flag: '🇮🇳',
-    uplift: '+2.9x Salary',
-    course: 'Advanced Diploma in Structural Design',
-    tools: ['AutoCAD', 'STAAD.Pro', 'MS Project'],
-    badge: 'Top MNC',
-    img: imgPeter
-  },
-  {
-    id: 'vipin',
-    name: 'Vipin',
-    role: 'Mechanical Designer',
-    category: 'mechanical',
-    company: 'Vector Precision Studio',
-    location: 'Chennai, India',
-    flag: '🇮🇳',
-    uplift: '+3.1x Salary',
-    course: 'Master Diploma in Mechanical CADD',
-    tools: ['SolidWorks', 'Creo', 'CATIA'],
-    badge: 'Automotive CAD',
-    img: imgVipin
-  },
-  {
-    id: 'shahla',
-    name: 'Shahla',
-    role: 'BIM & CAD Designer',
-    category: 'bim',
-    company: 'Horizon Architectural Consultants',
-    location: 'Sharjah, UAE',
-    flag: '🇦🇪',
-    uplift: '+3.3x Salary',
-    course: 'Master Diploma in BIM & Architecture',
-    tools: ['Revit Architecture', 'AutoCAD', 'Navisworks'],
-    badge: 'Architecture',
-    img: imgShahla
-  },
-  {
-    id: 'salman',
-    name: 'Salman',
-    role: 'Mechanical CAD Designer',
-    category: 'mechanical',
-    company: 'Gulf Industrial Engineering',
+    company: 'Infrastructure & Project Management',
     location: 'Riyadh, Saudi Arabia',
     flag: '🇸🇦',
-    uplift: '+3.2x Salary',
-    course: 'Professional in Mechanical CAD',
-    tools: ['SolidWorks', 'AutoCAD Mechanical', 'ANSYS'],
-    badge: 'Industrial',
-    img: imgSalman
+    uplift: '+3.7x Salary',
+    course: 'Primavera P6 Project Management',
+    tools: ['Primavera P6', 'MS Project', 'AutoCAD Civil', 'Scheduling'],
+    badge: 'Primavera Pro',
+    img: imgZamil,
+    description: 'Well done, Zamil! Completed Primavera with outstanding performance, excelling in project scheduling, resource leveling, and project controls.'
   },
   {
-    id: 'dilshad',
-    name: 'Dilshad',
-    role: 'MEP Designer',
-    category: 'interior',
-    company: 'Focus MEP Solutions',
-    location: 'Calicut & GCC',
-    flag: '🇦🇪',
-    uplift: '+3.5x Salary',
-    course: 'Master Diploma in MEP BIM',
-    tools: ['Revit MEP', 'AutoCAD', 'HAP'],
-    badge: 'MEP Systems',
-    img: imgDilshad
-  },
-  {
-    id: 'ansar',
-    name: 'Ansar',
-    role: 'Civil Draughtsman',
+    id: 'meerza',
+    name: 'Meerza',
+    role: 'Planning & Project Control Engineer',
     category: 'civil',
-    company: 'Civil & Architectural Engineering',
-    location: 'Malappuram, India',
-    flag: '🇮🇳',
-    uplift: '+2.6x Salary',
-    course: 'Diploma in Civil Draughtsmanship',
-    tools: ['AutoCAD', '3ds Max', 'SketchUp'],
-    badge: 'Drafting',
-    img: imgAnsar
+    company: 'Infrastructure Project Management',
+    location: 'Saudi Arabia / UAE',
+    flag: '🇸🇦',
+    uplift: '+3.6x Salary',
+    course: 'Primavera P6 Enterprise Project Portfolio',
+    tools: ['Primavera P6', 'MS Project', 'AutoCAD Civil', 'Scheduling'],
+    badge: 'Primavera Pro',
+    img: imgMeerza,
+    description: 'Proud moment! Meerza has successfully completed Primavera course with great achievement, mastering critical path scheduling and cost tracking.'
   },
   {
-    id: 'anshad',
-    name: 'Anshad',
-    role: 'Product Designer',
+    id: 'drisya',
+    name: 'Drisya',
+    role: 'Architectural CAD Draftsperson',
+    category: 'civil',
+    company: 'Civil & Architectural Engineering Consultancy',
+    location: 'Kerala & UAE',
+    flag: '🇮🇳',
+    uplift: '+3.2x Salary',
+    course: 'Professional in AutoCAD',
+    tools: ['AutoCAD 2D/3D', 'AutoCAD Architecture', 'Drafting'],
+    badge: 'AutoCAD Pro',
+    img: imgDrisya,
+    description: 'Completed AutoCAD with outstanding performance, excelling in architectural drafting, municipal sanction plans, and working drawings.'
+  },
+  {
+    id: 'basim',
+    name: 'Basim',
+    role: 'Mechanical CAD Engineer',
     category: 'mechanical',
-    company: 'Creative Studio Solutions',
-    location: 'Coimbatore, India',
-    flag: '🇮🇳',
-    uplift: '+3.0x Salary',
-    course: 'Master Diploma in Product Design',
-    tools: ['SolidWorks', 'KeyShot', 'Creo'],
-    badge: 'R&D Product',
-    img: imgAnshad
-  },
-  {
-    id: 'sreni',
-    name: 'Sreni',
-    role: 'Architectural BIM Designer',
-    category: 'bim',
-    company: 'Modern Architecture & Interiors',
-    location: 'Kerala, India',
-    flag: '🇮🇳',
-    uplift: '+2.9x Salary',
-    course: 'Master Diploma in Architectural BIM',
-    tools: ['Revit', 'SketchUp', 'Lumion', 'AutoCAD'],
-    badge: 'BIM Modeler',
-    img: imgSreni
-  },
-  {
-    id: 'vignesh',
-    name: 'Vignesh',
-    role: 'Mechanical Draughtsman',
-    category: 'mechanical',
-    company: 'Engineering Services Group',
-    location: 'Pune, India',
-    flag: '🇮🇳',
-    uplift: '+2.7x Salary',
-    course: 'Diploma in Mechanical CADD',
-    tools: ['AutoCAD Mechanical', 'SolidWorks'],
-    badge: 'Precision CAD',
-    img: imgVignesh
-  },
-  {
-    id: 'suhail',
-    name: 'Suhail',
-    role: 'CAD Designer',
-    category: 'mechanical',
-    company: 'SeoskoServ Private Limited',
-    location: 'Hyderabad, India',
-    flag: '🇮🇳',
-    uplift: '+3.0x Salary',
-    course: 'Master Diploma in Product Design',
-    tools: ['SolidWorks', 'CATIA', 'AutoCAD'],
-    badge: 'Design Engg',
-    img: imgSuhail
-  },
-  {
-    id: 'ashique',
-    name: 'Ashique',
-    role: 'Creo & Mechanical Engineer',
-    category: 'mechanical',
-    company: 'SeoskoServ Private Limited',
-    location: 'Hyderabad, India',
-    flag: '🇮🇳',
-    uplift: '+2.8x Salary',
-    course: 'Professional in Mechanical CAD',
-    tools: ['Creo Parametric', 'AutoCAD', 'ANSYS'],
-    badge: 'FEA & CAD',
-    img: imgAshique
+    company: 'Precision Engineering & Industrial Works',
+    location: 'Riyadh, Saudi Arabia',
+    flag: '🇸🇦',
+    uplift: '+3.4x Salary',
+    course: 'Professional in MECH CAD',
+    tools: ['SolidWorks', 'AutoCAD Mechanical', 'CATIA', 'GD&T'],
+    badge: 'Mech CAD Star',
+    img: imgBasim,
+    description: 'Completed MECH CAD with outstanding performance, mastering parametric 3D assembly, kinematics, and manufacturing drafting.'
   }
 ];
 
-const CATEGORIES = [
-  { id: 'all', label: 'All Placements', count: 17 },
-  { id: 'bim', label: 'BIM & Architecture', count: 4 },
-  { id: 'civil', label: 'Civil & Structural', count: 4 },
-  { id: 'mechanical', label: 'Mechanical & Product', count: 5 },
-  { id: 'interior', label: 'Interior & MEP', count: 4 }
-];
-
-const RECRUITERS = [
-  'Dar Al-Handasah',
-  'L&T Construction',
-  'Sobha Realty',
-  'Shapoorji Pallonji',
-  'Al-Bayan Infrastructure',
-  'Sterling Group',
-  'BIM Global Engineering',
-  'Apex Engineering',
-  'Ajiro Design Studio',
-  'Focus MEP Solutions',
-  'SeoskoServ Private Limited'
-];
-
 export default function TeamFinbiz({ onOpenDemo }) {
-  const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedAlumni, setSelectedAlumni] = useState(null);
-  const [viewMode, setViewMode] = useState('grid'); // 'grid' | 'slider'
-  const [isExpanded, setIsExpanded] = useState(false);
-  const sliderRef = React.useRef(null);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [isHovered, setIsHovered] = useState(false);
+  const sliderRef = useRef(null);
 
-  const filteredAlumni = useMemo(() => {
-    if (selectedCategory === 'all') return PLACED_ALUMNI;
-    return PLACED_ALUMNI.filter((item) => item.category === selectedCategory);
-  }, [selectedCategory]);
-
-  // If expanded, show all filtered alumni; otherwise show top 8 for clean hierarchy
-  const displayedAlumni = viewMode === 'grid' && !isExpanded
-    ? filteredAlumni.slice(0, 8)
-    : filteredAlumni;
+  // Seamless continuous loop of all 13 authentic Manjeri alumni
+  const marqueeItems = useMemo(() => {
+    return [...PLACED_ALUMNI, ...PLACED_ALUMNI];
+  }, []);
 
   const scrollSlider = (direction) => {
     if (sliderRef.current) {
-      const scrollAmount = direction === 'left' ? -340 : 340;
+      const scrollAmount = direction === 'left' ? -280 : 280;
       sliderRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
     }
   };
 
   return (
-    <section id="placements" className="pt-16 sm:pt-20 pb-8 sm:pb-10 bg-[#F8F9FA] relative select-none">
+    <section id="placements" className="pt-8 sm:pt-10 pb-10 sm:pb-12 bg-[#F8F9FA] relative select-none overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* ========================================================= */}
-        {/* SECTION HEADER                                            */}
+        {/* COMPACT SECTION HEADER (TIGHT TOP SPACING)                */}
         {/* ========================================================= */}
-        <div className="text-center space-y-3 mb-10">
-          <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-[#C4161C]">
-            <Target className="w-3.5 h-3.5 text-[#C4161C]" />
-            <span>VERIFIED CORPORATE PLACEMENTS</span>
+        <div className="text-center space-y-1.5 mb-4">
+          <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-red-50 border border-red-200/70 text-[10.5px] font-extrabold uppercase tracking-wider text-[#C4161C]">
+            <Target className="w-3 h-3 text-[#C4161C]" />
+            <span>VERIFIED CORPORATE PLACEMENTS • CADD CENTRE MANJERI</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-black text-[#111827] tracking-tight leading-tight">
-            Career Trajectory &amp; Alumni Placements
+          <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-black text-[#111827] tracking-tight leading-tight">
+            Career Trajectory &amp; Placed Alumni
           </h2>
 
-          <p className="text-sm sm:text-base text-gray-500 font-normal max-w-2xl mx-auto leading-relaxed">
-            15,000+ certified engineers, drafters, and BIM modelers thriving across UAE, Qatar, Saudi Arabia, and top Indian MNCs.
+          <p className="text-xs sm:text-sm text-gray-500 font-normal max-w-xl mx-auto leading-relaxed">
+            15,000+ certified engineers, drafters, and BIM modelers across UAE, Qatar, Saudi Arabia &amp; India.
           </p>
         </div>
 
         {/* ========================================================= */}
-        {/* 4 EXECUTIVE PLACEMENT METRICS SCORECARD                   */}
+        {/* COMPACT 4-STAT METRIC ROW                                 */}
         {/* ========================================================= */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 mb-8">
-          <div className="bg-white rounded-2xl p-4 sm:p-6 border border-gray-100 shadow-sm text-left hover:shadow-md transition-shadow">
-            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#C4161C]/10 text-[#C4161C] flex items-center justify-center mb-2.5 sm:mb-3">
-              <Users className="w-4 h-4 sm:w-5 sm:h-5" />
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3.5 mb-4">
+          <div className="bg-white rounded-xl p-2.5 sm:p-3 border border-gray-100 shadow-xs flex items-center gap-2.5 sm:gap-3">
+            <div className="w-8 h-8 rounded-lg bg-[#C4161C]/10 text-[#C4161C] flex items-center justify-center shrink-0">
+              <Users className="w-4 h-4" />
             </div>
-            <div className="text-xl sm:text-3xl font-black text-gray-900 tracking-tight">15,000+</div>
-            <div className="text-[10.5px] sm:text-xs font-semibold text-gray-500 mt-1">Engineers &amp; Designers Placed</div>
+            <div>
+              <div className="text-base sm:text-lg font-black text-gray-900 tracking-tight leading-none">15,000+</div>
+              <div className="text-[10px] font-semibold text-gray-500 mt-0.5">Students Placed</div>
+            </div>
           </div>
 
-          <div className="bg-white rounded-2xl p-4 sm:p-6 border border-gray-100 shadow-sm text-left hover:shadow-md transition-shadow">
-            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-2.5 sm:mb-3">
-              <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5" />
+          <div className="bg-white rounded-xl p-2.5 sm:p-3 border border-gray-100 shadow-xs flex items-center gap-2.5 sm:gap-3">
+            <div className="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
+              <CheckCircle2 className="w-4 h-4" />
             </div>
-            <div className="text-xl sm:text-3xl font-black text-gray-900 tracking-tight">100%</div>
-            <div className="text-[10.5px] sm:text-xs font-semibold text-gray-500 mt-1">Placement Assistance Support</div>
+            <div>
+              <div className="text-base sm:text-lg font-black text-gray-900 tracking-tight leading-none">100%</div>
+              <div className="text-[10px] font-semibold text-gray-500 mt-0.5">Placement Assistance</div>
+            </div>
           </div>
 
-          <div className="bg-white rounded-2xl p-4 sm:p-6 border border-gray-100 shadow-sm text-left hover:shadow-md transition-shadow">
-            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-2.5 sm:mb-3">
-              <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5" />
+          <div className="bg-white rounded-xl p-2.5 sm:p-3 border border-gray-100 shadow-xs flex items-center gap-2.5 sm:gap-3">
+            <div className="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
+              <TrendingUp className="w-4 h-4" />
             </div>
-            <div className="text-xl sm:text-3xl font-black text-gray-900 tracking-tight">3.5x</div>
-            <div className="text-[10.5px] sm:text-xs font-semibold text-gray-500 mt-1">Average Salary Uplift</div>
+            <div>
+              <div className="text-base sm:text-lg font-black text-gray-900 tracking-tight leading-none">3.5x</div>
+              <div className="text-[10px] font-semibold text-gray-500 mt-0.5">Avg Salary Uplift</div>
+            </div>
           </div>
 
-          <div className="bg-white rounded-2xl p-4 sm:p-6 border border-gray-100 shadow-sm text-left hover:shadow-md transition-shadow">
-            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center mb-2.5 sm:mb-3">
-              <Building2 className="w-4 h-4 sm:w-5 sm:h-5" />
+          <div className="bg-white rounded-xl p-2.5 sm:p-3 border border-gray-100 shadow-xs flex items-center gap-2.5 sm:gap-3">
+            <div className="w-8 h-8 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center shrink-0">
+              <Building2 className="w-4 h-4" />
             </div>
-            <div className="text-xl sm:text-3xl font-black text-gray-900 tracking-tight">450+</div>
-            <div className="text-[10.5px] sm:text-xs font-semibold text-gray-500 mt-1">Corporate Hiring Partners</div>
+            <div>
+              <div className="text-base sm:text-lg font-black text-gray-900 tracking-tight leading-none">450+</div>
+              <div className="text-[10px] font-semibold text-gray-500 mt-0.5">Corporate Recruiters</div>
+            </div>
           </div>
         </div>
 
         {/* ========================================================= */}
-        {/* HIRING PARTNERS TICKER (VARIETY & PRESTIGE)               */}
+        {/* LIVE STATUS & QUICK CONTROLS BAR (NO CATEGORY TABS)       */}
         {/* ========================================================= */}
-        <div className="mb-10 py-3 px-4 sm:px-6 rounded-2xl bg-white border border-gray-200/70 shadow-xs flex flex-col md:flex-row items-center justify-between gap-3 overflow-hidden">
-          <div className="flex items-center gap-2 shrink-0">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="text-[11px] font-mono font-bold text-gray-800 uppercase tracking-wider">
-              Top Corporate Recruiters:
+        <div className="flex items-center justify-between gap-3 mb-3">
+          {/* Live Indicator */}
+          <div className="flex items-center gap-2">
+            <span className="relative flex h-2.5 w-2.5">
+              {isPlaying && (
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+              )}
+              <span className={`relative inline-flex rounded-full h-2.5 w-2.5 ${isPlaying ? 'bg-emerald-500' : 'bg-amber-500'}`} />
+            </span>
+            <span className="text-xs font-mono font-bold uppercase tracking-wider text-gray-800">
+              {isPlaying ? 'Live Placement Stream' : 'Stream Paused'} • 13 Certified Alumni
             </span>
           </div>
-          <div className="flex items-center gap-4 overflow-x-auto no-scrollbar py-1 text-xs font-semibold text-gray-600" style={{ WebkitOverflowScrolling: 'touch' }}>
-            {RECRUITERS.map((r, i) => (
-              <span key={i} className="whitespace-nowrap flex items-center gap-2 shrink-0">
-                <span>{r}</span>
-                {i < RECRUITERS.length - 1 && <span className="text-gray-300">•</span>}
-              </span>
-            ))}
+
+          {/* Right Controls: Play/Pause, Manual Arrows */}
+          <div className="flex items-center gap-2 shrink-0">
+            <button
+              type="button"
+              onClick={() => setIsPlaying(!isPlaying)}
+              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-extrabold border transition-all cursor-pointer bg-white text-gray-700 hover:text-gray-950 border-gray-200 shadow-2xs"
+              title="Click to toggle live motion"
+            >
+              <span className="font-mono text-[10px]">{isPlaying ? 'PAUSE' : 'PLAY'}</span>
+              {isPlaying ? <Pause className="w-3 h-3 text-gray-500" /> : <Play className="w-3 h-3 text-[#C4161C]" />}
+            </button>
+
+            <button
+              type="button"
+              onClick={() => scrollSlider('left')}
+              className="w-8 h-8 rounded-lg bg-white border border-gray-200 hover:border-[#C4161C] hover:text-[#C4161C] text-gray-700 flex items-center justify-center transition-all cursor-pointer shadow-2xs active:scale-95"
+              aria-label="Previous Placement"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+            <button
+              type="button"
+              onClick={() => scrollSlider('right')}
+              className="w-8 h-8 rounded-lg bg-white border border-gray-200 hover:border-[#C4161C] hover:text-[#C4161C] text-gray-700 flex items-center justify-center transition-all cursor-pointer shadow-2xs active:scale-95"
+              aria-label="Next Placement"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
           </div>
         </div>
 
         {/* ========================================================= */}
-        {/* INTERACTIVE CONTROLS BAR: Filters + View Mode Switcher    */}
+        {/* CONTINUOUS LIVE MOVING HORIZONTAL MARQUEE TRACK           */}
         {/* ========================================================= */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-8">
-          {/* Category Filter Tabs */}
+        <div
+          className="relative overflow-hidden group/marquee rounded-2xl py-1"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          {/* Subtle gradient fades on edges */}
+          <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-8 sm:w-16 bg-gradient-to-r from-[#F8F9FA] to-transparent z-10" />
+          <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 sm:w-16 bg-gradient-to-l from-[#F8F9FA] to-transparent z-10" />
+
+          {/* Live Marquee Track: Butter-Smooth Infinite Motion */}
           <div
-            className="flex items-center gap-2 overflow-x-auto w-full pb-1 no-scrollbar"
-            style={{ WebkitOverflowScrolling: 'touch' }}
+            ref={sliderRef}
+            className="flex flex-nowrap gap-4 sm:gap-5 overflow-x-auto no-scrollbar scroll-smooth"
+            style={{
+              WebkitOverflowScrolling: 'touch'
+            }}
           >
-            {CATEGORIES.map((cat) => {
-              const isActive = selectedCategory === cat.id;
-              return (
-                <button
-                  key={cat.id}
-                  type="button"
-                  onClick={() => {
-                    setSelectedCategory(cat.id);
-                    setIsExpanded(false);
-                  }}
-                  className={`px-3.5 sm:px-5 py-2 rounded-full text-xs font-bold transition-all cursor-pointer whitespace-nowrap flex items-center gap-1.5 shrink-0 ${
-                    isActive
-                      ? 'bg-[#C4161C] text-white shadow-md'
-                      : 'bg-white text-gray-700 hover:text-gray-950 hover:bg-gray-100 border border-gray-200/80 shadow-xs'
-                  }`}
-                >
-                  <span>{cat.label}</span>
-                  <span
-                    className={`text-[10px] px-1.5 py-0.5 rounded-full ${
-                      isActive ? 'bg-white/20 text-white' : 'bg-gray-100 text-gray-500'
-                    }`}
-                  >
-                    {cat.count}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Right Action: Grid vs Slider Switcher (Desktop) + Touch Navigation (Mobile) */}
-          <div className="flex items-center gap-2.5 shrink-0 self-end sm:self-auto">
-            {/* View Mode Toggle (Desktop only) */}
-            <div className="hidden sm:inline-flex items-center p-1 rounded-xl bg-white border border-gray-200/80 shadow-xs text-xs font-semibold">
-              <button
-                type="button"
-                onClick={() => setViewMode('grid')}
-                className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer ${
-                  viewMode === 'grid'
-                    ? 'bg-[#C4161C] text-white font-bold shadow-xs'
-                    : 'text-gray-600 hover:text-gray-900'
-                }`}
-              >
-                Grid
-              </button>
-              <button
-                type="button"
-                onClick={() => setViewMode('slider')}
-                className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer ${
-                  viewMode === 'slider'
-                    ? 'bg-[#C4161C] text-white font-bold shadow-xs'
-                    : 'text-gray-600 hover:text-gray-900'
-                }`}
-              >
-                Slider
-              </button>
-            </div>
-
-            {/* Mobile Touch Swipe Arrows */}
-            <div className="flex sm:hidden items-center gap-1.5">
-              <span className="text-[11px] font-mono text-gray-500 font-semibold mr-1">Swipe →</span>
-              <button
-                type="button"
-                onClick={() => scrollSlider('left')}
-                className="w-8 h-8 rounded-lg bg-white border border-gray-200 hover:border-[#C4161C] text-gray-700 flex items-center justify-center shadow-xs active:scale-95 cursor-pointer"
-                aria-label="Previous Placement"
-              >
-                <ChevronLeft className="w-4 h-4" />
-              </button>
-              <button
-                type="button"
-                onClick={() => scrollSlider('right')}
-                className="w-8 h-8 rounded-lg bg-white border border-gray-200 hover:border-[#C4161C] text-gray-700 flex items-center justify-center shadow-xs active:scale-95 cursor-pointer"
-                aria-label="Next Placement"
-              >
-                <ChevronRight className="w-4 h-4" />
-              </button>
-            </div>
-
-            {/* Desktop Slider Navigation Arrows (when in slider mode) */}
-            {viewMode === 'slider' && (
-              <div className="hidden sm:flex items-center gap-1">
-                <button
-                  type="button"
-                  onClick={() => scrollSlider('left')}
-                  className="w-9 h-9 rounded-xl bg-white border border-gray-200 hover:border-[#C4161C] hover:text-[#C4161C] text-gray-700 flex items-center justify-center transition-all cursor-pointer shadow-xs active:scale-95"
-                  aria-label="Previous"
-                >
-                  <ChevronLeft className="w-4 h-4" />
-                </button>
-                <button
-                  type="button"
-                  onClick={() => scrollSlider('right')}
-                  className="w-9 h-9 rounded-xl bg-white border border-gray-200 hover:border-[#C4161C] hover:text-[#C4161C] text-gray-700 flex items-center justify-center transition-all cursor-pointer shadow-xs active:scale-95"
-                  aria-label="Next"
-                >
-                  <ChevronRight className="w-4 h-4" />
-                </button>
-              </div>
-            )}
-          </div>
-        </div>
-
-        {/* ========================================================= */}
-        {/* CARD SHOWCASE: DESKTOP GRID / MOBILE HORIZONTAL SWIPE     */}
-        {/* ========================================================= */}
-        {viewMode === 'grid' ? (
-          /* ======================== GRID MODE (Desktop Grid / Mobile Horizontal Swipe) ======================== */
-          <div className="space-y-6 sm:space-y-10">
             <div
-              ref={sliderRef}
-              className="flex sm:grid overflow-x-auto sm:overflow-visible gap-4 sm:gap-6 pb-4 sm:pb-0 pt-1 snap-x snap-mandatory sm:snap-none no-scrollbar scroll-smooth sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
-              style={{ WebkitOverflowScrolling: 'touch' }}
+              className="flex flex-nowrap gap-4 sm:gap-5 shrink-0"
+              style={{
+                animation: isPlaying ? 'marquee 40s linear infinite' : 'none',
+                animationPlayState: isPlaying && !isHovered ? 'running' : 'paused'
+              }}
             >
-              {filteredAlumni.map((member, idx) => {
-                const isHiddenOnDesktop = !isExpanded && idx >= 8;
-                return (
-                  <div
-                    key={member.id}
-                    onClick={() => setSelectedAlumni(member)}
-                    className={`${
-                      isHiddenOnDesktop ? 'flex sm:hidden' : 'flex'
-                    } w-[275px] xs:w-[290px] sm:w-auto shrink-0 sm:shrink snap-start sm:snap-none group bg-white rounded-[24px] border border-gray-200/80 p-4 shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-xl hover:border-[#C4161C]/50 transition-all duration-300 flex-col justify-between cursor-pointer text-left relative`}
-                  >
-                    {/* Photo Frame Container */}
-                    <div className="relative aspect-[4/4.6] w-full rounded-[18px] overflow-hidden bg-gray-100 border border-gray-100 shadow-inner">
-                      <img
-                        src={member.img}
-                        alt={`${member.name} - ${member.role}`}
-                        loading="lazy"
-                        className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
-                      />
-
-                      {/* Floating Top Left: Flag + Location Badge */}
-                      <div className="absolute top-2.5 left-2.5 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/95 backdrop-blur-md border border-gray-200/60 text-[10.5px] font-bold text-gray-800 shadow-sm">
-                        <span>{member.flag}</span>
-                        <span>{member.location}</span>
-                      </div>
-
-                      {/* Floating Top Right: Salary Uplift Badge */}
-                      <div className="absolute top-2.5 right-2.5 px-2.5 py-1 rounded-full bg-[#C4161C] text-[10px] font-black text-white shadow-md">
-                        {member.uplift}
-                      </div>
-
-                      {/* Bottom Spotlight Tag */}
-                      <div className="absolute bottom-2 left-2.5 px-2 py-0.5 rounded-md bg-black/75 backdrop-blur-md border border-white/10 text-[9.5px] font-mono font-bold text-white uppercase tracking-wider">
-                        {member.badge}
-                      </div>
-                    </div>
-
-                    {/* Information Body */}
-                    <div className="pt-4 pb-2 space-y-2">
-                      <div className="flex items-center justify-between gap-1">
-                        <h3 className="text-base sm:text-lg font-black text-gray-900 tracking-tight group-hover:text-[#C4161C] transition-colors truncate">
-                          {member.name}
-                        </h3>
-                        <span className="inline-flex items-center gap-1 text-[10px] font-extrabold text-[#C4161C] bg-red-50 border border-red-200/60 px-2 py-0.5 rounded-md shrink-0">
-                          <CheckCircle2 className="w-3 h-3 text-[#C4161C]" />
-                          <span>PLACED</span>
-                        </span>
-                      </div>
-
-                      {/* Role */}
-                      <div className="text-xs font-bold text-[#C4161C] tracking-wide">
-                        {member.role}
-                      </div>
-
-                      {/* Company Name */}
-                      <div className="flex items-center gap-1.5 text-xs text-gray-600 font-medium truncate">
-                        <Building2 className="w-3.5 h-3.5 text-gray-400 shrink-0" />
-                        <span className="truncate">{member.company}</span>
-                      </div>
-
-                      {/* Software Skills Pill Chips */}
-                      <div className="flex flex-wrap gap-1 pt-1">
-                        {member.tools.slice(0, 3).map((tool, idx) => (
-                          <span
-                            key={idx}
-                            className="px-2 py-0.5 bg-gray-100 text-gray-700 rounded-md text-[10px] font-semibold"
-                          >
-                            {tool}
-                          </span>
-                        ))}
-                        {member.tools.length > 3 && (
-                          <span className="px-1.5 py-0.5 bg-gray-100 text-gray-500 rounded-md text-[10px] font-bold">
-                            +{member.tools.length - 3}
-                          </span>
-                        )}
-                      </div>
-                    </div>
-
-                    {/* Card Footer */}
-                    <div className="pt-3 mt-2 border-t border-gray-100 flex items-center justify-between text-xs">
-                      <span className="text-[11px] text-gray-400 font-medium truncate">
-                        {member.course}
-                      </span>
-                      <span className="text-[#C4161C] font-bold inline-flex items-center gap-0.5 shrink-0 group-hover:translate-x-0.5 transition-transform">
-                        <span>View</span>
-                        <ArrowUpRight className="w-3.5 h-3.5" />
-                      </span>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-
-            {/* Mobile Swipe Hint Bar */}
-            <div className="sm:hidden flex items-center justify-between pt-1 px-1 text-xs text-gray-500 font-medium">
-              <span className="flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-[#C4161C] animate-pulse" />
-                <span>Swipe to view all <strong>{filteredAlumni.length}</strong> placements</span>
-              </span>
-              <span className="text-[11px] text-gray-400 font-mono">Horizontal Scroll ↔</span>
-            </div>
-
-            {/* PROMINENT "VIEW ALL" EXPANSION BUTTON (Desktop Grid) */}
-            {filteredAlumni.length > 8 && (
-              <div className="hidden sm:flex flex-col items-center justify-center pt-4">
-                <button
-                  type="button"
-                  onClick={() => setIsExpanded((prev) => !prev)}
-                  className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full bg-white hover:bg-gray-50 border-2 border-gray-200 hover:border-[#C4161C] text-gray-900 hover:text-[#C4161C] font-bold text-xs sm:text-sm shadow-sm hover:shadow-md transition-all cursor-pointer active:scale-95"
-                >
-                  {isExpanded ? (
-                    <>
-                      <span>Show Less Placements</span>
-                      <span className="text-xs">↑</span>
-                    </>
-                  ) : (
-                    <>
-                      <span>View All Placements ({filteredAlumni.length} Total)</span>
-                      <span className="text-xs">↓</span>
-                    </>
-                  )}
-                </button>
-                <p className="text-[11px] text-gray-400 mt-2 font-medium">
-                  {isExpanded
-                    ? `Showing all ${filteredAlumni.length} placed alumni profiles`
-                    : `Showing 8 of ${filteredAlumni.length} alumni · Click to expand full directory`}
-                </p>
-              </div>
-            )}
-          </div>
-        ) : (
-          /* ======================== SLIDER MODE ======================== */
-          <div className="relative">
-            {/* Horizontal Track with Smooth Scroll */}
-            <div
-              ref={sliderRef}
-              className="flex gap-6 overflow-x-auto pb-6 pt-1 snap-x no-scrollbar scroll-smooth"
-            >
-              {filteredAlumni.map((member) => (
+              {marqueeItems.map((member, idx) => (
                 <div
-                  key={member.id}
+                  key={`${member.id}-${idx}`}
                   onClick={() => setSelectedAlumni(member)}
-                  className="w-[280px] sm:w-[310px] shrink-0 snap-start bg-white rounded-[24px] border border-gray-200/80 p-4 shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-xl hover:border-[#C4161C]/50 transition-all duration-300 flex flex-col justify-between cursor-pointer text-left relative"
+                  className="w-[230px] sm:w-[250px] shrink-0 group bg-white rounded-[20px] border border-gray-200/80 p-3 shadow-sm hover:shadow-xl hover:border-[#C4161C]/50 transition-all duration-300 flex flex-col justify-between cursor-pointer text-left relative hover:-translate-y-1"
                 >
-                  {/* Photo Frame Container */}
-                  <div className="relative aspect-[4/4.6] w-full rounded-[18px] overflow-hidden bg-gray-100 border border-gray-100 shadow-inner">
+                  {/* Compact Photo Frame Container */}
+                  <div className="relative aspect-[4/4.5] w-full rounded-[14px] overflow-hidden bg-gray-100 border border-gray-100 shadow-inner">
                     <img
                       src={member.img}
                       alt={`${member.name} - ${member.role}`}
@@ -675,180 +404,201 @@ export default function TeamFinbiz({ onOpenDemo }) {
                     />
 
                     {/* Floating Top Left: Flag + Location Badge */}
-                    <div className="absolute top-2.5 left-2.5 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/95 backdrop-blur-md border border-gray-200/60 text-[10.5px] font-bold text-gray-800 shadow-sm">
+                    <div className="absolute top-2 left-2 flex items-center gap-1 px-2 py-0.5 rounded-full bg-white/95 backdrop-blur-md border border-gray-200/60 text-[9.5px] font-bold text-gray-800 shadow-2xs">
                       <span>{member.flag}</span>
                       <span>{member.location}</span>
                     </div>
 
                     {/* Floating Top Right: Salary Uplift Badge */}
-                    <div className="absolute top-2.5 right-2.5 px-2.5 py-1 rounded-full bg-[#C4161C] text-[10px] font-black text-white shadow-md">
+                    <div className="absolute top-2 right-2 px-2 py-0.5 rounded-full bg-[#C4161C] text-[9.5px] font-black text-white shadow-xs">
                       {member.uplift}
                     </div>
 
                     {/* Bottom Spotlight Tag */}
-                    <div className="absolute bottom-2 left-2.5 px-2 py-0.5 rounded-md bg-black/75 backdrop-blur-md border border-white/10 text-[9.5px] font-mono font-bold text-white uppercase tracking-wider">
+                    <div className="absolute bottom-1.5 left-2 px-1.5 py-0.5 rounded-md bg-black/80 backdrop-blur-md border border-white/15 text-[8.5px] font-mono font-bold text-white uppercase tracking-wider">
                       {member.badge}
                     </div>
                   </div>
 
-                  {/* Information Body */}
-                  <div className="pt-4 pb-2 space-y-2">
+                  {/* Information Body (Compact) */}
+                  <div className="pt-2.5 pb-1 space-y-1">
                     <div className="flex items-center justify-between gap-1">
-                      <h3 className="text-base sm:text-lg font-black text-gray-900 tracking-tight group-hover:text-[#C4161C] transition-colors truncate">
+                      <h3 className="text-sm sm:text-base font-black text-gray-900 tracking-tight group-hover:text-[#C4161C] transition-colors truncate">
                         {member.name}
                       </h3>
-                      <span className="inline-flex items-center gap-1 text-[10px] font-extrabold text-[#C4161C] bg-red-50 border border-red-200/60 px-2 py-0.5 rounded-md shrink-0">
-                        <CheckCircle2 className="w-3 h-3 text-[#C4161C]" />
-                        <span>PLACED</span>
+                      <span className="inline-flex items-center gap-0.5 text-[9px] font-extrabold text-[#C4161C] bg-red-50 border border-red-200/60 px-1.5 py-0.5 rounded shrink-0">
+                        <CheckCircle2 className="w-2.5 h-2.5 text-[#C4161C]" />
+                        <span>VERIFIED</span>
                       </span>
                     </div>
 
                     {/* Role */}
-                    <div className="text-xs font-bold text-[#C4161C] tracking-wide">
+                    <div className="text-[11px] font-bold text-[#C4161C] tracking-wide truncate">
                       {member.role}
                     </div>
 
                     {/* Company Name */}
-                    <div className="flex items-center gap-1.5 text-xs text-gray-600 font-medium truncate">
-                      <Building2 className="w-3.5 h-3.5 text-gray-400 shrink-0" />
+                    <div className="flex items-center gap-1 text-[10.5px] text-gray-500 font-medium truncate">
+                      <Building2 className="w-3 h-3 text-gray-400 shrink-0" />
                       <span className="truncate">{member.company}</span>
                     </div>
 
                     {/* Software Skills Pill Chips */}
-                    <div className="flex flex-wrap gap-1 pt-1">
-                      {member.tools.slice(0, 3).map((tool, idx) => (
+                    <div className="flex flex-wrap gap-1 pt-0.5">
+                      {member.tools.slice(0, 3).map((tool, tIdx) => (
                         <span
-                          key={idx}
-                          className="px-2 py-0.5 bg-gray-100 text-gray-700 rounded-md text-[10px] font-semibold"
+                          key={tIdx}
+                          className="px-1.5 py-0.2 bg-gray-100 text-gray-700 rounded text-[9px] font-semibold"
                         >
                           {tool}
                         </span>
                       ))}
                       {member.tools.length > 3 && (
-                        <span className="px-1.5 py-0.5 bg-gray-100 text-gray-500 rounded-md text-[10px] font-bold">
+                        <span className="px-1 py-0.2 bg-gray-100 text-gray-400 rounded text-[9px] font-bold">
                           +{member.tools.length - 3}
                         </span>
                       )}
                     </div>
                   </div>
 
-                  {/* Card Footer */}
-                  <div className="pt-3 mt-2 border-t border-gray-100 flex items-center justify-between text-xs">
-                    <span className="text-[11px] text-gray-400 font-medium truncate">
+                  {/* Card Footer (Compact) */}
+                  <div className="pt-2 mt-1.5 border-t border-gray-100 flex items-center justify-between text-xs">
+                    <span className="text-[10px] text-gray-500 font-medium truncate max-w-[140px]">
                       {member.course}
                     </span>
-                    <span className="text-[#C4161C] font-bold inline-flex items-center gap-0.5 shrink-0 group-hover:translate-x-0.5 transition-transform">
+                    <span className="text-[#C4161C] text-[10.5px] font-bold inline-flex items-center gap-0.5 shrink-0 group-hover:translate-x-0.5 transition-transform">
                       <span>View</span>
-                      <ArrowUpRight className="w-3.5 h-3.5" />
+                      <ArrowUpRight className="w-3 h-3" />
                     </span>
                   </div>
                 </div>
               ))}
             </div>
-
-            {/* Slider Indicator */}
-            <div className="text-center pt-2">
-              <span className="text-xs text-gray-400 font-medium">
-                ← Drag or click arrows to view all {filteredAlumni.length} placed alumni →
-              </span>
-            </div>
           </div>
-        )}
 
+          {/* Bottom Live Notice */}
+          <div className="flex items-center justify-between pt-2 px-1 text-[11px] text-gray-400">
+            <span className="flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              <span>Live moving stream • Hover or click any card to inspect</span>
+            </span>
+            <span className="hidden sm:inline font-mono text-[10.5px] text-gray-400">
+              {PLACED_ALUMNI.length} Manjeri Alumni Active
+            </span>
+          </div>
+        </div>
 
       </div>
 
       {/* ========================================================= */}
-      {/* ALUMNI DOSSIER LIGHTBOX MODAL                             */}
+      {/* ALUMNI DOSSIER & POSTER LIGHTBOX MODAL                    */}
       {/* ========================================================= */}
       {selectedAlumni && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm">
-          <div className="relative w-full max-w-lg bg-white rounded-[28px] overflow-hidden shadow-2xl p-6 sm:p-8 text-left space-y-5 animate-in fade-in zoom-in-95 duration-200">
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/80 backdrop-blur-md overflow-y-auto"
+          onClick={() => setSelectedAlumni(null)}
+        >
+          <div 
+            className="relative w-full max-w-2xl bg-white rounded-[24px] overflow-hidden shadow-2xl p-5 sm:p-6 text-left space-y-4 animate-in fade-in zoom-in-95 duration-200 max-h-[92vh] flex flex-col"
+            onClick={(e) => e.stopPropagation()}
+          >
             {/* Close Button */}
             <button
               type="button"
               onClick={() => setSelectedAlumni(null)}
-              className="absolute top-4 right-4 w-9 h-9 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700 flex items-center justify-center transition-colors cursor-pointer"
+              className="absolute top-4 right-4 z-10 w-8 h-8 rounded-full bg-black/5 hover:bg-black/10 text-gray-700 flex items-center justify-center transition-colors cursor-pointer"
             >
-              <X className="w-5 h-5" />
+              <X className="w-4 h-4" />
             </button>
 
-            {/* Profile Header with Poster */}
-            <div className="flex items-center gap-4">
-              <div className="w-20 h-24 rounded-2xl overflow-hidden bg-gray-100 border-2 border-gray-100 shadow-md shrink-0">
-                <img
-                  src={selectedAlumni.img}
-                  alt={selectedAlumni.name}
-                  className="w-full h-full object-cover object-top"
-                />
-              </div>
-              <div className="space-y-1">
-                <span className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">
-                  <CheckCircle2 className="w-3 h-3" />
-                  <span>OFFICIAL VERIFIED PLACEMENT</span>
-                </span>
-                <h3 className="text-xl font-black text-gray-900 tracking-tight flex items-center gap-2">
-                  <span>{selectedAlumni.name}</span>
-                  <span>{selectedAlumni.flag}</span>
-                </h3>
-                <div className="text-xs font-bold text-[#C4161C]">
-                  {selectedAlumni.role}
+            {/* Scrollable content inside modal */}
+            <div className="overflow-y-auto pr-1 space-y-4">
+              {/* Profile Header */}
+              <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 pt-1">
+                {/* Poster Display */}
+                <div className="w-36 sm:w-44 aspect-[4/5] rounded-xl overflow-hidden bg-gray-100 border border-gray-200 shadow-md shrink-0">
+                  <img
+                    src={selectedAlumni.img}
+                    alt={selectedAlumni.name}
+                    className="w-full h-full object-cover object-top"
+                  />
                 </div>
-                <div className="text-xs text-gray-500 font-medium">
-                  {selectedAlumni.company} · {selectedAlumni.location}
-                </div>
-              </div>
-            </div>
 
-            {/* Placement Details Card */}
-            <div className="grid grid-cols-2 gap-3 p-4 rounded-2xl bg-gray-50 border border-gray-100 text-xs">
-              <div>
-                <span className="text-gray-400 font-medium block text-[11px]">Salary Hike</span>
-                <span className="text-sm font-black text-[#C4161C]">{selectedAlumni.uplift}</span>
-              </div>
-              <div>
-                <span className="text-gray-400 font-medium block text-[11px]">Placement Location</span>
-                <span className="text-sm font-bold text-gray-900">{selectedAlumni.flag} {selectedAlumni.location}</span>
-              </div>
-              <div className="col-span-2 pt-2 border-t border-gray-200/60">
-                <span className="text-gray-400 font-medium block text-[11px]">Course Completed</span>
-                <span className="text-xs font-bold text-gray-900">{selectedAlumni.course}</span>
-              </div>
-            </div>
-
-            {/* Software Skills */}
-            <div className="space-y-2">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-gray-400">
-                Software Tools Mastered
-              </h4>
-              <div className="flex flex-wrap gap-1.5">
-                {selectedAlumni.tools.map((t, idx) => (
-                  <span
-                    key={idx}
-                    className="px-3 py-1 bg-gray-100 text-gray-800 rounded-lg text-xs font-semibold"
-                  >
-                    {t}
+                <div className="space-y-1.5 text-center sm:text-left flex-1">
+                  <span className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
+                    <CheckCircle2 className="w-3 h-3 text-emerald-600" />
+                    <span>CADD CENTRE MANJERI VERIFIED</span>
                   </span>
-                ))}
+
+                  <h3 className="text-xl font-black text-gray-900 tracking-tight flex items-center justify-center sm:justify-start gap-2">
+                    <span>{selectedAlumni.name}</span>
+                    <span>{selectedAlumni.flag}</span>
+                  </h3>
+
+                  <div className="text-xs font-extrabold text-[#C4161C]">
+                    {selectedAlumni.role}
+                  </div>
+
+                  <div className="text-xs text-gray-500 font-medium">
+                    {selectedAlumni.company} · {selectedAlumni.location}
+                  </div>
+
+                  <p className="text-xs text-gray-600 leading-relaxed pt-1">
+                    {selectedAlumni.description}
+                  </p>
+                </div>
+              </div>
+
+              {/* Placement Details Card */}
+              <div className="grid grid-cols-2 gap-2.5 p-3 rounded-xl bg-gray-50 border border-gray-100 text-xs">
+                <div>
+                  <span className="text-gray-400 font-medium block text-[10.5px]">Salary Hike</span>
+                  <span className="text-xs font-black text-[#C4161C]">{selectedAlumni.uplift}</span>
+                </div>
+                <div>
+                  <span className="text-gray-400 font-medium block text-[10.5px]">Placement Location</span>
+                  <span className="text-xs font-bold text-gray-900">{selectedAlumni.flag} {selectedAlumni.location}</span>
+                </div>
+                <div className="col-span-2 pt-1.5 border-t border-gray-200/60">
+                  <span className="text-gray-400 font-medium block text-[10.5px]">Course Completed</span>
+                  <span className="text-xs font-bold text-gray-900">{selectedAlumni.course}</span>
+                </div>
+              </div>
+
+              {/* Software Skills */}
+              <div className="space-y-1.5">
+                <h4 className="text-[11px] font-bold uppercase tracking-wider text-gray-400">
+                  Software Tools Mastered
+                </h4>
+                <div className="flex flex-wrap gap-1.5">
+                  {selectedAlumni.tools.map((t, idx) => (
+                    <span
+                      key={idx}
+                      className="px-2.5 py-0.5 bg-gray-100 text-gray-800 rounded-md text-xs font-semibold"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
 
             {/* Action Buttons */}
-            <div className="pt-2 flex items-center justify-between gap-3">
+            <div className="pt-2 border-t border-gray-100 flex items-center justify-between gap-2.5 shrink-0">
               <button
                 type="button"
                 onClick={() => {
                   setSelectedAlumni(null);
                   if (onOpenDemo) onOpenDemo();
                 }}
-                className="flex-1 py-3 rounded-xl bg-[#C4161C] hover:bg-[#A81217] text-white text-xs font-bold uppercase tracking-wider text-center transition-all cursor-pointer shadow-md"
+                className="flex-1 py-2.5 rounded-xl bg-[#C4161C] hover:bg-[#A81217] text-white text-xs font-bold uppercase tracking-wider text-center transition-all cursor-pointer shadow-sm"
               >
                 Enquire Similar Course
               </button>
               <button
                 type="button"
                 onClick={() => setSelectedAlumni(null)}
-                className="px-5 py-3 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-bold transition-all cursor-pointer"
+                className="px-4 py-2.5 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-bold transition-all cursor-pointer"
               >
                 Close
               </button>

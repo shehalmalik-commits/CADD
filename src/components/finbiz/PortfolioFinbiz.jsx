@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import {
   Target,
   ArrowRight,
@@ -302,6 +302,30 @@ export default function PortfolioFinbiz({ onOpenDemo }) {
   const [searchQuery, setSearchQuery] = useState('');
   const [isExpanded, setIsExpanded] = useState(false);
   const [expandedModules, setExpandedModules] = useState({});
+  const [highlightedCourseId, setHighlightedCourseId] = useState(null);
+
+  // Listen for course selection events from Hero ticker
+  useEffect(() => {
+    const handleCourseSelect = (event) => {
+      const { tab, courseId } = event.detail || {};
+      if (tab) {
+        setActiveTab(tab);
+      }
+      setSearchQuery('');
+      setIsExpanded(true);
+      if (courseId) {
+        setHighlightedCourseId(courseId);
+        setTimeout(() => {
+          setHighlightedCourseId(null);
+        }, 2800);
+      }
+    };
+
+    window.addEventListener('cadd-select-course', handleCourseSelect);
+    return () => {
+      window.removeEventListener('cadd-select-course', handleCourseSelect);
+    };
+  }, []);
 
   // Toggle in-card curriculum accordion
   const toggleModules = (courseId) => {
@@ -335,12 +359,12 @@ export default function PortfolioFinbiz({ onOpenDemo }) {
   }, [activeTab, searchQuery, isExpanded, filteredCourses]);
 
   return (
-    <section id="courses" className="pt-10 sm:pt-14 pb-20 sm:pb-28 bg-[#F8F9FC] select-none relative overflow-hidden text-left">
+    <section id="courses" className="pt-10 sm:pt-14 pb-8 sm:pb-12 bg-[#F8F9FC] select-none relative overflow-hidden text-left">
       {/* Subtle architectural grid pattern */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f01a_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f01a_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
 
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         {/* ========================================================= */}
         {/* SECTION HEADER & CONTROL BAR                              */}
         {/* ========================================================= */}
@@ -397,11 +421,10 @@ export default function PortfolioFinbiz({ onOpenDemo }) {
                       setActiveTab(d.id);
                       setIsExpanded(false);
                     }}
-                    className={`px-3.5 sm:px-4 py-2 rounded-full text-xs font-bold transition-all cursor-pointer whitespace-nowrap flex items-center gap-1.5 shrink-0 ${
-                      isActive
+                    className={`px-3.5 sm:px-4 py-2 rounded-full text-xs font-bold transition-all cursor-pointer whitespace-nowrap flex items-center gap-1.5 shrink-0 ${isActive
                         ? 'bg-[#C4161C] text-white shadow-md'
                         : 'bg-white text-gray-700 hover:text-gray-950 hover:bg-gray-50 border border-gray-200/90 shadow-xs'
-                    }`}
+                      }`}
                   >
                     <span>{d.label}</span>
                     <span className={`text-[10px] px-1.5 py-0.5 rounded-full font-extrabold ${isActive ? 'bg-white/25 text-white' : 'bg-gray-100 text-gray-600'}`}>
@@ -458,11 +481,16 @@ export default function PortfolioFinbiz({ onOpenDemo }) {
               return (
                 <div
                   key={course.id}
-                  className="group bg-white rounded-[28px] border border-gray-200/90 hover:border-[#C4161C]/50 shadow-[0_6px_24px_rgba(0,0,0,0.03)] hover:shadow-xl transition-all duration-300 overflow-hidden"
+                  id={`course-${course.id}`}
+                  className={`group bg-white rounded-[28px] border transition-all duration-500 overflow-hidden ${
+                    highlightedCourseId === course.id
+                      ? 'border-[#C4161C] ring-4 ring-[#C4161C]/25 shadow-2xl scale-[1.008]'
+                      : 'border-gray-200/90 hover:border-[#C4161C]/50 shadow-[0_6px_24px_rgba(0,0,0,0.03)] hover:shadow-xl'
+                  }`}
                 >
                   {/* Main Horizontal Strip */}
                   <div className="p-5 sm:p-7 flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-6 lg:gap-8">
-                    
+
                     {/* ZONE 1: UNOBSTRUCTED CINEMATIC VISUAL FRAME (30% WIDTH) */}
                     <div className="relative w-full lg:w-80 aspect-[16/10] sm:aspect-[16/9] lg:aspect-[16/11] rounded-2xl overflow-hidden bg-slate-900 shrink-0 border border-gray-100 shadow-sm">
                       <img
@@ -549,7 +577,7 @@ export default function PortfolioFinbiz({ onOpenDemo }) {
 
                     {/* ZONE 3: ADMISSIONS, SYLLABUS & ACTIONS PANEL (22% WIDTH) */}
                     <div className="w-full lg:w-64 shrink-0 pt-4 lg:pt-0 border-t lg:border-t-0 lg:border-l lg:pl-8 border-gray-100 flex flex-col justify-between space-y-4">
-                      
+
                       {/* Value Badges */}
                       <div className="space-y-2 bg-gray-50/80 rounded-2xl p-3.5 border border-gray-100">
                         <div className="flex items-center gap-2 text-xs font-extrabold text-emerald-600">
@@ -634,72 +662,47 @@ export default function PortfolioFinbiz({ onOpenDemo }) {
         )}
 
         {/* ========================================================= */}
-        {/* VIEW ALL COURSES BUTTON BAR ("VIEW ALL BUTTONM")          */}
+        {/* VIEW ALL COURSES BUTTON BAR ("VIEW ALL BUTTON")           */}
         {/* ========================================================= */}
         {activeTab === 'all' && !searchQuery && (
-          <div className="mt-12 flex flex-col items-center justify-center space-y-3">
-            <button
-              type="button"
-              onClick={() => setIsExpanded(!isExpanded)}
-              className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-white hover:bg-gray-50 text-gray-900 border-2 border-gray-200 hover:border-[#C4161C] text-xs sm:text-sm font-extrabold uppercase tracking-wider shadow-sm hover:shadow-md transition-all cursor-pointer group active:scale-98"
-            >
-              <Sparkles className="w-4 h-4 text-[#C4161C]" />
+          <div className="mt-8 sm:mt-10 flex flex-col items-center justify-center space-y-2.5">
+            <div className="inline-flex items-center p-1 rounded-full bg-white border border-gray-200/90 shadow-sm hover:shadow-md transition-all">
+              <button
+                type="button"
+                onClick={() => setIsExpanded(!isExpanded)}
+                className="inline-flex items-center gap-2.5 px-6 sm:px-8 py-3 sm:py-3.5 rounded-full bg-[#11161E] hover:bg-[#C4161C] text-white text-xs sm:text-[13px] font-extrabold uppercase tracking-wider shadow-sm transition-all duration-300 cursor-pointer active:scale-98 group"
+              >
+                <Sparkles className="w-4 h-4 text-amber-400 group-hover:rotate-12 transition-transform" />
+                <span>
+                  {isExpanded
+                    ? 'SHOW FEATURED COURSES (COLLAPSE)'
+                    : 'VIEW ALL 36 COURSES ACROSS 8 DISCIPLINES'}
+                </span>
+                <span className="px-2 py-0.5 rounded-full bg-white/20 text-white text-[10px] font-mono font-bold">
+                  {isExpanded ? '12 ACTIVE' : '36 TOTAL'}
+                </span>
+                {isExpanded ? (
+                  <ChevronUp className="w-4 h-4 text-white/70 group-hover:text-white" />
+                ) : (
+                  <ChevronDown className="w-4 h-4 text-white/70 group-hover:text-white" />
+                )}
+              </button>
+            </div>
+            <p className="text-[11.5px] text-gray-500 font-medium flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#C4161C]" />
               <span>
                 {isExpanded
-                  ? 'SHOW FEATURED COURSES (COLLAPSE)'
-                  : 'VIEW ALL 36 COURSES ACROSS 8 DISCIPLINES'}
+                  ? 'Showing all 12 specialized master programs & certifications'
+                  : 'Showing 4 featured programs • Click to expand full catalog'}
               </span>
-              {isExpanded ? (
-                <ChevronUp className="w-4 h-4 text-gray-500 group-hover:text-[#C4161C]" />
-              ) : (
-                <ChevronDown className="w-4 h-4 text-gray-500 group-hover:text-[#C4161C]" />
-              )}
-            </button>
-            <p className="text-[11px] text-gray-400 font-medium">
-              {isExpanded
-                ? 'Showing all 12 specialized master programs & certifications'
-                : 'Showing 4 featured programs. Click to expand full catalog.'}
             </p>
           </div>
         )}
 
-        {/* ========================================================= */}
-        {/* FULL-WIDTH DARK PHOTOGRAPHIC CTA BANNER                   */}
-        {/* ========================================================= */}
-        <div className="mt-16 sm:mt-24 relative rounded-[32px] overflow-hidden shadow-2xl bg-gray-950">
-          <div className="absolute inset-0 z-0">
-            <img
-              src="/images/career-journey.jpg"
-              alt="Engineering career consultation"
-              className="w-full h-full object-cover object-center opacity-25"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/80 to-black/90" />
-          </div>
-
-          <div className="relative z-10 px-6 sm:px-12 lg:px-16 py-12 sm:py-16 flex flex-col md:flex-row items-center justify-between gap-8">
-            <div className="space-y-2 max-w-2xl">
-              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight leading-tight">
-                Let's discuss about how we can build your engineering career
-              </h3>
-              <p className="text-xs sm:text-sm text-gray-400">
-                Book a free one-on-one session with our senior BIM &amp; CAD engineering counselors in Manjeri.
-              </p>
-            </div>
-
-            <div className="shrink-0">
-              <button
-                type="button"
-                onClick={onOpenDemo}
-                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-[#C4161C] hover:bg-[#A81217] text-white text-xs sm:text-sm font-bold uppercase tracking-wider shadow-xl transition-all cursor-pointer active:scale-96"
-              >
-                <span>ENQUIRE ADMISSION NOW</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </div>
-          </div>
-        </div>
-
       </div>
+
+      {/* Subtle clean architectural finishing divider between Courses & Placements */}
+      <div className="w-full h-px bg-gradient-to-r from-transparent via-gray-200/80 to-transparent mt-8 sm:mt-10" />
 
       {/* ========================================================= */}
       {/* COURSE SYLLABUS & ADMISSION LIGHTBOX MODAL                */}

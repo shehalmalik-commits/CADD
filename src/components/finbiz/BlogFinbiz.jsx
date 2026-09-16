@@ -39,9 +39,10 @@ const BLOG_POSTS = [
 
 export default function BlogFinbiz({ onOpenDemo }) {
   return (
-    <section id="blog" className="py-12 sm:py-16 bg-white select-none border-t border-gray-100">
+    <section id="projects" className="py-12 sm:py-16 bg-white select-none border-t border-gray-100 relative">
+      <div id="blog" className="absolute -top-20" />
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Compact Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8 text-left">
           <div className="space-y-1.5">

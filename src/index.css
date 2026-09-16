@@ -37,7 +37,7 @@
     font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     background-color: var(--background);
     color: var(--text-primary);
-    overflow-x: hidden;
+    overflow-x: clip;
     scrollbar-width: none;
     -ms-overflow-style: none;
   }
@@ -213,6 +213,7 @@ button:not([data-no-motion]) {
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-50%);
   }

@@ -18,7 +18,7 @@ export default function NewsletterFinbiz() {
   return (
     <div className="relative max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 -mb-16 z-30">
       <div className="relative rounded-[36px] overflow-hidden bg-[#C4161C] p-8 sm:p-12 shadow-2xl shadow-[#C4161C]/30 text-white">
-        
+
         {/* Subtle background photo overlay */}
         <div className="absolute inset-0 opacity-15 pointer-events-none mix-blend-overlay">
           <img

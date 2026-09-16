@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { Target, CheckCircle2, Phone, Star, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Target, CheckCircle2, Phone, Star, ChevronLeft, ChevronRight, MapPin } from 'lucide-react';
+import CallDirectoryModal from './CallDirectoryModal';
 
 const ACCREDITATIONS = [
   {
     id: 1,
     partner: 'Autodesk',
+    logo: '/images/logos/autodesk.svg',
     sub: 'AUTHORIZED TRAINING PARTNER',
     rating: '4.9 out of 5 stars from 3,800+ alumni',
     stars: 5
@@ -12,6 +14,7 @@ const ACCREDITATIONS = [
   {
     id: 2,
     partner: 'Bentley',
+    logo: '/images/logos/bentley.svg',
     sub: 'INSTITUTE AUTHORIZED PARTNER',
     rating: '4.9 out of 5 stars from 2,500+ engineers',
     stars: 5
@@ -19,6 +22,7 @@ const ACCREDITATIONS = [
   {
     id: 3,
     partner: 'PTC University',
+    logo: '/images/logos/ptc.svg',
     sub: 'GLOBAL CERTIFICATION CENTER',
     rating: '4.88 out of 5 stars from 1,645 reviews',
     stars: 5
@@ -27,6 +31,7 @@ const ACCREDITATIONS = [
 
 export default function AboutFinbiz({ onOpenDemo }) {
   const [activeReviewIdx, setActiveReviewIdx] = useState(0);
+  const [isCallModalOpen, setIsCallModalOpen] = useState(false);
 
   const prevReview = () => {
     setActiveReviewIdx((prev) => (prev === 0 ? ACCREDITATIONS.length - 1 : prev - 1));
@@ -39,10 +44,10 @@ export default function AboutFinbiz({ onOpenDemo }) {
   return (
     <section id="about" className="py-16 sm:py-24 bg-white overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Split Grid: Left Text/Checklist/Founder + Right Tilted Photo */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          
+
           {/* LEFT COLUMN */}
           <div className="lg:col-span-6 space-y-6 text-left">
             {/* Eyebrow */}
@@ -89,43 +94,64 @@ export default function AboutFinbiz({ onOpenDemo }) {
               </div>
             </div>
 
-            {/* Founder Card + Call Badge */}
-            <div className="pt-6 border-t border-gray-100 flex items-center gap-6 flex-wrap">
+            {/* Founder Card + Action Badges (Call Us Anytime & Location side-by-side) */}
+            <div className="pt-6 border-t border-gray-100 flex items-center justify-between gap-3 sm:gap-4 flex-wrap">
               {/* Founder Avatar & Title */}
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2.5 sm:gap-3 shrink-0">
                 <img
                   src="/images/cand1.png"
                   alt="Er. Suhaib K. - Center Director"
-                  className="w-12 h-12 rounded-full object-cover border-2 border-gray-100 shadow-sm"
+                  className="w-10 h-10 sm:w-11 sm:h-11 rounded-full object-cover border-2 border-gray-100 shadow-sm shrink-0"
                 />
                 <div>
-                  <h4 className="text-sm font-bold text-gray-900">Er. Suhaib K.</h4>
-                  <p className="text-[11px] text-gray-500 font-medium">Center Director &amp; Lead BIM Architect</p>
+                  <h4 className="text-xs sm:text-sm font-bold text-gray-900 leading-tight">Er. Suhaib K.</h4>
+                  <p className="text-[10px] sm:text-[11px] text-gray-500 font-medium leading-tight">Center Director &amp; Lead BIM</p>
                 </div>
               </div>
 
-              {/* Call Us Anytime Pill */}
-              <a
-                href="tel:+918891550060"
-                className="flex items-center gap-3 bg-gray-50 hover:bg-gray-100 p-2 pr-4 rounded-full transition-colors cursor-pointer w-full sm:w-auto"
-              >
-                <div className="w-9 h-9 rounded-full bg-[#C4161C] text-white flex items-center justify-center shrink-0 shadow-sm">
-                  <Phone className="w-4 h-4" />
-                </div>
-                <div>
-                  <div className="text-[10px] text-gray-500 font-medium">Call us anytime</div>
-                  <div className="text-xs font-bold text-gray-900">+91 88915 50060</div>
-                </div>
-              </a>
+              {/* Action Buttons: Call Us & Location Side-by-Side */}
+              <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">
+                {/* Call Us Anytime Pill -> Opens Dedicated Department Call Directory Modal */}
+                <button
+                  type="button"
+                  onClick={() => setIsCallModalOpen(true)}
+                  className="flex items-center gap-2 sm:gap-2.5 bg-gray-50 hover:bg-gray-100 border border-gray-200/80 py-1.5 pl-1.5 pr-3.5 rounded-full transition-all cursor-pointer shadow-2xs hover:shadow-xs group shrink-0 h-[42px]"
+                  title="Call us anytime - Select Department"
+                >
+                  <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#C4161C] text-white flex items-center justify-center shrink-0 shadow-sm group-hover:scale-105 transition-transform">
+                    <Phone className="w-3.5 h-3.5" />
+                  </div>
+                  <span className="text-xs font-bold text-gray-900 leading-tight pr-0.5">
+                    Call us anytime
+                  </span>
+                </button>
+
+                {/* Campus Location Pill */}
+                <a
+                  href="https://www.google.com/maps/dir//CADD+Centre+%7C+CAD+%7C+Interior+Design+%7C+BIM+%7C+MEP+%7C+Primavera+%7C+Product+Design+Training+in+Manjeri,+Malappuram,+2nd+Floor,+KORAMBAYIL+CORPORATE+MALL,+Calicut+Rd,+above+Dhanlaxmi+Bank,+Karuvambram,+Manjeri,+Kerala+676121/@11.2716965,75.7557343,13.03z/data=!4m8!4m7!1m0!1m5!1m1!1s0x3ba6366fe440b235:0x125ad996626e368c!2m2!1d76.1194379!2d11.120027?entry=ttu&g_ep=EgoyMDI2MDkwOS4wIKXMDSoASAFQAw%3D%3D"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 sm:gap-2.5 bg-gray-50 hover:bg-gray-100 border border-gray-200/80 py-1.5 pl-1.5 pr-3.5 rounded-full transition-all cursor-pointer shadow-2xs hover:shadow-xs group shrink-0 h-[42px]"
+                  title="Get directions to CADD Centre Manjeri on Google Maps"
+                >
+                  <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#C4161C] text-white flex items-center justify-center shrink-0 shadow-sm group-hover:scale-105 transition-transform">
+                    <MapPin className="w-3.5 h-3.5" />
+                  </div>
+                  <div>
+                    <div className="text-[9px] text-gray-500 font-medium leading-none mb-0.5">Our location</div>
+                    <div className="text-xs font-bold text-gray-900 leading-none">Manjeri Campus</div>
+                  </div>
+                </a>
+              </div>
             </div>
           </div>
 
           {/* RIGHT COLUMN: TILTED TABLET FRAME WITH RED ACCENT BANNER */}
           <div className="lg:col-span-6 relative flex justify-center w-full">
             <div className="relative w-full max-w-[500px]">
-              
+
               {/* Main Tilted Tablet Photo Frame */}
-              <div 
+              <div
                 className="relative aspect-[4/4.5] w-full rounded-[28px] sm:rounded-[44px] overflow-hidden shadow-2xl border-4 sm:border-[6px] border-white bg-gray-100 transition-transform duration-500 hover:scale-[1.01]"
               >
                 <img
@@ -133,9 +159,9 @@ export default function AboutFinbiz({ onOpenDemo }) {
                   alt="CADD Centre engineering faculty at workstation"
                   className="w-full h-full object-cover object-center"
                 />
-                
+
                 {/* Diagonal Crimson Badge on bottom-left: "100% Placement Rate" */}
-                <div 
+                <div
                   className="absolute bottom-0 left-0 bg-[#C4161C] text-white py-3 sm:py-4 px-5 sm:px-8 shadow-xl z-20"
                   style={{
                     borderTopRightRadius: '28px'
@@ -159,11 +185,15 @@ export default function AboutFinbiz({ onOpenDemo }) {
             {ACCREDITATIONS.map((rev) => (
               <div
                 key={rev.id}
-                className="p-5 rounded-2xl bg-gray-50/70 border border-gray-100 flex flex-col items-center justify-center text-center space-y-2 hover:bg-white hover:shadow-md transition-all"
+                className="p-5 sm:p-6 rounded-2xl bg-gray-50/70 border border-gray-100 flex flex-col items-center justify-center text-center space-y-2.5 hover:bg-white hover:shadow-md transition-all group"
               >
-                <div className="flex items-center gap-2">
-                  <div className="w-6 h-6 rounded-full bg-gradient-to-tr from-[#C4161C] via-red-500 to-amber-500" />
-                  <span className="text-sm font-bold text-gray-900">{rev.partner}</span>
+                {/* Official Partner Brand Logo instead of plain name/dot */}
+                <div className="h-8 sm:h-9 flex items-center justify-center">
+                  <img
+                    src={rev.logo}
+                    alt={`${rev.partner} Official Logo`}
+                    className="h-6 sm:h-7 w-auto max-w-[175px] object-contain transition-transform duration-300 group-hover:scale-105"
+                  />
                 </div>
                 <div className="text-[10px] font-bold text-[#C4161C] tracking-wider uppercase">{rev.sub}</div>
                 <p className="text-[11.5px] text-gray-500">{rev.rating}</p>
@@ -198,6 +228,12 @@ export default function AboutFinbiz({ onOpenDemo }) {
         </div>
 
       </div>
+
+      {/* Dedicated Department Call Directory Modal */}
+      <CallDirectoryModal
+        isOpen={isCallModalOpen}
+        onClose={() => setIsCallModalOpen(false)}
+      />
     </section>
   );
 }
