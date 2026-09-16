@@ -142,8 +142,8 @@ export default function AboutFinbiz({ onOpenDemo }) {
 
         </div>
 
-        {/* OFFICIAL SOFTWARE DEVELOPER PARTNERS BANNER (COMPACT & TIGHT BOTTOM) */}
-        <div className="mt-5 sm:mt-6 pt-4 sm:pt-5 border-t border-gray-100">
+        {/* OFFICIAL SOFTWARE DEVELOPER PARTNERS BANNER (COMPACT & SEAMLESS) */}
+        <div className="mt-2.5 sm:mt-3.5">
           <div className="bg-gradient-to-b from-gray-50/90 to-white rounded-2xl sm:rounded-3xl p-3.5 sm:p-4 border border-gray-200/80 shadow-2xs text-center">
             <p className="text-[10px] sm:text-[11px] text-gray-500 font-medium tracking-wide mb-2.5">
               CADD Centre and CADD Centre logo are registered trademarks of CADD Centre Training Services Private Limited.
