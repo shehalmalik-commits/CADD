@@ -4,6 +4,7 @@ import HeroFinbiz from './components/finbiz/HeroFinbiz';
 import AboutFinbiz from './components/finbiz/AboutFinbiz';
 import TeamFinbiz from './components/finbiz/TeamFinbiz';
 import PortfolioFinbiz from './components/finbiz/PortfolioFinbiz';
+import InternshipsFinbiz from './components/finbiz/InternshipsFinbiz';
 import TestimonialsFinbiz from './components/finbiz/TestimonialsFinbiz';
 import RevolutionaryFinbiz from './components/finbiz/RevolutionaryFinbiz';
 import BlogFinbiz from './components/finbiz/BlogFinbiz';
@@ -45,7 +46,10 @@ export default function App() {
           {/* Section 3: Courses Section (Awesome HR Portfolio + Mid Dark CTA Banner) */}
           <PortfolioFinbiz onOpenDemo={handleOpenDemo} />
 
-          {/* Section 4: Placements Section (Executive Alumni Dossier) */}
+          {/* Section 4: Internships Section (Certified Industrial Internships & Live Projects) */}
+          <InternshipsFinbiz onOpenDemo={handleOpenDemo} />
+
+          {/* Section 5: Placements Section (Executive Alumni Dossier) */}
           <TeamFinbiz onOpenDemo={handleOpenDemo} />
 
           {/* Section 6: Testimonials Section (Customer Testimonials with Floating Avatars) */}
@@ -57,8 +61,8 @@ export default function App() {
           {/* Section 8: Blog Section (Latest Blog Posts with Red Date Badges) */}
           <BlogFinbiz onOpenDemo={() => handleOpenDemo()} />
 
-          {/* Section 9: Floating Red Newsletter Banner */}
-          <NewsletterFinbiz />
+          {/* Section 9: Hear from our students / Student Speaks Banner */}
+          <NewsletterFinbiz onOpenDemo={() => handleOpenDemo()} />
         </main>
 
         {/* Section 10: Deep Dark 3-Column Footer */}

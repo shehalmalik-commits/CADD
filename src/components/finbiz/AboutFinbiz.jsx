@@ -1,45 +1,19 @@
 import React, { useState } from 'react';
-import { Target, CheckCircle2, Phone, Star, ChevronLeft, ChevronRight, MapPin } from 'lucide-react';
+import { Target, CheckCircle2, Phone, MapPin } from 'lucide-react';
 import CallDirectoryModal from './CallDirectoryModal';
 
-const ACCREDITATIONS = [
-  {
-    id: 1,
-    partner: 'Autodesk',
-    logo: '/images/logos/autodesk.svg',
-    sub: 'AUTHORIZED TRAINING PARTNER',
-    rating: '4.9 out of 5 stars from 3,800+ alumni',
-    stars: 5
-  },
-  {
-    id: 2,
-    partner: 'Bentley',
-    logo: '/images/logos/bentley.svg',
-    sub: 'INSTITUTE AUTHORIZED PARTNER',
-    rating: '4.9 out of 5 stars from 2,500+ engineers',
-    stars: 5
-  },
-  {
-    id: 3,
-    partner: 'PTC University',
-    logo: '/images/logos/ptc.svg',
-    sub: 'GLOBAL CERTIFICATION CENTER',
-    rating: '4.88 out of 5 stars from 1,645 reviews',
-    stars: 5
-  }
+const PARTNER_STRIP = [
+  { name: 'Ansys', logo: '/images/logos/ansys.svg' },
+  { name: 'Autodesk', logo: '/images/logos/autodesk.svg' },
+  { name: 'Bentley', logo: '/images/logos/bentley.svg' },
+  { name: 'Oracle', logo: '/images/logos/oracle.svg' },
+  { name: 'Siemens', logo: '/images/logos/siemens.svg' },
+  { name: 'PTC', logo: '/images/logos/ptc.svg' },
+  { name: '3DS SolidWorks', logo: '/images/logos/solidworks.svg' }
 ];
 
 export default function AboutFinbiz({ onOpenDemo }) {
-  const [activeReviewIdx, setActiveReviewIdx] = useState(0);
   const [isCallModalOpen, setIsCallModalOpen] = useState(false);
-
-  const prevReview = () => {
-    setActiveReviewIdx((prev) => (prev === 0 ? ACCREDITATIONS.length - 1 : prev - 1));
-  };
-
-  const nextReview = () => {
-    setActiveReviewIdx((prev) => (prev === ACCREDITATIONS.length - 1 ? 0 : prev + 1));
-  };
 
   return (
     <section id="about" className="py-16 sm:py-24 bg-white overflow-hidden">
@@ -94,55 +68,44 @@ export default function AboutFinbiz({ onOpenDemo }) {
               </div>
             </div>
 
-            {/* Founder Card + Action Badges (Call Us Anytime & Location side-by-side) */}
-            <div className="pt-6 border-t border-gray-100 flex items-center justify-between gap-3 sm:gap-4 flex-wrap">
-              {/* Founder Avatar & Title */}
-              <div className="flex items-center gap-2.5 sm:gap-3 shrink-0">
-                <img
-                  src="/images/cand1.png"
-                  alt="Er. Suhaib K. - Center Director"
-                  className="w-10 h-10 sm:w-11 sm:h-11 rounded-full object-cover border-2 border-gray-100 shadow-sm shrink-0"
-                />
-                <div>
-                  <h4 className="text-xs sm:text-sm font-bold text-gray-900 leading-tight">Er. Suhaib K.</h4>
-                  <p className="text-[10px] sm:text-[11px] text-gray-500 font-medium leading-tight">Center Director &amp; Lead BIM</p>
+            {/* Action Dock: Call Directory, Campus Location & Admission Enquiry */}
+            <div className="pt-6 sm:pt-7 border-t border-gray-100 flex flex-wrap items-center gap-3 sm:gap-4">
+              {/* Call Us Anytime Button -> Opens Dedicated Department Call Directory Modal */}
+              <button
+                type="button"
+                onClick={() => setIsCallModalOpen(true)}
+                className="flex items-center gap-3 bg-gray-50 hover:bg-gray-100 border border-gray-200/90 py-1.5 pl-2 pr-4 sm:pr-5 rounded-full transition-all cursor-pointer shadow-2xs hover:shadow-xs group shrink-0 text-left"
+                title="Call us anytime - Select Department (+91 88915 50060)"
+              >
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#C4161C] text-white flex items-center justify-center shrink-0 shadow-sm group-hover:scale-105 transition-transform">
+                  <Phone className="w-4 h-4" />
                 </div>
-              </div>
+                <div>
+                  <div className="text-[10px] text-gray-500 font-medium leading-none mb-1">Call us anytime</div>
+                  <div className="text-xs sm:text-sm font-bold text-gray-900 group-hover:text-[#C4161C] transition-colors leading-tight">
+                    +91 88915 50060
+                  </div>
+                </div>
+              </button>
 
-              {/* Action Buttons: Call Us & Location Side-by-Side */}
-              <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">
-                {/* Call Us Anytime Pill -> Opens Dedicated Department Call Directory Modal */}
-                <button
-                  type="button"
-                  onClick={() => setIsCallModalOpen(true)}
-                  className="flex items-center gap-2 sm:gap-2.5 bg-gray-50 hover:bg-gray-100 border border-gray-200/80 py-1.5 pl-1.5 pr-3.5 rounded-full transition-all cursor-pointer shadow-2xs hover:shadow-xs group shrink-0 h-[42px]"
-                  title="Call us anytime - Select Department"
-                >
-                  <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#C4161C] text-white flex items-center justify-center shrink-0 shadow-sm group-hover:scale-105 transition-transform">
-                    <Phone className="w-3.5 h-3.5" />
+              {/* Campus Location Address Pill */}
+              <a
+                href="https://www.google.com/maps/dir//CADD+Centre+%7C+CAD+%7C+Interior+Design+%7C+BIM+%7C+MEP+%7C+Primavera+%7C+Product+Design+Training+in+Manjeri,+Malappuram,+2nd+Floor,+KORAMBAYIL+CORPORATE+MALL,+Calicut+Rd,+above+Dhanlaxmi+Bank,+Karuvambram,+Manjeri,+Kerala+676121/@11.2716965,75.7557343,13.03z/data=!4m8!4m7!1m0!1m5!1m1!1s0x3ba6366fe440b235:0x125ad996626e368c!2m2!1d76.1194379!2d11.120027?entry=ttu&g_ep=EgoyMDI2MDkwOS4wIKXMDSoASAFQAw%3D%3D"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 bg-gray-50 hover:bg-gray-100 border border-gray-200/90 py-1.5 pl-2 pr-4 sm:pr-5 rounded-full transition-all cursor-pointer shadow-2xs hover:shadow-xs group shrink-0 text-left"
+                title="Get directions to CADD Centre Manjeri on Google Maps"
+              >
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#C4161C] text-white flex items-center justify-center shrink-0 shadow-sm group-hover:scale-105 transition-transform">
+                  <MapPin className="w-4 h-4" />
+                </div>
+                <div>
+                  <div className="text-[10px] text-gray-500 font-medium leading-none mb-1">Our Location</div>
+                  <div className="text-xs sm:text-sm font-bold text-gray-900 leading-tight">
+                    Korambayil Mall, Calicut Rd, Manjeri
                   </div>
-                  <span className="text-xs font-bold text-gray-900 leading-tight pr-0.5">
-                    Call us anytime
-                  </span>
-                </button>
-
-                {/* Campus Location Pill */}
-                <a
-                  href="https://www.google.com/maps/dir//CADD+Centre+%7C+CAD+%7C+Interior+Design+%7C+BIM+%7C+MEP+%7C+Primavera+%7C+Product+Design+Training+in+Manjeri,+Malappuram,+2nd+Floor,+KORAMBAYIL+CORPORATE+MALL,+Calicut+Rd,+above+Dhanlaxmi+Bank,+Karuvambram,+Manjeri,+Kerala+676121/@11.2716965,75.7557343,13.03z/data=!4m8!4m7!1m0!1m5!1m1!1s0x3ba6366fe440b235:0x125ad996626e368c!2m2!1d76.1194379!2d11.120027?entry=ttu&g_ep=EgoyMDI2MDkwOS4wIKXMDSoASAFQAw%3D%3D"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 sm:gap-2.5 bg-gray-50 hover:bg-gray-100 border border-gray-200/80 py-1.5 pl-1.5 pr-3.5 rounded-full transition-all cursor-pointer shadow-2xs hover:shadow-xs group shrink-0 h-[42px]"
-                  title="Get directions to CADD Centre Manjeri on Google Maps"
-                >
-                  <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#C4161C] text-white flex items-center justify-center shrink-0 shadow-sm group-hover:scale-105 transition-transform">
-                    <MapPin className="w-3.5 h-3.5" />
-                  </div>
-                  <div>
-                    <div className="text-[9px] text-gray-500 font-medium leading-none mb-0.5">Our location</div>
-                    <div className="text-xs font-bold text-gray-900 leading-none">Manjeri Campus</div>
-                  </div>
-                </a>
-              </div>
+                </div>
+              </a>
             </div>
           </div>
 
@@ -179,51 +142,40 @@ export default function AboutFinbiz({ onOpenDemo }) {
 
         </div>
 
-        {/* BOTTOM ACCREDITATION & REVIEW CARDS ROW */}
-        <div className="mt-16 pt-12 border-t border-gray-100 relative">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 items-center">
-            {ACCREDITATIONS.map((rev) => (
-              <div
-                key={rev.id}
-                className="p-5 sm:p-6 rounded-2xl bg-gray-50/70 border border-gray-100 flex flex-col items-center justify-center text-center space-y-2.5 hover:bg-white hover:shadow-md transition-all group"
-              >
-                {/* Official Partner Brand Logo instead of plain name/dot */}
-                <div className="h-8 sm:h-9 flex items-center justify-center">
-                  <img
-                    src={rev.logo}
-                    alt={`${rev.partner} Official Logo`}
-                    className="h-6 sm:h-7 w-auto max-w-[175px] object-contain transition-transform duration-300 group-hover:scale-105"
-                  />
-                </div>
-                <div className="text-[10px] font-bold text-[#C4161C] tracking-wider uppercase">{rev.sub}</div>
-                <p className="text-[11.5px] text-gray-500">{rev.rating}</p>
-                <div className="flex items-center gap-1">
-                  {[...Array(rev.stars)].map((_, i) => (
-                    <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
+        {/* OFFICIAL SOFTWARE DEVELOPER PARTNERS BANNER (IMAGE 1 STYLE) */}
+        <div className="mt-14 sm:mt-16 pt-10 sm:pt-12 border-t border-gray-100">
+          <div className="bg-gradient-to-b from-gray-50/90 to-white rounded-2xl sm:rounded-3xl p-5 sm:p-7 border border-gray-200/80 shadow-2xs text-center">
+            <p className="text-[10px] sm:text-[11.5px] text-gray-500 font-medium tracking-wide mb-4">
+              CADD Centre and CADD Centre logo are registered trademarks of CADD Centre Training Services Private Limited.
+              <br className="hidden sm:inline" /> All brand names and trademarks belong to respective owners.
+            </p>
 
-          {/* Navigation arrow buttons on sides */}
-          <div className="flex justify-between items-center mt-6 px-2">
-            <button
-              type="button"
-              onClick={prevReview}
-              className="w-9 h-9 rounded-full bg-white border border-gray-200 text-gray-600 hover:bg-gray-100 flex items-center justify-center shadow-xs cursor-pointer active:scale-95"
-              aria-label="Previous rating"
-            >
-              <ChevronLeft className="w-4 h-4" />
-            </button>
-            <button
-              type="button"
-              onClick={nextReview}
-              className="w-9 h-9 rounded-full bg-white border border-gray-200 text-gray-600 hover:bg-gray-100 flex items-center justify-center shadow-xs cursor-pointer active:scale-95"
-              aria-label="Next rating"
-            >
-              <ChevronRight className="w-4 h-4" />
-            </button>
+            {/* 7 Official Logos Strip with Dividers matching Image 1 */}
+            <div className="flex items-center justify-between gap-2 sm:gap-3 md:gap-4 lg:gap-5 py-3.5 px-3 sm:px-6 bg-white rounded-xl sm:rounded-2xl border border-gray-100 shadow-2xs overflow-x-auto no-scrollbar">
+              {PARTNER_STRIP.map((item, idx) => (
+                <React.Fragment key={item.name}>
+                  <div className="flex items-center justify-center h-8 sm:h-9 px-1 sm:px-2 shrink-0 hover:scale-105 transition-transform duration-200">
+                    <img
+                      src={item.logo}
+                      alt={item.name}
+                      className="h-5 sm:h-6 w-auto max-w-[90px] sm:max-w-[115px] lg:max-w-[130px] object-contain"
+                    />
+                  </div>
+                  {idx < PARTNER_STRIP.length - 1 && (
+                    <div className="w-px h-5 sm:h-6 bg-gray-200 shrink-0" />
+                  )}
+                </React.Fragment>
+              ))}
+            </div>
+
+            <div className="mt-4 space-y-1">
+              <p className="text-xs sm:text-[13px] font-semibold text-gray-800">
+                CADD Centre uses legal software from the above software developers.
+              </p>
+              <p className="text-[10.5px] sm:text-[11.5px] text-gray-500">
+                CADD Centre students are employed in many reputed companies and universities in several countries worldwide.
+              </p>
+            </div>
           </div>
         </div>
 

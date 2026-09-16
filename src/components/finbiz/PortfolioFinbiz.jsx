@@ -359,7 +359,7 @@ export default function PortfolioFinbiz({ onOpenDemo }) {
   }, [activeTab, searchQuery, isExpanded, filteredCourses]);
 
   return (
-    <section id="courses" className="pt-10 sm:pt-14 pb-8 sm:pb-12 bg-[#F8F9FC] select-none relative overflow-hidden text-left">
+    <section id="courses" className="pt-10 sm:pt-14 pb-4 sm:pb-6 bg-[#F8F9FC] select-none relative overflow-hidden text-left">
       {/* Subtle architectural grid pattern */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f01a_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f01a_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
 
@@ -374,7 +374,7 @@ export default function PortfolioFinbiz({ onOpenDemo }) {
               {/* Eyebrow */}
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-50 border border-red-200/80 text-xs font-black uppercase tracking-[0.2em] text-[#C4161C] shadow-xs">
                 <Target className="w-3.5 h-3.5 text-[#C4161C] animate-pulse" />
-                <span>36 COURSES ACROSS 8 DISCIPLINES</span>
+                <span>EXPLORE COURSES</span>
               </div>
 
               {/* Main Section Title */}
@@ -421,15 +421,12 @@ export default function PortfolioFinbiz({ onOpenDemo }) {
                       setActiveTab(d.id);
                       setIsExpanded(false);
                     }}
-                    className={`px-3.5 sm:px-4 py-2 rounded-full text-xs font-bold transition-all cursor-pointer whitespace-nowrap flex items-center gap-1.5 shrink-0 ${isActive
+                    className={`px-4 sm:px-5 py-2 rounded-full text-xs font-bold transition-all cursor-pointer whitespace-nowrap shrink-0 ${isActive
                         ? 'bg-[#C4161C] text-white shadow-md'
                         : 'bg-white text-gray-700 hover:text-gray-950 hover:bg-gray-50 border border-gray-200/90 shadow-xs'
                       }`}
                   >
                     <span>{d.label}</span>
-                    <span className={`text-[10px] px-1.5 py-0.5 rounded-full font-extrabold ${isActive ? 'bg-white/25 text-white' : 'bg-gray-100 text-gray-600'}`}>
-                      {d.count}
-                    </span>
                   </button>
                 );
               })}
@@ -665,21 +662,18 @@ export default function PortfolioFinbiz({ onOpenDemo }) {
         {/* VIEW ALL COURSES BUTTON BAR ("VIEW ALL BUTTON")           */}
         {/* ========================================================= */}
         {activeTab === 'all' && !searchQuery && (
-          <div className="mt-8 sm:mt-10 flex flex-col items-center justify-center space-y-2.5">
+          <div className="mt-6 sm:mt-8 flex flex-col items-center justify-center space-y-2">
             <div className="inline-flex items-center p-1 rounded-full bg-white border border-gray-200/90 shadow-sm hover:shadow-md transition-all">
               <button
                 type="button"
                 onClick={() => setIsExpanded(!isExpanded)}
-                className="inline-flex items-center gap-2.5 px-6 sm:px-8 py-3 sm:py-3.5 rounded-full bg-[#11161E] hover:bg-[#C4161C] text-white text-xs sm:text-[13px] font-extrabold uppercase tracking-wider shadow-sm transition-all duration-300 cursor-pointer active:scale-98 group"
+                className="inline-flex items-center gap-2.5 px-6 sm:px-8 py-2.5 sm:py-3 rounded-full bg-[#11161E] hover:bg-[#C4161C] text-white text-xs sm:text-[13px] font-extrabold uppercase tracking-wider shadow-sm transition-all duration-300 cursor-pointer active:scale-98 group"
               >
                 <Sparkles className="w-4 h-4 text-amber-400 group-hover:rotate-12 transition-transform" />
                 <span>
                   {isExpanded
                     ? 'SHOW FEATURED COURSES (COLLAPSE)'
-                    : 'VIEW ALL 36 COURSES ACROSS 8 DISCIPLINES'}
-                </span>
-                <span className="px-2 py-0.5 rounded-full bg-white/20 text-white text-[10px] font-mono font-bold">
-                  {isExpanded ? '12 ACTIVE' : '36 TOTAL'}
+                    : 'VIEW ALL COURSES'}
                 </span>
                 {isExpanded ? (
                   <ChevronUp className="w-4 h-4 text-white/70 group-hover:text-white" />
@@ -692,7 +686,7 @@ export default function PortfolioFinbiz({ onOpenDemo }) {
               <span className="w-1.5 h-1.5 rounded-full bg-[#C4161C]" />
               <span>
                 {isExpanded
-                  ? 'Showing all 12 specialized master programs & certifications'
+                  ? 'Showing all specialized master programs & certifications'
                   : 'Showing 4 featured programs • Click to expand full catalog'}
               </span>
             </p>
@@ -701,8 +695,8 @@ export default function PortfolioFinbiz({ onOpenDemo }) {
 
       </div>
 
-      {/* Subtle clean architectural finishing divider between Courses & Placements */}
-      <div className="w-full h-px bg-gradient-to-r from-transparent via-gray-200/80 to-transparent mt-8 sm:mt-10" />
+      {/* Subtle clean architectural finishing divider between Courses & Internships */}
+      <div className="w-full h-px bg-gradient-to-r from-transparent via-gray-200/80 to-transparent mt-5" />
 
       {/* ========================================================= */}
       {/* COURSE SYLLABUS & ADMISSION LIGHTBOX MODAL                */}

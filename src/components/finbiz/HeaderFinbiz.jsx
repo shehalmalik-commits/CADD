@@ -62,7 +62,7 @@ export default function HeaderFinbiz({ onOpenDemo }) {
           <div className="w-[140px] sm:w-[220px] shrink-0" />
 
           {/* Center Desktop Navigation Menu */}
-          <nav className="hidden md:flex items-center gap-7 lg:gap-9 text-[13.5px] font-semibold text-gray-800">
+          <nav className="hidden md:flex items-center gap-5 lg:gap-7 xl:gap-8 text-[13px] lg:text-[13.5px] font-semibold text-gray-800">
             <a href="#hero" className="text-[#C4161C] transition-colors">
               Home
             </a>
@@ -71,6 +71,9 @@ export default function HeaderFinbiz({ onOpenDemo }) {
             </a>
             <a href="#courses" className="hover:text-[#C4161C] transition-colors flex items-center gap-1">
               Courses <ChevronDown className="w-3.5 h-3.5 text-gray-400" />
+            </a>
+            <a href="#internships" className="hover:text-[#C4161C] transition-colors">
+              Internships
             </a>
             <a href="#placements" className="hover:text-[#C4161C] transition-colors flex items-center gap-1">
               Placements <ChevronDown className="w-3.5 h-3.5 text-gray-400" />
@@ -138,6 +141,14 @@ export default function HeaderFinbiz({ onOpenDemo }) {
               className="block py-2.5 text-base font-semibold text-gray-800 hover:text-[#C4161C] border-b border-gray-50"
             >
               Courses &amp; 8 Disciplines
+            </a>
+            <a
+              href="#internships"
+              onClick={() => setMobileMenuOpen(false)}
+              className="block py-2.5 text-base font-semibold text-gray-800 hover:text-[#C4161C] border-b border-gray-50 flex items-center justify-between"
+            >
+              <span>Certified Internships</span>
+              <span className="text-[10px] font-bold px-2 py-0.5 bg-red-50 text-[#C4161C] rounded-full border border-red-100 uppercase">Live Projects</span>
             </a>
             <a
               href="#placements"

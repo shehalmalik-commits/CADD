@@ -1,128 +1,393 @@
 import React from 'react';
-import { Target, ArrowRight, Calendar, Sparkles } from 'lucide-react';
+import {
+  Target,
+  ArrowRight,
+  ExternalLink,
+  Phone,
+  Play,
+  Award,
+  Video,
+  Clock,
+  Sparkles
+} from 'lucide-react';
 
-const BLOG_POSTS = [
+// Inline Instagram gradient SVG icon
+function InstagramIcon({ className = "w-3 h-3" }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+    </svg>
+  );
+}
+
+// 1. TOP TIER: 3 REGISTER WORKSHOPS (Ultra-compact, short card structure)
+export const REGISTER_WORKSHOPS = [
   {
-    id: 1,
-    title: 'New Weekend & Regular Batches: Master Certificate in BIM',
-    date: '15. 09. 2026',
-    day: '15',
-    month: 'SEP',
-    category: 'ADMISSIONS OPEN',
-    author: 'CADD MANJERI',
-    badge: 'Batches Starting',
-    img: '/images/hero-cad-bim.jpg'
+    id: 'intellibuild',
+    brand: 'IntelliBuild',
+    title: 'The Smart Building Workshop Series',
+    subtitle: 'Design Intelligent Spaces with AI & IoT',
+    bannerImg: '/images/workshops/intellibuild_workshop.jpg',
+    whatYouLearn: [
+      'AI Tools for Visualization',
+      '3D Massing & Planning',
+      'IoT Automation Prototypes',
+      'Smart Sensor Control'
+    ],
+    footerInfo: '3 Hours • Ideation + Prototype • Kit Provided',
+    registerUrl: 'https://caddcentre.com/workshop/',
+    sourceUrl: 'https://caddcentre.com/workshop/',
+    isInstagram: false
   },
   {
-    id: 2,
-    title: 'Free Workshop: ISO 19650 BIM Standards & GCC Career Scope',
-    date: '20. 09. 2026',
-    day: '20',
-    month: 'SEP',
-    category: 'TECHNICAL WORKSHOP',
-    author: 'BIM ARCHITECTURE',
-    badge: 'Free Registration',
-    img: '/images/cad_bim_hero_bg.jpg'
+    id: 'smartpro',
+    brand: 'SmartPro',
+    title: 'Smart Product Design Workshop Series',
+    subtitle: 'Innovate. Prototype. Engineer the Future.',
+    bannerImg: '/images/workshops/smartpro_workshop.jpg',
+    whatYouLearn: [
+      'Trends in Smart Product Design',
+      'AI Sketches & 3D Modeling',
+      'IoT & Embedded Systems',
+      'Physical Testing & Debugging'
+    ],
+    footerInfo: '3 Hours • Ideation + Prototype • Tool Kit Provided',
+    registerUrl: 'https://caddcentre.com/workshop/',
+    sourceUrl: 'https://caddcentre.com/workshop/',
+    isInstagram: false
   },
   {
-    id: 3,
-    title: 'Campus Placement Drive: 15+ Top Civil & MEP Firms Hiring',
-    date: '28. 09. 2026',
-    day: '28',
-    month: 'SEP',
-    category: 'CAREER DRIVE',
-    author: 'PLACEMENT CELL',
-    badge: '15+ MNC Recruiters',
-    img: '/images/course_structural.jpg'
+    id: 'vastu',
+    brand: 'വാസ്തുവിലെ വാസ്തവം',
+    title: 'Scientific Vastu Masterclass for Civil Engineers',
+    subtitle: 'Essential Planning & Alignments with Engr. Rijul Das',
+    bannerImg: '/images/workshops/vastu_banner.svg',
+    whatYouLearn: [
+      'Scientific Basis of Vastu',
+      'Structural Clashes Prevention',
+      'Practical Drafting Rules',
+      'Live Case Studies & Q&A'
+    ],
+    footerInfo: 'Kaizen Hall Manjeri • Engr. Rijul Das • Kit Provided',
+    registerUrl: 'https://surveyheart.com/form/67481adf3f45646d0c72cd0a',
+    sourceUrl: 'https://www.instagram.com/p/DC_qyJYh3aZ/',
+    isInstagram: true
+  }
+];
+
+// 2. BOTTOM TIER: WORKSHOP VIDEO DEMOS ("just videos mathram")
+export const WORKSHOP_VIDEOS = [
+  {
+    id: 'bim-video',
+    badge: 'REEL',
+    title: 'BIM² Masterclass: Real-Time Structural Load Testing',
+    author: '@caddcentremanjeri x ACES',
+    description: 'Explore the power of BIM: Design, prototype, and physical weight load testing.',
+    thumbnail: '/images/workshops/bim_aces_workshop.jpg',
+    videoUrl: 'https://www.instagram.com/reel/DSaEXE6iTuf/'
+  },
+  {
+    id: 'bridge-video',
+    badge: 'LIVE WORKSHOP',
+    title: 'Bridge Miniature Construction & Load Capacity Testing',
+    author: '@caddcentremanjeri x Eranad Knowledge City',
+    description: 'Scale bridge model construction and hydraulic testing with students.',
+    thumbnail: '/images/workshops/bridge_workshop.jpg',
+    videoUrl: 'https://www.instagram.com/p/DDg1UTZSxPB/'
+  },
+  {
+    id: 'facade-video',
+    badge: 'STUDENT PROJECT',
+    title: '3D Modern Facade & Building Visualization Showcase',
+    author: '@caddcentremanjeri Student Work',
+    description: 'Hyper-realistic exterior facade rendering created by our learner Noushida.',
+    thumbnail: '/images/events/manjeri/manjeri_DcyM0j3JY4i.jpg',
+    videoUrl: 'https://www.instagram.com/caddcentremanjeri'
   }
 ];
 
 export default function BlogFinbiz({ onOpenDemo }) {
   return (
-    <section id="projects" className="py-12 sm:py-16 bg-white select-none border-t border-gray-100 relative">
+    <section
+      id="projects"
+      className="py-10 sm:py-12 bg-[#F8FAFC] select-none border-t border-gray-200 relative font-['Plus_Jakarta_Sans',sans-serif]"
+    >
       <div id="blog" className="absolute -top-20" />
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
 
-        {/* Compact Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8 text-left">
-          <div className="space-y-1.5">
-            <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-[#C4161C]">
-              <Target className="w-3.5 h-3.5 text-[#C4161C]" />
-              <span>CAMPUS UPDATES &amp; EVENTS</span>
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
+
+        {/* ========================================================= */}
+        {/* PART 1: REGISTER WORKSHOPS (Compact, Short Cards)          */}
+        {/* ========================================================= */}
+        <div>
+          {/* Section Header */}
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-5 text-left">
+            <div className="space-y-1">
+              <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#C4161C]">
+                <Target className="w-3.5 h-3.5 text-[#C4161C]" />
+                <span>OFFICIAL CERTIFIED WORKSHOPS</span>
+              </div>
+
+              <h2 className="text-xl sm:text-2xl font-black text-gray-950 tracking-tight">
+                Shape the Future with Smart Design
+              </h2>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-black text-[#111827] tracking-tight leading-tight">
-              Latest Admissions &amp; Workshops
-            </h2>
+
+            {/* Action Buttons */}
+            <div className="flex items-center gap-2.5 shrink-0">
+              <a
+                href="tel:+918891550060"
+                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white hover:bg-gray-50 border border-gray-200 text-xs font-bold text-gray-800 shadow-2xs transition-colors"
+              >
+                <Phone className="w-3 h-3 text-[#C4161C]" />
+                <span>8891550060</span>
+              </a>
+
+              <button
+                type="button"
+                onClick={onOpenDemo}
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-[#C4161C] hover:text-[#9e1116] transition-colors cursor-pointer group"
+              >
+                <span>Batch Schedules</span>
+                <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+              </button>
+            </div>
           </div>
 
-          <button
-            type="button"
-            onClick={onOpenDemo}
-            className="inline-flex items-center gap-2 text-xs font-bold text-[#C4161C] hover:text-[#9e1116] transition-colors self-start sm:self-auto cursor-pointer group"
-          >
-            <span>View All Schedules &amp; Batches</span>
-            <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-          </button>
+          {/* 3 Short, Compact Uniform Registration Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5 items-stretch">
+            {REGISTER_WORKSHOPS.map((card) => (
+              <div
+                key={card.id}
+                className="bg-white rounded-xl border border-gray-200/90 shadow-2xs hover:shadow-md hover:border-[#C4161C]/50 transition-all duration-200 flex flex-col justify-between overflow-hidden text-left group relative"
+              >
+                {/* Short Image Banner (Height constrained to ~120px) */}
+                <div className="relative h-28 sm:h-32 overflow-hidden bg-gray-100 shrink-0 border-b border-gray-100">
+                  <img
+                    src={card.bannerImg}
+                    alt={card.title}
+                    loading="lazy"
+                    className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-300 ease-out"
+                  />
+
+                  {/* Top-Right Source Badge */}
+                  <a
+                    href={card.sourceUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="absolute top-2 right-2 px-2 py-0.5 rounded-full bg-black/75 hover:bg-[#C4161C] backdrop-blur-md text-white text-[9.5px] font-bold border border-white/20 shadow-2xs flex items-center gap-1 transition-colors cursor-pointer"
+                    title="View Source Link"
+                  >
+                    {card.isInstagram ? (
+                      <InstagramIcon className="w-2.5 h-2.5 text-pink-300" />
+                    ) : (
+                      <ExternalLink className="w-2.5 h-2.5 text-white" />
+                    )}
+                    <span>{card.isInstagram ? 'Instagram' : 'Official'}</span>
+                  </a>
+                </div>
+
+                {/* Card Content: Compact, Short & Informative */}
+                <div className="p-3.5 sm:p-4 flex-1 flex flex-col justify-between space-y-2.5">
+                  <div className="space-y-1">
+                    {/* Brand / Category (Red) */}
+                    <span className="text-[11px] font-bold text-[#C4161C] tracking-wide block">
+                      {card.brand}
+                    </span>
+
+                    {/* Title (Compact 1 line or 2 lines) */}
+                    <h3 className="text-sm sm:text-[14.5px] font-black text-gray-950 tracking-tight leading-snug line-clamp-1 group-hover:text-[#C4161C] transition-colors" title={card.title}>
+                      {card.title}
+                    </h3>
+
+                    {/* Subtitle */}
+                    <p className="text-[11.5px] text-gray-500 font-normal line-clamp-1">
+                      {card.subtitle}
+                    </p>
+                  </div>
+
+                  {/* "What You'll Learn" - 2-Column Compact Micro Topics Grid */}
+                  <div className="pt-2 border-t border-gray-100">
+                    <div className="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-1.5">
+                      Key Topics
+                    </div>
+                    <div className="grid grid-cols-2 gap-x-2 gap-y-1 text-[11px] text-gray-700">
+                      {card.whatYouLearn.map((item, idx) => (
+                        <div key={idx} className="flex items-center gap-1.5 truncate">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#C4161C] shrink-0" />
+                          <span className="truncate">{item}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Duration & Kit Badge */}
+                  <div className="pt-1.5 border-t border-gray-100">
+                    <span className="inline-block text-[10px] font-bold text-gray-700 bg-gray-50 px-2 py-0.5 rounded border border-gray-100 truncate max-w-full">
+                      {card.footerInfo}
+                    </span>
+                  </div>
+
+                  {/* Solid Red [Register Now] Button */}
+                  <div className="pt-1">
+                    <a
+                      href={card.registerUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg bg-[#C4161C] hover:bg-[#a51217] text-white text-xs font-bold shadow-2xs transition-colors cursor-pointer"
+                    >
+                      <span>Register Now</span>
+                      <ArrowRight className="w-3 h-3" />
+                    </a>
+                  </div>
+                </div>
+
+                {/* Accent Top Border */}
+                <div className="absolute top-0 inset-x-0 h-0.5 bg-[#C4161C] opacity-0 group-hover:opacity-100 transition-opacity" />
+              </div>
+            ))}
+          </div>
         </div>
 
-        {/* Shorter, Compact Modern Horizontal Strip Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-          {BLOG_POSTS.map((post) => (
-            <div
-              key={post.id}
-              onClick={onOpenDemo}
-              className="group bg-white rounded-2xl p-3.5 sm:p-4 border border-gray-200/80 shadow-[0_4px_16px_rgba(0,0,0,0.03)] hover:shadow-md hover:border-[#C4161C]/50 transition-all duration-300 flex items-center gap-4 cursor-pointer text-left relative overflow-hidden"
-            >
-              {/* Left Compact Image Thumbnail (No Change Image) */}
-              <div className="relative w-28 sm:w-32 h-24 sm:h-28 rounded-xl overflow-hidden bg-gray-100 shrink-0 border border-gray-100 shadow-2xs">
-                <img
-                  src={post.img}
-                  alt={post.title}
-                  loading="lazy"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-
-                {/* Compact Date Tag inside Thumbnail */}
-                <div className="absolute top-1.5 left-1.5 px-2 py-0.5 rounded-md bg-black/75 backdrop-blur-sm text-white text-[9.5px] font-bold border border-white/10 flex items-center gap-1">
-                  <Calendar className="w-2.5 h-2.5 text-[#C4161C]" />
-                  <span>{post.day} {post.month}</span>
-                </div>
+        {/* ========================================================= */}
+        {/* PART 2: CAMPUS WORKSHOP VIDEO DEMOS ("just videos mathram") */}
+        {/* ========================================================= */}
+        <div className="pt-5 border-t border-gray-200">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4 text-left">
+            <div className="space-y-0.5">
+              <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#C4161C]">
+                <Video className="w-3 h-3 text-[#C4161C]" />
+                <span>CAMPUS WORKSHOP VIDEOS</span>
               </div>
-
-              {/* Right Content Column */}
-              <div className="flex-1 min-w-0 flex flex-col justify-between h-full py-0.5 space-y-1.5">
-                {/* Category & Badge */}
-                <div className="flex items-center justify-between gap-1">
-                  <span className="text-[10px] font-bold text-[#C4161C] uppercase tracking-wider truncate">
-                    {post.category}
-                  </span>
-                  <span className="hidden sm:inline-block text-[9px] font-bold text-gray-400 uppercase">
-                    {post.author}
-                  </span>
-                </div>
-
-                {/* Course/Event Title (2 Lines Max) */}
-                <h3 className="text-xs sm:text-[13.5px] font-extrabold text-gray-900 group-hover:text-[#C4161C] transition-colors line-clamp-2 leading-snug tracking-tight">
-                  {post.title}
-                </h3>
-
-                {/* Compact Action Link */}
-                <div className="pt-0.5 flex items-center justify-between">
-                  <span className="text-[11px] font-bold text-gray-500 group-hover:text-[#C4161C] flex items-center gap-1 transition-colors">
-                    <span>Register Now</span>
-                    <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
-                  </span>
-
-                  <span className="w-6 h-6 rounded-full bg-gray-100 group-hover:bg-[#C4161C] text-gray-500 group-hover:text-white flex items-center justify-center transition-all">
-                    <ArrowRight className="w-3 h-3" />
-                  </span>
-                </div>
-              </div>
-
-              {/* Subtle Red Top-Border Highlight on Hover */}
-              <div className="absolute top-0 inset-x-0 h-0.5 bg-[#C4161C] opacity-0 group-hover:opacity-100 transition-opacity" />
+              <h3 className="text-base sm:text-lg font-black text-gray-950 tracking-tight">
+                Live Workshop Sessions &amp; Student Prototyping
+              </h3>
             </div>
-          ))}
+
+            <a
+              href="https://www.instagram.com/caddcentremanjeri"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-xs font-bold text-[#E1306C] hover:text-[#b01e50] transition-colors cursor-pointer"
+            >
+              <InstagramIcon className="w-3 h-3" />
+              <span>More on Instagram</span>
+              <ArrowRight className="w-3 h-3" />
+            </a>
+          </div>
+
+          {/* 3 Compact 16:9 Video Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {WORKSHOP_VIDEOS.map((vid) => (
+              <div
+                key={vid.id}
+                className="group bg-white rounded-xl border border-gray-200/90 shadow-2xs hover:shadow-md transition-all duration-200 overflow-hidden flex flex-col justify-between text-left relative"
+              >
+                {/* 16:9 Compact Video Thumbnail with Glowing Play Button */}
+                <div className="relative h-28 sm:h-32 overflow-hidden bg-gray-900">
+                  <img
+                    src={vid.thumbnail}
+                    alt={vid.title}
+                    loading="lazy"
+                    className="w-full h-full object-cover group-hover:scale-104 transition-transform duration-300 ease-out opacity-90"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/30 pointer-events-none" />
+
+                  {/* Top Badge */}
+                  <div className="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-black/75 backdrop-blur-md text-white text-[9px] font-mono font-bold uppercase border border-white/15">
+                    {vid.badge}
+                  </div>
+
+                  {/* Centered Glowing Instagram Play Button */}
+                  <a
+                    href={vid.videoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] text-white flex items-center justify-center shadow-md group-hover:scale-110 transition-transform cursor-pointer"
+                    title="Watch Video"
+                  >
+                    <Play className="w-4 h-4 fill-white ml-0.5" />
+                  </a>
+                </div>
+
+                {/* Video Info Body */}
+                <div className="p-3 sm:p-3.5 flex-1 flex flex-col justify-between space-y-1.5">
+                  <div className="space-y-1">
+                    <span className="text-[10px] font-bold text-[#C4161C] uppercase tracking-wide block">
+                      {vid.author}
+                    </span>
+                    <h4 className="text-xs sm:text-[13px] font-extrabold text-gray-950 group-hover:text-[#C4161C] transition-colors leading-snug line-clamp-1">
+                      {vid.title}
+                    </h4>
+                    <p className="text-[11px] text-gray-500 line-clamp-1 leading-normal font-normal">
+                      {vid.description}
+                    </p>
+                  </div>
+
+                  {/* Watch Link */}
+                  <div className="pt-1.5 border-t border-gray-100 flex items-center justify-between">
+                    <a
+                      href={vid.videoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-[11px] font-bold text-[#C4161C] group-hover:text-[#9e1116] transition-colors cursor-pointer"
+                    >
+                      <span>Watch Video</span>
+                      <ArrowRight className="w-3 h-3" />
+                    </a>
+
+                    <InstagramIcon className="w-3.5 h-3.5 text-gray-400 group-hover:text-[#E1306C] transition-colors" />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* ========================================================= */}
+        {/* BOTTOM COMMUNITY CALLOUT                                   */}
+        {/* ========================================================= */}
+        <div className="p-4 sm:p-5 rounded-xl bg-white border border-gray-200 shadow-2xs flex flex-col md:flex-row items-center justify-between gap-3 text-left">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-lg bg-red-50 border border-red-100 flex items-center justify-center text-[#C4161C] shrink-0">
+              <Award className="w-5 h-5" />
+            </div>
+            <div>
+              <h4 className="text-xs sm:text-sm font-bold text-gray-950">
+                Host a CADD &amp; BIM Technical Workshop at Your College?
+              </h4>
+              <p className="text-[11px] text-gray-500">
+                We partner with engineering colleges across Malappuram for hands-on software &amp; hardware testing symposiums.
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2.5 shrink-0 w-full md:w-auto">
+            <a
+              href="tel:+918891550060"
+              className="w-full sm:w-auto text-center px-3.5 py-1.5 rounded-lg border border-gray-300 text-xs font-bold text-gray-800 transition-colors"
+            >
+              Call: 8891550060
+            </a>
+            <button
+              type="button"
+              onClick={onOpenDemo}
+              className="w-full sm:w-auto text-center px-3.5 py-1.5 rounded-lg bg-[#C4161C] hover:bg-[#a51217] text-xs font-bold text-white shadow-2xs transition-colors cursor-pointer"
+            >
+              Enquire Admissions
+            </button>
+          </div>
         </div>
 
       </div>

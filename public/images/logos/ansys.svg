@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 125 36" fill="none">
+  <!-- Base Ansys wordmark -->
+  <text x="2" y="26.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="28" font-weight="900" letter-spacing="-0.8" fill="#000000">
+    Ansys
+  </text>
+  <!-- Gold left facet of the capital 'A' -->
+  <path d="M2.5 26.5L10.8 6.5H13.6L5.5 26.5H2.5Z" fill="#FFB71B"/>
+</svg>

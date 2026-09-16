@@ -11,36 +11,70 @@ import {
   Check,
   Copy,
   ExternalLink,
-  ShieldCheck
+  ShieldCheck,
+  Award,
+  Layers
 } from 'lucide-react';
 
 const DEPARTMENTS = [
   {
-    id: 'course',
+    id: 'course-enquiry',
     tabName: 'Course Enquiry',
-    badge: 'Admissions & Syllabus',
-    title: 'Course Admissions & Career Counselling',
-    subtitle: 'BIM, CAD, MEP, Interior Design & Structural Engineering',
+    badge: 'Curriculum & Fees',
+    title: 'Course Enquiry Desk',
+    subtitle: 'CAD, BIM, Interior, Mechanical & Project Management Courses',
     phone: '+91 88915 50060',
     cleanPhone: '+918891550060',
     whatsapp: '918891550060',
-    whatsappMsg: 'Hi CADD Centre, I would like to enquire about engineering courses and admissions.',
+    whatsappMsg: 'Hi CADD Centre Manjeri, I would like to enquire about course syllabus, batch timings and fee details.',
     icon: GraduationCap,
     timing: 'Mon – Sat: 8:30 AM – 7:30 PM',
-    tag: 'Admissions Desk',
+    tag: 'Course Enquiry',
     color: '#C4161C',
-    description: 'Direct consultation with lead faculty mentors for curriculum, software certifications, fee schedules & batch timings.'
+    description: 'Direct assistance for curriculum details, software modules, class schedules, and flexible batch timings.'
   },
   {
-    id: 'internship',
-    tabName: 'Internship Desk',
-    badge: 'Industrial Training',
-    title: 'Internship & Live Project Training',
-    subtitle: 'Live Site Projects, ISO Standards & Certified Student Internships',
+    id: 'admissions',
+    tabName: 'Admissions',
+    badge: 'Seat Booking & Enrollment',
+    title: 'Admissions & Seat Registration',
+    subtitle: 'Direct Admissions, Scholarship Guidance & Batch Allocation',
+    phone: '+91 88918 50060',
+    cleanPhone: '+918891850060',
+    whatsapp: '918891850060',
+    whatsappMsg: 'Hi CADD Centre Manjeri, I want to take admission for upcoming batches and know about enrollment procedures.',
+    icon: Building2,
+    timing: 'Mon – Sat: 9:00 AM – 7:00 PM',
+    tag: 'Admissions Desk',
+    color: '#E11D48',
+    description: 'Dedicated admissions officer for instant seat reservation, batch allocation, student ID, and admission verification.'
+  },
+  {
+    id: 'placements',
+    tabName: 'Placements',
+    badge: 'GCC & MNC Careers',
+    title: 'Corporate Placement Cell',
+    subtitle: 'Campus Recruitment, Gulf Job Assistance & Interview Prep',
+    phone: '+91 95441 69638',
+    cleanPhone: '+919544169638',
+    whatsapp: '919544169638',
+    whatsappMsg: 'Hi CADD Centre Placement Cell, I would like to enquire regarding placement support, interview drives, and recruiter tie-ups.',
+    icon: Award,
+    timing: 'Mon – Sat: 9:30 AM – 6:00 PM',
+    tag: 'Placement Cell',
+    color: '#059669',
+    description: 'Support for alumni placements across UAE, Qatar, Saudi Arabia & India, interview scheduling, and recruitment drives.'
+  },
+  {
+    id: 'internships',
+    tabName: 'Internships',
+    badge: 'KTU Approved Training',
+    title: 'Certified Engineering Internships',
+    subtitle: 'KTU Approved 15-Day to 6-Month Industrial Training',
     phone: '+91 87142 69638',
     cleanPhone: '+918714269638',
     whatsapp: '918714269638',
-    whatsappMsg: 'Hi CADD Centre, I would like to enquire about the Engineering Internship programs and live project training.',
+    whatsappMsg: 'Hi CADD Centre Manjeri, I would like to enquire about Engineering Internship programs and live project training.',
     icon: Briefcase,
     timing: 'Mon – Sat: 9:00 AM – 6:30 PM',
     tag: 'Internship Desk',
@@ -48,20 +82,20 @@ const DEPARTMENTS = [
     description: 'Certified 1 to 6-month industrial internships for B.Tech, Diploma & Architecture students with real live drawing submissions.'
   },
   {
-    id: 'general',
-    tabName: 'Normal Enquiry',
-    badge: 'Campus Reception',
-    title: 'General Enquiry & Campus Reception',
-    subtitle: 'Campus Visits, Verification, Placement Desk & General Support',
-    phone: '+91 70255 69638',
-    cleanPhone: '+917025569638',
-    whatsapp: '917025569638',
-    whatsappMsg: 'Hi CADD Centre Manjeri, I have a general enquiry regarding campus services and assistance.',
-    icon: Building2,
-    timing: 'Mon – Sat: 9:00 AM – 7:00 PM',
-    tag: 'Reception Desk',
-    color: '#10B981',
-    description: 'Reception desk at Korambayil Corporate Mall for walk-in counselling, student certificate verification, and fee receipts.'
+    id: 'projects',
+    tabName: 'Projects',
+    badge: 'Live Drawing & Academic',
+    title: 'Academic & Live Projects Desk',
+    subtitle: 'Final Year B.Tech/Diploma Projects, 3D Models & Drawings',
+    phone: '+91 62355 50078',
+    cleanPhone: '+916235550078',
+    whatsapp: '916235550078',
+    whatsappMsg: 'Hi CADD Centre Manjeri, I would like to enquire about academic project guidance and commercial drawing submissions.',
+    icon: Layers,
+    timing: 'Mon – Sat: 9:00 AM – 6:30 PM',
+    tag: 'Projects Desk',
+    color: '#7C3AED',
+    description: 'Specialized assistance for final year B.Tech/Diploma capstone projects, 3D modelling, analysis, and thesis drawing sheets.'
   }
 ];
 
@@ -144,7 +178,7 @@ export default function CallDirectoryModal({ isOpen, onClose }) {
                 : 'bg-white text-gray-600 hover:text-gray-900 border border-gray-200/80 hover:bg-gray-100'
             }`}
           >
-            All Desks (3)
+            All Desks ({DEPARTMENTS.length})
           </button>
 
           {DEPARTMENTS.map((dept) => {

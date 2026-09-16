@@ -5,12 +5,9 @@ import {
   MapPin,
   Phone,
   Mail,
-  Award,
-  ShieldCheck,
   CheckCircle2,
   ExternalLink,
   MessageCircle,
-  GraduationCap,
   Sparkles,
   Building2
 } from 'lucide-react';
@@ -35,7 +32,7 @@ function InstagramGlyph({ className }) {
 
 export default function FooterFinbiz({ onOpenDemo }) {
   return (
-    <footer id="footer" className="bg-[#090D14] text-white pt-20 sm:pt-28 pb-12 relative overflow-hidden select-none text-left font-['Plus_Jakarta_Sans',sans-serif]">
+    <footer id="footer" className="bg-[#090D14] text-white pt-16 sm:pt-20 pb-12 relative overflow-hidden select-none text-left font-['Plus_Jakarta_Sans',sans-serif]">
 
       {/* Background Blueprint Mesh & Ambient Radial Glows */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,#C4161C/10,transparent_50%)] pointer-events-none" />
@@ -43,51 +40,6 @@ export default function FooterFinbiz({ onOpenDemo }) {
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:48px_48px] pointer-events-none" />
 
       <div className="relative max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 z-10">
-
-        {/* ========================================================= */}
-        {/* 1. TOP ACCREDITATION & CREDENTIALS STRIP                  */}
-        {/* ========================================================= */}
-        <div className="pb-8 sm:pb-10 mb-10 sm:mb-12 border-b border-white/10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-[#FF5A43] shrink-0">
-              <Award className="w-5 h-5" />
-            </div>
-            <div>
-              <div className="text-xs font-bold text-white">Autodesk Authorized</div>
-              <div className="text-[11px] text-gray-400">Global Training Partner</div>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-[#FF5A43] shrink-0">
-              <ShieldCheck className="w-5 h-5" />
-            </div>
-            <div>
-              <div className="text-xs font-bold text-white">Bentley Institute</div>
-              <div className="text-[11px] text-gray-400">Certified Training Center</div>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-emerald-400 shrink-0">
-              <CheckCircle2 className="w-5 h-5" />
-            </div>
-            <div>
-              <div className="text-xs font-bold text-white">100% Placement Cell</div>
-              <div className="text-[11px] text-gray-400">Dedicated Gulf &amp; MNC Desk</div>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-amber-400 shrink-0">
-              <GraduationCap className="w-5 h-5" />
-            </div>
-            <div>
-              <div className="text-xs font-bold text-white">ISO 9001:2015</div>
-              <div className="text-[11px] text-gray-400">Certified Quality Education</div>
-            </div>
-          </div>
-        </div>
 
         {/* ========================================================= */}
         {/* 2. 4-COLUMN RICH INFORMATION ARCHITECTURE                 */}

@@ -22,24 +22,24 @@ import {
 
 const MODELS = [
   {
-    id: 'transmission-tower',
-    name: 'High Voltage Post',
-    discipline: 'Structural Engineering',
-    spec: 'STAAD.Pro & Tower FEA',
-    accent: '#FF1A1A'
-  },
-  {
     id: 'bim-tower',
-    name: 'Building',
-    discipline: 'BIM Architecture',
+    name: 'Civil & Arch',
+    discipline: 'Civil & Architectural BIM',
     spec: 'LOD 350 • Revit & Navisworks',
     accent: '#FF1A1A'
   },
   {
     id: 'cad-car',
-    name: 'Car',
-    discipline: 'Mechanical & Surface CAD',
+    name: 'Mechanical and Automobile',
+    discipline: 'Mechanical & Automobile CAD',
     spec: 'CATIA & SolidWorks Surface',
+    accent: '#FF1A1A'
+  },
+  {
+    id: 'transmission-tower',
+    name: 'Electrical and electronic',
+    discipline: 'Electrical & Electronics CAD',
+    spec: 'STAAD.Pro & Tower FEA',
     accent: '#FF1A1A'
   },
   {
@@ -1305,7 +1305,7 @@ export default function HeroFinbiz({ onOpenDemo }) {
                 href="#courses"
                 className="w-full sm:w-auto inline-flex items-center justify-center px-5 py-2.5 sm:py-3 rounded-full bg-white hover:bg-gray-50 text-gray-900 border border-gray-200 text-xs sm:text-[13px] font-bold uppercase tracking-wider transition-all duration-200 shadow-xs hover:border-[#C4161C]/40 text-center"
               >
-                <span>EXPLORE 36 COURSES</span>
+                <span>EXPLORE COURSES</span>
               </a>
             </div>
 

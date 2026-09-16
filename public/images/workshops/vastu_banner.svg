@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1A0B0E" />
+      <stop offset="50%" stop-color="#2D1115" />
+      <stop offset="100%" stop-color="#0F0608" />
+    </linearGradient>
+
+    <!-- Red Banner Gradient -->
+    <linearGradient id="redGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#C4161C" />
+      <stop offset="100%" stop-color="#E52D27" />
+    </linearGradient>
+
+    <!-- Blueprint Grid -->
+    <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#FFFFFF" stroke-width="0.5" opacity="0.06"/>
+    </pattern>
+
+    <!-- Compass / Vastu Purusha Mandala Ring -->
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F6D365" />
+      <stop offset="100%" stop-color="#FDA085" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="450" fill="url(#bgGrad)"/>
+  <rect width="800" height="450" fill="url(#grid)"/>
+
+  <!-- Subtle Blueprint Architectural Circles -->
+  <circle cx="400" cy="225" r="180" fill="none" stroke="#FFFFFF" stroke-width="1" opacity="0.08" stroke-dasharray="4,4"/>
+  <circle cx="400" cy="225" r="130" fill="none" stroke="#FFFFFF" stroke-width="1" opacity="0.1"/>
+  <circle cx="400" cy="225" r="80" fill="none" stroke="#C4161C" stroke-width="1" opacity="0.2"/>
+
+  <!-- Compass Cardinal Crosslines -->
+  <line x1="400" y1="20" x2="400" y2="430" stroke="#FFFFFF" stroke-width="1" opacity="0.08" stroke-dasharray="6,6"/>
+  <line x1="20" y1="225" x2="780" y2="225" stroke="#FFFFFF" stroke-width="1" opacity="0.08" stroke-dasharray="6,6"/>
+
+  <!-- Top Eyebrow -->
+  <text x="400" y="70" text-anchor="middle" font-family="'Plus Jakarta Sans', system-ui, -apple-system, sans-serif" font-size="17" font-weight="700" fill="#FFFFFF" letter-spacing="1">
+    Civil Engineers Masterclass Series
+  </text>
+
+  <!-- White Center Plate (Matching IntelliBuild / SmartPro style) -->
+  <rect x="130" y="105" width="540" height="190" rx="12" fill="#FFFFFF" filter="drop-shadow(0 10px 25px rgba(0,0,0,0.5))"/>
+
+  <!-- Malayalam Main Title -->
+  <text x="400" y="175" text-anchor="middle" font-family="'Manjari', 'Gayathri', 'Plus Jakarta Sans', sans-serif" font-size="44" font-weight="900" fill="#C4161C" letter-spacing="0">
+    വാസ്തുവിലെ വാസ്തവം
+  </text>
+
+  <!-- Subtitle on Plate -->
+  <rect x="180" y="200" width="440" height="38" rx="6" fill="#C4161C"/>
+  <text x="400" y="225" text-anchor="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="14" font-weight="800" fill="#FFFFFF" letter-spacing="2">
+    SCIENTIFIC VASTU &amp; BUILDING PLANNING
+  </text>
+
+  <!-- Mentor & Location on Plate -->
+  <text x="400" y="272" text-anchor="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="13" font-weight="700" fill="#333333">
+    Mentor: Engr. Rijul Das Silpies • CADD Centre Manjeri
+  </text>
+
+  <!-- Register Pill at Bottom (Matching IntelliBuild style) -->
+  <rect x="335" y="325" width="130" height="36" rx="6" fill="#FFFFFF"/>
+  <text x="400" y="348" text-anchor="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="13" font-weight="800" fill="#111111">
+    Register Now
+  </text>
+
+  <!-- Left Icon / Blueprint Badge -->
+  <g transform="translate(45, 145)">
+    <rect width="65" height="65" rx="12" fill="#220B10" stroke="#C4161C" stroke-width="1.5"/>
+    <text x="32" y="28" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#FF5A43">VASTU</text>
+    <text x="32" y="48" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#FFFFFF">PLAN</text>
+  </g>
+
+  <!-- Right Icon / Engineer Badge -->
+  <g transform="translate(690, 145)">
+    <rect width="65" height="65" rx="12" fill="#220B10" stroke="#C4161C" stroke-width="1.5"/>
+    <text x="32" y="28" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#FF5A43">CIVIL</text>
+    <text x="32" y="48" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#FFFFFF">CAD</text>
+  </g>
+</svg>
