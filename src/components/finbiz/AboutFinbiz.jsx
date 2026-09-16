@@ -16,14 +16,14 @@ export default function AboutFinbiz({ onOpenDemo }) {
   const [isCallModalOpen, setIsCallModalOpen] = useState(false);
 
   return (
-    <section id="about" className="py-16 sm:py-24 bg-white overflow-hidden">
+    <section id="about" className="pt-6 sm:pt-8 pb-3 sm:pb-4 bg-white overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Split Grid: Left Text/Checklist/Founder + Right Tilted Photo */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
 
           {/* LEFT COLUMN */}
-          <div className="lg:col-span-6 space-y-6 text-left">
+          <div className="lg:col-span-6 space-y-4 sm:space-y-5 text-left">
             {/* Eyebrow */}
             <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-[#C4161C]">
               <Target className="w-3.5 h-3.5 text-[#C4161C]" />
@@ -31,7 +31,7 @@ export default function AboutFinbiz({ onOpenDemo }) {
             </div>
 
             {/* Heading */}
-            <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-extrabold text-[#111827] tracking-tight leading-tight">
+            <h2 className="text-2xl sm:text-3xl lg:text-[40px] font-extrabold text-[#111827] tracking-tight leading-tight">
               Here is your perfect <br className="hidden sm:inline" />
               Engineering Career Solution
             </h2>
@@ -41,35 +41,35 @@ export default function AboutFinbiz({ onOpenDemo }) {
             </p>
 
             {/* 2-Column Checklist with Red Checkmark Badges */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-2">
-              <div className="flex items-center gap-2.5 text-xs font-semibold text-gray-800">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-3.5 pt-1">
+              <div className="flex items-center gap-2.5 text-xs sm:text-[13px] font-semibold text-gray-800">
                 <CheckCircle2 className="w-4 h-4 text-[#C4161C] shrink-0" />
                 <span>24/7 Advanced CAD &amp; BIM Lab</span>
               </div>
-              <div className="flex items-center gap-2.5 text-xs font-semibold text-gray-800">
+              <div className="flex items-center gap-2.5 text-xs sm:text-[13px] font-semibold text-gray-800">
                 <CheckCircle2 className="w-4 h-4 text-[#C4161C] shrink-0" />
                 <span>Autodesk &amp; Bentley Certified Mentors</span>
               </div>
-              <div className="flex items-center gap-2.5 text-xs font-semibold text-gray-800">
+              <div className="flex items-center gap-2.5 text-xs sm:text-[13px] font-semibold text-gray-800">
                 <CheckCircle2 className="w-4 h-4 text-[#C4161C] shrink-0" />
                 <span>100% Placement Support in GCC &amp; India</span>
               </div>
-              <div className="flex items-center gap-2.5 text-xs font-semibold text-gray-800">
+              <div className="flex items-center gap-2.5 text-xs sm:text-[13px] font-semibold text-gray-800">
                 <CheckCircle2 className="w-4 h-4 text-[#C4161C] shrink-0" />
                 <span>Live Commercial Project Portfolios</span>
               </div>
-              <div className="flex items-center gap-2.5 text-xs font-semibold text-gray-800">
+              <div className="flex items-center gap-2.5 text-xs sm:text-[13px] font-semibold text-gray-800">
                 <CheckCircle2 className="w-4 h-4 text-[#C4161C] shrink-0" />
                 <span>International ISO 19650 Standards</span>
               </div>
-              <div className="flex items-center gap-2.5 text-xs font-semibold text-gray-800">
+              <div className="flex items-center gap-2.5 text-xs sm:text-[13px] font-semibold text-gray-800">
                 <CheckCircle2 className="w-4 h-4 text-[#C4161C] shrink-0" />
                 <span>Industry-Recognized Credentials</span>
               </div>
             </div>
 
-            {/* Action Dock: Call Directory, Campus Location & Admission Enquiry */}
-            <div className="pt-6 sm:pt-7 border-t border-gray-100 flex flex-wrap items-center gap-3 sm:gap-4">
+            {/* Action Dock: Call Directory, Campus Location */}
+            <div className="pt-5 sm:pt-6 border-t border-gray-100 flex flex-wrap items-center gap-3 sm:gap-4">
               {/* Call Us Anytime Button -> Opens Dedicated Department Call Directory Modal */}
               <button
                 type="button"
@@ -109,13 +109,13 @@ export default function AboutFinbiz({ onOpenDemo }) {
             </div>
           </div>
 
-          {/* RIGHT COLUMN: TILTED TABLET FRAME WITH RED ACCENT BANNER */}
+          {/* RIGHT COLUMN: ENLARGED PHOTO FRAME WITH RED ACCENT BANNER */}
           <div className="lg:col-span-6 relative flex justify-center w-full">
-            <div className="relative w-full max-w-[500px]">
+            <div className="relative w-full max-w-[490px]">
 
-              {/* Main Tilted Tablet Photo Frame */}
+              {/* Main Tilted Tablet Photo Frame (Enlarged) */}
               <div
-                className="relative aspect-[4/4.5] w-full rounded-[28px] sm:rounded-[44px] overflow-hidden shadow-2xl border-4 sm:border-[6px] border-white bg-gray-100 transition-transform duration-500 hover:scale-[1.01]"
+                className="relative aspect-[4/3.5] w-full rounded-[26px] sm:rounded-[38px] overflow-hidden shadow-2xl border-4 sm:border-[5px] border-white bg-gray-100 transition-transform duration-500 hover:scale-[1.01]"
               >
                 <img
                   src="/images/finbiz-consultant.jpg"
@@ -125,13 +125,13 @@ export default function AboutFinbiz({ onOpenDemo }) {
 
                 {/* Diagonal Crimson Badge on bottom-left: "100% Placement Rate" */}
                 <div
-                  className="absolute bottom-0 left-0 bg-[#C4161C] text-white py-3 sm:py-4 px-5 sm:px-8 shadow-xl z-20"
+                  className="absolute bottom-0 left-0 bg-[#C4161C] text-white py-2.5 sm:py-3.5 px-4 sm:px-7 shadow-xl z-20"
                   style={{
-                    borderTopRightRadius: '28px'
+                    borderTopRightRadius: '26px'
                   }}
                 >
-                  <span className="text-xl sm:text-3xl font-black tracking-tight">100%</span>
-                  <span className="block text-[10px] sm:text-xs font-bold uppercase tracking-wider text-white/95">
+                  <span className="text-xl sm:text-2xl font-black tracking-tight">100%</span>
+                  <span className="block text-[9px] sm:text-[10.5px] font-bold uppercase tracking-wider text-white/95">
                     Placement Rate
                   </span>
                 </div>
@@ -142,37 +142,37 @@ export default function AboutFinbiz({ onOpenDemo }) {
 
         </div>
 
-        {/* OFFICIAL SOFTWARE DEVELOPER PARTNERS BANNER (IMAGE 1 STYLE) */}
-        <div className="mt-14 sm:mt-16 pt-10 sm:pt-12 border-t border-gray-100">
-          <div className="bg-gradient-to-b from-gray-50/90 to-white rounded-2xl sm:rounded-3xl p-5 sm:p-7 border border-gray-200/80 shadow-2xs text-center">
-            <p className="text-[10px] sm:text-[11.5px] text-gray-500 font-medium tracking-wide mb-4">
+        {/* OFFICIAL SOFTWARE DEVELOPER PARTNERS BANNER (COMPACT & TIGHT BOTTOM) */}
+        <div className="mt-5 sm:mt-6 pt-4 sm:pt-5 border-t border-gray-100">
+          <div className="bg-gradient-to-b from-gray-50/90 to-white rounded-2xl sm:rounded-3xl p-3.5 sm:p-4 border border-gray-200/80 shadow-2xs text-center">
+            <p className="text-[10px] sm:text-[11px] text-gray-500 font-medium tracking-wide mb-2.5">
               CADD Centre and CADD Centre logo are registered trademarks of CADD Centre Training Services Private Limited.
               <br className="hidden sm:inline" /> All brand names and trademarks belong to respective owners.
             </p>
 
             {/* 7 Official Logos Strip with Dividers matching Image 1 */}
-            <div className="flex items-center justify-between gap-2 sm:gap-3 md:gap-4 lg:gap-5 py-3.5 px-3 sm:px-6 bg-white rounded-xl sm:rounded-2xl border border-gray-100 shadow-2xs overflow-x-auto no-scrollbar">
+            <div className="flex items-center justify-between gap-2 sm:gap-3 md:gap-4 lg:gap-5 py-2 sm:py-2.5 px-3 sm:px-6 bg-white rounded-xl sm:rounded-2xl border border-gray-100 shadow-2xs overflow-x-auto no-scrollbar">
               {PARTNER_STRIP.map((item, idx) => (
                 <React.Fragment key={item.name}>
-                  <div className="flex items-center justify-center h-8 sm:h-9 px-1 sm:px-2 shrink-0 hover:scale-105 transition-transform duration-200">
+                  <div className="flex items-center justify-center h-7 sm:h-8 px-1 sm:px-2 shrink-0 hover:scale-105 transition-transform duration-200">
                     <img
                       src={item.logo}
                       alt={item.name}
-                      className="h-5 sm:h-6 w-auto max-w-[90px] sm:max-w-[115px] lg:max-w-[130px] object-contain"
+                      className="h-4 sm:h-5.5 w-auto max-w-[85px] sm:max-w-[105px] lg:max-w-[120px] object-contain"
                     />
                   </div>
                   {idx < PARTNER_STRIP.length - 1 && (
-                    <div className="w-px h-5 sm:h-6 bg-gray-200 shrink-0" />
+                    <div className="w-px h-4.5 sm:h-5.5 bg-gray-200 shrink-0" />
                   )}
                 </React.Fragment>
               ))}
             </div>
 
-            <div className="mt-4 space-y-1">
-              <p className="text-xs sm:text-[13px] font-semibold text-gray-800">
+            <div className="mt-2.5 space-y-0.5">
+              <p className="text-xs sm:text-[12px] font-semibold text-gray-800">
                 CADD Centre uses legal software from the above software developers.
               </p>
-              <p className="text-[10.5px] sm:text-[11.5px] text-gray-500">
+              <p className="text-[10px] sm:text-[10.5px] text-gray-500">
                 CADD Centre students are employed in many reputed companies and universities in several countries worldwide.
               </p>
             </div>
