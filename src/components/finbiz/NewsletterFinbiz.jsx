@@ -171,91 +171,107 @@ export default function NewsletterFinbiz({ onOpenDemo }) {
             </div>
           </div>
 
-          {/* Right Column: Student Speaks Studio Showcase (Coded Model Structure - No Static Image) */}
-          <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-white via-[#FFF8F8] to-[#FFF0F2] p-6 sm:p-8 shadow-xl border border-red-100/90 group text-left">
-            {/* Ambient Background Decorative Glow */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-red-100/40 rounded-full blur-3xl pointer-events-none -mr-20 -mt-20" />
-            <div className="absolute bottom-0 left-0 w-48 h-48 bg-pink-100/30 rounded-full blur-2xl pointer-events-none -ml-10 -mb-10" />
-
-            <div className="relative z-10 space-y-5">
-              {/* Top Header Row: Live Studio Tag + Instagram Pill */}
-              <div className="flex items-center justify-between gap-2">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-red-200/80 text-[11px] font-black text-red-600 shadow-2xs">
-                  <span className="w-2 h-2 rounded-full bg-[#C4161C] animate-pulse" />
-                  <span className="tracking-wide uppercase text-[10px]">STUDENT SPEAKS STUDIO</span>
-                </div>
-
-                <a
-                  href="https://www.instagram.com/caddcentremanjeri/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={(e) => e.stopPropagation()}
-                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/95 hover:bg-gradient-to-r hover:from-[#f09433] hover:via-[#dc2743] hover:to-[#bc1888] hover:text-white text-gray-700 font-bold text-[11px] shadow-2xs border border-gray-200 transition-all group/ig"
-                >
-                  <InstagramIcon className="w-3.5 h-3.5 text-[#E1306C] group-hover/ig:text-white transition-colors" />
+          {/* Right Column: Student Speaks Polaroid Collage Banner (Authentic Reel Photos) */}
+          <div className="relative rounded-3xl overflow-hidden bg-white shadow-xl border border-gray-100/90 group">
+            <button
+              type="button"
+              onClick={() => setIsModalOpen(true)}
+              className="w-full text-left block relative cursor-pointer focus:outline-none p-5 sm:p-7 min-h-[340px] sm:min-h-[370px] overflow-hidden"
+              title="Click to view student stories on Instagram"
+            >
+              {/* Top-Right Instagram Tag */}
+              <div className="absolute top-3 sm:top-4 right-3 sm:right-4 z-30">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white font-bold text-[11px] shadow-sm border border-white/10 group-hover:bg-[#E1306C] transition-colors">
+                  <InstagramIcon className="w-3 h-3 text-pink-400 group-hover:text-white" />
                   <span>@caddcentremanjeri</span>
-                </a>
+                </span>
               </div>
 
-              {/* Bold Typography Title & Speech Bubble Icon */}
-              <div className="flex items-center justify-between gap-4 pt-1">
-                <div>
-                  <div className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-none">
-                    <span className="text-[#C4161C] block">STUDENT</span>
-                    <span className="text-gray-950 block mt-1">SPEAKS</span>
+              {/* Grid Layout: Polaroid Collage on Left, STUDENT SPEAKS on Right */}
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-6 relative z-10 pt-2 pb-6">
+                
+                {/* LEFT: 4 Overlapping Authentic Student Polaroid Frames */}
+                <div className="relative w-64 sm:w-72 h-60 sm:h-64 shrink-0 mx-auto sm:mx-0">
+                  {/* Subtle soft backdrop shadow */}
+                  <div className="absolute inset-0 bg-gradient-to-tr from-gray-100 to-transparent rounded-full blur-2xl pointer-events-none" />
+
+                  {/* 1. Top/Back Polaroid: Masood */}
+                  <div className="absolute top-0 left-20 w-26 sm:w-28 bg-white p-1.5 pb-4 shadow-lg border border-gray-200/90 rounded-sm -rotate-3 group-hover:-rotate-6 transition-transform duration-500 z-1">
+                    <div className="w-full aspect-[4/4.8] overflow-hidden bg-gray-100">
+                      <img
+                        src="/images/reels/masood.jpg"
+                        alt="Masood - 3D Exhibition Designer"
+                        className="w-full h-full object-cover object-top"
+                      />
+                    </div>
                   </div>
-                  <p className="text-xs text-gray-500 font-medium mt-2">
-                    Direct video experiences & career transformation stories
-                  </p>
+
+                  {/* 2. Left Polaroid: Karthik */}
+                  <div className="absolute top-8 left-1 w-26 sm:w-28 bg-white p-1.5 pb-4 shadow-lg border border-gray-200/90 rounded-sm -rotate-6 group-hover:-rotate-12 transition-transform duration-500 z-2">
+                    <div className="w-full aspect-[4/4.8] overflow-hidden bg-gray-100">
+                      <img
+                        src="/images/reels/karthik.jpg"
+                        alt="Karthik - BIM Civil"
+                        className="w-full h-full object-cover object-top"
+                      />
+                    </div>
+                  </div>
+
+                  {/* 3. Right Polaroid: Shaheera */}
+                  <div className="absolute top-9 right-1 w-26 sm:w-28 bg-white p-1.5 pb-4 shadow-lg border border-gray-200/90 rounded-sm rotate-6 group-hover:rotate-12 transition-transform duration-500 z-2">
+                    <div className="w-full aspect-[4/4.8] overflow-hidden bg-gray-100">
+                      <img
+                        src="/images/reels/shaheera.jpg"
+                        alt="Shaheera - Architectural Visualizer"
+                        className="w-full h-full object-cover object-top"
+                      />
+                    </div>
+                  </div>
+
+                  {/* 4. Front Center Polaroid: Aswathi */}
+                  <div className="absolute bottom-1 left-14 sm:left-16 w-30 sm:w-34 bg-white p-1.5 pb-5 shadow-2xl border border-gray-200/90 rounded-sm rotate-1 group-hover:scale-105 transition-all duration-500 z-10 ring-1 ring-black/5">
+                    <div className="w-full aspect-[4/4.8] overflow-hidden bg-gray-100">
+                      <img
+                        src="/images/reels/aswathi.jpg"
+                        alt="Aswathi - Interior Designer"
+                        className="w-full h-full object-cover object-top"
+                      />
+                    </div>
+                  </div>
                 </div>
 
-                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-[#C4161C] to-[#8C0D12] text-white flex items-center justify-center shadow-lg shadow-red-600/20 shrink-0 group-hover:scale-105 transition-transform duration-300">
-                  <MessageCircle className="w-8 h-8 sm:w-10 sm:h-10 fill-white/20 text-white" />
+                {/* RIGHT: STUDENT SPEAKS Typography & Chat Bubbles */}
+                <div className="flex-1 text-center sm:text-left flex items-center justify-center sm:justify-start gap-3 sm:gap-4 pl-0 sm:pl-2">
+                  <div>
+                    <h3 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-none">
+                      <span className="text-[#C4161C] block">STUDENT</span>
+                      <span className="text-gray-950 block mt-1">SPEAKS</span>
+                    </h3>
+                  </div>
+
+                  {/* Speech Bubble Graphic */}
+                  <div className="relative shrink-0 text-[#C4161C] group-hover:scale-110 transition-transform duration-300">
+                    <svg className="w-14 h-14 sm:w-16 sm:h-16" viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      {/* Red Speech Bubble with smiley */}
+                      <path d="M12 20C12 14.5 16.5 10 22 10H42C47.5 10 52 14.5 52 20V32C52 37.5 47.5 42 42 42H28L18 50V42H16C13.8 42 12 40.2 12 38V20Z" fill="white" stroke="#C4161C" />
+                      {/* Smiley curve */}
+                      <path d="M25 26C27 30 33 30 35 26" stroke="#C4161C" strokeWidth="2.5" strokeLinecap="round" />
+                      {/* Black second bubble */}
+                      <path d="M46 34C51.5 34 56 38.5 56 44C56 46.5 55 48.8 53.5 50.5L55 56L49.5 54C48 54.6 46.5 55 45 55C39.5 55 35 50.5 35 45" stroke="#11161E" strokeWidth="2.5" />
+                    </svg>
+                  </div>
                 </div>
+
               </div>
 
-              {/* Student Quotes Mini-Cards */}
-              <div className="grid grid-cols-2 gap-2.5 pt-1">
-                <div className="p-3 rounded-2xl bg-white/95 border border-red-100 shadow-2xs space-y-1">
-                  <div className="flex items-center gap-1.5">
-                    <span className="w-5 h-5 rounded-full bg-red-100 text-[#C4161C] text-[9.5px] font-black flex items-center justify-center shrink-0">
-                      AS
-                    </span>
-                    <span className="text-xs font-black text-gray-900 truncate">Aswathi</span>
-                  </div>
-                  <div className="text-[10px] text-red-600 font-bold">Interior CAD</div>
-                  <p className="text-[10.5px] text-gray-600 line-clamp-2 leading-tight">
-                    &ldquo;From foundation to realistic 3D interior walkthroughs.&rdquo;
-                  </p>
-                </div>
-
-                <div className="p-3 rounded-2xl bg-white/95 border border-red-100 shadow-2xs space-y-1">
-                  <div className="flex items-center gap-1.5">
-                    <span className="w-5 h-5 rounded-full bg-red-100 text-[#C4161C] text-[9.5px] font-black flex items-center justify-center shrink-0">
-                      KT
-                    </span>
-                    <span className="text-xs font-black text-gray-900 truncate">Karthik</span>
-                  </div>
-                  <div className="text-[10px] text-red-600 font-bold">BIM Civil</div>
-                  <p className="text-[10.5px] text-gray-600 line-clamp-2 leading-tight">
-                    &ldquo;Shaped my engineering career for top GCC placement.&rdquo;
-                  </p>
-                </div>
+              {/* Floating Bottom Prompt */}
+              <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 z-30">
+                <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/95 backdrop-blur-md text-gray-900 font-bold text-xs shadow-md border border-gray-200 group-hover:bg-[#C4161C] group-hover:text-white transition-colors">
+                  <Play className="w-3 h-3 fill-current text-[#C4161C] group-hover:text-white" />
+                  <span>Click to watch Student Reels</span>
+                </span>
               </div>
-
-              {/* Action Button: Opens Reels Lightbox Modal */}
-              <button
-                type="button"
-                onClick={() => setIsModalOpen(true)}
-                className="w-full py-3.5 px-5 rounded-2xl bg-[#C4161C] hover:bg-[#A81217] text-white font-extrabold text-xs sm:text-sm tracking-wide flex items-center justify-center gap-2.5 shadow-lg shadow-red-600/25 hover:shadow-xl transition-all cursor-pointer group/btn active:scale-98"
-              >
-                <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center group-hover/btn:scale-110 transition-transform">
-                  <Play className="w-3 h-3 fill-current text-white ml-0.5" />
-                </div>
-                <span>Click to Watch Student Reels</span>
-                <ArrowUpRight className="w-4 h-4 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
-              </button>
-            </div>
+            </button>
           </div>
 
         </div>
