@@ -40,29 +40,29 @@ export default function App() {
           {/* Section 1: Hero Section */}
           <HeroFinbiz onOpenDemo={() => handleOpenDemo()} />
 
-          {/* Section 2: More About Us (Checklist + Tilted Tablet + Rating Cards) */}
+          {/* Section 2: About CADD (Checklist + Tilted Tablet + Rating Cards) */}
           <AboutFinbiz onOpenDemo={() => handleOpenDemo()} />
 
-          {/* Section 3: Courses Section (Awesome HR Portfolio + Mid Dark CTA Banner) */}
+          {/* Section 3: Course Offerings (Specialized Master Programs & CAD Modules) */}
           <PortfolioFinbiz onOpenDemo={handleOpenDemo} />
 
-          {/* Section 4: Internships Section (Certified Industrial Internships & Live Projects) */}
-          <InternshipsFinbiz onOpenDemo={handleOpenDemo} />
-
-          {/* Section 5: Placements Section (Executive Alumni Dossier) */}
+          {/* Section 4: Placements Stream (Executive Alumni Dossier & GCC Placed Records) */}
           <TeamFinbiz onOpenDemo={handleOpenDemo} />
 
-          {/* Section 6: Testimonials Section (Customer Testimonials with Floating Avatars) */}
+          {/* Section 5: Straight from learners' hearts (Student Speaks Studio & Stories) */}
+          <NewsletterFinbiz onOpenDemo={() => handleOpenDemo()} />
+
+          {/* Section 6: Reviews (Verified Google Reviews & Customer Testimonials) */}
           <TestimonialsFinbiz />
 
-          {/* Section 7: Revolutionary Solution Section (3D Cube + 2 Stat Boxes) */}
+          {/* Section 7: Life at CADD Centre Reels (Campus Life, Masterclasses & Reels) */}
           <RevolutionaryFinbiz onOpenDemo={() => handleOpenDemo()} />
 
-          {/* Section 8: Blog Section (Latest Blog Posts with Red Date Badges) */}
-          <BlogFinbiz onOpenDemo={() => handleOpenDemo()} />
+          {/* Section 8: Internships Section (Certified Industrial Internships & Live Projects) */}
+          <InternshipsFinbiz onOpenDemo={handleOpenDemo} />
 
-          {/* Section 9: Hear from our students / Student Speaks Banner */}
-          <NewsletterFinbiz onOpenDemo={() => handleOpenDemo()} />
+          {/* Section 9 & 10: Workshops & Campus Workshop Video Demos */}
+          <BlogFinbiz onOpenDemo={() => handleOpenDemo()} />
         </main>
 
         {/* Section 10: Deep Dark 3-Column Footer */}
