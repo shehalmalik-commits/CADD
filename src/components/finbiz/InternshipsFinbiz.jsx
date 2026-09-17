@@ -122,7 +122,7 @@ export default function InternshipsFinbiz({ onOpenDemo }) {
   };
 
   return (
-    <section id="internships" className="pt-8 sm:pt-10 pb-14 sm:pb-20 bg-[#FAFAFA] select-none border-t border-gray-100 relative overflow-hidden">
+    <section id="internships" className={`pt-8 sm:pt-10 ${currentTrack ? 'pb-14 sm:pb-20' : 'pb-8 sm:pb-12'} bg-[#FAFAFA] select-none border-t border-gray-100 relative overflow-hidden`}>
       {/* Background Ambience */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-red-500/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl pointer-events-none" />
@@ -163,7 +163,7 @@ export default function InternshipsFinbiz({ onOpenDemo }) {
         </div>
 
         {/* 4 Feature Value Props */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-12 sm:mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8 sm:mb-10">
           {PERKS.map((perk, idx) => {
             const Icon = perk.icon;
             return (
@@ -182,7 +182,7 @@ export default function InternshipsFinbiz({ onOpenDemo }) {
         </div>
 
         {/* Track Selection Tabs - Centered */}
-        <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3.5 pb-2 mb-8">
+        <div className={`flex flex-wrap items-center justify-center gap-2.5 sm:gap-3.5 pb-2 ${currentTrack ? 'mb-8' : 'mb-0'}`}>
           {INTERNSHIP_TRACKS.map((track) => {
             const isActive = track.id === activeTrack;
             return (
@@ -206,15 +206,6 @@ export default function InternshipsFinbiz({ onOpenDemo }) {
             );
           })}
         </div>
-
-        {/* When no track is active, show clean prompt */}
-        {!currentTrack && (
-          <div className="text-center py-6 px-4 bg-white/70 rounded-2xl border border-dashed border-gray-200/90 max-w-md mx-auto">
-            <p className="text-xs text-gray-500 font-medium">
-              Click on any engineering discipline above to view syllabus, tools &amp; batch schedules.
-            </p>
-          </div>
-        )}
 
         {/* Selected Track Detailed Showcase Card (Appears ONLY when clicked) */}
         {currentTrack && (
