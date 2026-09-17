@@ -471,7 +471,7 @@ export default function BlogFinbiz({ onOpenDemo }) {
             </div>
 
             {/* 5 Clickable Institution Logo Cards */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-3.5">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5 sm:gap-3">
               {INSTITUTIONAL_ASSOCIATES.map((item) => (
                 <a
                   key={item.id}
@@ -479,19 +479,19 @@ export default function BlogFinbiz({ onOpenDemo }) {
                   target="_blank"
                   rel="noopener noreferrer"
                   title={`Visit official website: ${item.name}`}
-                  className="group bg-white hover:bg-gray-50 rounded-xl p-3 sm:p-3.5 flex flex-col items-center justify-between border border-transparent hover:border-red-300 shadow-xs hover:shadow-lg transition-all duration-200 hover:-translate-y-1 text-center cursor-pointer min-h-[98px] sm:min-h-[108px]"
+                  className="group bg-white hover:bg-gray-50 rounded-lg p-2.5 sm:p-3 flex flex-col items-center justify-between border border-transparent shadow-xs hover:shadow-lg hover:shadow-red-900/20 hover:border-red-200 transition-all duration-300 hover:-translate-y-1 text-center cursor-pointer h-[76px] sm:h-[84px]"
                 >
-                  <div className="h-10 sm:h-12 w-full flex items-center justify-center px-1">
+                  <div className="flex-1 w-full flex items-center justify-center px-1">
                     <img
                       src={item.logo}
                       alt={item.name}
-                      className="max-h-8 sm:max-h-10 max-w-full object-contain filter group-hover:scale-105 transition-transform duration-200"
+                      className="max-h-6 sm:max-h-7 max-w-[85%] object-contain group-hover:scale-105 transition-transform duration-300"
                       loading="lazy"
                     />
                   </div>
-                  <div className="mt-2 pt-1.5 border-t border-gray-100 w-full flex items-center justify-between gap-1 text-[11px] font-bold text-gray-800 group-hover:text-[#C4161C] transition-colors leading-tight">
+                  <div className="w-full flex items-center justify-center gap-1 mt-1.5 text-[9.5px] sm:text-[10.5px] font-bold text-gray-500 group-hover:text-[#C4161C] transition-colors leading-none">
                     <span className="truncate">{item.shortName}</span>
-                    <ExternalLink className="w-3 h-3 text-gray-400 group-hover:text-[#C4161C] shrink-0" />
+                    <ExternalLink className="w-2.5 h-2.5 opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
                   </div>
                 </a>
               ))}

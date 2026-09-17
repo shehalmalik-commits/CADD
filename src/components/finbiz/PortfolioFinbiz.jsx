@@ -159,6 +159,26 @@ export default function PortfolioFinbiz({ onOpenDemo }) {
             </div>
           </div>
 
+          {/* Disciplines Filter Tabs - Wrapping gracefully to prevent horizontal scroll */}
+          <div className="flex flex-wrap items-center gap-2 pt-2">
+            {DISCIPLINES.map((d) => {
+              const isActive = activeTab === d.id;
+              return (
+                <button
+                  key={d.id}
+                  type="button"
+                  onClick={() => setActiveTab(d.id)}
+                  className={`px-3.5 sm:px-4 py-2 rounded-full text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
+                    isActive
+                      ? 'bg-[#C4161C] text-white shadow-md'
+                      : 'bg-white text-gray-700 hover:text-gray-950 hover:bg-gray-50 border border-gray-200/90 shadow-xs'
+                  }`}
+                >
+                  <span>{d.label}</span>
+                </button>
+              );
+            })}
+          </div>
         </div>
 
         {/* ========================================================= */}
