@@ -119,18 +119,18 @@ export const WORKSHOP_VIDEOS = [
 
 export default function BlogFinbiz({ onOpenDemo }) {
   return (
-    <section
-      id="projects"
-      className="py-10 sm:py-12 bg-[#F8FAFC] select-none border-t border-gray-200 relative font-['Plus_Jakarta_Sans',sans-serif]"
-    >
-      <div id="blog" className="absolute -top-20" />
+    <>
+      {/* ========================================================= */}
+      {/* SECTION 9: OFFICIAL CERTIFIED WORKSHOPS                   */}
+      {/* ========================================================= */}
+      <section
+        id="workshops"
+        className="py-10 sm:py-12 bg-[#F8FAFC] select-none border-t border-gray-200 relative font-['Plus_Jakarta_Sans',sans-serif]"
+      >
+        <div id="projects" className="absolute -top-20" />
+        <div id="blog" className="absolute -top-20" />
 
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
-
-        {/* ========================================================= */}
-        {/* PART 1: REGISTER WORKSHOPS (Compact, Short Cards)          */}
-        {/* ========================================================= */}
-        <div>
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-5 text-left">
             <div className="space-y-1">
@@ -259,11 +259,16 @@ export default function BlogFinbiz({ onOpenDemo }) {
             ))}
           </div>
         </div>
+      </section>
 
-        {/* ========================================================= */}
-        {/* PART 2: CAMPUS WORKSHOP VIDEO DEMOS ("just videos mathram") */}
-        {/* ========================================================= */}
-        <div className="pt-5 border-t border-gray-200">
+      {/* ========================================================= */}
+      {/* SECTION 10: CAMPUS WORKSHOP VIDEOS                        */}
+      {/* ========================================================= */}
+      <section
+        id="campus-videos"
+        className="py-10 sm:py-12 bg-white select-none border-t border-gray-200 relative font-['Plus_Jakarta_Sans',sans-serif]"
+      >
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4 text-left">
             <div className="space-y-0.5">
               <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#C4161C]">
@@ -353,7 +358,6 @@ export default function BlogFinbiz({ onOpenDemo }) {
               </div>
             ))}
           </div>
-        </div>
 
         {/* ========================================================= */}
         {/* BOTTOM COMMUNITY CALLOUT                                   */}
@@ -392,5 +396,6 @@ export default function BlogFinbiz({ onOpenDemo }) {
 
       </div>
     </section>
+  </>
   );
 }

@@ -37,35 +37,35 @@ export default function App() {
         <HeaderFinbiz onOpenDemo={() => handleOpenDemo()} />
 
         <main>
-          {/* Section 1: Hero Section */}
+          {/* 1. Curent pge: Hero Section */}
           <HeroFinbiz onOpenDemo={() => handleOpenDemo()} />
 
-          {/* Section 2: About CADD (Checklist + Tilted Tablet + Rating Cards) */}
+          {/* 2. about cadd: About CADD Centre */}
           <AboutFinbiz onOpenDemo={() => handleOpenDemo()} />
 
-          {/* Section 3: Course Offerings (Specialized Master Programs & CAD Modules) */}
+          {/* 3. Course offrings: Specialized CAD, BIM & Master Programs */}
           <PortfolioFinbiz onOpenDemo={handleOpenDemo} />
 
-          {/* Section 4: Placements Stream (Executive Alumni Dossier & GCC Placed Records) */}
+          {/* 4. Placement: Placed Students & GCC Alumni Records */}
           <TeamFinbiz onOpenDemo={handleOpenDemo} />
 
-          {/* Section 5: Straight from learners' hearts (Student Speaks Studio & Stories) */}
+          {/* 5. Srtigt from lernes herat: Straight from Learners' Hearts (Student Speaks) */}
           <NewsletterFinbiz onOpenDemo={() => handleOpenDemo()} />
 
-          {/* Section 6: Reviews (Verified Google Reviews & Customer Testimonials) */}
+          {/* 6. Reviw: Verified Google Reviews & Testimonials */}
           <TestimonialsFinbiz />
 
-          {/* Section 7: Life at CADD Centre Reels (Campus Life, Masterclasses & Reels) */}
+          {/* 7. Life at Cadd centre Reel: Campus Life & Student Reels */}
           <RevolutionaryFinbiz onOpenDemo={() => handleOpenDemo()} />
 
-          {/* Section 8: Internships Section (Certified Industrial Internships & Live Projects) */}
+          {/* 8. Intrship: Certified Industrial Internships & Live Projects */}
           <InternshipsFinbiz onOpenDemo={handleOpenDemo} />
 
-          {/* Section 9 & 10: Workshops & Campus Workshop Video Demos */}
+          {/* 9 & 10. Workshops (9) & Campus workshop videos (10) */}
           <BlogFinbiz onOpenDemo={() => handleOpenDemo()} />
         </main>
 
-        {/* Section 10: Deep Dark 3-Column Footer */}
+        {/* Footer */}
         <FooterFinbiz onOpenDemo={() => handleOpenDemo()} />
 
         {/* Floating Call / WhatsApp / Instagram contact dock */}

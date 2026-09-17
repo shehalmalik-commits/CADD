@@ -117,7 +117,7 @@ export default function NewsletterFinbiz({ onOpenDemo }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <section className="py-8 sm:py-10 bg-white border-t border-gray-100 relative select-none font-['Plus_Jakarta_Sans',sans-serif]">
+    <section id="student-speaks" className="py-8 sm:py-10 bg-white border-t border-gray-100 relative select-none font-['Plus_Jakarta_Sans',sans-serif]">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Top Centered Eyebrow Header */}

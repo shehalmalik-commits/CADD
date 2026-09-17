@@ -230,6 +230,7 @@ export default function TestimonialsFinbiz() {
       id="testimonials"
       className="py-10 sm:py-14 bg-[#FAFAFA] relative overflow-hidden select-none border-t border-gray-100"
     >
+      <div id="reviews" className="absolute -top-20" />
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* Section Header with Integrated Controls & Zero Wasted Gap */}
