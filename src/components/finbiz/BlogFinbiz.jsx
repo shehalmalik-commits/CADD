@@ -8,7 +8,8 @@ import {
   Award,
   Video,
   Clock,
-  Sparkles
+  Sparkles,
+  Building2
 } from 'lucide-react';
 
 // Inline Instagram gradient SVG icon
@@ -117,6 +118,50 @@ export const WORKSHOP_VIDEOS = [
   }
 ];
 
+// Official College & Technical Campus Associates
+export const INSTITUTIONAL_ASSOCIATES = [
+  {
+    id: 'ekctc',
+    name: 'Eranad Knowledge City Technical Campus',
+    shortName: 'EKC Technical Campus',
+    subtitle: 'Engineering & Technology',
+    url: 'https://ekctc.edu.in/',
+    logo: '/images/logos/ekc-logo.png',
+  },
+  {
+    id: 'madin-engg',
+    name: "Ma'din College of Engineering and Management",
+    shortName: "Ma'din Engineering College",
+    subtitle: 'Engineering & Management',
+    url: 'https://madin.edu.in/institute/madin-college-of-engineering-and-management/',
+    logo: '/images/logos/madin-academy.png',
+  },
+  {
+    id: 'orphanage-poly',
+    name: 'Orphanage Polytechnic College',
+    shortName: 'Orphanage Polytechnic',
+    subtitle: 'Polytechnic Diploma Campus',
+    url: 'https://www.orphanagepoly.com/',
+    logo: '/images/logos/orphanage-polytechnic.png',
+  },
+  {
+    id: 'gptc-manjeri',
+    name: 'Government Polytechnic College Manjeri',
+    shortName: 'Govt. Polytechnic Manjeri',
+    subtitle: 'Technical Education Dept.',
+    url: 'https://gptcmanjeri.in/',
+    logo: '/images/logos/gptc-seal.png',
+  },
+  {
+    id: 'madin-iti',
+    name: "Ma'din Industrial Training Institute (ITI)",
+    shortName: "Ma'din ITI Campus",
+    subtitle: 'Industrial Technical Training',
+    url: 'https://madin.edu.in/institute/madin-industrial-training-institute/',
+    logo: '/images/logos/madin-academy.png',
+  },
+];
+
 export default function BlogFinbiz({ onOpenDemo }) {
   return (
     <>
@@ -125,7 +170,7 @@ export default function BlogFinbiz({ onOpenDemo }) {
       {/* ========================================================= */}
       <section
         id="workshops"
-        className="py-10 sm:py-12 bg-[#F8FAFC] select-none border-t border-gray-200 relative font-['Plus_Jakarta_Sans',sans-serif]"
+        className="py-8 sm:py-10 bg-[#F8FAFC] select-none border-t border-gray-200 relative font-['Plus_Jakarta_Sans',sans-serif]"
       >
         <div id="projects" className="absolute -top-20" />
         <div id="blog" className="absolute -top-20" />
@@ -410,6 +455,46 @@ export default function BlogFinbiz({ onOpenDemo }) {
                 <span>Associate Now</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
+            </div>
+          </div>
+
+          {/* Institutional Associates Logo Strip */}
+          <div className="relative z-10 pt-6 mt-6 border-t border-white/10">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3.5">
+              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gray-300">
+                <Building2 className="w-3.5 h-3.5 text-[#C4161C]" />
+                <span>Key Institutional Associates &amp; Engineering Campuses</span>
+              </div>
+              <span className="text-[11px] text-gray-400 font-medium">
+                Click logo to visit official campus portal ↗
+              </span>
+            </div>
+
+            {/* 5 Clickable Institution Logo Cards */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-3.5">
+              {INSTITUTIONAL_ASSOCIATES.map((item) => (
+                <a
+                  key={item.id}
+                  href={item.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title={`Visit official website: ${item.name}`}
+                  className="group bg-white hover:bg-gray-50 rounded-xl p-3 sm:p-3.5 flex flex-col items-center justify-between border border-transparent hover:border-red-300 shadow-xs hover:shadow-lg transition-all duration-200 hover:-translate-y-1 text-center cursor-pointer min-h-[98px] sm:min-h-[108px]"
+                >
+                  <div className="h-10 sm:h-12 w-full flex items-center justify-center px-1">
+                    <img
+                      src={item.logo}
+                      alt={item.name}
+                      className="max-h-8 sm:max-h-10 max-w-full object-contain filter group-hover:scale-105 transition-transform duration-200"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="mt-2 pt-1.5 border-t border-gray-100 w-full flex items-center justify-between gap-1 text-[11px] font-bold text-gray-800 group-hover:text-[#C4161C] transition-colors leading-tight">
+                    <span className="truncate">{item.shortName}</span>
+                    <ExternalLink className="w-3 h-3 text-gray-400 group-hover:text-[#C4161C] shrink-0" />
+                  </div>
+                </a>
+              ))}
             </div>
           </div>
         </div>

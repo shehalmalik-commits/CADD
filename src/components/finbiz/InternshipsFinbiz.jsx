@@ -122,7 +122,7 @@ export default function InternshipsFinbiz({ onOpenDemo }) {
   };
 
   return (
-    <section id="internships" className={`pt-8 sm:pt-10 ${currentTrack ? 'pb-14 sm:pb-20' : 'pb-8 sm:pb-12'} bg-[#FAFAFA] select-none border-t border-gray-100 relative overflow-hidden`}>
+    <section id="internships" className={`pt-7 sm:pt-9 ${currentTrack ? 'pb-10 sm:pb-14' : 'pb-5 sm:pb-6'} bg-[#FAFAFA] select-none border-t border-gray-100 relative overflow-hidden`}>
       {/* Background Ambience */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-red-500/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl pointer-events-none" />
@@ -130,7 +130,7 @@ export default function InternshipsFinbiz({ onOpenDemo }) {
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative">
 
         {/* Section Header */}
-        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-8 sm:mb-10">
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-7 sm:mb-9">
           <div className="space-y-2.5 max-w-2xl text-left">
             <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-[#C4161C]">
               <Briefcase className="w-3.5 h-3.5 text-[#C4161C]" />
@@ -163,7 +163,7 @@ export default function InternshipsFinbiz({ onOpenDemo }) {
         </div>
 
         {/* 4 Feature Value Props */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8 sm:mb-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-5 sm:mb-6">
           {PERKS.map((perk, idx) => {
             const Icon = perk.icon;
             return (
@@ -182,7 +182,7 @@ export default function InternshipsFinbiz({ onOpenDemo }) {
         </div>
 
         {/* Track Selection Tabs - Centered */}
-        <div className={`flex flex-wrap items-center justify-center gap-2.5 sm:gap-3.5 pb-2 ${currentTrack ? 'mb-8' : 'mb-0'}`}>
+        <div className={`flex flex-wrap items-center justify-center gap-2.5 sm:gap-3.5 ${currentTrack ? 'mb-6 sm:mb-8' : 'mb-0'}`}>
           {INTERNSHIP_TRACKS.map((track) => {
             const isActive = track.id === activeTrack;
             return (
