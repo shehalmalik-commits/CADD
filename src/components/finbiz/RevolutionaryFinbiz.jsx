@@ -63,7 +63,7 @@ export default function RevolutionaryFinbiz({ onOpenDemo }) {
   return (
     <section
       id="campus-life"
-      className="pt-5 sm:pt-7 pb-12 sm:pb-16 bg-[#080C14] text-white font-['Plus_Jakarta_Sans',sans-serif] relative overflow-hidden select-none border-y border-white/5 text-left"
+      className="pt-5 sm:pt-7 pb-6 sm:pb-8 bg-[#080C14] text-white font-['Plus_Jakarta_Sans',sans-serif] relative overflow-hidden select-none border-y border-white/5 text-left"
     >
       {/* Ambient background volumetric glow */}
       <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-[#C4161C]/10 rounded-full blur-3xl pointer-events-none" />
@@ -233,39 +233,7 @@ export default function RevolutionaryFinbiz({ onOpenDemo }) {
           })}
         </div>
 
-        {/* ========================================================= */}
-        {/* BOTTOM FULL-WIDTH INSTAGRAM COMMUNITY BANNER              */}
-        {/* ========================================================= */}
-        <div className="mt-10 p-5 sm:p-6 rounded-[24px] sm:rounded-[28px] bg-gradient-to-r from-white/[0.04] via-white/[0.07] to-white/[0.04] border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-left">
-          <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] flex items-center justify-center text-white shrink-0 shadow-lg shadow-pink-900/30">
-              <InstagramIcon className="w-6 h-6" />
-            </div>
-            <div>
-              <h4 className="text-sm font-bold text-white">Join 10,000+ Aspiring Engineers in Manjeri</h4>
-              <p className="text-xs text-gray-400 mt-0.5">Follow @caddcentremanjeri for daily CAD tutorials, software updates &amp; student placements.</p>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-3 shrink-0 w-full sm:w-auto">
-            <a
-              href="https://www.instagram.com/caddcentremanjeri"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto px-6 py-2.5 rounded-full bg-gradient-to-r from-[#f09433] via-[#dc2743] to-[#bc1888] hover:opacity-95 text-white text-xs font-bold uppercase tracking-wider shadow-md transition-all cursor-pointer text-center"
-            >
-              Follow on Instagram
-            </a>
-
-            <button
-              type="button"
-              onClick={onOpenDemo}
-              className="hidden md:inline-flex px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/15 text-white text-xs font-bold transition-colors cursor-pointer"
-            >
-              Book Campus Visit
-            </button>
-          </div>
-        </div>
+        {/* Banner Removed */}
 
       </div>
 
