@@ -16,7 +16,7 @@ export default function AboutFinbiz({ onOpenDemo }) {
   const [isCallModalOpen, setIsCallModalOpen] = useState(false);
 
   return (
-    <section id="about" className="pt-6 sm:pt-8 pb-3 sm:pb-4 bg-white overflow-hidden">
+    <section id="about" className="pt-8 sm:pt-12 pb-3 sm:pb-4 bg-white overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Split Grid: Left Text/Checklist/Founder + Right Tilted Photo */}
@@ -166,15 +166,6 @@ export default function AboutFinbiz({ onOpenDemo }) {
                   )}
                 </React.Fragment>
               ))}
-            </div>
-
-            <div className="mt-2.5 space-y-0.5">
-              <p className="text-xs sm:text-[12px] font-semibold text-gray-800">
-                CADD Centre uses legal software from the above software developers.
-              </p>
-              <p className="text-[10px] sm:text-[10.5px] text-gray-500">
-                CADD Centre students are employed in many reputed companies and universities in several countries worldwide.
-              </p>
             </div>
           </div>
         </div>

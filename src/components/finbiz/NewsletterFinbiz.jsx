@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowRight, ArrowUpRight, CheckCircle2, Play, X, ExternalLink, MapPin, Sparkles, Video } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, CheckCircle2, Play, X, ExternalLink, MapPin, Sparkles, Video, MessageCircle } from 'lucide-react';
 
 // Inline Instagram gradient SVG icon
 function InstagramIcon({ className = "w-4 h-4" }) {
@@ -171,36 +171,91 @@ export default function NewsletterFinbiz({ onOpenDemo }) {
             </div>
           </div>
 
-          {/* Right Column: Student Collage Image (Clicking opens Reels Modal) */}
-          <div className="relative rounded-3xl overflow-hidden bg-white shadow-xl border border-gray-100 group">
-            <button
-              type="button"
-              onClick={() => setIsModalOpen(true)}
-              className="w-full text-left block relative cursor-pointer focus:outline-none"
-              title="Click to view student stories on Instagram"
-            >
-              <img
-                src="/images/youtubeTestimonial.png"
-                alt="Straight from our learners' hearts - CADD Centre Manjeri"
-                className="w-full h-auto object-cover group-hover:scale-102 transition-transform duration-500"
-              />
+          {/* Right Column: Student Speaks Studio Showcase (Coded Model Structure - No Static Image) */}
+          <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-white via-[#FFF8F8] to-[#FFF0F2] p-6 sm:p-8 shadow-xl border border-red-100/90 group text-left">
+            {/* Ambient Background Decorative Glow */}
+            <div className="absolute top-0 right-0 w-64 h-64 bg-red-100/40 rounded-full blur-3xl pointer-events-none -mr-20 -mt-20" />
+            <div className="absolute bottom-0 left-0 w-48 h-48 bg-pink-100/30 rounded-full blur-2xl pointer-events-none -ml-10 -mb-10" />
 
-              {/* Top-Right Instagram Tag */}
-              <div className="absolute top-3 sm:top-4 right-3 sm:right-4 z-10">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white font-bold text-[11px] shadow-sm border border-white/10 group-hover:bg-[#E1306C] transition-colors">
-                  <InstagramIcon className="w-3 h-3 text-pink-400 group-hover:text-white" />
+            <div className="relative z-10 space-y-5">
+              {/* Top Header Row: Live Studio Tag + Instagram Pill */}
+              <div className="flex items-center justify-between gap-2">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-red-200/80 text-[11px] font-black text-red-600 shadow-2xs">
+                  <span className="w-2 h-2 rounded-full bg-[#C4161C] animate-pulse" />
+                  <span className="tracking-wide uppercase text-[10px]">STUDENT SPEAKS STUDIO</span>
+                </div>
+
+                <a
+                  href="https://www.instagram.com/caddcentremanjeri/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/95 hover:bg-gradient-to-r hover:from-[#f09433] hover:via-[#dc2743] hover:to-[#bc1888] hover:text-white text-gray-700 font-bold text-[11px] shadow-2xs border border-gray-200 transition-all group/ig"
+                >
+                  <InstagramIcon className="w-3.5 h-3.5 text-[#E1306C] group-hover/ig:text-white transition-colors" />
                   <span>@caddcentremanjeri</span>
-                </span>
+                </a>
               </div>
 
-              {/* Floating Bottom Prompt */}
-              <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 z-10">
-                <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/95 backdrop-blur-md text-gray-900 font-bold text-xs shadow-md border border-gray-200 group-hover:bg-[#C4161C] group-hover:text-white transition-colors">
-                  <Play className="w-3 h-3 fill-current text-[#C4161C] group-hover:text-white" />
-                  <span>Click to watch Student Reels</span>
-                </span>
+              {/* Bold Typography Title & Speech Bubble Icon */}
+              <div className="flex items-center justify-between gap-4 pt-1">
+                <div>
+                  <div className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-none">
+                    <span className="text-[#C4161C] block">STUDENT</span>
+                    <span className="text-gray-950 block mt-1">SPEAKS</span>
+                  </div>
+                  <p className="text-xs text-gray-500 font-medium mt-2">
+                    Direct video experiences & career transformation stories
+                  </p>
+                </div>
+
+                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-[#C4161C] to-[#8C0D12] text-white flex items-center justify-center shadow-lg shadow-red-600/20 shrink-0 group-hover:scale-105 transition-transform duration-300">
+                  <MessageCircle className="w-8 h-8 sm:w-10 sm:h-10 fill-white/20 text-white" />
+                </div>
               </div>
-            </button>
+
+              {/* Student Quotes Mini-Cards */}
+              <div className="grid grid-cols-2 gap-2.5 pt-1">
+                <div className="p-3 rounded-2xl bg-white/95 border border-red-100 shadow-2xs space-y-1">
+                  <div className="flex items-center gap-1.5">
+                    <span className="w-5 h-5 rounded-full bg-red-100 text-[#C4161C] text-[9.5px] font-black flex items-center justify-center shrink-0">
+                      AS
+                    </span>
+                    <span className="text-xs font-black text-gray-900 truncate">Aswathi</span>
+                  </div>
+                  <div className="text-[10px] text-red-600 font-bold">Interior CAD</div>
+                  <p className="text-[10.5px] text-gray-600 line-clamp-2 leading-tight">
+                    &ldquo;From foundation to realistic 3D interior walkthroughs.&rdquo;
+                  </p>
+                </div>
+
+                <div className="p-3 rounded-2xl bg-white/95 border border-red-100 shadow-2xs space-y-1">
+                  <div className="flex items-center gap-1.5">
+                    <span className="w-5 h-5 rounded-full bg-red-100 text-[#C4161C] text-[9.5px] font-black flex items-center justify-center shrink-0">
+                      KT
+                    </span>
+                    <span className="text-xs font-black text-gray-900 truncate">Karthik</span>
+                  </div>
+                  <div className="text-[10px] text-red-600 font-bold">BIM Civil</div>
+                  <p className="text-[10.5px] text-gray-600 line-clamp-2 leading-tight">
+                    &ldquo;Shaped my engineering career for top GCC placement.&rdquo;
+                  </p>
+                </div>
+              </div>
+
+              {/* Action Button: Opens Reels Lightbox Modal */}
+              <button
+                type="button"
+                onClick={() => setIsModalOpen(true)}
+                className="w-full py-3.5 px-5 rounded-2xl bg-[#C4161C] hover:bg-[#A81217] text-white font-extrabold text-xs sm:text-sm tracking-wide flex items-center justify-center gap-2.5 shadow-lg shadow-red-600/25 hover:shadow-xl transition-all cursor-pointer group/btn active:scale-98"
+              >
+                <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center group-hover/btn:scale-110 transition-transform">
+                  <Play className="w-3 h-3 fill-current text-white ml-0.5" />
+                </div>
+                <span>Click to Watch Student Reels</span>
+                <ArrowUpRight className="w-4 h-4 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
+              </button>
+            </div>
           </div>
 
         </div>

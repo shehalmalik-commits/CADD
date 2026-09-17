@@ -57,13 +57,13 @@ const COURSES_TICKER = [
   { id: 'mep-1', name: 'MEP with BIM Engineering', tab: 'mep' },
   { id: 'structural-1', name: 'Structural Design & Analysis', tab: 'structural' },
   { id: 'product-1', name: 'Product Design & Engineering', tab: 'product' },
-  { id: 'autocad-1', name: 'Professional in Architectural AutoCAD', tab: 'autocad' },
+  { id: 'autocad-1', name: 'AutoCAD Civil', tab: 'autocad' },
   { id: 'ppm-1', name: 'Project Planning & Management (PPM)', tab: 'ppm' },
   { id: 'survey-1', name: 'Surveying & Transportation Engineering', tab: 'survey' },
-  { id: 'bim-2', name: 'BIM for Architecture & Coordination', tab: 'bim' },
-  { id: 'structural-2', name: 'High-Rise RCC & Steel Analysis', tab: 'structural' },
-  { id: 'mep-2', name: 'Master Diploma in MEP BIM', tab: 'mep' },
-  { id: 'autocad-2', name: 'Professional in Mechanical AutoCAD', tab: 'autocad' }
+  { id: 'bim-2', name: 'BIM for Architecture', tab: 'bim' },
+  { id: 'structural-2', name: 'STAAD.Pro', tab: 'structural' },
+  { id: 'mep-2', name: 'Master Certificate in BIM', tab: 'mep' },
+  { id: 'autocad-2', name: 'AutoCAD Mechanical', tab: 'autocad' }
 ];
 
 export default function HeroFinbiz({ onOpenDemo }) {
@@ -1256,7 +1256,7 @@ export default function HeroFinbiz({ onOpenDemo }) {
   };
 
   return (
-    <section id="hero" className="relative overflow-hidden bg-[#FCFCFD] pt-0 sm:pt-1 pb-2 sm:pb-3 select-none">
+    <section id="hero" className="relative overflow-hidden bg-[#FCFCFD] pt-1 sm:pt-2 pb-4 sm:pb-5 select-none">
       {/* Background Architectural Blueprint Grid & Laser Radial Glow */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#C4161C08_1px,transparent_1px),linear-gradient(to_bottom,#C4161C08_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none" />
       <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-[#C4161C]/5 rounded-full blur-3xl pointer-events-none" />
@@ -1280,14 +1280,17 @@ export default function HeroFinbiz({ onOpenDemo }) {
             </div>
 
             {/* Headline */}
-            <h1 className="text-3xl sm:text-4xl lg:text-[44px] xl:text-[49px] font-black tracking-tight leading-[1.06] text-[#111827]">
-              Let's create <br />
-              your <span className="text-[#C4161C]">success.</span>
+            <h1 className="text-2xl sm:text-3xl lg:text-[34px] xl:text-[38px] font-black tracking-tight leading-[1.14] text-[#111827]">
+              The World’s Largest <br />
+              <span className="text-[#C4161C]">CAD • Interior Design</span> <br />
+              MEP • BIM • PPM <br className="hidden sm:inline" />
+              Training Network
             </h1>
 
             {/* Subtitle */}
-            <p className="mt-2 text-xs sm:text-sm lg:text-[14px] text-gray-600 font-normal leading-relaxed max-w-lg">
-              Kerala&apos;s premier engineering institute. Experience parametric BIM, structural FEA, and mechanical 3D modeling on licensed Autodesk &amp; Bentley dual-display workstations.
+            <p className="mt-2.5 sm:mt-3 text-sm sm:text-base lg:text-[15px] font-bold text-gray-800 leading-relaxed max-w-lg flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-[#C4161C] shrink-0" />
+              <span>Proudly Serving Manjeri for 25 Years</span>
             </p>
 
             {/* Action Buttons: Full-width on mobile */}
@@ -1320,8 +1323,8 @@ export default function HeroFinbiz({ onOpenDemo }) {
                 <div className="text-[10px] sm:text-[11px] text-gray-500 font-medium leading-tight sm:leading-snug">Certified Programs</div>
               </div>
               <div>
-                <div className="text-lg sm:text-2xl font-black text-[#C4161C] font-mono">30 Yrs</div>
-                <div className="text-[10px] sm:text-[11px] text-gray-500 font-medium leading-tight sm:leading-snug">Training Legacy</div>
+                <div className="text-lg sm:text-2xl font-black text-[#C4161C] font-mono">25 Yrs</div>
+                <div className="text-[10px] sm:text-[11px] text-gray-500 font-medium leading-tight sm:leading-snug">Proudly in Manjeri</div>
               </div>
             </div>
 
@@ -1492,7 +1495,7 @@ export default function HeroFinbiz({ onOpenDemo }) {
         {/* ========================================================= */}
         {/* HORIZONTAL CONTINUOUS ENGINEERING COURSES TICKER STRIP     */}
         {/* ========================================================= */}
-        <div className="mt-2 sm:mt-2.5 pt-1.5 sm:pt-2 border-t border-gray-100 flex items-center gap-2.5 sm:gap-4 overflow-hidden">
+        <div className="mt-2.5 sm:mt-3.5 pt-2 sm:pt-2.5 border-t border-gray-100 flex items-center gap-2.5 sm:gap-4 overflow-hidden">
           <div className="shrink-0 text-[10.5px] sm:text-xs font-bold font-mono uppercase tracking-wider text-[#C4161C] flex items-center gap-1.5 pr-2.5 sm:pr-4 border-r border-gray-200">
             <GraduationCap className="w-3.5 h-3.5" />
             <span><span className="hidden sm:inline">EXPLORE </span>COURSES:</span>

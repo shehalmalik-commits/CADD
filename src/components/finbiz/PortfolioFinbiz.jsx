@@ -28,273 +28,7 @@ const DISCIPLINES = [
   { id: 'survey', label: 'Surveying & Transportation', count: 4 },
   { id: 'ppm', label: 'Project Planning & Management', count: 3 },
 ];
-
-const MASTER_COURSES = [
-  {
-    id: 'bim-1',
-    code: 'BIM-ADV-01',
-    title: 'Master Certificate in BIM',
-    disciplineKey: 'bim',
-    disciplineName: 'BIM [Building Information Modelling]',
-    duration: '240 hours',
-    mode: 'In-Lab + Cloud VDC',
-    level: 'Advanced Master Track',
-    tools: ['Revit', 'Navisworks', 'BIM 360', 'Dynamo'],
-    img: '/images/hero/hero-bim-architecture.jpg',
-    tag: 'Autodesk Certified',
-    description: 'Complete BIM coordination, architectural modeling, clash detection, and ISO 19650 international workflows.',
-    perks: ['ISO 19650 Standards', 'Clash Matrix Reports', 'Live High-Rise Drawings'],
-    modules: [
-      'Revit Architecture & Structure Modeling (LOD 300-350)',
-      'Navisworks Manage Clash Detection & 4D TimeLiner',
-      'Autodesk Construction Cloud (BIM 360) ISO 19650 Workflows',
-      'Dynamo Visual Scripting for Architectural Automation'
-    ],
-    featured: true
-  },
-  {
-    id: 'interior-1',
-    code: 'INT-DES-02',
-    title: 'Executive Diploma in Interior Design',
-    disciplineKey: 'interior',
-    disciplineName: 'Interior Design',
-    duration: '240 hours',
-    mode: 'Studio + VR Walkthroughs',
-    level: 'Professional Diploma',
-    tools: ['AutoCAD', '3ds Max', 'SketchUp', 'V-Ray'],
-    img: '/images/hero/hero-interior-design.jpg',
-    tag: 'Design & Visuals',
-    description: 'From 2D space planning to photorealistic 3D rendering, materials, lighting setups, and client walk-throughs.',
-    perks: ['Photorealistic V-Ray', 'Space Layout Rules', 'Portfolio for GCC'],
-    modules: [
-      'Architectural Space Planning & AutoCAD Working Drawings',
-      '3ds Max Advanced 3D Modeling & Material Texturing',
-      'V-Ray & Corona Photorealistic Lighting & Camera Setups',
-      'Client Walkthroughs, Virtual Reality & Material Mood Boards'
-    ],
-    featured: true
-  },
-  {
-    id: 'structural-1',
-    code: 'STR-ENG-03',
-    title: 'Structural Design & Analysis',
-    disciplineKey: 'structural',
-    disciplineName: 'Structural Design',
-    duration: '220 hours',
-    mode: 'Practical FEA Lab',
-    level: 'Master Engineering Track',
-    tools: ['STAAD.Pro', 'ETABS', 'SAFE', 'Tekla'],
-    img: '/images/course_structural.jpg',
-    tag: 'Bentley Certified',
-    description: 'High-rise RCC, structural steel modeling, earthquake dynamic analysis, and automated bar bending schedules.',
-    perks: ['High-Rise RCC Analysis', 'Seismic Zone V', 'Automated BBS Prep'],
-    modules: [
-      'ETABS High-Rise RCC Modeling & Wind/Seismic Response Spectrum',
-      'STAAD.Pro Space Frame & Industrial Steel Trusses Design',
-      'SAFE Raft, Mat Foundation & Post-Tensioned Slabs',
-      'Tekla Structures Steel Detailing & Automated Rebar Schedules'
-    ],
-    featured: true
-  },
-  {
-    id: 'mep-1',
-    code: 'MEP-BIM-04',
-    title: 'MEP with BIM Engineering',
-    disciplineKey: 'mep',
-    disciplineName: 'MEP with BIM',
-    duration: '200 hours',
-    mode: 'Dual-Screen Lab',
-    level: 'Advanced Engineering',
-    tools: ['Revit MEP', 'Navisworks', 'HVAC', 'HAP'],
-    img: '/images/course_mep.jpg',
-    tag: 'Building Services',
-    description: 'HVAC load calculations, plumbing hydraulics, electrical circuits, firefighting, and 3D clash resolution.',
-    perks: ['HVAC HAP Loads', 'Firefighting NFPA', 'MEP Clash Resolution'],
-    modules: [
-      'HVAC Duct Sizing, Chilled Water Piping & HAP Heat Load Calculations',
-      'Plumbing Hydraulics, Drainage Networks & Public Health Engineering',
-      'Electrical Circuits, Cable Trays, DB Schedules & Lighting Lux Calc',
-      'Firefighting Sprinkler Systems (NFPA Standards) & 3D Clash Resolution'
-    ],
-    featured: true
-  },
-  {
-    id: 'product-1',
-    code: 'PRD-CAD-05',
-    title: 'Product Design & Engineering',
-    disciplineKey: 'product',
-    disciplineName: 'Product Design',
-    duration: '220 hours',
-    mode: 'Parametric CAD Lab',
-    level: 'Industrial Track',
-    tools: ['SolidWorks', 'Creo', 'CATIA', 'AutoCAD'],
-    img: '/images/course_product.jpg',
-    tag: 'Mechanical CAD',
-    description: 'Parametric 3D part modeling, advanced surface design, assembly modeling, sheet metal, and GD&T drafting.',
-    perks: ['Complex Assemblies', 'GD&T ASME Y14.5', 'Sheet Metal & Mold'],
-    modules: [
-      'SolidWorks Parametric Part & Kinematic Assembly Modeling',
-      'Advanced Class-A Surface Design & Organic Contours in CATIA',
-      'Sheet Metal Enclosures, Weldments & Plastic Injection Mold Tooling',
-      'GD&T Drafting (ASME Y14.5) & FEA Stress/Thermal Simulation'
-    ],
-    featured: false
-  },
-  {
-    id: 'survey-1',
-    code: 'SRV-CIV-06',
-    title: 'Surveying & Transportation Engineering',
-    disciplineKey: 'survey',
-    disciplineName: 'Surveying & Transportation',
-    duration: '180 hours',
-    mode: 'GIS & Field Data',
-    level: 'Infrastructure Track',
-    tools: ['AutoCAD Civil 3D', 'MicroStation', 'MX Road'],
-    img: '/images/course_survey.jpg',
-    tag: 'Infrastructure',
-    description: 'Corridor modeling, highway alignment, contour mapping, grading surfaces, and storm drainage layout.',
-    perks: ['Corridor Assemblies', 'Cross-Section Profiles', 'Contour Topography'],
-    modules: [
-      'AutoCAD Civil 3D Survey Total Station Data & Contour Surfaces',
-      'Highway Horizontal & Vertical Alignment Geometry Design',
-      'Corridor Assembly Modeling, Superelevation & Earthwork Quantities',
-      'Stormwater Drainage Networks & MicroStation Infrastructure Drafting'
-    ],
-    featured: false
-  },
-  {
-    id: 'ppm-1',
-    code: 'PPM-MGT-07',
-    title: 'Project Planning & Management (PPM)',
-    disciplineKey: 'ppm',
-    disciplineName: 'Project Planning & Management',
-    duration: '140 hours',
-    mode: 'Enterprise Project Lab',
-    level: 'Management Track',
-    tools: ['Primavera P6', 'Microsoft Project', 'WBS'],
-    img: '/primavera_p6.jpg',
-    tag: 'Oracle Partner',
-    description: 'Critical Path Method (CPM), Earned Value Analysis, project scheduling, resource leveling, and risk tracking.',
-    perks: ['Primavera P6 Schedules', 'Earned Value Analysis', 'Resource Leveling'],
-    modules: [
-      'Primavera P6 Enterprise Project Structure (EPS/OBS) Architecture',
-      'Work Breakdown Structure (WBS) & Critical Path Method (CPM)',
-      'Resource Allocation, Cost Baselines, S-Curves & Resource Leveling',
-      'Earned Value Analysis (EVM), Delay Claim Tracking & Executive Reporting'
-    ],
-    featured: false
-  },
-  {
-    id: 'autocad-1',
-    code: 'CAD-ARC-08',
-    title: 'Professional in Architectural AutoCAD',
-    disciplineKey: 'autocad',
-    disciplineName: 'AutoCAD',
-    duration: '120 hours',
-    mode: 'Drafting Studio',
-    level: 'Foundation to Pro',
-    tools: ['AutoCAD 2D', 'AutoCAD Architecture', 'Drafting'],
-    img: '/images/hero-cad-bim.jpg',
-    tag: 'Foundation CAD',
-    description: 'Engineering drawing standards, municipal submissions, working floor plans, sections, and elevation details.',
-    perks: ['Municipal Sanctions', 'Architectural Layers', 'Standard Detailing'],
-    modules: [
-      'Precision 2D Drafting & Architectural Drawing Standards',
-      'Working Floor Plans, Cross-Sections & Detailed Elevation Views',
-      'Layer Management, Annotation Scales & Dynamic Architectural Blocks',
-      'Municipal Authority Sanction Drawings & Working Plot Deliverables'
-    ],
-    featured: false
-  },
-  {
-    id: 'bim-2',
-    code: 'BIM-CRD-09',
-    title: 'BIM for Architecture & Coordination',
-    disciplineKey: 'bim',
-    disciplineName: 'BIM [Building Information Modelling]',
-    duration: '160 hours',
-    mode: 'ACC Cloud Lab',
-    level: 'Specialized Diploma',
-    tools: ['Revit Architecture', 'Navisworks', 'Enscape'],
-    img: '/images/disciplines/discipline-bim.jpg',
-    tag: 'ISO 19650',
-    description: 'Parametric family creation, LOD 300-400 modeling, construction documentation, and federated model coordination.',
-    perks: ['LOD 350-400 Modeling', 'Parametric Families', 'Enscape VR Renders'],
-    modules: [
-      'Revit Architecture Advanced Parametric Family Creation',
-      'LOD 350-400 Construction Documentation & Schedule Extraction',
-      'Enscape Real-Time Architectural Walkthroughs & VR Panoramas',
-      'Federated Multi-Disciplinary Model Coordination & Clash Matrix'
-    ],
-    featured: false
-  },
-  {
-    id: 'structural-2',
-    code: 'STR-HRI-10',
-    title: 'High-Rise RCC & Steel Analysis',
-    disciplineKey: 'structural',
-    disciplineName: 'Structural Design',
-    duration: '240 hours',
-    mode: 'Seismic Simulation Lab',
-    level: 'Advanced Specialist',
-    tools: ['ETABS', 'STAAD.Pro', 'SAFE', 'Tekla'],
-    img: '/images/solar_farm_aerial.jpg',
-    tag: 'Seismic Design',
-    description: 'Wind tunnel simulation, seismic response spectrum, post-tensioned slab design, and fabrication drawings.',
-    perks: ['Dynamic Response Spectrum', 'PT Slab Engineering', 'Tekla Steel Detailing'],
-    modules: [
-      'High-Rise RCC Core Wall & Shear Wall Layout in ETABS',
-      'Earthquake Dynamic Response Spectrum Analysis to IS 1893 & Eurocode',
-      'Post-Tensioned Flat Slabs & Column Drop Panels Design in SAFE',
-      'Tekla Structures Rebar Fabrication & Automatic Bar Bending Schedules'
-    ],
-    featured: false
-  },
-  {
-    id: 'mep-2',
-    code: 'MEP-MAS-11',
-    title: 'Master Diploma in MEP BIM',
-    disciplineKey: 'mep',
-    disciplineName: 'MEP with BIM',
-    duration: '240 hours',
-    mode: 'GCC Standards Studio',
-    level: 'Executive Master Track',
-    tools: ['Revit MEP', 'Navisworks', 'NFPA Code', 'HAP'],
-    img: '/images/career-journey.jpg',
-    tag: 'GCC Standard',
-    description: 'Full GCC mechanical and electrical codes, plant room layout, chilled water piping, and BIM 360 cloud delivery.',
-    perks: ['GCC Authority Specs', 'Plant Room Design', 'Hydraulic Balancing'],
-    modules: [
-      'GCC Authority MEP Codes & Approvals (DEWA, Kahramaa, SEWA)',
-      'Central Chiller Plant Room, Cooling Towers & Primary/Secondary Pumps',
-      'Smoke Management, Clean Agent Suppression & Staircase Pressurization',
-      'BIM 360 Field Coordination, Spool Drawings & Shop Drawing Generation'
-    ],
-    featured: false
-  },
-  {
-    id: 'autocad-2',
-    code: 'CAD-MEC-12',
-    title: 'Professional in Mechanical AutoCAD',
-    disciplineKey: 'autocad',
-    disciplineName: 'AutoCAD',
-    duration: '120 hours',
-    mode: 'Manufacturing Lab',
-    level: 'Industrial Drafting',
-    tools: ['AutoCAD Mechanical', 'GD&T Standards', 'Drafting'],
-    img: '/images/cad_bim_hero_bg.jpg',
-    tag: 'Manufacturing',
-    description: 'ISO/ASME drafting standards, geometric dimensioning and tolerancing, bill of materials, and production drawings.',
-    perks: ['ASME Drafting Specs', 'Geometric Tolerances', 'Automated BOM Lists'],
-    modules: [
-      'Mechanical Component Drafting & Exploded Assembly Layouts',
-      'Geometric Dimensioning & Tolerancing (GD&T) Implementation',
-      'Automated Bill of Materials (BOM) & Standard Hardware Integration',
-      'Production Shop Drawings for CNC, Turning & Fabrication Shops'
-    ],
-    featured: false
-  }
-];
+import { MASTER_COURSES } from '../../data/coursesDataFinbiz';
 
 export default function PortfolioFinbiz({ onOpenDemo }) {
   const [activeTab, setActiveTab] = useState('all');
@@ -350,10 +84,10 @@ export default function PortfolioFinbiz({ onOpenDemo }) {
     });
   }, [activeTab, searchQuery]);
 
-  // When on "all" and not searching, show 4 featured courses initially, expand on button click
+  // When on "all" and not searching, show 8 discipline flagship courses initially (1 from each discipline), expand to all 36 on button click
   const displayedCourses = useMemo(() => {
     if (activeTab === 'all' && !searchQuery) {
-      return isExpanded ? filteredCourses : filteredCourses.slice(0, 4);
+      return isExpanded ? filteredCourses : filteredCourses.filter((c) => c.featured);
     }
     return filteredCourses;
   }, [activeTab, searchQuery, isExpanded, filteredCourses]);
@@ -673,7 +407,7 @@ export default function PortfolioFinbiz({ onOpenDemo }) {
                 <span>
                   {isExpanded
                     ? 'SHOW FEATURED COURSES (COLLAPSE)'
-                    : 'VIEW ALL COURSES'}
+                    : 'VIEW ALL 36 COURSES'}
                 </span>
                 {isExpanded ? (
                   <ChevronUp className="w-4 h-4 text-white/70 group-hover:text-white" />
@@ -686,8 +420,8 @@ export default function PortfolioFinbiz({ onOpenDemo }) {
               <span className="w-1.5 h-1.5 rounded-full bg-[#C4161C]" />
               <span>
                 {isExpanded
-                  ? 'Showing all specialized master programs & certifications'
-                  : 'Showing 4 featured programs • Click to expand full catalog'}
+                  ? 'Showing all 36 specialized engineering & CAD programs'
+                  : 'Showing 8 discipline flagship programs • Click to expand all 36 courses'}
               </span>
             </p>
           </div>

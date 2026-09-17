@@ -17,25 +17,13 @@ import {
   ArrowRight
 } from 'lucide-react';
 
-// Authentic Placed & Certified Student Posters from CADD Centre Manjeri
-import imgAthul from '../../assets/placestudents/Athul.png';
-import imgShanib from '../../assets/placestudents/Shanib.png';
-import imgAswathi from '../../assets/placestudents/Aswathi.png';
-import imgShamna from '../../assets/placestudents/Shamna.png';
-import imgAjsal from '../../assets/placestudents/Ajsal.png';
-import imgUnnimaya from '../../assets/placestudents/Unnimaya.png';
-import imgMinha from '../../assets/placestudents/Minha.png';
-import imgPooja from '../../assets/placestudents/Pooja.png';
-import imgThafsal from '../../assets/placestudents/Thafsal.png';
-import imgZamil from '../../assets/placestudents/Zamil.png';
-import imgMeerza from '../../assets/placestudents/Meerza.png';
-import imgBasim from '../../assets/placestudents/Basim.png';
-import imgDrisya from '../../assets/placestudents/Drisya.png';
+// Authentic Placed & Certified Alumni Data from CADD Centre Manjeri
 
 const PLACED_ALUMNI = [
   {
     id: 'athul',
     name: 'Athul',
+    initials: 'AT',
     role: '3D Designer',
     category: 'interior',
     company: 'Leading Architecture & 3D Studio',
@@ -45,12 +33,13 @@ const PLACED_ALUMNI = [
     course: 'Executive Diploma in 3D Design & Interior CAD',
     tools: ['3ds Max', 'AutoCAD', 'V-Ray', 'SketchUp'],
     badge: 'Successfully Placed',
-    img: imgAthul,
+    img: '/images/students/Athul.png',
     description: 'Specialized in photorealistic 3D architectural visualization, spatial planning, and high-impact client walk-throughs.'
   },
   {
     id: 'shanib',
     name: 'Shanib',
+    initials: 'SH',
     role: '3D Designer',
     category: 'interior',
     company: 'Leading 3D Architectural Studio',
@@ -60,12 +49,13 @@ const PLACED_ALUMNI = [
     course: 'Professional in 3D Design & Interior CAD',
     tools: ['3ds Max', 'V-Ray', 'AutoCAD', 'SketchUp'],
     badge: 'Successfully Placed',
-    img: imgShanib,
+    img: '/images/students/Shanib.png',
     description: 'Successfully placed as 3D Designer specializing in photorealistic architectural visualization, 3D spatial modeling, and rendering.'
   },
   {
     id: 'aswathi',
     name: 'Aswathi',
+    initials: 'AS',
     role: 'Interior Designer',
     category: 'interior',
     company: 'Interior & Architectural Studio',
@@ -75,12 +65,13 @@ const PLACED_ALUMNI = [
     course: 'Professional in Interior Design',
     tools: ['AutoCAD Interior', '3ds Max', 'SketchUp', 'V-Ray'],
     badge: 'Successfully Placed',
-    img: imgAswathi,
+    img: '/images/students/Aswathi.png',
     description: 'Successfully placed as Interior Designer mastering spatial layout, residential interiors, modular planning, and client walk-throughs.'
   },
   {
     id: 'shamna',
     name: 'Shamna',
+    initials: 'SM',
     role: 'Interior Designer',
     category: 'interior',
     company: 'Interior Architecture & Decor Studio',
@@ -90,12 +81,13 @@ const PLACED_ALUMNI = [
     course: 'Interior Designing',
     tools: ['AutoCAD Interior', '3ds Max', 'SketchUp', 'V-Ray'],
     badge: 'Interior Design Pro',
-    img: imgShamna,
+    img: '/images/students/Shamna.png',
     description: 'Congratulations! Shamna has successfully completed Interior Designing with outstanding performance, mastering space planning, interior drafting, and styling.'
   },
   {
     id: 'ajsal',
     name: 'Ajsal',
+    initials: 'AJ',
     role: '5D BIM Engineer',
     category: 'bim',
     company: 'Global BIM & VDC Engineering Consultancy',
@@ -105,12 +97,13 @@ const PLACED_ALUMNI = [
     course: 'Master Certificate in 5D BIM',
     tools: ['Revit BIM', 'Navisworks Manage', 'CostX', 'BIM 360'],
     badge: '5D BIM Specialist',
-    img: imgAjsal,
+    img: '/images/students/Ajsal.png',
     description: 'Completed 5D BIM with outstanding performance covering digital cost integration, 4D timeliner, and clash resolution.'
   },
   {
     id: 'unnimaya',
     name: 'Unnimaya',
+    initials: 'UN',
     role: 'BIM Architectural Modeler',
     category: 'bim',
     company: 'BIM & Architectural Consultancy',
@@ -120,12 +113,13 @@ const PLACED_ALUMNI = [
     course: 'BIM For ARCH',
     tools: ['Revit Architecture', 'Navisworks', 'AutoCAD', 'BIM 360'],
     badge: 'BIM For ARCH',
-    img: imgUnnimaya,
+    img: '/images/students/Unnimaya.png',
     description: 'Proud moment! Unnimaya has successfully completed BIM For ARCH course with great achievement, mastering building information modeling and parametric architecture.'
   },
   {
     id: 'minha',
     name: 'Minha',
+    initials: 'MN',
     role: 'BIM Architectural Modeler',
     category: 'bim',
     company: 'BIM Engineering Consultancy',
@@ -135,12 +129,13 @@ const PLACED_ALUMNI = [
     course: 'BIM For ARCH',
     tools: ['Revit Architecture', 'Navisworks', 'AutoCAD', 'BIM 360'],
     badge: 'BIM For ARCH',
-    img: imgMinha,
+    img: '/images/students/Minha.png',
     description: 'Congratulations! Minha has successfully completed BIM For ARCH course with outstanding performance, excelling in BIM modeling and parametric design.'
   },
   {
     id: 'pooja',
     name: 'Pooja',
+    initials: 'PJ',
     role: 'BIM Architectural Modeler',
     category: 'bim',
     company: 'Architectural & BIM Studio',
@@ -150,12 +145,13 @@ const PLACED_ALUMNI = [
     course: 'BIM For ARCH',
     tools: ['Revit Architecture', 'Navisworks', 'Enscape', 'BIM 360'],
     badge: 'BIM For ARCH',
-    img: imgPooja,
+    img: '/images/students/Pooja.png',
     description: 'Congratulations! Pooja has successfully completed BIM For ARCH with outstanding performance, delivering high quality architectural models.'
   },
   {
     id: 'thafsal',
     name: 'Thafsal',
+    initials: 'TH',
     role: 'BIM Architectural Modeler',
     category: 'bim',
     company: 'GCC Architectural Consortium',
@@ -165,12 +161,13 @@ const PLACED_ALUMNI = [
     course: 'BIM for Architecture',
     tools: ['Revit Architecture', 'Navisworks', 'Enscape', 'BIM 360'],
     badge: 'BIM Architecture',
-    img: imgThafsal,
+    img: '/images/students/Thafsal.png',
     description: 'Completed BIM for Architecture with flying colours, delivering high-precision architectural models and ISO 19650 standards.'
   },
   {
     id: 'zamil',
     name: 'Zamil',
+    initials: 'ZM',
     role: 'Planning & Scheduling Engineer',
     category: 'civil',
     company: 'Infrastructure & Project Management',
@@ -180,12 +177,13 @@ const PLACED_ALUMNI = [
     course: 'Primavera P6 Project Management',
     tools: ['Primavera P6', 'MS Project', 'AutoCAD Civil', 'Scheduling'],
     badge: 'Primavera Pro',
-    img: imgZamil,
+    img: '/images/students/Zamil.png',
     description: 'Well done, Zamil! Completed Primavera with outstanding performance, excelling in project scheduling, resource leveling, and project controls.'
   },
   {
     id: 'meerza',
     name: 'Meerza',
+    initials: 'MZ',
     role: 'Planning & Project Control Engineer',
     category: 'civil',
     company: 'Infrastructure Project Management',
@@ -195,12 +193,13 @@ const PLACED_ALUMNI = [
     course: 'Primavera P6 Enterprise Project Portfolio',
     tools: ['Primavera P6', 'MS Project', 'AutoCAD Civil', 'Scheduling'],
     badge: 'Primavera Pro',
-    img: imgMeerza,
+    img: '/images/students/Meerza.png',
     description: 'Proud moment! Meerza has successfully completed Primavera course with great achievement, mastering critical path scheduling and cost tracking.'
   },
   {
     id: 'drisya',
     name: 'Drisya',
+    initials: 'DS',
     role: 'Architectural CAD Draftsperson',
     category: 'civil',
     company: 'Civil & Architectural Engineering Consultancy',
@@ -210,12 +209,13 @@ const PLACED_ALUMNI = [
     course: 'Professional in AutoCAD',
     tools: ['AutoCAD 2D/3D', 'AutoCAD Architecture', 'Drafting'],
     badge: 'AutoCAD Pro',
-    img: imgDrisya,
+    img: '/images/students/Drisya.png',
     description: 'Completed AutoCAD with outstanding performance, excelling in architectural drafting, municipal sanction plans, and working drawings.'
   },
   {
     id: 'basim',
     name: 'Basim',
+    initials: 'BM',
     role: 'Mechanical CAD Engineer',
     category: 'mechanical',
     company: 'Precision Engineering & Industrial Works',
@@ -225,7 +225,7 @@ const PLACED_ALUMNI = [
     course: 'Professional in MECH CAD',
     tools: ['SolidWorks', 'AutoCAD Mechanical', 'CATIA', 'GD&T'],
     badge: 'Mech CAD Star',
-    img: imgBasim,
+    img: '/images/students/Basim.png',
     description: 'Completed MECH CAD with outstanding performance, mastering parametric 3D assembly, kinematics, and manufacturing drafting.'
   }
 ];
@@ -417,12 +417,11 @@ export default function TeamFinbiz({ onOpenDemo }) {
                   onClick={() => setSelectedAlumni(member)}
                   className="w-[230px] sm:w-[250px] shrink-0 group bg-white rounded-[20px] border border-gray-200/80 p-3 shadow-sm hover:shadow-xl hover:border-[#C4161C]/50 transition-all duration-300 flex flex-col justify-between cursor-pointer text-left relative hover:-translate-y-1"
                 >
-                  {/* Compact Photo Frame Container */}
+                  {/* Photo Frame Container with Verified Placement Poster */}
                   <div className="relative aspect-[4/4.5] w-full rounded-[14px] overflow-hidden bg-gray-100 border border-gray-100 shadow-inner">
                     <img
                       src={member.img}
                       alt={`${member.name} - ${member.role}`}
-                      loading="lazy"
                       className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                     />
 
@@ -532,7 +531,7 @@ export default function TeamFinbiz({ onOpenDemo }) {
           onClick={() => setSelectedAlumni(null)}
         >
           <div 
-            className="relative w-full max-w-2xl bg-white rounded-[24px] overflow-hidden shadow-2xl p-5 sm:p-6 text-left space-y-4 animate-in fade-in zoom-in-95 duration-200 max-h-[92vh] flex flex-col"
+            className="relative w-full max-w-xl bg-white rounded-[24px] overflow-hidden shadow-2xl p-5 sm:p-6 text-left space-y-4 animate-in fade-in zoom-in-95 duration-200 max-h-[92vh] flex flex-col"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close Button */}
