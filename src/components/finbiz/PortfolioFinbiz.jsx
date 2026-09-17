@@ -34,8 +34,11 @@ export default function PortfolioFinbiz({ onOpenDemo }) {
   const [activeTab, setActiveTab] = useState('all');
   const [selectedCourse, setSelectedCourse] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
+  const [isExpanded, setIsExpanded] = useState(false);
   const [expandedModules, setExpandedModules] = useState({});
   const [highlightedCourseId, setHighlightedCourseId] = useState(null);
+
+  const INITIAL_LIMIT = 4;
 
   // Listen for course selection events from Hero ticker
   useEffect(() => {
@@ -45,6 +48,7 @@ export default function PortfolioFinbiz({ onOpenDemo }) {
         setActiveTab(tab);
       }
       setSearchQuery('');
+      setIsExpanded(true);
       if (courseId) {
         setHighlightedCourseId(courseId);
         setTimeout(() => {
@@ -82,13 +86,26 @@ export default function PortfolioFinbiz({ onOpenDemo }) {
     });
   }, [activeTab, searchQuery]);
 
-  // Display all matching courses directly (Full course display)
+  // Show 4 courses initially to reduce excessive scrolling; expand on "View All"
   const displayedCourses = useMemo(() => {
-    return filteredCourses;
-  }, [filteredCourses]);
+    if (searchQuery) return filteredCourses;
+    return isExpanded ? filteredCourses : filteredCourses.slice(0, INITIAL_LIMIT);
+  }, [filteredCourses, isExpanded, searchQuery]);
+
+  const handleToggleExpand = () => {
+    if (isExpanded) {
+      setIsExpanded(false);
+      const elem = document.getElementById('courses');
+      if (elem) {
+        elem.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      setIsExpanded(true);
+    }
+  };
 
   return (
-    <section id="courses" className="pt-2 sm:pt-4 pb-4 sm:pb-6 bg-[#F8F9FC] select-none relative overflow-hidden text-left">
+    <section id="courses" className="pt-2 sm:pt-4 pb-3 sm:pb-4 bg-[#F8F9FC] select-none relative overflow-hidden text-left">
       {/* Subtle architectural grid pattern */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f01a_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f01a_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
 
@@ -142,26 +159,6 @@ export default function PortfolioFinbiz({ onOpenDemo }) {
             </div>
           </div>
 
-          {/* 8 Disciplines Filter Tabs - Wrapping gracefully so NO tab is cut off */}
-          <div className="flex flex-wrap items-center gap-2 pt-1">
-            {DISCIPLINES.map((d) => {
-              const isActive = activeTab === d.id;
-              return (
-                <button
-                  key={d.id}
-                  type="button"
-                  onClick={() => setActiveTab(d.id)}
-                  className={`px-3.5 sm:px-4 py-2 rounded-full text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
-                    isActive
-                      ? 'bg-[#C4161C] text-white shadow-md'
-                      : 'bg-white text-gray-700 hover:text-gray-950 hover:bg-gray-50 border border-gray-200/90 shadow-xs'
-                  }`}
-                >
-                  <span>{d.label}</span>
-                </button>
-              );
-            })}
-          </div>
         </div>
 
         {/* ========================================================= */}
@@ -377,12 +374,44 @@ export default function PortfolioFinbiz({ onOpenDemo }) {
           </div>
         )}
 
+        {/* ========================================================= */}
+        {/* VIEW ALL COURSES BUTTON ("VIEW ALL BUTTON")               */}
+        {/* ========================================================= */}
+        {!searchQuery && filteredCourses.length > INITIAL_LIMIT && (
+          <div className="mt-8 flex flex-col items-center justify-center space-y-2">
+            <button
+              type="button"
+              onClick={handleToggleExpand}
+              className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full bg-[#11161E] hover:bg-[#C4161C] text-white text-xs sm:text-[13px] font-extrabold uppercase tracking-wider shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer active:scale-97 group"
+            >
+              <Sparkles className="w-4 h-4 text-amber-400 group-hover:rotate-12 transition-transform" />
+              <span>
+                {isExpanded
+                  ? 'SHOW LESS COURSES'
+                  : 'VIEW ALL COURSES'}
+              </span>
+              {isExpanded ? (
+                <ChevronUp className="w-4 h-4 text-white/80 group-hover:text-white" />
+              ) : (
+                <ChevronDown className="w-4 h-4 text-white/80 group-hover:text-white" />
+              )}
+            </button>
+            <p className="text-[11.5px] text-gray-500 font-medium">
+              {isExpanded
+                ? 'Showing all engineering & CAD programs'
+                : 'Click to view all courses'}
+            </p>
+          </div>
+        )}
+
         {/* Course Count Indicator */}
         <div className="mt-8 pt-4 border-t border-gray-200/70 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-gray-500">
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-[#C4161C] animate-pulse" />
             <span className="font-semibold text-gray-800">
-              Showing all {displayedCourses.length} {activeTab === 'all' ? 'Engineering & CAD Courses' : `${DISCIPLINES.find(d => d.id === activeTab)?.label || ''} Programs`}
+              {isExpanded
+                ? 'Showing all Engineering & CAD Courses'
+                : 'Showing flagship programs (Click View All for more)'}
             </span>
           </div>
           <span className="text-gray-400 text-[11px]">
@@ -392,8 +421,8 @@ export default function PortfolioFinbiz({ onOpenDemo }) {
 
       </div>
 
-      {/* Subtle clean architectural finishing divider between Courses & Internships */}
-      <div className="w-full h-px bg-gradient-to-r from-transparent via-gray-200/80 to-transparent mt-5" />
+      {/* Subtle clean architectural finishing divider between Courses & Placements */}
+      <div className="w-full h-px bg-gradient-to-r from-transparent via-gray-200/80 to-transparent mt-2.5 sm:mt-3" />
 
       {/* ========================================================= */}
       {/* COURSE SYLLABUS & ADMISSION LIGHTBOX MODAL                */}

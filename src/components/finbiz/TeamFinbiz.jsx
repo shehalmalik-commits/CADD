@@ -249,13 +249,13 @@ export default function TeamFinbiz({ onOpenDemo }) {
   };
 
   return (
-    <section id="placements" className="pt-8 sm:pt-10 pb-10 sm:pb-12 bg-[#F8F9FA] relative select-none overflow-hidden">
+    <section id="placements" className="pt-2 sm:pt-3 pb-8 sm:pb-10 bg-[#F8F9FA] relative select-none overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* ========================================================= */}
         {/* COMPACT SECTION HEADER (TIGHT TOP SPACING)                */}
         {/* ========================================================= */}
-        <div className="text-center space-y-2 mb-5">
+        <div className="text-center space-y-1.5 mb-3.5">
           <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-red-50 border border-red-200/70 text-[10.5px] font-extrabold uppercase tracking-wider text-[#C4161C]">
             <Target className="w-3 h-3 text-[#C4161C]" />
             <span>VERIFIED CORPORATE PLACEMENTS • CADD CENTRE MANJERI</span>
@@ -268,18 +268,6 @@ export default function TeamFinbiz({ onOpenDemo }) {
           <p className="text-xs sm:text-sm text-gray-500 font-normal max-w-xl mx-auto leading-relaxed">
             15,000+ certified engineers, drafters, and BIM modelers across UAE, Qatar, Saudi Arabia &amp; India.
           </p>
-
-          <div className="pt-2 flex items-center justify-center">
-            <button
-              type="button"
-              onClick={() => (onOpenDemo ? onOpenDemo('Corporate Placement Assistance') : null)}
-              className="inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-2.5 sm:py-3 rounded-full bg-[#C4161C] hover:bg-[#A81217] text-white text-xs sm:text-[12.5px] font-extrabold uppercase tracking-wider shadow-md hover:shadow-lg transition-all cursor-pointer active:scale-96 group"
-            >
-              <Briefcase className="w-4 h-4" />
-              <span>Apply for Placement</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-            </button>
-          </div>
         </div>
 
         {/* ========================================================= */}
@@ -498,25 +486,12 @@ export default function TeamFinbiz({ onOpenDemo }) {
             </div>
           </div>
 
-          {/* Bottom Live Notice & Placement CTA */}
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 px-1 text-[11px] text-gray-400">
+          {/* Bottom Live Notice */}
+          <div className="flex items-center justify-between pt-3 px-1 text-[11px] text-gray-400">
             <span className="flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
               <span>Live moving stream • Hover or click any card to inspect</span>
             </span>
-            <div className="flex items-center gap-3">
-              <span className="hidden sm:inline font-mono text-[10.5px] text-gray-400">
-                {PLACED_ALUMNI.length} Manjeri Alumni Active
-              </span>
-              <button
-                type="button"
-                onClick={() => (onOpenDemo ? onOpenDemo('Corporate Placement Assistance') : null)}
-                className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#11161E] hover:bg-[#C4161C] text-white text-xs font-bold uppercase tracking-wider transition-all cursor-pointer active:scale-97 shadow-xs"
-              >
-                <span>Apply for Placement</span>
-                <ArrowRight className="w-3 h-3" />
-              </button>
-            </div>
           </div>
         </div>
 
