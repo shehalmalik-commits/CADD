@@ -233,7 +233,7 @@ export const MASTER_COURSES = [
       "Atmospheric Effects",
       "Video Sequencer"
     ],
-    "img": "/images/why-choose-us.jpg",
+    "img": "/images/courses/lumion.png",
     "tag": "Real-Time Visuals",
     "description": "Transform CAD & BIM models into breathtaking cinematic animations, live atmospheric weather effects, realistic vegetation, and client video walkthroughs in seconds.",
     "perks": [
