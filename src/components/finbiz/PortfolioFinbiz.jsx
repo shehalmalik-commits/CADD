@@ -337,12 +337,21 @@ export default function PortfolioFinbiz({ onOpenDemo }) {
                         </div>
                       </div>
 
-                      {/* Action Button */}
-                      <div>
+                      {/* Action Buttons */}
+                      <div className="space-y-2">
                         <button
                           type="button"
-                          onClick={onOpenDemo}
-                          className="w-full py-3.5 px-5 rounded-xl bg-[#C4161C] hover:bg-[#A81217] text-white text-xs font-extrabold uppercase tracking-wider flex items-center justify-center gap-2 transition-all shadow-md cursor-pointer active:scale-97"
+                          onClick={() => onOpenDemo ? onOpenDemo(`Free Demo - ${course.title}`) : null}
+                          className="w-full py-2.5 px-4 rounded-xl bg-white hover:bg-red-50/60 border border-gray-200 hover:border-[#C4161C]/50 text-gray-900 hover:text-[#C4161C] text-xs font-extrabold flex items-center justify-center gap-2 transition-all cursor-pointer shadow-2xs active:scale-97 group/demo"
+                        >
+                          <Calendar className="w-3.5 h-3.5 text-[#C4161C]" />
+                          <span>BOOK FREE DEMO</span>
+                        </button>
+
+                        <button
+                          type="button"
+                          onClick={() => onOpenDemo ? onOpenDemo(course.title) : null}
+                          className="w-full py-3 px-5 rounded-xl bg-[#C4161C] hover:bg-[#A81217] text-white text-xs font-extrabold uppercase tracking-wider flex items-center justify-center gap-2 transition-all shadow-md cursor-pointer active:scale-97"
                         >
                           <span>ENQUIRE ADMISSION</span>
                           <ArrowRight className="w-3.5 h-3.5" />
