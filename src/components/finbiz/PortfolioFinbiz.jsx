@@ -304,6 +304,23 @@ export default function PortfolioFinbiz({ onOpenDemo }) {
                           </div>
                         ))}
                       </div>
+
+                      {/* View Modules Button (Relocated to marked position) */}
+                      <div className="pt-2">
+                        <button
+                          type="button"
+                          onClick={() => toggleModules(course.id)}
+                          className="inline-flex items-center gap-2 py-2 px-3.5 rounded-xl bg-white hover:bg-red-50 border border-gray-200/90 hover:border-red-200 text-gray-800 hover:text-[#C4161C] text-xs font-bold transition-all cursor-pointer shadow-2xs group/btn"
+                        >
+                          <BookOpen className="w-3.5 h-3.5 text-[#C4161C]" />
+                          <span>{isModuleOpen ? 'Hide Modules' : 'View 4 Modules'}</span>
+                          {isModuleOpen ? (
+                            <ChevronUp className="w-3.5 h-3.5 text-gray-400 group-hover/btn:text-[#C4161C]" />
+                          ) : (
+                            <ChevronDown className="w-3.5 h-3.5 text-gray-400 group-hover/btn:text-[#C4161C]" />
+                          )}
+                        </button>
+                      </div>
                     </div>
 
                     {/* ZONE 3: ADMISSIONS, SYLLABUS & ACTIONS PANEL (22% WIDTH) */}
@@ -320,28 +337,12 @@ export default function PortfolioFinbiz({ onOpenDemo }) {
                         </div>
                       </div>
 
-                      {/* Action Buttons */}
-                      <div className="space-y-2">
-                        <button
-                          type="button"
-                          onClick={() => toggleModules(course.id)}
-                          className="w-full py-2.5 px-4 rounded-xl bg-white hover:bg-gray-50 border border-gray-200 text-gray-800 text-xs font-bold flex items-center justify-between transition-all cursor-pointer shadow-2xs"
-                        >
-                          <span className="flex items-center gap-1.5">
-                            <BookOpen className="w-3.5 h-3.5 text-[#C4161C]" />
-                            <span>{isModuleOpen ? 'Hide Modules' : 'View 4 Modules'}</span>
-                          </span>
-                          {isModuleOpen ? (
-                            <ChevronUp className="w-3.5 h-3.5 text-gray-400" />
-                          ) : (
-                            <ChevronDown className="w-3.5 h-3.5 text-gray-400" />
-                          )}
-                        </button>
-
+                      {/* Action Button */}
+                      <div>
                         <button
                           type="button"
                           onClick={onOpenDemo}
-                          className="w-full py-3 px-5 rounded-xl bg-[#C4161C] hover:bg-[#A81217] text-white text-xs font-extrabold uppercase tracking-wider flex items-center justify-center gap-2 transition-all shadow-md cursor-pointer active:scale-97"
+                          className="w-full py-3.5 px-5 rounded-xl bg-[#C4161C] hover:bg-[#A81217] text-white text-xs font-extrabold uppercase tracking-wider flex items-center justify-center gap-2 transition-all shadow-md cursor-pointer active:scale-97"
                         >
                           <span>ENQUIRE ADMISSION</span>
                           <ArrowRight className="w-3.5 h-3.5" />
