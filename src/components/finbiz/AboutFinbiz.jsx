@@ -16,7 +16,7 @@ export default function AboutFinbiz({ onOpenDemo }) {
   const [isCallModalOpen, setIsCallModalOpen] = useState(false);
 
   return (
-    <section id="about" className="pt-8 sm:pt-12 pb-3 sm:pb-4 bg-white overflow-hidden">
+    <section id="about" className="pt-8 sm:pt-12 pb-1 sm:pb-2 bg-white overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Split Grid: Left Text/Checklist/Founder + Right Tilted Photo */}

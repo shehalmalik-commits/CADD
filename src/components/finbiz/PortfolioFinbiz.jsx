@@ -34,7 +34,6 @@ export default function PortfolioFinbiz({ onOpenDemo }) {
   const [activeTab, setActiveTab] = useState('all');
   const [selectedCourse, setSelectedCourse] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
-  const [isExpanded, setIsExpanded] = useState(false);
   const [expandedModules, setExpandedModules] = useState({});
   const [highlightedCourseId, setHighlightedCourseId] = useState(null);
 
@@ -46,7 +45,6 @@ export default function PortfolioFinbiz({ onOpenDemo }) {
         setActiveTab(tab);
       }
       setSearchQuery('');
-      setIsExpanded(true);
       if (courseId) {
         setHighlightedCourseId(courseId);
         setTimeout(() => {
@@ -84,16 +82,13 @@ export default function PortfolioFinbiz({ onOpenDemo }) {
     });
   }, [activeTab, searchQuery]);
 
-  // When on "all" and not searching, show 8 discipline flagship courses initially (1 from each discipline), expand to all 36 on button click
+  // Display all matching courses directly (Full course display)
   const displayedCourses = useMemo(() => {
-    if (activeTab === 'all' && !searchQuery) {
-      return isExpanded ? filteredCourses : filteredCourses.filter((c) => c.featured);
-    }
     return filteredCourses;
-  }, [activeTab, searchQuery, isExpanded, filteredCourses]);
+  }, [filteredCourses]);
 
   return (
-    <section id="courses" className="pt-10 sm:pt-14 pb-4 sm:pb-6 bg-[#F8F9FC] select-none relative overflow-hidden text-left">
+    <section id="courses" className="pt-2 sm:pt-4 pb-4 sm:pb-6 bg-[#F8F9FC] select-none relative overflow-hidden text-left">
       {/* Subtle architectural grid pattern */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f01a_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f01a_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
 
@@ -102,17 +97,17 @@ export default function PortfolioFinbiz({ onOpenDemo }) {
         {/* ========================================================= */}
         {/* SECTION HEADER & CONTROL BAR                              */}
         {/* ========================================================= */}
-        <div className="space-y-6 mb-10">
-          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
-            <div className="space-y-2 max-w-3xl">
+        <div className="space-y-4 mb-6">
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4">
+            <div className="space-y-1.5 max-w-2xl">
               {/* Eyebrow */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-50 border border-red-200/80 text-xs font-black uppercase tracking-[0.2em] text-[#C4161C] shadow-xs">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 border border-red-200/80 text-xs font-black uppercase tracking-[0.2em] text-[#C4161C] shadow-xs">
                 <Target className="w-3.5 h-3.5 text-[#C4161C] animate-pulse" />
                 <span>EXPLORE COURSES</span>
               </div>
 
               {/* Main Section Title */}
-              <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-black text-[#111827] tracking-tight leading-tight">
+              <h2 className="text-3xl sm:text-4xl lg:text-[40px] font-black text-[#111827] tracking-tight leading-tight">
                 Course Offerings
               </h2>
 
@@ -125,56 +120,15 @@ export default function PortfolioFinbiz({ onOpenDemo }) {
               </p>
             </div>
 
-            {/* Quick Action Button */}
-            <div className="w-full sm:w-auto shrink-0">
-              <button
-                type="button"
-                onClick={onOpenDemo}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-[#11161E] hover:bg-[#C4161C] text-white text-xs font-bold uppercase tracking-wider shadow-md transition-all cursor-pointer active:scale-96"
-              >
-                <span>GET ALL SYLLABUS</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </div>
-          </div>
-
-          {/* Search Bar + 8 Disciplines Filter Tabs */}
-          <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 pt-2">
-            {/* 8 Disciplines Filter Tabs */}
-            <div
-              className="flex items-center gap-2 overflow-x-auto pb-2 pt-1 no-scrollbar flex-1"
-              style={{ WebkitOverflowScrolling: 'touch' }}
-            >
-              {DISCIPLINES.map((d) => {
-                const isActive = activeTab === d.id;
-                return (
-                  <button
-                    key={d.id}
-                    type="button"
-                    onClick={() => {
-                      setActiveTab(d.id);
-                      setIsExpanded(false);
-                    }}
-                    className={`px-4 sm:px-5 py-2 rounded-full text-xs font-bold transition-all cursor-pointer whitespace-nowrap shrink-0 ${isActive
-                        ? 'bg-[#C4161C] text-white shadow-md'
-                        : 'bg-white text-gray-700 hover:text-gray-950 hover:bg-gray-50 border border-gray-200/90 shadow-xs'
-                      }`}
-                  >
-                    <span>{d.label}</span>
-                  </button>
-                );
-              })}
-            </div>
-
             {/* Quick Search Tool Filter */}
-            <div className="relative shrink-0 md:w-64">
+            <div className="relative w-full lg:w-72 shrink-0">
               <Search className="w-4 h-4 text-gray-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search Revit, AutoCAD, MEP..."
-                className="w-full pl-9 pr-8 py-2 rounded-full bg-white border border-gray-200 text-xs text-gray-800 placeholder-gray-400 focus:outline-none focus:border-[#C4161C] focus:ring-1 focus:ring-[#C4161C] transition-all shadow-xs"
+                className="w-full pl-9 pr-8 py-2.5 rounded-full bg-white border border-gray-200 text-xs text-gray-800 placeholder-gray-400 focus:outline-none focus:border-[#C4161C] focus:ring-1 focus:ring-[#C4161C] transition-all shadow-xs"
               />
               {searchQuery && (
                 <button
@@ -186,6 +140,27 @@ export default function PortfolioFinbiz({ onOpenDemo }) {
                 </button>
               )}
             </div>
+          </div>
+
+          {/* 8 Disciplines Filter Tabs - Wrapping gracefully so NO tab is cut off */}
+          <div className="flex flex-wrap items-center gap-2 pt-1">
+            {DISCIPLINES.map((d) => {
+              const isActive = activeTab === d.id;
+              return (
+                <button
+                  key={d.id}
+                  type="button"
+                  onClick={() => setActiveTab(d.id)}
+                  className={`px-3.5 sm:px-4 py-2 rounded-full text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
+                    isActive
+                      ? 'bg-[#C4161C] text-white shadow-md'
+                      : 'bg-white text-gray-700 hover:text-gray-950 hover:bg-gray-50 border border-gray-200/90 shadow-xs'
+                  }`}
+                >
+                  <span>{d.label}</span>
+                </button>
+              );
+            })}
           </div>
         </div>
 
@@ -402,40 +377,18 @@ export default function PortfolioFinbiz({ onOpenDemo }) {
           </div>
         )}
 
-        {/* ========================================================= */}
-        {/* VIEW ALL COURSES BUTTON BAR ("VIEW ALL BUTTON")           */}
-        {/* ========================================================= */}
-        {activeTab === 'all' && !searchQuery && (
-          <div className="mt-6 sm:mt-8 flex flex-col items-center justify-center space-y-2">
-            <div className="inline-flex items-center p-1 rounded-full bg-white border border-gray-200/90 shadow-sm hover:shadow-md transition-all">
-              <button
-                type="button"
-                onClick={() => setIsExpanded(!isExpanded)}
-                className="inline-flex items-center gap-2.5 px-6 sm:px-8 py-2.5 sm:py-3 rounded-full bg-[#11161E] hover:bg-[#C4161C] text-white text-xs sm:text-[13px] font-extrabold uppercase tracking-wider shadow-sm transition-all duration-300 cursor-pointer active:scale-98 group"
-              >
-                <Sparkles className="w-4 h-4 text-amber-400 group-hover:rotate-12 transition-transform" />
-                <span>
-                  {isExpanded
-                    ? 'SHOW FEATURED COURSES (COLLAPSE)'
-                    : 'VIEW ALL 36 COURSES'}
-                </span>
-                {isExpanded ? (
-                  <ChevronUp className="w-4 h-4 text-white/70 group-hover:text-white" />
-                ) : (
-                  <ChevronDown className="w-4 h-4 text-white/70 group-hover:text-white" />
-                )}
-              </button>
-            </div>
-            <p className="text-[11.5px] text-gray-500 font-medium flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#C4161C]" />
-              <span>
-                {isExpanded
-                  ? 'Showing all 36 specialized engineering & CAD programs'
-                  : 'Showing 8 discipline flagship programs • Click to expand all 36 courses'}
-              </span>
-            </p>
+        {/* Course Count Indicator */}
+        <div className="mt-8 pt-4 border-t border-gray-200/70 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-gray-500">
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-[#C4161C] animate-pulse" />
+            <span className="font-semibold text-gray-800">
+              Showing all {displayedCourses.length} {activeTab === 'all' ? 'Engineering & CAD Courses' : `${DISCIPLINES.find(d => d.id === activeTab)?.label || ''} Programs`}
+            </span>
           </div>
-        )}
+          <span className="text-gray-400 text-[11px]">
+            Autodesk, Bentley, PTC &amp; Siemens Authorized Curriculum • KTU &amp; University Aligned
+          </span>
+        </div>
 
       </div>
 
