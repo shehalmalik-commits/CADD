@@ -360,37 +360,57 @@ export default function BlogFinbiz({ onOpenDemo }) {
           </div>
 
         {/* ========================================================= */}
-        {/* BOTTOM COMMUNITY CALLOUT                                   */}
+        {/* ASSOCIATE WITH US BANNER (FROM IMAGE 2)                   */}
         {/* ========================================================= */}
-        <div className="p-4 sm:p-5 rounded-xl bg-white border border-gray-200 shadow-2xs flex flex-col md:flex-row items-center justify-between gap-3 text-left">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-red-50 border border-red-100 flex items-center justify-center text-[#C4161C] shrink-0">
-              <Award className="w-5 h-5" />
-            </div>
-            <div>
-              <h4 className="text-xs sm:text-sm font-bold text-gray-950">
-                Host a CADD &amp; BIM Technical Workshop at Your College?
-              </h4>
-              <p className="text-[11px] text-gray-500">
-                We partner with engineering colleges across Malappuram for hands-on software &amp; hardware testing symposiums.
-              </p>
-            </div>
-          </div>
+        <div className="p-6 sm:p-8 rounded-2xl bg-[#0C1017] text-white border border-white/10 shadow-lg text-left relative overflow-hidden">
+          {/* Subtle ambient volumetric glow */}
+          <div className="absolute top-0 right-0 w-80 h-80 bg-[#C4161C]/15 rounded-full blur-3xl pointer-events-none" />
 
-          <div className="flex items-center gap-2.5 shrink-0 w-full md:w-auto">
-            <a
-              href="tel:+918891550060"
-              className="w-full sm:w-auto text-center px-3.5 py-1.5 rounded-lg border border-gray-300 text-xs font-bold text-gray-800 transition-colors"
-            >
-              Call: 8891550060
-            </a>
-            <button
-              type="button"
-              onClick={onOpenDemo}
-              className="w-full sm:w-auto text-center px-3.5 py-1.5 rounded-lg bg-[#C4161C] hover:bg-[#a51217] text-xs font-bold text-white shadow-2xs transition-colors cursor-pointer"
-            >
-              Enquire Admissions
-            </button>
+          <div className="relative z-10 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+            <div className="space-y-2.5 max-w-3xl">
+              <h4 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
+                Associate With Us
+              </h4>
+
+              <p className="text-sm sm:text-base font-semibold text-gray-200 tracking-wide">
+                Connect • Learn • Collaborate • Build Careers
+              </p>
+
+              {/* 12 Programs & Engagements Strip */}
+              <div className="pt-2 text-xs sm:text-[13px] text-gray-300 font-medium leading-relaxed">
+                <span>Seminars</span> <span className="text-gray-600 px-1.5">|</span>
+                <span>Workshops</span> <span className="text-gray-600 px-1.5">|</span>
+                <span>Orientations</span> <span className="text-gray-600 px-1.5">|</span>
+                <span>Job Fairs</span> <span className="text-gray-600 px-1.5">|</span>
+                <span>Career Guidance</span> <span className="text-gray-600 px-1.5">|</span>
+                <span>Guest Lectures</span> <span className="text-gray-600 px-1.5">|</span>
+                <span>Technical Demonstrations</span> <span className="text-gray-600 px-1.5">|</span>
+                <span>Placement Drives</span> <span className="text-gray-600 px-1.5">|</span>
+                <span>Internships</span> <span className="text-gray-600 px-1.5">|</span>
+                <span>Certification Programs</span> <span className="text-gray-600 px-1.5">|</span>
+                <span>Faculty Development</span> <span className="text-gray-600 px-1.5">|</span>
+                <span>Industry Visits</span>
+              </div>
+            </div>
+
+            {/* Direct Connect Action Buttons */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 shrink-0">
+              <a
+                href="tel:+918891550060"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white text-xs font-bold transition-all"
+              >
+                <Phone className="w-3.5 h-3.5 text-[#C4161C]" />
+                <span>Call: 8891550060</span>
+              </a>
+              <button
+                type="button"
+                onClick={onOpenDemo}
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#C4161C] hover:bg-[#a51217] text-white text-xs font-bold shadow-md transition-all cursor-pointer active:scale-97"
+              >
+                <span>Associate Now</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </button>
+            </div>
           </div>
         </div>
 

@@ -12,6 +12,7 @@ import {
   Cpu,
   Compass,
   PhoneCall,
+  ChevronDown,
   ChevronRight,
   ExternalLink,
   GraduationCap
@@ -112,9 +113,13 @@ const PERKS = [
 ];
 
 export default function InternshipsFinbiz({ onOpenDemo }) {
-  const [activeTrack, setActiveTrack] = useState(INTERNSHIP_TRACKS[0].id);
+  const [activeTrack, setActiveTrack] = useState(null);
 
-  const currentTrack = INTERNSHIP_TRACKS.find(t => t.id === activeTrack) || INTERNSHIP_TRACKS[0];
+  const currentTrack = activeTrack ? INTERNSHIP_TRACKS.find(t => t.id === activeTrack) : null;
+
+  const handleTrackClick = (trackId) => {
+    setActiveTrack(prev => (prev === trackId ? null : trackId));
+  };
 
   return (
     <section id="internships" className="pt-8 sm:pt-10 pb-14 sm:pb-20 bg-[#FAFAFA] select-none border-t border-gray-100 relative overflow-hidden">
@@ -176,31 +181,46 @@ export default function InternshipsFinbiz({ onOpenDemo }) {
           })}
         </div>
 
-        {/* Track Selection Tabs */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-3 mb-8 no-scrollbar">
+        {/* Track Selection Tabs - Centered */}
+        <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3.5 pb-2 mb-8">
           {INTERNSHIP_TRACKS.map((track) => {
             const isActive = track.id === activeTrack;
             return (
               <button
                 key={track.id}
                 type="button"
-                onClick={() => setActiveTrack(track.id)}
-                className={`px-4 sm:px-5 py-2.5 rounded-full text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
+                onClick={() => handleTrackClick(track.id)}
+                className={`px-5 sm:px-6 py-2.5 sm:py-3 rounded-full text-xs sm:text-[13px] font-bold whitespace-nowrap transition-all cursor-pointer shadow-xs active:scale-97 flex items-center gap-2 ${
                   isActive
-                    ? 'bg-[#11161E] text-white shadow-md'
-                    : 'bg-white text-gray-700 hover:text-black border border-gray-200/80 hover:border-gray-300'
+                    ? 'bg-[#11161E] text-white shadow-md ring-2 ring-[#C4161C]/30'
+                    : 'bg-white text-gray-700 hover:text-black hover:bg-gray-50 border border-gray-200/90 hover:border-gray-300'
                 }`}
               >
-                {track.discipline.split('&')[0].trim()}
+                <span>{track.discipline.split('&')[0].trim()}</span>
+                <ChevronDown
+                  className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                    isActive ? 'rotate-180 text-white' : 'text-gray-400'
+                  }`}
+                />
               </button>
             );
           })}
         </div>
 
-        {/* Selected Track Detailed Showcase Card */}
-        <div className="bg-white rounded-3xl border border-gray-200/80 shadow-sm overflow-hidden text-left transition-all">
-          <div className="p-6 sm:p-8 lg:p-10">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+        {/* When no track is active, show clean prompt */}
+        {!currentTrack && (
+          <div className="text-center py-6 px-4 bg-white/70 rounded-2xl border border-dashed border-gray-200/90 max-w-md mx-auto">
+            <p className="text-xs text-gray-500 font-medium">
+              Click on any engineering discipline above to view syllabus, tools &amp; batch schedules.
+            </p>
+          </div>
+        )}
+
+        {/* Selected Track Detailed Showcase Card (Appears ONLY when clicked) */}
+        {currentTrack && (
+          <div className="bg-white rounded-3xl border border-gray-200/80 shadow-sm overflow-hidden text-left transition-all animate-in fade-in zoom-in-95 duration-200">
+            <div className="p-6 sm:p-8 lg:p-10">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
               
               {/* Left Details (7 cols) */}
               <div className="lg:col-span-7 space-y-6">
@@ -320,6 +340,7 @@ export default function InternshipsFinbiz({ onOpenDemo }) {
             </div>
           </div>
         </div>
+      )}
 
       </div>
     </section>
