@@ -228,7 +228,7 @@ export default function TestimonialsFinbiz() {
   return (
     <section
       id="testimonials"
-      className="py-10 sm:py-14 bg-[#FAFAFA] relative overflow-hidden select-none border-t border-gray-100"
+      className="pt-8 sm:pt-10 pb-6 sm:pb-8 bg-[#FAFAFA] relative overflow-hidden select-none border-t border-gray-100"
     >
       <div id="reviews" className="absolute -top-20" />
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">

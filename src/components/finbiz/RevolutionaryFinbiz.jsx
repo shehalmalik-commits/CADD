@@ -63,7 +63,7 @@ export default function RevolutionaryFinbiz({ onOpenDemo }) {
   return (
     <section
       id="campus-life"
-      className="py-16 sm:py-24 bg-[#080C14] text-white font-['Plus_Jakarta_Sans',sans-serif] relative overflow-hidden select-none border-y border-white/5 text-left"
+      className="pt-5 sm:pt-7 pb-12 sm:pb-16 bg-[#080C14] text-white font-['Plus_Jakarta_Sans',sans-serif] relative overflow-hidden select-none border-y border-white/5 text-left"
     >
       {/* Ambient background volumetric glow */}
       <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-[#C4161C]/10 rounded-full blur-3xl pointer-events-none" />
@@ -75,8 +75,8 @@ export default function RevolutionaryFinbiz({ onOpenDemo }) {
         {/* ========================================================= */}
         {/* SECTION HEADER & INSTAGRAM METRICS DOCK                   */}
         {/* ========================================================= */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-10 gap-6">
-          <div className="space-y-3 max-w-2xl text-left">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-6 sm:mb-8 gap-6">
+          <div className="space-y-3 max-w-3xl text-left">
             {/* Red Live Eyebrow */}
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-500/10 border border-red-500/30 text-[#FF5A43] text-[11px] font-mono font-bold tracking-wider uppercase shadow-xs">
               <span className="w-2 h-2 rounded-full bg-[#C4161C] animate-ping" />
@@ -84,10 +84,10 @@ export default function RevolutionaryFinbiz({ onOpenDemo }) {
             </div>
 
             {/* Main Title */}
-            <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-extrabold text-white tracking-tight leading-tight">
+            <h2 className="text-2xl sm:text-3xl lg:text-[38px] xl:text-[42px] font-extrabold text-white tracking-tight leading-tight">
               Life at CADD Centre. <br className="hidden sm:inline" />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-200 to-gray-400">
-                Masterclasses, Reels &amp; Student Work.
+                Masterclasses, Reels &amp; <span className="whitespace-nowrap">Student Work.</span>
               </span>
             </h2>
 
