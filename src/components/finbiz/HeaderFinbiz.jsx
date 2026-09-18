@@ -21,16 +21,23 @@ export default function HeaderFinbiz({ onOpenDemo }) {
           scrolled ? 'shadow-md border-b border-gray-200/80' : 'shadow-xs border-b border-gray-100'
         }`}
       >
-        {/* Top Utilities Strip (Desktop) */}
-        <div className="hidden lg:block border-b border-gray-100">
-          <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-end h-8 sm:h-8.5 text-[11.5px] text-gray-500 font-medium gap-8">
-            <div className="flex items-center gap-2 hover:text-[#C4161C] transition-colors">
-              <Mail className="w-3.5 h-3.5 text-[#C4161C]" />
-              <a href="mailto:info@caddmanjeri.com">info@caddmanjeri.com</a>
-            </div>
-            <div className="flex items-center gap-2 hover:text-[#C4161C] transition-colors">
-              <Phone className="w-3.5 h-3.5 text-[#C4161C]" />
-              <a href="tel:+918891550060">Hotline: <strong className="text-gray-900">+91 88915 50060</strong></a>
+        {/* Top Utilities Strip (Desktop & Mobile) - Animated Announcement Marquee */}
+        <div className="block border-b border-gray-100 bg-red-50/60 overflow-hidden whitespace-nowrap">
+          <div className="flex items-center h-8 sm:h-8.5 w-full">
+            <div className="animate-marquee flex items-center text-[10.5px] sm:text-[11px] font-extrabold tracking-[0.15em] text-gray-800 uppercase">
+              {/* Duplicate contents 8 times to ensure seamless infinite looping */}
+              {[...Array(8)].map((_, i) => (
+                <React.Fragment key={i}>
+                  <span className="mx-6 sm:mx-10 flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#C4161C] animate-pulse shadow-[0_0_8px_rgba(196,22,28,0.6)]" />
+                    <span className="text-[#C4161C]">Online & Offline Classes Available</span>
+                  </span>
+                  <span className="mx-6 sm:mx-10 flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-gray-400" />
+                    <span>Admissions Open for 2026 Batches</span>
+                  </span>
+                </React.Fragment>
+              ))}
             </div>
           </div>
         </div>
@@ -70,19 +77,19 @@ export default function HeaderFinbiz({ onOpenDemo }) {
               About Us
             </a>
             <a href="#courses" className="hover:text-[#C4161C] transition-colors flex items-center gap-1">
-              Courses <ChevronDown className="w-3.5 h-3.5 text-gray-400" />
+              Course <ChevronDown className="w-3.5 h-3.5 text-gray-400" />
             </a>
             <a href="#placements" className="hover:text-[#C4161C] transition-colors flex items-center gap-1">
-              Placements <ChevronDown className="w-3.5 h-3.5 text-gray-400" />
-            </a>
-            <a href="#campus-life" className="hover:text-[#C4161C] transition-colors">
-              Campus Life
+              Placement <ChevronDown className="w-3.5 h-3.5 text-gray-400" />
             </a>
             <a href="#internships" className="hover:text-[#C4161C] transition-colors">
-              Internships
+              Internship
             </a>
             <a href="#workshops" className="hover:text-[#C4161C] transition-colors">
-              Workshops
+              Workshop
+            </a>
+            <a href="#campus-life" className="hover:text-[#C4161C] transition-colors">
+              Associate with Us
             </a>
             <a href="#footer" className="hover:text-[#C4161C] transition-colors">
               Contact

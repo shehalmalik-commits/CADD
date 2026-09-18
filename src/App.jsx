@@ -11,6 +11,7 @@ import BlogFinbiz from './components/finbiz/BlogFinbiz';
 import NewsletterFinbiz from './components/finbiz/NewsletterFinbiz';
 import FooterFinbiz from './components/finbiz/FooterFinbiz';
 import DemoModal from './components/DemoModal';
+import WorkshopModal from './components/WorkshopModal';
 import FloatingContact from './components/FloatingContact';
 import SmoothScroll from './components/motion/SmoothScroll';
 import useOverlayHistory from './hooks/useOverlayHistory';
@@ -19,6 +20,9 @@ export default function App() {
   const [demoOpen, setDemoOpen] = useState(false);
   const [demoInterest, setDemoInterest] = useState('');
 
+  const [workshopOpen, setWorkshopOpen] = useState(false);
+  const [workshopInterest, setWorkshopInterest] = useState('');
+
   const handleOpenDemo = (interest = '') => {
     if (typeof interest === 'string' && interest.trim().length > 0) {
       setDemoInterest(interest);
@@ -26,8 +30,16 @@ export default function App() {
     setDemoOpen(true);
   };
 
-  // Back / swipe-back closes the enquiry modal instead of leaving the site.
+  const handleOpenWorkshop = (interest = '') => {
+    if (typeof interest === 'string' && interest.trim().length > 0) {
+      setWorkshopInterest(interest);
+    }
+    setWorkshopOpen(true);
+  };
+
+  // Back / swipe-back closes the enquiry modals instead of leaving the site.
   useOverlayHistory(demoOpen, () => setDemoOpen(false));
+  useOverlayHistory(workshopOpen, () => setWorkshopOpen(false));
 
   return (
     <SmoothScroll>
@@ -62,7 +74,7 @@ export default function App() {
           <InternshipsFinbiz onOpenDemo={handleOpenDemo} />
 
           {/* 9 & 10. Workshops (9) & Campus workshop videos (10) */}
-          <BlogFinbiz onOpenDemo={() => handleOpenDemo()} />
+          <BlogFinbiz onOpenDemo={handleOpenDemo} onOpenWorkshop={handleOpenWorkshop} />
         </main>
 
         {/* Footer */}
@@ -76,6 +88,13 @@ export default function App() {
           isOpen={demoOpen}
           onClose={() => setDemoOpen(false)}
           initialInterest={demoInterest}
+        />
+
+        {/* Workshop Registration Modal */}
+        <WorkshopModal
+          isOpen={workshopOpen}
+          onClose={() => setWorkshopOpen(false)}
+          initialWorkshop={workshopInterest}
         />
       </div>
     </SmoothScroll>

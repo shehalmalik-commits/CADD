@@ -14,7 +14,8 @@ import {
   Download,
   Calendar,
   Layers,
-  GraduationCap
+  GraduationCap,
+  Share2
 } from 'lucide-react';
 
 const DISCIPLINES = [
@@ -104,6 +105,22 @@ export default function PortfolioFinbiz({ onOpenDemo }) {
     }
   };
 
+  const handleShare = async (course) => {
+    try {
+      if (navigator.share) {
+        await navigator.share({
+          title: `CADD Centre Manjeri - ${course.title}`,
+          text: `Check out the ${course.title} course at CADD Centre Manjeri!`,
+          url: window.location.href,
+        });
+      } else {
+        alert("Web Share API is not supported in your browser.");
+      }
+    } catch (error) {
+      console.log("Error sharing:", error);
+    }
+  };
+
   return (
     <section id="courses" className="pt-2 sm:pt-4 pb-3 sm:pb-4 bg-[#F8F9FC] select-none relative overflow-hidden text-left">
       {/* Subtle architectural grid pattern */}
@@ -160,7 +177,7 @@ export default function PortfolioFinbiz({ onOpenDemo }) {
           </div>
 
           {/* Disciplines Filter Tabs - Wrapping gracefully to prevent horizontal scroll */}
-          <div className="flex flex-wrap items-center gap-2 pt-2">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-2.5 pt-3">
             {DISCIPLINES.map((d) => {
               const isActive = activeTab === d.id;
               return (
@@ -168,13 +185,19 @@ export default function PortfolioFinbiz({ onOpenDemo }) {
                   key={d.id}
                   type="button"
                   onClick={() => setActiveTab(d.id)}
-                  className={`px-3.5 sm:px-4 py-2 rounded-full text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
+                  className={`group relative px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-xs font-bold transition-all duration-300 cursor-pointer whitespace-nowrap overflow-hidden ${
                     isActive
-                      ? 'bg-[#C4161C] text-white shadow-md'
-                      : 'bg-white text-gray-700 hover:text-gray-950 hover:bg-gray-50 border border-gray-200/90 shadow-xs'
+                      ? 'bg-gradient-to-r from-[#C4161C] to-[#9a1015] text-white shadow-lg shadow-red-900/20 ring-1 ring-red-500/50 scale-[1.02]'
+                      : 'bg-red-50/80 text-[#C4161C] hover:text-[#9a1015] hover:bg-red-100 border border-red-200 hover:border-red-300 shadow-xs hover:shadow-sm'
                   }`}
                 >
-                  <span>{d.label}</span>
+                  {isActive && (
+                    <span className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  )}
+                  <span className="relative z-10 flex items-center gap-2">
+                    {isActive && <div className="w-1.5 h-1.5 rounded-full bg-white animate-pulse shadow-[0_0_8px_rgba(255,255,255,0.8)]" />}
+                    {d.label}
+                  </span>
                 </button>
               );
             })}
@@ -260,12 +283,14 @@ export default function PortfolioFinbiz({ onOpenDemo }) {
                       </div>
 
                       {/* Course Title */}
-                      <h3
-                        onClick={() => setSelectedCourse(course)}
-                        className="text-xl sm:text-2xl font-black text-gray-950 group-hover:text-[#C4161C] transition-colors leading-tight tracking-tight cursor-pointer"
-                      >
-                        {course.title}
-                      </h3>
+                      <div className="flex items-start gap-3 pt-0.5">
+                        <h3
+                          onClick={() => setSelectedCourse(course)}
+                          className="text-xl sm:text-2xl font-black text-gray-950 group-hover:text-[#C4161C] transition-colors leading-tight tracking-tight cursor-pointer"
+                        >
+                          {course.title}
+                        </h3>
+                      </div>
 
                       {/* Description */}
                       <p className="text-xs sm:text-[13px] text-gray-600 leading-relaxed font-normal max-w-3xl">
@@ -297,15 +322,15 @@ export default function PortfolioFinbiz({ onOpenDemo }) {
                         ))}
                       </div>
 
-                      {/* View Modules Button (Relocated to marked position) */}
-                      <div className="pt-2">
+                      {/* View Modules Button */}
+                      <div className="pt-2 flex justify-center w-full">
                         <button
                           type="button"
                           onClick={() => toggleModules(course.id)}
                           className="inline-flex items-center gap-2 py-2 px-3.5 rounded-xl bg-white hover:bg-red-50 border border-gray-200/90 hover:border-red-200 text-gray-800 hover:text-[#C4161C] text-xs font-bold transition-all cursor-pointer shadow-2xs group/btn"
                         >
                           <BookOpen className="w-3.5 h-3.5 text-[#C4161C]" />
-                          <span>{isModuleOpen ? 'Hide Modules' : 'View 4 Modules'}</span>
+                          <span>{isModuleOpen ? 'Hide Modules' : 'View Modules'}</span>
                           {isModuleOpen ? (
                             <ChevronUp className="w-3.5 h-3.5 text-gray-400 group-hover/btn:text-[#C4161C]" />
                           ) : (
@@ -331,14 +356,24 @@ export default function PortfolioFinbiz({ onOpenDemo }) {
 
                       {/* Action Buttons */}
                       <div className="space-y-2">
-                        <button
-                          type="button"
-                          onClick={() => onOpenDemo ? onOpenDemo(`Free Demo - ${course.title}`) : null}
-                          className="w-full py-2.5 px-4 rounded-xl bg-white hover:bg-red-50/60 border border-gray-200 hover:border-[#C4161C]/50 text-gray-900 hover:text-[#C4161C] text-xs font-extrabold flex items-center justify-center gap-2 transition-all cursor-pointer shadow-2xs active:scale-97 group/demo"
-                        >
-                          <Calendar className="w-3.5 h-3.5 text-[#C4161C]" />
-                          <span>BOOK FREE DEMO</span>
-                        </button>
+                        <div className="flex gap-2">
+                          <a
+                            href="tel:+918891550060"
+                            className="flex-1 py-2.5 px-3 sm:px-4 rounded-xl bg-white hover:bg-red-50/60 border border-gray-200 hover:border-[#C4161C]/50 text-gray-900 hover:text-[#C4161C] text-xs font-extrabold flex items-center justify-center gap-2 transition-all cursor-pointer shadow-2xs active:scale-97 group/demo"
+                          >
+                            <Calendar className="w-3.5 h-3.5 text-[#C4161C]" />
+                            <span>BOOK FREE DEMO</span>
+                          </a>
+                          
+                          <button
+                            type="button"
+                            onClick={(e) => { e.stopPropagation(); handleShare(course); }}
+                            className="w-[42px] h-[42px] flex items-center justify-center rounded-xl bg-white hover:bg-red-50/60 border border-gray-200 hover:border-[#C4161C]/50 text-gray-600 hover:text-[#C4161C] transition-all cursor-pointer shadow-2xs active:scale-95 shrink-0"
+                            title="Share Course"
+                          >
+                            <Share2 className="w-4 h-4" />
+                          </button>
+                        </div>
 
                         <button
                           type="button"

@@ -162,7 +162,7 @@ export const INSTITUTIONAL_ASSOCIATES = [
   },
 ];
 
-export default function BlogFinbiz({ onOpenDemo }) {
+export default function BlogFinbiz({ onOpenDemo, onOpenWorkshop }) {
   return (
     <>
       {/* ========================================================= */}
@@ -191,21 +191,13 @@ export default function BlogFinbiz({ onOpenDemo }) {
 
             {/* Action Buttons */}
             <div className="flex items-center gap-2.5 shrink-0">
-              <a
-                href="tel:+918891550060"
-                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white hover:bg-gray-50 border border-gray-200 text-xs font-bold text-gray-800 shadow-2xs transition-colors"
-              >
-                <Phone className="w-3 h-3 text-[#C4161C]" />
-                <span>8891550060</span>
-              </a>
-
               <button
                 type="button"
-                onClick={onOpenDemo}
-                className="inline-flex items-center gap-1.5 text-xs font-bold text-[#C4161C] hover:text-[#9e1116] transition-colors cursor-pointer group"
+                onClick={() => onOpenWorkshop()}
+                className="inline-flex items-center gap-1.5 px-5 py-2 rounded-full bg-[#C4161C] hover:bg-[#A81217] text-white text-xs font-bold shadow-md transition-colors cursor-pointer group"
               >
-                <span>Batch Schedules</span>
-                <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+                <span>APPLY NOW</span>
+                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
               </button>
             </div>
           </div>
@@ -286,15 +278,14 @@ export default function BlogFinbiz({ onOpenDemo }) {
 
                   {/* Solid Red [Register Now] Button */}
                   <div className="pt-1">
-                    <a
-                      href={card.registerUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <button
+                      type="button"
+                      onClick={() => onOpenWorkshop(card.title)}
                       className="w-full inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg bg-[#C4161C] hover:bg-[#a51217] text-white text-xs font-bold shadow-2xs transition-colors cursor-pointer"
                     >
                       <span>Register Now</span>
                       <ArrowRight className="w-3 h-3" />
-                    </a>
+                    </button>
                   </div>
                 </div>
 
@@ -404,103 +395,103 @@ export default function BlogFinbiz({ onOpenDemo }) {
             ))}
           </div>
 
-        {/* ========================================================= */}
-        {/* ASSOCIATE WITH US BANNER (FROM IMAGE 2)                   */}
-        {/* ========================================================= */}
-        <div className="p-6 sm:p-8 rounded-2xl bg-[#0C1017] text-white border border-white/10 shadow-lg text-left relative overflow-hidden">
-          {/* Subtle ambient volumetric glow */}
-          <div className="absolute top-0 right-0 w-80 h-80 bg-[#C4161C]/15 rounded-full blur-3xl pointer-events-none" />
+          {/* ========================================================= */}
+          {/* ASSOCIATE WITH US BANNER (FROM IMAGE 2)                   */}
+          {/* ========================================================= */}
+          <div className="p-6 sm:p-8 rounded-2xl bg-[#0C1017] text-white border border-white/10 shadow-lg text-left relative overflow-hidden">
+            {/* Subtle ambient volumetric glow */}
+            <div className="absolute top-0 right-0 w-80 h-80 bg-[#C4161C]/15 rounded-full blur-3xl pointer-events-none" />
 
-          <div className="relative z-10 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
-            <div className="space-y-2.5 max-w-3xl">
-              <h4 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
-                Associate With Us
-              </h4>
+            <div className="relative z-10 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+              <div className="space-y-2.5 max-w-3xl">
+                <h4 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
+                  Associate With Us
+                </h4>
 
-              <p className="text-sm sm:text-base font-semibold text-gray-200 tracking-wide">
-                Connect • Learn • Collaborate • Build Careers
-              </p>
+                <p className="text-sm sm:text-base font-semibold text-gray-200 tracking-wide">
+                  Connect • Learn • Collaborate • Build Careers
+                </p>
 
-              {/* 12 Programs & Engagements Strip */}
-              <div className="pt-2 text-xs sm:text-[13px] text-gray-300 font-medium leading-relaxed">
-                <span>Seminars</span> <span className="text-gray-600 px-1.5">|</span>
-                <span>Workshops</span> <span className="text-gray-600 px-1.5">|</span>
-                <span>Orientations</span> <span className="text-gray-600 px-1.5">|</span>
-                <span>Job Fairs</span> <span className="text-gray-600 px-1.5">|</span>
-                <span>Career Guidance</span> <span className="text-gray-600 px-1.5">|</span>
-                <span>Guest Lectures</span> <span className="text-gray-600 px-1.5">|</span>
-                <span>Technical Demonstrations</span> <span className="text-gray-600 px-1.5">|</span>
-                <span>Placement Drives</span> <span className="text-gray-600 px-1.5">|</span>
-                <span>Internships</span> <span className="text-gray-600 px-1.5">|</span>
-                <span>Certification Programs</span> <span className="text-gray-600 px-1.5">|</span>
-                <span>Faculty Development</span> <span className="text-gray-600 px-1.5">|</span>
-                <span>Industry Visits</span>
+                {/* 12 Programs & Engagements Strip */}
+                <div className="pt-2 text-xs sm:text-[13px] text-gray-300 font-medium leading-relaxed">
+                  <span>Seminars</span> <span className="text-gray-600 px-1.5">|</span>
+                  <span>Workshops</span> <span className="text-gray-600 px-1.5">|</span>
+                  <span>Orientations</span> <span className="text-gray-600 px-1.5">|</span>
+                  <span>Job Fairs</span> <span className="text-gray-600 px-1.5">|</span>
+                  <span>Career Guidance</span> <span className="text-gray-600 px-1.5">|</span>
+                  <span>Guest Lectures</span> <span className="text-gray-600 px-1.5">|</span>
+                  <span>Technical Demonstrations</span> <span className="text-gray-600 px-1.5">|</span>
+                  <span>Placement Drives</span> <span className="text-gray-600 px-1.5">|</span>
+                  <span>Internships</span> <span className="text-gray-600 px-1.5">|</span>
+                  <span>Certification Programs</span> <span className="text-gray-600 px-1.5">|</span>
+                  <span>Faculty Development</span> <span className="text-gray-600 px-1.5">|</span>
+                  <span>Industry Visits</span>
+                </div>
               </div>
-            </div>
 
-            {/* Direct Connect Action Buttons */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 shrink-0">
-              <a
-                href="tel:+918891550060"
-                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white text-xs font-bold transition-all"
-              >
-                <Phone className="w-3.5 h-3.5 text-[#C4161C]" />
-                <span>Call: 8891550060</span>
-              </a>
-              <button
-                type="button"
-                onClick={onOpenDemo}
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#C4161C] hover:bg-[#a51217] text-white text-xs font-bold shadow-md transition-all cursor-pointer active:scale-97"
-              >
-                <span>Associate Now</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </button>
-            </div>
-          </div>
-
-          {/* Institutional Associates Logo Strip */}
-          <div className="relative z-10 pt-6 mt-6 border-t border-white/10">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3.5">
-              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gray-300">
-                <Building2 className="w-3.5 h-3.5 text-[#C4161C]" />
-                <span>Key Institutional Associates &amp; Engineering Campuses</span>
-              </div>
-              <span className="text-[11px] text-gray-400 font-medium">
-                Click logo to visit official campus portal ↗
-              </span>
-            </div>
-
-            {/* 5 Clickable Institution Logo Cards */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5 sm:gap-3">
-              {INSTITUTIONAL_ASSOCIATES.map((item) => (
+              {/* Direct Connect Action Buttons */}
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 shrink-0">
                 <a
-                  key={item.id}
-                  href={item.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title={`Visit official website: ${item.name}`}
-                  className="group bg-white hover:bg-gray-50 rounded-lg p-2.5 sm:p-3 flex flex-col items-center justify-between border border-transparent shadow-xs hover:shadow-lg hover:shadow-red-900/20 hover:border-red-200 transition-all duration-300 hover:-translate-y-1 text-center cursor-pointer h-[76px] sm:h-[84px]"
+                  href="tel:+918891550060"
+                  className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white text-xs font-bold transition-all"
                 >
-                  <div className="flex-1 w-full flex items-center justify-center px-1">
-                    <img
-                      src={item.logo}
-                      alt={item.name}
-                      className="max-h-6 sm:max-h-7 max-w-[85%] object-contain group-hover:scale-105 transition-transform duration-300"
-                      loading="lazy"
-                    />
-                  </div>
-                  <div className="w-full flex items-center justify-center gap-1 mt-1.5 text-[9.5px] sm:text-[10.5px] font-bold text-gray-500 group-hover:text-[#C4161C] transition-colors leading-none">
-                    <span className="truncate">{item.shortName}</span>
-                    <ExternalLink className="w-2.5 h-2.5 opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
-                  </div>
+                  <Phone className="w-3.5 h-3.5 text-[#C4161C]" />
+                  <span>Call: 8891550060</span>
                 </a>
-              ))}
+                <button
+                  type="button"
+                  onClick={onOpenDemo}
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#C4161C] hover:bg-[#a51217] text-white text-xs font-bold shadow-md transition-all cursor-pointer active:scale-97"
+                >
+                  <span>Associate Now</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            </div>
+
+            {/* Institutional Associates Logo Strip */}
+            <div className="relative z-10 pt-6 mt-6 border-t border-white/10">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3.5">
+                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gray-300">
+                  <Building2 className="w-3.5 h-3.5 text-[#C4161C]" />
+                  <span>Key Institutional Associates &amp; Engineering Campuses</span>
+                </div>
+                <span className="text-[11px] text-gray-400 font-medium">
+                  Click logo to visit official campus portal ↗
+                </span>
+              </div>
+
+              {/* 5 Clickable Institution Logo Cards */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5 sm:gap-3">
+                {INSTITUTIONAL_ASSOCIATES.map((item) => (
+                  <a
+                    key={item.id}
+                    href={item.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title={`Visit official website: ${item.name}`}
+                    className="group bg-white hover:bg-gray-50 rounded-lg p-2.5 sm:p-3 flex flex-col items-center justify-between border border-transparent shadow-xs hover:shadow-lg hover:shadow-red-900/20 hover:border-red-200 transition-all duration-300 hover:-translate-y-1 text-center cursor-pointer h-[76px] sm:h-[84px]"
+                  >
+                    <div className="flex-1 w-full flex items-center justify-center px-1">
+                      <img
+                        src={item.logo}
+                        alt={item.name}
+                        className="max-h-6 sm:max-h-7 max-w-[85%] object-contain group-hover:scale-105 transition-transform duration-300"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div className="w-full flex items-center justify-center gap-1 mt-1.5 text-[9.5px] sm:text-[10.5px] font-bold text-gray-500 group-hover:text-[#C4161C] transition-colors leading-none">
+                      <span className="truncate">{item.shortName}</span>
+                      <ExternalLink className="w-2.5 h-2.5 opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
+                    </div>
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
 
-      </div>
-    </section>
-  </>
+        </div>
+      </section>
+    </>
   );
 }

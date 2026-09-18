@@ -190,16 +190,16 @@ export default function InternshipsFinbiz({ onOpenDemo }) {
                 key={track.id}
                 type="button"
                 onClick={() => handleTrackClick(track.id)}
-                className={`px-5 sm:px-6 py-2.5 sm:py-3 rounded-full text-xs sm:text-[13px] font-bold whitespace-nowrap transition-all cursor-pointer shadow-xs active:scale-97 flex items-center gap-2 ${
+                className={`group px-5 sm:px-6 py-2.5 sm:py-3 rounded-full text-xs sm:text-[13px] font-bold whitespace-nowrap transition-all cursor-pointer shadow-xs active:scale-97 flex items-center gap-2 ${
                   isActive
-                    ? 'bg-[#11161E] text-white shadow-md ring-2 ring-[#C4161C]/30'
-                    : 'bg-white text-gray-700 hover:text-black hover:bg-gray-50 border border-gray-200/90 hover:border-gray-300'
+                    ? 'bg-[#C4161C] text-white shadow-md shadow-red-900/20 ring-2 ring-[#C4161C]/30'
+                    : 'bg-red-50/80 text-[#C4161C] hover:text-white hover:bg-[#C4161C] border border-red-200 hover:border-[#C4161C] hover:shadow-md'
                 }`}
               >
                 <span>{track.discipline.split('&')[0].trim()}</span>
                 <ChevronDown
                   className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                    isActive ? 'rotate-180 text-white' : 'text-gray-400'
+                    isActive ? 'rotate-180 text-white' : 'text-[#C4161C] group-hover:text-white'
                   }`}
                 />
               </button>

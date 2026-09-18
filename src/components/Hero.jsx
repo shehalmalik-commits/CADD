@@ -19,25 +19,17 @@ export default function Hero({ onOpenDemo }) {
       {/* ========================================================= */}
       {/* 1. BACKGROUND GRID & AUTHENTIC ARCHITECTURAL CAD VISUAL   */}
       {/* ========================================================= */}
-      {/* High-tech blueprint dot pattern in subtle charcoal */}
+      {/* High-tech blueprint square grid pattern */}
       <div
-        className="absolute inset-0 pointer-events-none opacity-[0.06]"
+        className="absolute inset-0 pointer-events-none opacity-[0.03]"
         style={{
-          backgroundImage: 'radial-gradient(rgba(0, 0, 0, 0.25) 1px, transparent 1px)',
-          backgroundSize: '24px 24px'
+          backgroundImage: 'linear-gradient(to right, #000 1px, transparent 1px), linear-gradient(to bottom, #000 1px, transparent 1px)',
+          backgroundSize: '48px 48px'
         }}
       />
 
-      {/* Decorative Technical Crosshairs */}
-      <div className="hidden lg:block absolute top-24 left-10 text-[10px] font-mono text-black/40 pointer-events-none">
-        + 11.1219° N, 76.1215° E
-      </div>
-      <div className="hidden lg:block absolute top-24 right-10 text-[10px] font-mono text-black/40 pointer-events-none text-right">
-        [ SYSTEM: ONLINE · VERIFIED ] +
-      </div>
-
       {/* Hero Authentic CAD / BIM Architecture Showcase Image */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0 overflow-hidden">
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0 overflow-hidden opacity-40">
         <div className="relative w-full max-w-[1240px] h-[580px] sm:h-[720px] flex items-center justify-center">
           {/* Warm Ambient Radial Glow */}
           <div className="absolute w-[350px] sm:w-[650px] h-[350px] sm:h-[650px] rounded-full bg-gradient-to-tr from-amber-200/40 via-orange-100/20 to-transparent blur-3xl" />
@@ -57,37 +49,32 @@ export default function Hero({ onOpenDemo }) {
       </div>
 
       {/* ========================================================= */}
-      {/* 2. TOP HERO HEADLINE & META (ALL BLUE ELIMINATED)         */}
+      {/* 2. TOP HERO HEADLINE & META                               */}
       {/* ========================================================= */}
-      <div className="relative z-10 max-w-6xl mx-auto w-full pt-4 sm:pt-8 text-center sm:text-left">
-        {/* Monospace Eyebrow Badge */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/5 border border-black/10 shadow-2xs mb-5 sm:mb-6">
-          <span className="w-2 h-2 rounded-full bg-black animate-pulse" />
-          <span className="text-[11px] sm:text-xs font-mono font-bold text-black uppercase tracking-[0.2em]">
-            [ 01/10 CADD CENTRE MANJERI · EST. 2000 ]
+      <div className="relative z-10 max-w-6xl mx-auto w-full pt-4 sm:pt-12 text-center sm:text-left flex flex-col items-center sm:items-start">
+        {/* Eyebrow Badge */}
+        <div className="inline-flex items-center justify-center px-4 py-1.5 rounded-full border border-red-200/80 bg-red-50/60 mb-6 sm:mb-8 backdrop-blur-sm">
+          <span className="text-[12px] sm:text-sm font-bold text-[#dc2626] uppercase tracking-widest">
+            [ 3D CAD & BIM DIGITAL TWIN LAB ]
           </span>
         </div>
 
-        {/* Main Title & Aside Layout */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 lg:gap-12">
-          <div className="text-center sm:text-left">
-            <h1 className="text-[44px] xs:text-[54px] sm:text-[76px] lg:text-[92px] font-black text-black tracking-[-0.04em] leading-[0.92]">
-              ENGINEERING<br />
-              <span className="text-black">
-                INNOVATION.
-              </span>
-            </h1>
-          </div>
+        {/* Main Title */}
+        <div className="text-center sm:text-left w-full">
+          <h1 className="text-[42px] xs:text-[50px] sm:text-[70px] lg:text-[84px] font-black tracking-[-0.02em] leading-[1.05]">
+            <span className="text-[#151b28]">The World&apos;s Largest</span><br />
+            <span className="text-[#da2020]">CAD <span className="text-[#da2020] px-1.5">&bull;</span> Interior Design</span><br />
+            <span className="text-[#151b28]">MEP <span className="text-[#151b28] px-1.5">&bull;</span> BIM <span className="text-[#151b28] px-1.5">&bull;</span> PPM</span><br />
+            <span className="text-[#151b28]">Training Network</span>
+          </h1>
+        </div>
 
-          <div className="lg:max-w-xs text-center sm:text-left lg:pb-3 space-y-2.5">
-            <p className="text-xs sm:text-sm text-neutral-800 leading-relaxed font-normal">
-              Kerala&apos;s benchmark engineering training hub. Master BIM, MEP, Structural Analysis, Architectural CAD, and Project Management with global credentials.
-            </p>
-            <div className="inline-flex items-center gap-2 text-[11px] font-mono font-bold text-black/70 uppercase tracking-wider">
-              <span className="w-1.5 h-1.5 rounded-sm bg-black" />
-              <span>INDUSTRY 4.0 · GCC ACCREDITED</span>
-            </div>
-          </div>
+        {/* Subtitle */}
+        <div className="mt-7 sm:mt-10 flex items-center justify-center sm:justify-start gap-4">
+          <span className="text-[#da2020] text-2xl sm:text-3xl leading-none flex items-center mt-0.5">&bull;</span>
+          <p className="text-lg sm:text-2xl font-bold text-[#374151]">
+            Proudly Serving Manjeri for 25 Years
+          </p>
         </div>
       </div>
 
