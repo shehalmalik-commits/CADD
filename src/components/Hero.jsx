@@ -52,12 +52,6 @@ export default function Hero({ onOpenDemo }) {
       {/* 2. TOP HERO HEADLINE & META                               */}
       {/* ========================================================= */}
       <div className="relative z-10 max-w-6xl mx-auto w-full pt-4 sm:pt-12 text-center sm:text-left flex flex-col items-center sm:items-start">
-        {/* Eyebrow Badge */}
-        <div className="inline-flex items-center justify-center px-4 py-1.5 rounded-full border border-red-200/80 bg-red-50/60 mb-6 sm:mb-8 backdrop-blur-sm">
-          <span className="text-[12px] sm:text-sm font-bold text-[#dc2626] uppercase tracking-widest">
-            [ 3D CAD & BIM DIGITAL TWIN LAB ]
-          </span>
-        </div>
 
         {/* Main Title */}
         <div className="text-center sm:text-left w-full">

@@ -21,24 +21,23 @@ export default function HeaderFinbiz({ onOpenDemo }) {
           scrolled ? 'shadow-md border-b border-gray-200/80' : 'shadow-xs border-b border-gray-100'
         }`}
       >
-        {/* Top Utilities Strip (Desktop & Mobile) - Animated Announcement Marquee */}
-        <div className="block border-b border-gray-100 bg-red-50/60 overflow-hidden whitespace-nowrap">
-          <div className="flex items-center h-8 sm:h-8.5 w-full">
-            <div className="animate-marquee flex items-center text-[10.5px] sm:text-[11px] font-extrabold tracking-[0.15em] text-gray-800 uppercase">
-              {/* Duplicate contents 8 times to ensure seamless infinite looping */}
-              {[...Array(8)].map((_, i) => (
-                <React.Fragment key={i}>
-                  <span className="mx-6 sm:mx-10 flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#C4161C] animate-pulse shadow-[0_0_8px_rgba(196,22,28,0.6)]" />
-                    <span className="text-[#C4161C]">Online & Offline Classes Available</span>
-                  </span>
-                  <span className="mx-6 sm:mx-10 flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-gray-400" />
-                    <span>Admissions Open for 2026 Batches</span>
-                  </span>
-                </React.Fragment>
-              ))}
-            </div>
+        {/* Top Utilities Strip (Above Navbar) */}
+        <div className="border-b border-gray-100 bg-white">
+          <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-end h-8 sm:h-8.5 text-[11.5px] sm:text-[12px] text-gray-500 font-medium gap-6 sm:gap-8">
+            <a
+              href="mailto:info@caddmanjeri.com"
+              className="flex items-center gap-2 hover:text-[#C4161C] transition-colors"
+            >
+              <Mail className="w-3.5 h-3.5 text-[#C4161C]" />
+              <span>info@caddmanjeri.com</span>
+            </a>
+            <a
+              href="tel:+918891550060"
+              className="flex items-center gap-2 hover:text-[#C4161C] transition-colors"
+            >
+              <Phone className="w-3.5 h-3.5 text-[#C4161C]" />
+              <span>Hotline: <strong className="text-gray-900 font-bold">+91 88915 50060</strong></span>
+            </a>
           </div>
         </div>
 

@@ -80,8 +80,8 @@ export default function App() {
         {/* Footer */}
         <FooterFinbiz onOpenDemo={() => handleOpenDemo()} />
 
-        {/* Floating Call / WhatsApp / Instagram contact dock */}
-        <FloatingContact />
+        {/* Floating Call / WhatsApp / Instagram contact dock + live announcement badge */}
+        <FloatingContact onOpenDemo={handleOpenDemo} />
 
         {/* Admissions & Demo Enquiry Modal */}
         <DemoModal

@@ -69,7 +69,7 @@ export default function AboutFinbiz({ onOpenDemo }) {
             </div>
 
             {/* Action Dock: Call Directory, Campus Location */}
-            <div className="pt-5 sm:pt-6 border-t border-gray-100 flex flex-wrap items-center gap-3 sm:gap-4">
+            <div className="pt-5 sm:pt-6 border-t border-gray-100 flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
               {/* Call Us Anytime Button -> Opens Dedicated Department Call Directory Modal */}
               <button
                 type="button"
@@ -102,7 +102,7 @@ export default function AboutFinbiz({ onOpenDemo }) {
                 <div>
                   <div className="text-[10px] text-gray-500 font-medium leading-none mb-1">Our Location</div>
                   <div className="text-xs sm:text-sm font-bold text-gray-900 leading-tight">
-                    Korambayil Mall, Calicut Rd, Manjeri
+                    2nd Floor, KORAMBAYIL CORPORATE MALL, Calicut Rd
                   </div>
                 </div>
               </a>

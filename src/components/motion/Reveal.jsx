@@ -19,7 +19,7 @@ export default function Reveal({
   useLayoutEffect(() => {
     const el = elRef.current;
     if (!el) return;
-
+''
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       return;
     }

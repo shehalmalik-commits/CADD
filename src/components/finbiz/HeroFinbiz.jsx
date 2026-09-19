@@ -1271,30 +1271,35 @@ export default function HeroFinbiz({ onOpenDemo }) {
           {/* ========================================================= */}
           {/* LEFT COLUMN: HIGH-IMPACT CADD EDITORIAL & QUICK ACTIONS   */}
           {/* ========================================================= */}
-          <div className="lg:col-span-5 xl:col-span-5 flex flex-col justify-center text-left py-0 z-10">
-
-            {/* Red Live CADD Badge */}
-            <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-red-50 border border-red-200/80 text-[#C4161C] text-[10px] font-mono font-black tracking-wider uppercase mb-1.5 sm:mb-2 w-fit shadow-xs">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#C4161C] animate-ping" />
-              <span>[ 3D CAD &amp; BIM DIGITAL TWIN LAB ]</span>
-            </div>
+          <div className="lg:col-span-6 xl:col-span-6 flex flex-col justify-center text-left py-0 z-10">
 
             {/* Headline */}
-            <h1 className="text-2xl sm:text-3xl lg:text-[34px] xl:text-[38px] font-black tracking-tight leading-[1.14] text-[#111827]">
-              The World’s Largest <br />
-              <span className="text-[#C4161C]">CAD • Interior Design</span> <br />
-              MEP • BIM • PPM <br className="hidden sm:inline" />
-              Training Network
+            <h1 className="text-3xl sm:text-4xl lg:text-[42px] xl:text-[48px] font-extrabold tracking-tight leading-[1.12] text-[#0F172A]">
+              <div>The World’s Largest</div>
+              <div className="text-[#C4161C] text-[16px] min-[380px]:text-[18px] sm:text-[24px] md:text-[28px] lg:text-[23px] xl:text-[27.5px] 2xl:text-[31px] font-black tracking-tight my-1 flex items-center gap-x-1.5 sm:gap-x-2 whitespace-nowrap">
+                <span>CAD</span>
+                <span className="text-[#C4161C]">•</span>
+                <span>Interior Design</span>
+                <span className="text-[#C4161C]">•</span>
+                <span>MEP</span>
+                <span className="text-[#C4161C]">•</span>
+                <span>BIM</span>
+                <span className="text-[#C4161C]">•</span>
+                <span>PPM</span>
+              </div>
+              <div>Training Network</div>
             </h1>
 
-            {/* Subtitle */}
-            <p className="mt-2.5 sm:mt-3 text-sm sm:text-base lg:text-[15px] font-bold text-gray-800 leading-relaxed max-w-lg flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-[#C4161C] shrink-0" />
-              <span>Proudly Serving Manjeri for 25 Years</span>
-            </p>
+            {/* Highlighted 25 Years Badge */}
+            <div className="mt-3.5 sm:mt-4 inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-red-50/80 border border-red-200/90 shadow-xs w-fit">
+              <span className="w-2.5 h-2.5 rounded-full bg-[#C4161C] animate-pulse shrink-0 shadow-[0_0_8px_rgba(196,22,28,0.6)]" />
+              <span className="text-xs sm:text-sm font-extrabold text-[#111827] tracking-tight">
+                Proudly Serving Manjeri for 25 Years
+              </span>
+            </div>
 
             {/* Action Buttons: Full-width on mobile */}
-            <div className="pt-2.5 sm:pt-3 flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3">
+            <div className="pt-3 sm:pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3">
               <button
                 type="button"
                 onClick={onOpenDemo}
@@ -1347,7 +1352,7 @@ export default function HeroFinbiz({ onOpenDemo }) {
           {/* ========================================================= */}
           {/* RIGHT COLUMN: FULL 3D INTERACTIVE CADD/BIM WORKSTATION    */}
           {/* ========================================================= */}
-          <div className="lg:col-span-7 xl:col-span-7 relative flex justify-center lg:justify-end">
+          <div className="lg:col-span-6 xl:col-span-6 relative flex justify-center lg:justify-end">
             <div
               ref={cardRef}
               onMouseMove={handleCardMouseMove}

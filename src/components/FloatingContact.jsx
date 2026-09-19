@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Phone } from 'lucide-react';
 
 // Single point of truth for the enquiry number used by both buttons.
@@ -7,6 +7,12 @@ const PHONE_DISPLAY = '+91 88915 50060';
 const WHATSAPP = 'https://wa.me/918891550060';
 const INSTAGRAM = 'https://www.instagram.com/caddcentremanjeri';
 const INSTAGRAM_HANDLE = '@caddcentremanjeri';
+
+const ANNOUNCEMENTS = [
+  { text: 'Online & Offline Classes Available', color: 'bg-[#EF4444]' },
+  { text: 'Sunday & Saturday Weekend Classes Available', color: 'bg-emerald-400' },
+  { text: 'Early Morning & Night Batches Available', color: 'bg-amber-400' },
+];
 
 // lucide-react no longer ships brand marks, so the WhatsApp glyph is inlined.
 function WhatsAppGlyph({ className }) {
@@ -38,13 +44,20 @@ function InstagramGlyph({ className }) {
 }
 
 /**
- * Persistent call / WhatsApp / Instagram buttons stacked in the bottom-right corner.
- *
- * z-40 keeps them under the enquiry modal and course sheet (z-50) so they can
- * never sit on top of an open dialog, and the safe-area insets keep them clear
- * of the iOS home indicator.
+ * Persistent call / WhatsApp / Instagram buttons + floating live announcement pill.
  */
-export default function FloatingContact() {
+export default function FloatingContact({ onOpenDemo }) {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIndex((prev) => (prev + 1) % ANNOUNCEMENTS.length);
+    }, 3800);
+    return () => clearInterval(timer);
+  }, []);
+
+  const activeAnno = ANNOUNCEMENTS[index];
+
   return (
     <div
       className="pointer-events-none fixed inset-x-0 z-40"
@@ -52,75 +65,61 @@ export default function FloatingContact() {
     >
       <div className="mx-auto max-w-[1680px] px-3 sm:px-6 flex justify-end">
 
-        {/* Mobile View (< 640px): Compact, sleek glassmorphic mini-dock */}
-        <div className="sm:hidden pointer-events-auto flex items-center gap-1.5 p-1.5 rounded-full bg-[#080D14]/92 backdrop-blur-xl border border-white/20 shadow-[0_10px_30px_rgba(0,0,0,0.75)]">
-          {/* Call */}
-          <a
-            href={`tel:${PHONE}`}
-            aria-label={`Call CADD Centre Manjeri on ${PHONE_DISPLAY}`}
-            className="w-10 h-10 rounded-full bg-[#C4161C] hover:bg-[#A81217] text-white flex items-center justify-center shadow-md active:scale-95 transition-transform"
-          >
-            <Phone className="w-4 h-4" />
-          </a>
+        {/* Single Unified Floating Glassmorphic Capsule Dock */}
+        <div className="pointer-events-auto flex items-center gap-2 sm:gap-3 p-1.5 sm:p-2 rounded-full bg-[#080D14]/92 backdrop-blur-xl border border-white/20 shadow-[0_12px_40px_rgba(0,0,0,0.6)]">
 
-          {/* WhatsApp */}
-          <a
-            href={WHATSAPP}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`Chat with CADD Centre Manjeri on WhatsApp`}
-            className="w-10 h-10 rounded-full bg-[#25D366] hover:bg-[#1EBE5A] text-white flex items-center justify-center shadow-md active:scale-95 transition-transform"
+          {/* Left Announcement Ticker Section (Clickable to open Enquiry Modal) */}
+          <div
+            onClick={() => { if (onOpenDemo) onOpenDemo(); }}
+            className="flex items-center gap-2 px-2.5 sm:px-3 py-1 cursor-pointer hover:bg-white/5 rounded-full transition-colors group max-w-[210px] min-[400px]:max-w-[280px] sm:max-w-none"
+            title="Click to enquire / view batches"
           >
-            <WhatsAppGlyph className="w-5 h-5" />
-          </a>
+            <span className={`w-2 h-2 rounded-full ${activeAnno.color} animate-pulse shrink-0 shadow-[0_0_8px_currentColor]`} />
+            <span className="text-[10.5px] sm:text-xs font-bold text-white tracking-wide truncate max-w-[170px] min-[400px]:max-w-[240px] sm:max-w-none">
+              {activeAnno.text}
+            </span>
+          </div>
 
-          {/* Instagram */}
-          <a
-            href={INSTAGRAM}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`Message CADD Centre Manjeri on Instagram`}
-            className="w-10 h-10 rounded-full bg-[linear-gradient(45deg,#F58529_0%,#DD2A7B_45%,#8134AF_70%,#515BD4_100%)] text-white flex items-center justify-center shadow-md active:scale-95 transition-transform"
-          >
-            <InstagramGlyph className="w-4 h-4" />
-          </a>
-        </div>
+          {/* Subtle Vertical Divider Line */}
+          <div className="w-[1px] h-6 bg-white/20 shrink-0" />
 
-        {/* Desktop View (>= 640px): Compact, sleek glassmorphic pill dock tucked in bottom right */}
-        <div className="hidden sm:flex pointer-events-auto items-center gap-2 p-1.5 rounded-full bg-[#080D14]/90 backdrop-blur-xl border border-white/20 shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
-          {/* Call */}
-          <a
-            href={`tel:${PHONE}`}
-            aria-label={`Call CADD Centre Manjeri on ${PHONE_DISPLAY}`}
-            title={`Call ${PHONE_DISPLAY}`}
-            className="w-10 h-10 rounded-full bg-[#C4161C] hover:bg-[#A81217] text-white flex items-center justify-center shadow-md transition-transform duration-200 hover:scale-105 active:scale-95"
-          >
-            <Phone className="w-4 h-4" />
-          </a>
+          {/* Right Contact Icons: Call, WhatsApp, Instagram */}
+          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+            {/* Call */}
+            <a
+              href={`tel:${PHONE}`}
+              aria-label={`Call CADD Centre Manjeri on ${PHONE_DISPLAY}`}
+              title={`Call ${PHONE_DISPLAY}`}
+              className="w-8.5 h-8.5 sm:w-9.5 sm:h-9.5 rounded-full bg-[#C4161C] hover:bg-[#A81217] text-white flex items-center justify-center shadow-md transition-transform duration-200 hover:scale-105 active:scale-95"
+            >
+              <Phone className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+            </a>
 
-          {/* WhatsApp */}
-          <a
-            href={WHATSAPP}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`Chat with CADD Centre Manjeri on WhatsApp at ${PHONE_DISPLAY}`}
-            title={`WhatsApp ${PHONE_DISPLAY}`}
-            className="w-10 h-10 rounded-full bg-[#25D366] hover:bg-[#1EBE5A] text-white flex items-center justify-center shadow-md transition-transform duration-200 hover:scale-105 active:scale-95"
-          >
-            <WhatsAppGlyph className="w-5 h-5" />
-          </a>
+            {/* WhatsApp */}
+            <a
+              href={WHATSAPP}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Chat with CADD Centre Manjeri on WhatsApp`}
+              title={`WhatsApp ${PHONE_DISPLAY}`}
+              className="w-8.5 h-8.5 sm:w-9.5 sm:h-9.5 rounded-full bg-[#25D366] hover:bg-[#1EBE5A] text-white flex items-center justify-center shadow-md transition-transform duration-200 hover:scale-105 active:scale-95"
+            >
+              <WhatsAppGlyph className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
+            </a>
 
-          {/* Instagram */}
-          <a
-            href={INSTAGRAM}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`Message CADD Centre Manjeri on Instagram at ${INSTAGRAM_HANDLE}`}
-            title={`Instagram ${INSTAGRAM_HANDLE}`}
-            className="w-10 h-10 rounded-full bg-[linear-gradient(45deg,#F58529_0%,#DD2A7B_45%,#8134AF_70%,#515BD4_100%)] text-white flex items-center justify-center shadow-md transition-transform duration-200 hover:scale-105 active:scale-95"
-          >
-            <InstagramGlyph className="w-4 h-4" />
-          </a>
+            {/* Instagram */}
+            <a
+              href={INSTAGRAM}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Message CADD Centre Manjeri on Instagram`}
+              title={`Instagram ${INSTAGRAM_HANDLE}`}
+              className="w-8.5 h-8.5 sm:w-9.5 sm:h-9.5 rounded-full bg-[linear-gradient(45deg,#F58529_0%,#DD2A7B_45%,#8134AF_70%,#515BD4_100%)] text-white flex items-center justify-center shadow-md transition-transform duration-200 hover:scale-105 active:scale-95"
+            >
+              <InstagramGlyph className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+            </a>
+          </div>
+
         </div>
 
       </div>
