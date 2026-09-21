@@ -432,21 +432,14 @@ export default function BlogFinbiz({ onOpenDemo, onOpenWorkshop, onOpenCallDirec
 
               {/* Direct Connect Action Buttons */}
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 shrink-0">
-                <button
-                  type="button"
-                  onClick={() => {
-                    if (onOpenCallDirectory) {
-                      onOpenCallDirectory();
-                    } else {
-                      window.location.href = 'tel:+918891550060';
-                    }
-                  }}
+                <a
+                  href="tel:+916235550078"
                   className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white text-xs font-bold transition-all cursor-pointer"
-                  title="Call CADD Centre Manjeri - View All Dedicated Department Lines"
+                  title="Call CADD Centre Manjeri: +91 62355 50078"
                 >
                   <Phone className="w-3.5 h-3.5 text-[#C4161C]" />
-                  <span>Call: 8891550060</span>
-                </button>
+                  <span>Call: 6235550078</span>
+                </a>
                 <a
                   href="mailto:info@caddmanjeri.com?subject=Institution%20Association%20Enquiry%20-%20CADD%20Centre%20Manjeri&body=Hi%20CADD%20Centre%20Manjeri%2C%0A%0AWe%20would%20like%20to%20associate%20with%20your%20institution%20for%20workshops%2C%20seminars%2C%20internships%2C%20and%20campus%20training%20programs.%0A%0AInstitution%20Name%3A%0AContact%20Person%3A%0APhone%3A"
                   className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#C4161C] hover:bg-[#a51217] text-white text-xs font-bold shadow-md transition-all cursor-pointer active:scale-97 text-center"
