@@ -63,19 +63,19 @@ export default function FloatingContact({ onOpenDemo }) {
       className="pointer-events-none fixed inset-x-0 z-40"
       style={{ bottom: 'max(0.75rem, env(safe-area-inset-bottom))' }}
     >
-      <div className="mx-auto max-w-[1680px] px-3 sm:px-6 flex justify-end">
+      <div className="mx-auto max-w-[1680px] px-2 sm:px-6 flex justify-center sm:justify-end">
 
         {/* Single Unified Floating Glassmorphic Capsule Dock */}
-        <div className="pointer-events-auto flex items-center gap-2 sm:gap-3 p-1.5 sm:p-2 rounded-full bg-[#080D14]/92 backdrop-blur-xl border border-white/20 shadow-[0_12px_40px_rgba(0,0,0,0.6)]">
+        <div className="pointer-events-auto flex items-center gap-1.5 sm:gap-3 p-1.5 sm:p-2 rounded-full bg-[#080D14]/92 backdrop-blur-xl border border-white/20 shadow-[0_12px_40px_rgba(0,0,0,0.6)]">
 
           {/* Left Announcement Ticker Section (Clickable to open Enquiry Modal) */}
           <div
             onClick={() => { if (onOpenDemo) onOpenDemo(); }}
-            className="flex items-center gap-2 px-2.5 sm:px-3 py-1 cursor-pointer hover:bg-white/5 rounded-full transition-colors group max-w-[210px] min-[400px]:max-w-[280px] sm:max-w-none"
+            className="flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 py-1 cursor-pointer hover:bg-white/5 rounded-full transition-colors group max-w-[140px] min-[360px]:max-w-[190px] min-[400px]:max-w-[280px] sm:max-w-none"
             title="Click to enquire / view batches"
           >
             <span className={`w-2 h-2 rounded-full ${activeAnno.color} animate-pulse shrink-0 shadow-[0_0_8px_currentColor]`} />
-            <span className="text-[10.5px] sm:text-xs font-bold text-white tracking-wide truncate max-w-[170px] min-[400px]:max-w-[240px] sm:max-w-none">
+            <span className="text-[10px] min-[360px]:text-[10.5px] sm:text-xs font-bold text-white tracking-wide truncate max-w-[110px] min-[360px]:max-w-[160px] min-[400px]:max-w-[240px] sm:max-w-none">
               {activeAnno.text}
             </span>
           </div>

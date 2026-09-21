@@ -93,7 +93,7 @@ export default function AboutFinbiz({ onOpenDemo }) {
                 href="https://www.google.com/maps/dir//CADD+Centre+%7C+CAD+%7C+Interior+Design+%7C+BIM+%7C+MEP+%7C+Primavera+%7C+Product+Design+Training+in+Manjeri,+Malappuram,+2nd+Floor,+KORAMBAYIL+CORPORATE+MALL,+Calicut+Rd,+above+Dhanlaxmi+Bank,+Karuvambram,+Manjeri,+Kerala+676121/@11.2716965,75.7557343,13.03z/data=!4m8!4m7!1m0!1m5!1m1!1s0x3ba6366fe440b235:0x125ad996626e368c!2m2!1d76.1194379!2d11.120027?entry=ttu&g_ep=EgoyMDI2MDkwOS4wIKXMDSoASAFQAw%3D%3D"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 bg-gray-50 hover:bg-gray-100 border border-gray-200/90 py-1.5 pl-2 pr-4 sm:pr-5 rounded-full transition-all cursor-pointer shadow-2xs hover:shadow-xs group shrink-0 text-left"
+                className="flex items-center gap-3 bg-gray-50 hover:bg-gray-100 border border-gray-200/90 py-1.5 pl-2 pr-4 sm:pr-5 rounded-2xl sm:rounded-full transition-all cursor-pointer shadow-2xs hover:shadow-xs group max-w-full text-left"
                 title="Get directions to CADD Centre Manjeri on Google Maps"
               >
                 <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#C4161C] text-white flex items-center justify-center shrink-0 shadow-sm group-hover:scale-105 transition-transform">

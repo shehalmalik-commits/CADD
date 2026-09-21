@@ -23,19 +23,19 @@ export default function HeaderFinbiz({ onOpenDemo }) {
       >
         {/* Top Utilities Strip (Above Navbar) */}
         <div className="border-b border-gray-100 bg-white">
-          <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-end h-8 sm:h-8.5 text-[11.5px] sm:text-[12px] text-gray-500 font-medium gap-6 sm:gap-8">
+          <div className="max-w-[1400px] mx-auto px-3 sm:px-6 lg:px-8 flex items-center justify-between sm:justify-end h-8 sm:h-8.5 text-[11px] min-[380px]:text-[11.5px] sm:text-[12px] text-gray-500 font-medium gap-2 sm:gap-8">
             <a
               href="mailto:info@caddmanjeri.com"
-              className="flex items-center gap-2 hover:text-[#C4161C] transition-colors"
+              className="flex items-center gap-1.5 sm:gap-2 hover:text-[#C4161C] transition-colors truncate"
             >
-              <Mail className="w-3.5 h-3.5 text-[#C4161C]" />
-              <span>info@caddmanjeri.com</span>
+              <Mail className="w-3.5 h-3.5 text-[#C4161C] shrink-0" />
+              <span className="truncate">info@caddmanjeri.com</span>
             </a>
             <a
               href="tel:+918891550060"
-              className="flex items-center gap-2 hover:text-[#C4161C] transition-colors"
+              className="flex items-center gap-1.5 sm:gap-2 hover:text-[#C4161C] transition-colors shrink-0"
             >
-              <Phone className="w-3.5 h-3.5 text-[#C4161C]" />
+              <Phone className="w-3.5 h-3.5 text-[#C4161C] shrink-0" />
               <span>Hotline: <strong className="text-gray-900 font-bold">+91 88915 50060</strong></span>
             </a>
           </div>
@@ -47,14 +47,14 @@ export default function HeaderFinbiz({ onOpenDemo }) {
           {/* Left Crimson Polygon Ribbon with Official Red CADD Centre Logo */}
           <div className="absolute left-0 top-0 bottom-0 flex items-center">
             <div
-              className="h-full bg-[#C4161C] flex items-center pl-3 sm:pl-6 pr-6 sm:pr-8 shadow-md"
+              className="h-full bg-[#C4161C] flex items-center pl-2.5 sm:pl-6 pr-5 sm:pr-8 shadow-md"
               style={{
                 clipPath: 'polygon(0 0, 100% 0, 84% 100%, 0 100%)',
-                minWidth: '145px',
+                minWidth: '135px',
                 maxWidth: '240px'
               }}
             >
-              <a href="#" className="flex items-center bg-white px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl shadow-xs hover:scale-102 transition-transform">
+              <a href="#" className="flex items-center bg-white px-2 sm:px-3 py-1 sm:py-1.5 rounded-xl shadow-xs hover:scale-102 transition-transform">
                 <img
                   src="/CADD.png"
                   alt="CADD Centre Manjeri"
@@ -65,7 +65,7 @@ export default function HeaderFinbiz({ onOpenDemo }) {
           </div>
 
           {/* Spacer for the left ribbon */}
-          <div className="w-[140px] sm:w-[220px] shrink-0" />
+          <div className="w-[130px] sm:w-[220px] shrink-0" />
 
           {/* Center Desktop Navigation Menu */}
           <nav className="hidden md:flex items-center gap-5 lg:gap-6 xl:gap-7 text-[13px] lg:text-[13.5px] font-semibold text-gray-800">
@@ -234,7 +234,7 @@ export default function HeaderFinbiz({ onOpenDemo }) {
         )}
       </header>
       {/* Invisible spacer so layout doesn't shift underneath the fixed header */}
-      <div className="h-14 lg:h-[99px]" aria-hidden="true" />
+      <div className="h-[88px] sm:h-[98px] lg:h-[99px]" aria-hidden="true" />
     </>
   );
 }

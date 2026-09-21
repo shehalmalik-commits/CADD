@@ -1274,9 +1274,9 @@ export default function HeroFinbiz({ onOpenDemo }) {
           <div className="lg:col-span-6 xl:col-span-6 flex flex-col justify-center text-left py-0 z-10">
 
             {/* Headline */}
-            <h1 className="text-3xl sm:text-4xl lg:text-[42px] xl:text-[48px] font-extrabold tracking-tight leading-[1.12] text-[#0F172A]">
+            <h1 className="text-2xl min-[380px]:text-3xl sm:text-4xl lg:text-[42px] xl:text-[48px] font-extrabold tracking-tight leading-[1.15] sm:leading-[1.12] text-[#0F172A]">
               <div>The World’s Largest</div>
-              <div className="text-[#C4161C] text-[16px] min-[380px]:text-[18px] sm:text-[24px] md:text-[28px] lg:text-[23px] xl:text-[27.5px] 2xl:text-[31px] font-black tracking-tight my-1 flex items-center gap-x-1.5 sm:gap-x-2 whitespace-nowrap">
+              <div className="text-[#C4161C] text-[13px] min-[360px]:text-[15px] min-[400px]:text-[17px] sm:text-[24px] md:text-[28px] lg:text-[23px] xl:text-[27.5px] 2xl:text-[31px] font-black tracking-tight my-1 flex flex-wrap items-center gap-x-1.5 sm:gap-x-2">
                 <span>CAD</span>
                 <span className="text-[#C4161C]">•</span>
                 <span>Interior Design</span>
