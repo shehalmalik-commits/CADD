@@ -14,7 +14,8 @@ import {
   Pause,
   Radio,
   Briefcase,
-  ArrowRight
+  ArrowRight,
+  Phone
 } from 'lucide-react';
 
 // Authentic Placed & Certified Alumni Data from CADD Centre Manjeri
@@ -318,7 +319,7 @@ export default function TeamFinbiz({ onOpenDemo }) {
         {/* ========================================================= */}
         {/* LIVE STATUS & QUICK CONTROLS BAR (NO CATEGORY TABS)       */}
         {/* ========================================================= */}
-        <div className="flex items-center justify-between gap-3 mb-3">
+        <div className="flex flex-wrap sm:flex-nowrap items-center justify-between gap-2.5 mb-3">
           {/* Live Indicator */}
           <div className="flex items-center gap-2">
             <span className="relative flex h-2.5 w-2.5">
@@ -327,21 +328,22 @@ export default function TeamFinbiz({ onOpenDemo }) {
               )}
               <span className={`relative inline-flex rounded-full h-2.5 w-2.5 ${isPlaying ? 'bg-emerald-500' : 'bg-amber-500'}`} />
             </span>
-            <span className="text-xs font-mono font-bold uppercase tracking-wider text-gray-800">
+            <span className="text-[11px] sm:text-xs font-mono font-bold uppercase tracking-wider text-gray-800">
               {isPlaying ? 'Live Placement Stream' : 'Stream Paused'} • Certified Alumni
             </span>
           </div>
 
           {/* Right Controls: Play/Pause, Manual Arrows, Apply button */}
-          <div className="flex items-center gap-2 shrink-0">
-            <button
-              type="button"
-              onClick={() => (onOpenDemo ? onOpenDemo('Corporate Placement Assistance') : null)}
-              className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-[11px] font-bold bg-[#11161E] hover:bg-[#C4161C] text-white transition-all cursor-pointer shadow-xs active:scale-97"
+          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+            <a
+              href="tel:+919544169638"
+              className="inline-flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-full text-[10.5px] sm:text-[11px] font-bold bg-[#11161E] hover:bg-[#C4161C] text-white transition-all cursor-pointer shadow-xs active:scale-97 shrink-0"
+              title="Call Placement Cell: +91 95441 69638"
             >
+              <Phone className="w-3 h-3 text-[#C4161C]" />
               <span>Apply for Placement</span>
               <ArrowRight className="w-3 h-3" />
-            </button>
+            </a>
 
             <button
               type="button"
