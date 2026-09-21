@@ -46,7 +46,7 @@ function InstagramGlyph({ className }) {
 /**
  * Persistent call / WhatsApp / Instagram buttons + floating live announcement pill.
  */
-export default function FloatingContact({ onOpenDemo }) {
+export default function FloatingContact({ onOpenDemo, onOpenCallDirectory }) {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
@@ -86,14 +86,21 @@ export default function FloatingContact({ onOpenDemo }) {
           {/* Right Contact Icons: Call, WhatsApp, Instagram */}
           <div className="flex items-center gap-1 sm:gap-1.5 shrink-0">
             {/* Call */}
-            <a
-              href={`tel:${PHONE}`}
+            <button
+              type="button"
+              onClick={() => {
+                if (onOpenCallDirectory) {
+                  onOpenCallDirectory();
+                } else {
+                  window.location.href = `tel:${PHONE}`;
+                }
+              }}
               aria-label={`Call CADD Centre Manjeri on ${PHONE_DISPLAY}`}
-              title={`Call ${PHONE_DISPLAY}`}
-              className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#C4161C] hover:bg-[#A81217] text-white flex items-center justify-center shadow-md transition-transform duration-200 hover:scale-105 active:scale-95"
+              title="Call CADD Centre Manjeri - View Department Numbers"
+              className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#C4161C] hover:bg-[#A81217] text-white flex items-center justify-center shadow-md transition-transform duration-200 hover:scale-105 active:scale-95 cursor-pointer"
             >
               <Phone className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-            </a>
+            </button>
 
             {/* WhatsApp */}
             <a

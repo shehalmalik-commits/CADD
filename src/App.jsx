@@ -88,7 +88,11 @@ export default function App() {
           <InternshipsFinbiz onOpenDemo={handleOpenDemo} />
 
           {/* 9 & 10. Workshops (9) & Campus workshop videos (10) */}
-          <BlogFinbiz onOpenDemo={handleOpenDemo} onOpenWorkshop={handleOpenWorkshop} />
+          <BlogFinbiz
+            onOpenDemo={handleOpenDemo}
+            onOpenWorkshop={handleOpenWorkshop}
+            onOpenCallDirectory={handleOpenCallDirectory}
+          />
         </main>
 
         {/* Footer */}
@@ -98,7 +102,10 @@ export default function App() {
         />
 
         {/* Floating Call / WhatsApp / Instagram contact dock + live announcement badge */}
-        <FloatingContact onOpenDemo={handleOpenDemo} />
+        <FloatingContact
+          onOpenDemo={handleOpenDemo}
+          onOpenCallDirectory={handleOpenCallDirectory}
+        />
 
         {/* Admissions & Demo Enquiry Modal */}
         <DemoModal

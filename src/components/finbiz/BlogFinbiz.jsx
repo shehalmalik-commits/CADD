@@ -162,7 +162,7 @@ export const INSTITUTIONAL_ASSOCIATES = [
   },
 ];
 
-export default function BlogFinbiz({ onOpenDemo, onOpenWorkshop }) {
+export default function BlogFinbiz({ onOpenDemo, onOpenWorkshop, onOpenCallDirectory }) {
   return (
     <>
       {/* ========================================================= */}
@@ -431,13 +431,21 @@ export default function BlogFinbiz({ onOpenDemo, onOpenWorkshop }) {
 
               {/* Direct Connect Action Buttons */}
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 shrink-0">
-                <a
-                  href="tel:+918891550060"
-                  className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white text-xs font-bold transition-all"
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (onOpenCallDirectory) {
+                      onOpenCallDirectory();
+                    } else {
+                      window.location.href = 'tel:+918891550060';
+                    }
+                  }}
+                  className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white text-xs font-bold transition-all cursor-pointer"
+                  title="Call CADD Centre Manjeri - View All Dedicated Department Lines"
                 >
                   <Phone className="w-3.5 h-3.5 text-[#C4161C]" />
                   <span>Call: 8891550060</span>
-                </a>
+                </button>
                 <button
                   type="button"
                   onClick={onOpenDemo}
