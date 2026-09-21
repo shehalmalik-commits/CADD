@@ -30,7 +30,7 @@ function InstagramGlyph({ className }) {
   );
 }
 
-export default function FooterFinbiz({ onOpenDemo }) {
+export default function FooterFinbiz({ onOpenDemo, onOpenCallDirectory }) {
   return (
     <footer id="footer" className="bg-[#090D14] text-white pt-16 sm:pt-20 pb-12 relative overflow-hidden select-none text-left font-['Plus_Jakarta_Sans',sans-serif]">
 
@@ -78,9 +78,14 @@ export default function FooterFinbiz({ onOpenDemo }) {
 
               <div className="flex items-center gap-2.5">
                 <Phone className="w-4 h-4 text-[#C4161C] shrink-0" />
-                <a href="tel:+918891550060" className="hover:text-white font-semibold transition-colors">
+                <button
+                  type="button"
+                  onClick={onOpenCallDirectory}
+                  className="hover:text-white font-semibold transition-colors cursor-pointer text-left text-xs text-gray-300"
+                  title="Click to view all department lines (+91 88915 50060)"
+                >
                   +91 88915 50060
-                </a>
+                </button>
               </div>
 
               <div className="flex items-center gap-2.5">

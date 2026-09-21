@@ -12,6 +12,7 @@ import NewsletterFinbiz from './components/finbiz/NewsletterFinbiz';
 import FooterFinbiz from './components/finbiz/FooterFinbiz';
 import DemoModal from './components/DemoModal';
 import WorkshopModal from './components/WorkshopModal';
+import CallDirectoryModal from './components/finbiz/CallDirectoryModal';
 import FloatingContact from './components/FloatingContact';
 import SmoothScroll from './components/motion/SmoothScroll';
 import useOverlayHistory from './hooks/useOverlayHistory';
@@ -22,6 +23,8 @@ export default function App() {
 
   const [workshopOpen, setWorkshopOpen] = useState(false);
   const [workshopInterest, setWorkshopInterest] = useState('');
+
+  const [callModalOpen, setCallModalOpen] = useState(false);
 
   const handleOpenDemo = (interest = '') => {
     if (typeof interest === 'string' && interest.trim().length > 0) {
@@ -37,23 +40,34 @@ export default function App() {
     setWorkshopOpen(true);
   };
 
+  const handleOpenCallDirectory = () => {
+    setCallModalOpen(true);
+  };
+
   // Back / swipe-back closes the enquiry modals instead of leaving the site.
   useOverlayHistory(demoOpen, () => setDemoOpen(false));
   useOverlayHistory(workshopOpen, () => setWorkshopOpen(false));
+  useOverlayHistory(callModalOpen, () => setCallModalOpen(false));
 
   return (
     <SmoothScroll>
       <div className="min-h-screen bg-white text-[#111827] font-['Plus_Jakarta_Sans',sans-serif] selection:bg-[#C4161C]/15 selection:text-[#C4161C] overflow-x-clip">
 
         {/* Finbiz Header with Left Angled Crimson Ribbon */}
-        <HeaderFinbiz onOpenDemo={() => handleOpenDemo()} />
+        <HeaderFinbiz
+          onOpenDemo={() => handleOpenDemo()}
+          onOpenCallDirectory={handleOpenCallDirectory}
+        />
 
         <main>
           {/* 1. Curent pge: Hero Section */}
           <HeroFinbiz onOpenDemo={() => handleOpenDemo()} />
 
           {/* 2. about cadd: About CADD Centre */}
-          <AboutFinbiz onOpenDemo={() => handleOpenDemo()} />
+          <AboutFinbiz
+            onOpenDemo={() => handleOpenDemo()}
+            onOpenCallDirectory={handleOpenCallDirectory}
+          />
 
           {/* 3. Course offrings: Specialized CAD, BIM & Master Programs */}
           <PortfolioFinbiz onOpenDemo={handleOpenDemo} />
@@ -78,7 +92,10 @@ export default function App() {
         </main>
 
         {/* Footer */}
-        <FooterFinbiz onOpenDemo={() => handleOpenDemo()} />
+        <FooterFinbiz
+          onOpenDemo={() => handleOpenDemo()}
+          onOpenCallDirectory={handleOpenCallDirectory}
+        />
 
         {/* Floating Call / WhatsApp / Instagram contact dock + live announcement badge */}
         <FloatingContact onOpenDemo={handleOpenDemo} />
@@ -95,6 +112,12 @@ export default function App() {
           isOpen={workshopOpen}
           onClose={() => setWorkshopOpen(false)}
           initialWorkshop={workshopInterest}
+        />
+
+        {/* Dedicated Department Call Directory Modal */}
+        <CallDirectoryModal
+          isOpen={callModalOpen}
+          onClose={() => setCallModalOpen(false)}
         />
       </div>
     </SmoothScroll>

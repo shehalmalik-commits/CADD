@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Mail, Phone, Menu, X, ChevronDown, ArrowRight } from 'lucide-react';
 
-export default function HeaderFinbiz({ onOpenDemo }) {
+export default function HeaderFinbiz({ onOpenDemo, onOpenCallDirectory }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -31,13 +31,15 @@ export default function HeaderFinbiz({ onOpenDemo }) {
               <Mail className="w-3.5 h-3.5 text-[#C4161C] shrink-0" />
               <span className="truncate">info@caddmanjeri.com</span>
             </a>
-            <a
-              href="tel:+918891550060"
-              className="flex items-center gap-1.5 sm:gap-2 hover:text-[#C4161C] transition-colors shrink-0"
+            <button
+              type="button"
+              onClick={onOpenCallDirectory}
+              className="flex items-center gap-1.5 sm:gap-2 hover:text-[#C4161C] transition-colors shrink-0 cursor-pointer text-left"
+              title="Click to view all department lines (+91 88915 50060)"
             >
               <Phone className="w-3.5 h-3.5 text-[#C4161C] shrink-0" />
-              <span>Hotline: <strong className="text-gray-900 font-bold">+91 88915 50060</strong></span>
-            </a>
+              <span>Hotline: <strong className="text-gray-900 font-bold hover:text-[#C4161C] transition-colors">+91 88915 50060</strong></span>
+            </button>
           </div>
         </div>
 
@@ -97,15 +99,6 @@ export default function HeaderFinbiz({ onOpenDemo }) {
 
           {/* Right CTA Button & Mobile Trigger */}
           <div className="flex items-center gap-2 sm:gap-3">
-            {/* Mobile Instant Enquiry Button (Direct 1-tap conversion) */}
-            <button
-              type="button"
-              onClick={onOpenDemo}
-              className="sm:hidden inline-flex items-center justify-center px-3.5 py-1.5 rounded-full bg-[#C4161C] text-white text-[11px] font-extrabold uppercase tracking-wider shadow-xs cursor-pointer active:scale-95 transition-all"
-            >
-              ENQUIRE
-            </button>
-
             {/* Desktop CTA Button */}
             <button
               type="button"
@@ -212,9 +205,16 @@ export default function HeaderFinbiz({ onOpenDemo }) {
             {/* Direct Phone Shortcut in Drawer */}
             <div className="pt-2 flex items-center justify-between text-xs text-gray-600 bg-gray-50 p-3 rounded-xl">
               <span className="font-medium">Admissions Desk:</span>
-              <a href="tel:+918891550060" className="font-bold text-gray-900 hover:text-[#C4161C]">
+              <button
+                type="button"
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  if (onOpenCallDirectory) onOpenCallDirectory();
+                }}
+                className="font-bold text-gray-900 hover:text-[#C4161C] cursor-pointer"
+              >
                 +91 88915 50060
-              </a>
+              </button>
             </div>
 
             <div className="pt-2">

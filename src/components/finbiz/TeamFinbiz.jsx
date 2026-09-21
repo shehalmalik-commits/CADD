@@ -328,7 +328,7 @@ export default function TeamFinbiz({ onOpenDemo }) {
               <span className={`relative inline-flex rounded-full h-2.5 w-2.5 ${isPlaying ? 'bg-emerald-500' : 'bg-amber-500'}`} />
             </span>
             <span className="text-xs font-mono font-bold uppercase tracking-wider text-gray-800">
-              {isPlaying ? 'Live Placement Stream' : 'Stream Paused'} • 13 Certified Alumni
+              {isPlaying ? 'Live Placement Stream' : 'Stream Paused'} • Certified Alumni
             </span>
           </div>
 
@@ -501,11 +501,11 @@ export default function TeamFinbiz({ onOpenDemo }) {
       {/* ALUMNI DOSSIER & POSTER LIGHTBOX MODAL                    */}
       {/* ========================================================= */}
       {selectedAlumni && (
-        <div 
+        <div
           className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/80 backdrop-blur-md overflow-y-auto"
           onClick={() => setSelectedAlumni(null)}
         >
-          <div 
+          <div
             className="relative w-full max-w-xl bg-white rounded-[24px] overflow-hidden shadow-2xl p-5 sm:p-6 text-left space-y-4 animate-in fade-in zoom-in-95 duration-200 max-h-[92vh] flex flex-col"
             onClick={(e) => e.stopPropagation()}
           >

@@ -10,7 +10,7 @@ const INSTAGRAM_HANDLE = '@caddcentremanjeri';
 
 const ANNOUNCEMENTS = [
   { text: 'Online & Offline Classes Available', color: 'bg-[#EF4444]' },
-  { text: 'Sunday & Saturday Weekend Classes Available', color: 'bg-emerald-400' },
+  { text: 'Sunday & Saturday Classes Available', color: 'bg-emerald-400' },
   { text: 'Early Morning & Night Batches Available', color: 'bg-amber-400' },
 ];
 
@@ -66,31 +66,31 @@ export default function FloatingContact({ onOpenDemo }) {
       <div className="mx-auto max-w-[1680px] px-2 sm:px-6 flex justify-center sm:justify-end">
 
         {/* Single Unified Floating Glassmorphic Capsule Dock */}
-        <div className="pointer-events-auto flex items-center gap-1.5 sm:gap-3 p-1.5 sm:p-2 rounded-full bg-[#080D14]/92 backdrop-blur-xl border border-white/20 shadow-[0_12px_40px_rgba(0,0,0,0.6)]">
+        <div className="pointer-events-auto flex items-center gap-1 sm:gap-2 p-1 sm:p-1.5 rounded-full bg-[#080D14]/92 backdrop-blur-xl border border-white/20 shadow-[0_12px_40px_rgba(0,0,0,0.6)]">
 
           {/* Left Announcement Ticker Section (Clickable to open Enquiry Modal) */}
           <div
             onClick={() => { if (onOpenDemo) onOpenDemo(); }}
-            className="flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 py-1 cursor-pointer hover:bg-white/5 rounded-full transition-colors group max-w-[140px] min-[360px]:max-w-[190px] min-[400px]:max-w-[280px] sm:max-w-none"
+            className="flex items-center gap-1.5 sm:gap-2 pl-2 pr-1 sm:pl-2.5 sm:pr-1.5 py-0.5 sm:py-1 cursor-pointer hover:bg-white/5 rounded-full transition-colors group max-w-[140px] min-[360px]:max-w-[185px] min-[400px]:max-w-[270px] sm:max-w-none"
             title="Click to enquire / view batches"
           >
             <span className={`w-2 h-2 rounded-full ${activeAnno.color} animate-pulse shrink-0 shadow-[0_0_8px_currentColor]`} />
-            <span className="text-[10px] min-[360px]:text-[10.5px] sm:text-xs font-bold text-white tracking-wide truncate max-w-[110px] min-[360px]:max-w-[160px] min-[400px]:max-w-[240px] sm:max-w-none">
+            <span className="text-[10px] min-[360px]:text-[10.5px] sm:text-xs font-bold text-white tracking-wide truncate max-w-[110px] min-[360px]:max-w-[155px] min-[400px]:max-w-[230px] sm:max-w-none">
               {activeAnno.text}
             </span>
           </div>
 
           {/* Subtle Vertical Divider Line */}
-          <div className="w-[1px] h-6 bg-white/20 shrink-0" />
+          <div className="w-[1px] h-5 sm:h-6 bg-white/20 shrink-0" />
 
           {/* Right Contact Icons: Call, WhatsApp, Instagram */}
-          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+          <div className="flex items-center gap-1 sm:gap-1.5 shrink-0">
             {/* Call */}
             <a
               href={`tel:${PHONE}`}
               aria-label={`Call CADD Centre Manjeri on ${PHONE_DISPLAY}`}
               title={`Call ${PHONE_DISPLAY}`}
-              className="w-8.5 h-8.5 sm:w-9.5 sm:h-9.5 rounded-full bg-[#C4161C] hover:bg-[#A81217] text-white flex items-center justify-center shadow-md transition-transform duration-200 hover:scale-105 active:scale-95"
+              className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#C4161C] hover:bg-[#A81217] text-white flex items-center justify-center shadow-md transition-transform duration-200 hover:scale-105 active:scale-95"
             >
               <Phone className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             </a>
@@ -102,9 +102,9 @@ export default function FloatingContact({ onOpenDemo }) {
               rel="noopener noreferrer"
               aria-label={`Chat with CADD Centre Manjeri on WhatsApp`}
               title={`WhatsApp ${PHONE_DISPLAY}`}
-              className="w-8.5 h-8.5 sm:w-9.5 sm:h-9.5 rounded-full bg-[#25D366] hover:bg-[#1EBE5A] text-white flex items-center justify-center shadow-md transition-transform duration-200 hover:scale-105 active:scale-95"
+              className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#25D366] hover:bg-[#1EBE5A] text-white flex items-center justify-center shadow-md transition-transform duration-200 hover:scale-105 active:scale-95"
             >
-              <WhatsAppGlyph className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
+              <WhatsAppGlyph className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             </a>
 
             {/* Instagram */}
@@ -114,7 +114,7 @@ export default function FloatingContact({ onOpenDemo }) {
               rel="noopener noreferrer"
               aria-label={`Message CADD Centre Manjeri on Instagram`}
               title={`Instagram ${INSTAGRAM_HANDLE}`}
-              className="w-8.5 h-8.5 sm:w-9.5 sm:h-9.5 rounded-full bg-[linear-gradient(45deg,#F58529_0%,#DD2A7B_45%,#8134AF_70%,#515BD4_100%)] text-white flex items-center justify-center shadow-md transition-transform duration-200 hover:scale-105 active:scale-95"
+              className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[linear-gradient(45deg,#F58529_0%,#DD2A7B_45%,#8134AF_70%,#515BD4_100%)] text-white flex items-center justify-center shadow-md transition-transform duration-200 hover:scale-105 active:scale-95"
             >
               <InstagramGlyph className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             </a>

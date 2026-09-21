@@ -12,7 +12,7 @@ const PARTNER_STRIP = [
   { name: '3DS SolidWorks', logo: '/images/logos/solidworks.svg' }
 ];
 
-export default function AboutFinbiz({ onOpenDemo }) {
+export default function AboutFinbiz({ onOpenDemo, onOpenCallDirectory }) {
   const [isCallModalOpen, setIsCallModalOpen] = useState(false);
 
   return (
@@ -73,7 +73,13 @@ export default function AboutFinbiz({ onOpenDemo }) {
               {/* Call Us Anytime Button -> Opens Dedicated Department Call Directory Modal */}
               <button
                 type="button"
-                onClick={() => setIsCallModalOpen(true)}
+                onClick={() => {
+                  if (onOpenCallDirectory) {
+                    onOpenCallDirectory();
+                  } else {
+                    setIsCallModalOpen(true);
+                  }
+                }}
                 className="flex items-center gap-3 bg-gray-50 hover:bg-gray-100 border border-gray-200/90 py-1.5 pl-2 pr-4 sm:pr-5 rounded-full transition-all cursor-pointer shadow-2xs hover:shadow-xs group shrink-0 text-left"
                 title="Call us anytime - Select Department (+91 88915 50060)"
               >
@@ -144,28 +150,57 @@ export default function AboutFinbiz({ onOpenDemo }) {
 
         {/* OFFICIAL SOFTWARE DEVELOPER PARTNERS BANNER (COMPACT & SEAMLESS) */}
         <div className="mt-2.5 sm:mt-3.5">
-          <div className="bg-gradient-to-b from-gray-50/90 to-white rounded-2xl sm:rounded-3xl p-3.5 sm:p-4 border border-gray-200/80 shadow-2xs text-center">
-            <p className="text-[10px] sm:text-[11px] text-gray-500 font-medium tracking-wide mb-2.5">
+          <div className="bg-gradient-to-b from-gray-50/90 to-white rounded-2xl sm:rounded-3xl p-3 sm:p-4 border border-gray-200/80 shadow-2xs text-center">
+            <p className="text-[10px] sm:text-[11px] text-gray-500 font-medium tracking-wide leading-relaxed mb-2.5 max-w-2xl mx-auto px-1">
               CADD Centre and CADD Centre logo are registered trademarks of CADD Centre Training Services Private Limited.
-              <br className="hidden sm:inline" /> All brand names and trademarks belong to respective owners.
+              <span className="block sm:inline"> All brand names and trademarks belong to respective owners.</span>
             </p>
 
-            {/* 7 Official Logos Strip with Dividers matching Image 1 */}
-            <div className="flex items-center justify-between gap-2 sm:gap-3 md:gap-4 lg:gap-5 py-2 sm:py-2.5 px-3 sm:px-6 bg-white rounded-xl sm:rounded-2xl border border-gray-100 shadow-2xs overflow-x-auto no-scrollbar">
-              {PARTNER_STRIP.map((item, idx) => (
-                <React.Fragment key={item.name}>
-                  <div className="flex items-center justify-center h-7 sm:h-8 px-1 sm:px-2 shrink-0 hover:scale-105 transition-transform duration-200">
-                    <img
-                      src={item.logo}
-                      alt={item.name}
-                      className="h-4 sm:h-5.5 w-auto max-w-[85px] sm:max-w-[105px] lg:max-w-[120px] object-contain"
-                    />
-                  </div>
-                  {idx < PARTNER_STRIP.length - 1 && (
-                    <div className="w-px h-4.5 sm:h-5.5 bg-gray-200 shrink-0" />
-                  )}
-                </React.Fragment>
-              ))}
+            {/* 7 Official Logos: Clean 2-row layout on Mobile, Single row with dividers on Desktop */}
+            <div className="bg-white rounded-xl sm:rounded-2xl border border-gray-100 shadow-2xs p-2 sm:py-2.5 sm:px-6">
+              {/* Mobile View: 2 neat balanced rows (4 on top, 3 on bottom) so all 7 logos are 100% fully visible without cutoff */}
+              <div className="sm:hidden space-y-1.5">
+                <div className="grid grid-cols-4 gap-1.5 items-center justify-items-center">
+                  {PARTNER_STRIP.slice(0, 4).map((item) => (
+                    <div key={item.name} className="flex items-center justify-center h-6 w-full px-1">
+                      <img
+                        src={item.logo}
+                        alt={item.name}
+                        className="h-3.5 max-w-[62px] object-contain"
+                      />
+                    </div>
+                  ))}
+                </div>
+                <div className="grid grid-cols-3 gap-2 items-center justify-items-center pt-1.5 border-t border-gray-100/80 max-w-[280px] mx-auto">
+                  {PARTNER_STRIP.slice(4).map((item) => (
+                    <div key={item.name} className="flex items-center justify-center h-6 w-full px-1">
+                      <img
+                        src={item.logo}
+                        alt={item.name}
+                        className="h-3.5 max-w-[70px] object-contain"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Desktop / Tablet View: Single continuous row with subtle dividers */}
+              <div className="hidden sm:flex items-center justify-between gap-2 sm:gap-3 md:gap-4 lg:gap-5">
+                {PARTNER_STRIP.map((item, idx) => (
+                  <React.Fragment key={item.name}>
+                    <div className="flex items-center justify-center h-7 sm:h-8 px-1 sm:px-2 shrink-0 hover:scale-105 transition-transform duration-200">
+                      <img
+                        src={item.logo}
+                        alt={item.name}
+                        className="h-4 sm:h-5.5 w-auto max-w-[85px] sm:max-w-[105px] lg:max-w-[120px] object-contain"
+                      />
+                    </div>
+                    {idx < PARTNER_STRIP.length - 1 && (
+                      <div className="w-px h-4.5 sm:h-5.5 bg-gray-200 shrink-0" />
+                    )}
+                  </React.Fragment>
+                ))}
+              </div>
             </div>
           </div>
         </div>

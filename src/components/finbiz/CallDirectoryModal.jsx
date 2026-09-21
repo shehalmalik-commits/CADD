@@ -7,7 +7,6 @@ import {
   GraduationCap,
   Briefcase,
   Building2,
-  Clock,
   Check,
   Copy,
   ExternalLink,
@@ -224,10 +223,6 @@ export default function CallDirectoryModal({ isOpen, onClose }) {
                     <div className="flex items-center gap-2 flex-wrap">
                       <span className="text-[10px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-gray-100 text-gray-700">
                         {dept.badge}
-                      </span>
-                      <span className="text-[11px] text-gray-400 flex items-center gap-1">
-                        <Clock className="w-3 h-3 text-gray-400" />
-                        <span>{dept.timing}</span>
                       </span>
                     </div>
 

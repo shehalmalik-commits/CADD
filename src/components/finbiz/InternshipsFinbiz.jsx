@@ -301,14 +301,14 @@ export default function InternshipsFinbiz({ onOpenDemo }) {
 
                 {/* Direct Action Buttons */}
                 <div className="space-y-2.5 pt-2">
-                  <button
-                    type="button"
-                    onClick={() => onOpenDemo(`Internship - ${currentTrack.title}`)}
-                    className="w-full py-3.5 px-5 rounded-full bg-[#C4161C] hover:bg-[#A81217] text-white text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 shadow-md hover:shadow-lg active:scale-98 transition-all cursor-pointer"
+                  <a
+                    href="tel:+918714269638"
+                    className="w-full py-3.5 px-5 rounded-full bg-[#C4161C] hover:bg-[#A81217] text-white text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 shadow-md hover:shadow-lg active:scale-98 transition-all cursor-pointer text-center"
+                    title="Call Internship Desk"
                   >
                     <span>Apply For This Internship</span>
                     <ArrowRight className="w-4 h-4" />
-                  </button>
+                  </a>
 
                   <a
                     href={`https://wa.me/918714269638?text=${encodeURIComponent(
@@ -321,10 +321,6 @@ export default function InternshipsFinbiz({ onOpenDemo }) {
                     <span>Chat on WhatsApp</span>
                     <ExternalLink className="w-3.5 h-3.5 text-gray-400" />
                   </a>
-                </div>
-
-                <div className="pt-2 text-center text-[11px] text-gray-500 font-medium">
-                  Direct Internship Desk: <a href="tel:+918714269638" className="text-gray-900 font-bold hover:text-[#C4161C]">+91 87142 69638</a>
                 </div>
               </div>
 

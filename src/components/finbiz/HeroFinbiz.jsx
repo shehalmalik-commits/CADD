@@ -19,6 +19,7 @@ import {
   Box,
   GraduationCap
 } from 'lucide-react';
+import CoursesDirectoryModal from './CoursesDirectoryModal';
 
 const MODELS = [
   {
@@ -92,6 +93,13 @@ export default function HeroFinbiz({ onOpenDemo }) {
         card.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
     }, 200);
+  };
+
+  const [isCoursesModalOpen, setIsCoursesModalOpen] = useState(false);
+
+  const handleViewMoreCourses = (e) => {
+    if (e) e.preventDefault();
+    setIsCoursesModalOpen(true);
   };
 
   const cardRef = useRef(null);
@@ -1498,21 +1506,26 @@ export default function HeroFinbiz({ onOpenDemo }) {
         </div>
 
         {/* ========================================================= */}
-        {/* HORIZONTAL CONTINUOUS ENGINEERING COURSES TICKER STRIP     */}
+        {/* HORIZONTAL STATIC SCROLLABLE ENGINEERING COURSES STRIP    */}
         {/* ========================================================= */}
-        <div className="mt-2.5 sm:mt-3.5 pt-2 sm:pt-2.5 border-t border-gray-100 flex items-center gap-2.5 sm:gap-4 overflow-hidden">
-          <div className="shrink-0 text-[10.5px] sm:text-xs font-bold font-mono uppercase tracking-wider text-[#C4161C] flex items-center gap-1.5 pr-2.5 sm:pr-4 border-r border-gray-200">
+        <div className="mt-2.5 sm:mt-3.5 pt-2 sm:pt-2.5 border-t border-gray-100 flex items-center gap-2 sm:gap-3 overflow-hidden">
+          {/* Left Pinned Label */}
+          <div className="shrink-0 text-[10.5px] sm:text-xs font-bold font-mono uppercase tracking-wider text-[#C4161C] flex items-center gap-1.5 pr-2 sm:pr-3 border-r border-gray-200 bg-white">
             <GraduationCap className="w-3.5 h-3.5" />
             <span><span className="hidden sm:inline">EXPLORE </span>COURSES:</span>
           </div>
 
-          <div className="flex items-center gap-2 sm:gap-3 overflow-x-auto no-scrollbar py-1 text-xs font-bold text-gray-700" style={{ WebkitOverflowScrolling: 'touch' }}>
+          {/* Horizontally Scrollable Courses Strip (Swipeable without auto-running) */}
+          <div
+            className="flex items-center gap-2 overflow-x-auto no-scrollbar py-0.5 w-full select-none"
+            style={{ WebkitOverflowScrolling: 'touch' }}
+          >
             {COURSES_TICKER.map((course) => (
               <button
                 key={course.id}
                 type="button"
                 onClick={() => handleCourseClick(course)}
-                className="px-2.5 sm:px-3 py-1 rounded-lg bg-gray-100/80 hover:bg-[#C4161C] hover:text-white border border-gray-200/80 hover:border-[#C4161C] text-[10.5px] sm:text-[11px] whitespace-nowrap transition-all duration-200 cursor-pointer shrink-0 active:scale-95 shadow-2xs group flex items-center gap-1.5"
+                className="px-2.5 sm:px-3 py-1 rounded-lg bg-gray-100/80 hover:bg-[#C4161C] hover:text-white border border-gray-200/80 hover:border-[#C4161C] text-[10.5px] sm:text-[11px] font-semibold text-gray-700 hover:text-white whitespace-nowrap transition-all duration-200 cursor-pointer shrink-0 active:scale-95 shadow-2xs group flex items-center gap-1.5"
                 title={`Explore ${course.name}`}
               >
                 <span>{course.name}</span>
@@ -1520,9 +1533,35 @@ export default function HeroFinbiz({ onOpenDemo }) {
               </button>
             ))}
           </div>
+
+          {/* Right Pinned "View More" Button */}
+          <div className="shrink-0 pl-1.5 border-l border-gray-200 bg-white">
+            <a
+              href="#courses"
+              onClick={handleViewMoreCourses}
+              className="inline-flex items-center gap-1 px-2.5 sm:px-3 py-1 rounded-lg bg-[#C4161C] hover:bg-[#A81217] text-white text-[10.5px] sm:text-[11px] font-bold whitespace-nowrap shadow-xs transition-all cursor-pointer active:scale-95"
+              title="View all courses"
+            >
+              <span>View More</span>
+              <ArrowRight className="w-3 h-3" />
+            </a>
+          </div>
         </div>
 
       </div>
+
+      {/* Complete Course Catalog Directory Modal */}
+      <CoursesDirectoryModal
+        isOpen={isCoursesModalOpen}
+        onClose={() => setIsCoursesModalOpen(false)}
+        onSelectCourse={(course) => {
+          handleCourseClick({
+            id: course.id,
+            tab: course.disciplineKey,
+            name: course.title
+          });
+        }}
+      />
     </section>
   );
 }
