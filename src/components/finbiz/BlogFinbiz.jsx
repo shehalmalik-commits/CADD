@@ -9,7 +9,8 @@ import {
   Video,
   Clock,
   Sparkles,
-  Building2
+  Building2,
+  Mail
 } from 'lucide-react';
 
 // Inline Instagram gradient SVG icon
@@ -446,14 +447,15 @@ export default function BlogFinbiz({ onOpenDemo, onOpenWorkshop, onOpenCallDirec
                   <Phone className="w-3.5 h-3.5 text-[#C4161C]" />
                   <span>Call: 8891550060</span>
                 </button>
-                <button
-                  type="button"
-                  onClick={onOpenDemo}
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#C4161C] hover:bg-[#a51217] text-white text-xs font-bold shadow-md transition-all cursor-pointer active:scale-97"
+                <a
+                  href="mailto:info@caddmanjeri.com?subject=Institution%20Association%20Enquiry%20-%20CADD%20Centre%20Manjeri&body=Hi%20CADD%20Centre%20Manjeri%2C%0A%0AWe%20would%20like%20to%20associate%20with%20your%20institution%20for%20workshops%2C%20seminars%2C%20internships%2C%20and%20campus%20training%20programs.%0A%0AInstitution%20Name%3A%0AContact%20Person%3A%0APhone%3A"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#C4161C] hover:bg-[#a51217] text-white text-xs font-bold shadow-md transition-all cursor-pointer active:scale-97 text-center"
+                  title="Email CADD Centre Manjeri to Associate (info@caddmanjeri.com)"
                 >
+                  <Mail className="w-3.5 h-3.5" />
                   <span>Associate Now</span>
                   <ArrowRight className="w-3.5 h-3.5" />
-                </button>
+                </a>
               </div>
             </div>
 
