@@ -52,7 +52,7 @@ const DEPARTMENTS = [
     id: 'placements',
     tabName: 'Placements',
     badge: 'GCC & MNC Careers',
-    title: 'Corporate Placement Cell',
+    title: 'Placement Cell',
     subtitle: 'Campus Recruitment, Gulf Job Assistance & Interview Prep',
     phone: '+91 95441 69638',
     cleanPhone: '+919544169638',
