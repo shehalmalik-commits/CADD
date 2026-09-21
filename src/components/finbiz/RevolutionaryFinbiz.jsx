@@ -50,13 +50,15 @@ export default function RevolutionaryFinbiz({ onOpenDemo }) {
 
   const scrollLeft = () => {
     if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({ left: -360, behavior: 'smooth' });
+      const scrollAmount = typeof window !== 'undefined' && window.innerWidth < 640 ? 250 : 360;
+      scrollContainerRef.current.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
     }
   };
 
   const scrollRight = () => {
     if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({ left: 360, behavior: 'smooth' });
+      const scrollAmount = typeof window !== 'undefined' && window.innerWidth < 640 ? 250 : 360;
+      scrollContainerRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
     }
   };
 
@@ -114,22 +116,22 @@ export default function RevolutionaryFinbiz({ onOpenDemo }) {
             </a>
 
             {/* Slider Navigation Arrows (< >) */}
-            <div className="hidden sm:flex items-center gap-2">
+            <div className="flex items-center gap-2">
               <button
                 type="button"
                 onClick={scrollLeft}
                 aria-label="Previous Reels"
-                className="w-10 h-10 rounded-full bg-white/5 hover:bg-white/15 border border-white/10 text-white flex items-center justify-center transition-all cursor-pointer active:scale-95 shadow-sm"
+                className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/5 hover:bg-white/15 border border-white/10 text-white flex items-center justify-center transition-all cursor-pointer active:scale-95 shadow-sm"
               >
-                <ChevronLeft className="w-5 h-5" />
+                <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
               <button
                 type="button"
                 onClick={scrollRight}
                 aria-label="Next Reels"
-                className="w-10 h-10 rounded-full bg-white/5 hover:bg-white/15 border border-white/10 text-white flex items-center justify-center transition-all cursor-pointer active:scale-95 shadow-sm"
+                className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/5 hover:bg-white/15 border border-white/10 text-white flex items-center justify-center transition-all cursor-pointer active:scale-95 shadow-sm"
               >
-                <ChevronRight className="w-5 h-5" />
+                <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
             </div>
           </div>
@@ -138,11 +140,32 @@ export default function RevolutionaryFinbiz({ onOpenDemo }) {
         {/* ========================================================= */}
         {/* REELS & POSTS CAROUSEL: SLEEK COMPACT SMARTPHONE REEL DECK */}
         {/* ========================================================= */}
-        <div
-          ref={scrollContainerRef}
-          className="flex gap-4 sm:gap-5 overflow-x-auto pb-6 pt-1 no-scrollbar snap-x snap-mandatory scroll-smooth"
-          style={{ WebkitOverflowScrolling: 'touch' }}
-        >
+        <div className="relative">
+          {/* Floating Left Arrow Button */}
+          <button
+            type="button"
+            onClick={scrollLeft}
+            aria-label="Previous Reels"
+            className="absolute left-1 sm:left-2 top-1/2 -translate-y-1/2 z-30 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-black/75 hover:bg-black/95 text-white flex items-center justify-center border border-white/20 shadow-[0_4px_20px_rgba(0,0,0,0.6)] backdrop-blur-md transition-all active:scale-90 hover:scale-105 cursor-pointer"
+          >
+            <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+          </button>
+
+          {/* Floating Right Arrow Button */}
+          <button
+            type="button"
+            onClick={scrollRight}
+            aria-label="Next Reels"
+            className="absolute right-1 sm:right-2 top-1/2 -translate-y-1/2 z-30 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-black/75 hover:bg-black/95 text-white flex items-center justify-center border border-white/20 shadow-[0_4px_20px_rgba(0,0,0,0.6)] backdrop-blur-md transition-all active:scale-90 hover:scale-105 cursor-pointer"
+          >
+            <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+          </button>
+
+          <div
+            ref={scrollContainerRef}
+            className="flex gap-4 sm:gap-5 overflow-x-auto pb-6 pt-1 no-scrollbar snap-x snap-mandatory scroll-smooth px-1"
+            style={{ WebkitOverflowScrolling: 'touch' }}
+          >
           {INITIAL_EVENTS.map((item) => {
             return (
               <div
@@ -231,6 +254,7 @@ export default function RevolutionaryFinbiz({ onOpenDemo }) {
               </div>
             );
           })}
+          </div>
         </div>
 
         {/* Banner Removed */}
