@@ -114,6 +114,7 @@ const PERKS = [
 
 export default function InternshipsFinbiz({ onOpenDemo }) {
   const [activeTrack, setActiveTrack] = useState(null);
+  const [showAllPerks, setShowAllPerks] = useState(false);
 
   const currentTrack = activeTrack ? INTERNSHIP_TRACKS.find(t => t.id === activeTrack) : null;
 
@@ -145,40 +146,57 @@ export default function InternshipsFinbiz({ onOpenDemo }) {
             </p>
           </div>
 
-          {/* Quick Stats Banner */}
-          <div className="flex flex-wrap items-center gap-4 sm:gap-6 bg-white p-4 sm:p-5 rounded-2xl border border-gray-200/80 shadow-xs shrink-0">
-            <div className="text-left pr-4 border-r border-gray-100">
-              <span className="block text-2xl sm:text-3xl font-black text-[#111827]">100%</span>
-              <span className="text-[11px] font-bold text-gray-500 uppercase tracking-wider">KTU / Board Accepted</span>
+          {/* Quick Stats Banner (Compact 1-row grid on Mobile) */}
+          <div className="grid grid-cols-3 sm:flex items-center gap-2 sm:gap-6 bg-white p-3 sm:p-5 rounded-2xl border border-gray-200/80 shadow-xs shrink-0 text-center sm:text-left">
+            <div className="pr-1 sm:pr-4 border-r border-gray-100">
+              <span className="block text-lg min-[360px]:text-xl sm:text-3xl font-black text-[#111827]">100%</span>
+              <span className="text-[9.5px] sm:text-[11px] font-bold text-gray-500 uppercase tracking-wider">KTU / Board</span>
             </div>
-            <div className="text-left pr-4 border-r border-gray-100">
-              <span className="block text-2xl sm:text-3xl font-black text-[#C4161C]">1500+</span>
-              <span className="text-[11px] font-bold text-gray-500 uppercase tracking-wider">Interns Trained</span>
+            <div className="pr-1 sm:pr-4 border-r border-gray-100">
+              <span className="block text-lg min-[360px]:text-xl sm:text-3xl font-black text-[#C4161C]">1500+</span>
+              <span className="text-[9.5px] sm:text-[11px] font-bold text-gray-500 uppercase tracking-wider">Interns</span>
             </div>
-            <div className="text-left">
-              <span className="block text-2xl sm:text-3xl font-black text-[#111827]">15 – 180</span>
-              <span className="text-[11px] font-bold text-gray-500 uppercase tracking-wider">Days Flexible Batches</span>
+            <div>
+              <span className="block text-lg min-[360px]:text-xl sm:text-3xl font-black text-[#111827]">15–180</span>
+              <span className="text-[9.5px] sm:text-[11px] font-bold text-gray-500 uppercase tracking-wider">Day Batches</span>
             </div>
           </div>
         </div>
 
-        {/* 4 Feature Value Props */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-5 sm:mb-6">
+        {/* 4 Feature Value Props with Mobile 'View All' Toggle to reduce vertical length */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 mb-3 sm:mb-6">
           {PERKS.map((perk, idx) => {
             const Icon = perk.icon;
+            const isHiddenOnMobile = !showAllPerks && idx >= 2;
             return (
               <div
                 key={idx}
-                className="bg-white p-5 rounded-2xl border border-gray-100 shadow-xs hover:border-red-200 hover:shadow-md transition-all duration-200 text-left group"
+                className={`${
+                  isHiddenOnMobile ? 'hidden sm:block' : 'block'
+                } bg-white p-4 sm:p-5 rounded-2xl border border-gray-100 shadow-xs hover:border-red-200 hover:shadow-md transition-all duration-200 text-left group`}
               >
-                <div className="w-10 h-10 rounded-xl bg-red-50 text-[#C4161C] flex items-center justify-center mb-3.5 group-hover:scale-105 group-hover:bg-[#C4161C] group-hover:text-white transition-all">
-                  <Icon className="w-5 h-5" />
+                <div className="flex sm:block items-center gap-3 sm:gap-0 mb-2 sm:mb-3.5">
+                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-red-50 text-[#C4161C] flex items-center justify-center shrink-0 group-hover:scale-105 group-hover:bg-[#C4161C] group-hover:text-white transition-all">
+                    <Icon className="w-4.5 h-4.5 sm:w-5 sm:h-5" />
+                  </div>
+                  <h3 className="text-xs sm:text-sm font-bold text-[#111827] sm:mt-0">{perk.title}</h3>
                 </div>
-                <h3 className="text-sm font-bold text-[#111827] mb-1.5">{perk.title}</h3>
-                <p className="text-[12px] text-gray-500 leading-relaxed">{perk.desc}</p>
+                <p className="text-[11px] sm:text-[12px] text-gray-500 leading-relaxed pl-12 sm:pl-0">{perk.desc}</p>
               </div>
             );
           })}
+        </div>
+
+        {/* Mobile View All / Show Less Toggle Button */}
+        <div className="sm:hidden flex justify-center mb-5">
+          <button
+            type="button"
+            onClick={() => setShowAllPerks(!showAllPerks)}
+            className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white hover:bg-gray-50 text-gray-700 hover:text-gray-900 border border-gray-200 text-xs font-bold shadow-2xs transition-all cursor-pointer active:scale-95"
+          >
+            <span>{showAllPerks ? 'Show Less' : 'View All Features (4)'}</span>
+            <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${showAllPerks ? 'rotate-180' : ''}`} />
+          </button>
         </div>
 
         {/* Track Selection Tabs - Centered */}
