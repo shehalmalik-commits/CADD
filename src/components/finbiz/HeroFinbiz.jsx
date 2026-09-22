@@ -1353,12 +1353,12 @@ export default function HeroFinbiz({ onOpenDemo }) {
               <div>Training Network</div>
             </h1>
 
-            {/* Action Buttons: Full-width on mobile */}
-            <div className="pt-3 sm:pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3">
+            {/* Action Buttons: Hidden on mobile view, visible on sm and desktop */}
+            <div className="hidden sm:flex pt-3 sm:pt-4 flex-row items-center gap-3">
               <button
                 type="button"
                 onClick={onOpenDemo}
-                className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-2.5 sm:py-3 rounded-full bg-[#C4161C] hover:bg-[#A81217] text-white text-xs sm:text-[13px] font-extrabold uppercase tracking-wider shadow-lg shadow-[#C4161C]/25 transition-all duration-200 cursor-pointer active:scale-96"
+                className="inline-flex items-center justify-center px-6 py-2.5 sm:py-3 rounded-full bg-[#C4161C] hover:bg-[#A81217] text-white text-xs sm:text-[13px] font-extrabold uppercase tracking-wider shadow-lg shadow-[#C4161C]/25 transition-all duration-200 cursor-pointer active:scale-96"
               >
                 <span>ENQUIRE ADMISSIONS</span>
                 <ArrowRight className="w-4 h-4 ml-2" />
@@ -1366,7 +1366,7 @@ export default function HeroFinbiz({ onOpenDemo }) {
 
               <a
                 href="#courses"
-                className="w-full sm:w-auto inline-flex items-center justify-center px-5 py-2.5 sm:py-3 rounded-full bg-white hover:bg-gray-50 text-gray-900 border border-gray-200 text-xs sm:text-[13px] font-bold uppercase tracking-wider transition-all duration-200 shadow-xs hover:border-[#C4161C]/40 text-center"
+                className="inline-flex items-center justify-center px-5 py-2.5 sm:py-3 rounded-full bg-white hover:bg-gray-50 text-gray-900 border border-gray-200 text-xs sm:text-[13px] font-bold uppercase tracking-wider transition-all duration-200 shadow-xs hover:border-[#C4161C]/40 text-center"
               >
                 <span>EXPLORE COURSES</span>
               </a>
