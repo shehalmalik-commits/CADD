@@ -1537,14 +1537,11 @@ export default function HeroFinbiz({ onOpenDemo }) {
                   <button
                     type="button"
                     onClick={onOpenDemo}
-                    className="relative overflow-hidden w-full sm:w-auto px-4 py-2 sm:px-3.5 sm:py-2 rounded-xl bg-gradient-to-r from-[#C4161C] to-[#E52026] sm:bg-none sm:bg-white/10 hover:bg-[#A81217] sm:hover:bg-[#C4161C] text-white text-[13px] sm:text-xs font-extrabold sm:font-bold transition-all cursor-pointer shrink-0 flex items-center justify-center gap-1.5 active:scale-95 shadow-[0_4px_15px_rgba(196,22,28,0.5)] sm:shadow-none border border-white/20 sm:border-transparent group"
+                    className="relative w-full sm:w-auto px-3.5 py-1.5 sm:py-2 rounded-xl bg-[#1A1A1A] sm:bg-white/10 border border-transparent sm:hover:bg-[#C4161C] text-white text-[11px] sm:text-xs font-bold transition-all cursor-pointer shrink-0 text-center active:scale-97"
                   >
-                    <span className="relative z-10 flex items-center justify-center gap-1.5">
-                      Free Demo Class
-                      <ArrowRight className="w-4 h-4 sm:hidden group-hover:translate-x-1 transition-transform" />
-                    </span>
-                    {/* Subtle pulse ring on mobile */}
-                    <span className="absolute inset-0 rounded-xl ring-2 ring-white/30 animate-pulse sm:hidden"></span>
+                    <span className="relative z-10">Free Demo Class</span>
+                    {/* Highly attractive crimson glowing border for mobile */}
+                    <span className="absolute inset-0 rounded-xl border border-[#C4161C]/80 shadow-[0_0_15px_rgba(196,22,28,0.6)] sm:hidden animate-pulse"></span>
                   </button>
                 </div>
 
