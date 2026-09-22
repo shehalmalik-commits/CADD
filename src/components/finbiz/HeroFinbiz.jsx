@@ -1537,7 +1537,7 @@ export default function HeroFinbiz({ onOpenDemo }) {
                   <button
                     type="button"
                     onClick={onOpenDemo}
-                    className="relative w-full sm:w-auto px-3.5 py-1.5 sm:py-2 rounded-xl bg-[#1A1A1A] sm:bg-white/10 border border-transparent sm:hover:bg-[#C4161C] text-white text-[11px] sm:text-xs font-bold transition-all cursor-pointer shrink-0 text-center active:scale-97"
+                    className="relative w-fit mx-auto sm:w-auto sm:mx-0 px-5 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-[#1A1A1A] sm:bg-white/10 border border-transparent sm:hover:bg-[#C4161C] text-white text-[11px] sm:text-xs font-bold transition-all cursor-pointer shrink-0 text-center active:scale-97"
                   >
                     <span className="relative z-10">Free Demo Class</span>
                     {/* Highly attractive crimson glowing border for mobile */}
