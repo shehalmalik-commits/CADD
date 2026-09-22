@@ -1311,7 +1311,7 @@ export default function HeroFinbiz({ onOpenDemo }) {
   };
 
   return (
-    <section id="hero" className="relative overflow-hidden bg-[#FCFCFD] pt-1 sm:pt-2 pb-4 sm:pb-5 select-none">
+    <section id="hero" className="relative overflow-hidden bg-[#FCFCFD] pt-2.5 sm:pt-3 pb-5 sm:pb-6 select-none">
       {/* Background Architectural Blueprint Grid & Laser Radial Glow */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#C4161C08_1px,transparent_1px),linear-gradient(to_bottom,#C4161C08_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none" />
       <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-[#C4161C]/5 rounded-full blur-3xl pointer-events-none" />
@@ -1321,7 +1321,7 @@ export default function HeroFinbiz({ onOpenDemo }) {
         {/* ========================================================= */}
         {/* MAIN HERO SPLIT: LEFT EDITORIAL & RIGHT FULL 3D STAGE     */}
         {/* ========================================================= */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-7 xl:gap-8 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 lg:gap-7 xl:gap-8 items-center">
 
           {/* ========================================================= */}
           {/* LEFT COLUMN: HIGH-IMPACT CADD EDITORIAL & QUICK ACTIONS   */}
@@ -1331,7 +1331,7 @@ export default function HeroFinbiz({ onOpenDemo }) {
             {/* Headline */}
             <h1 className="text-2xl min-[380px]:text-3xl sm:text-4xl lg:text-[42px] xl:text-[48px] font-extrabold tracking-tight leading-[1.15] sm:leading-[1.12] text-[#0F172A]">
               <div>The World’s Largest</div>
-              <div className="text-[#C4161C] text-[13px] min-[360px]:text-[15px] min-[400px]:text-[17px] sm:text-[24px] md:text-[28px] lg:text-[23px] xl:text-[27.5px] 2xl:text-[31px] font-black tracking-tight my-1 flex flex-wrap items-center gap-x-1.5 sm:gap-x-2">
+              <div className="text-[#C4161C] text-[13px] min-[360px]:text-[15px] min-[400px]:text-[17px] sm:text-[24px] md:text-[28px] lg:text-[23px] xl:text-[27.5px] 2xl:text-[31px] font-black tracking-tight my-1 sm:my-1.5 flex flex-wrap items-center gap-x-1.5 sm:gap-x-2">
                 <span>CAD</span>
                 <span className="text-[#C4161C]">•</span>
                 <span>Interior Design</span>
@@ -1344,14 +1344,6 @@ export default function HeroFinbiz({ onOpenDemo }) {
               </div>
               <div>Training Network</div>
             </h1>
-
-            {/* Highlighted 25 Years Badge */}
-            <div className="mt-3.5 sm:mt-4 inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-red-50/80 border border-red-200/90 shadow-xs w-fit">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#C4161C] animate-pulse shrink-0 shadow-[0_0_8px_rgba(196,22,28,0.6)]" />
-              <span className="text-xs sm:text-sm font-extrabold text-[#111827] tracking-tight">
-                Proudly Serving Manjeri for 25 Years
-              </span>
-            </div>
 
             {/* Action Buttons: Full-width on mobile */}
             <div className="pt-3 sm:pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3">
@@ -1372,8 +1364,8 @@ export default function HeroFinbiz({ onOpenDemo }) {
               </a>
             </div>
 
-            {/* Credential Metrics Row (Compact & Resilient on 360px Screens) */}
-            <div className="pt-2.5 sm:pt-3 border-t border-gray-100 mt-2.5 sm:mt-3 grid grid-cols-3 gap-2 sm:gap-4 text-left">
+            {/* Credential Metrics Row (Hidden on mobile, visible on sm and up) */}
+            <div className="hidden sm:grid pt-2.5 sm:pt-3 border-t border-gray-100 mt-2.5 sm:mt-3 grid-cols-3 gap-2 sm:gap-4 text-left">
               <div>
                 <div className="text-lg sm:text-2xl font-black text-gray-900 font-mono">100%</div>
                 <div className="text-[10px] sm:text-[11px] text-gray-500 font-medium leading-tight sm:leading-snug">Placement Cell (GCC Desk)</div>
@@ -1388,9 +1380,9 @@ export default function HeroFinbiz({ onOpenDemo }) {
               </div>
             </div>
 
-            {/* Red Circular Dot Grid (Classic Finbiz Placement) */}
+            {/* Red Circular Dot Grid (Hidden on mobile, visible on sm and up) */}
             <div
-              className="pt-1.5 sm:pt-2 flex flex-col gap-1.5 select-none opacity-75"
+              className="hidden sm:flex pt-1.5 sm:pt-2 flex-col gap-1.5 select-none opacity-75"
               aria-hidden="true"
             >
               {[...Array(3)].map((_, r) => (

@@ -23,23 +23,34 @@ export default function HeaderFinbiz({ onOpenDemo, onOpenCallDirectory }) {
       >
         {/* Top Utilities Strip (Above Navbar) */}
         <div className="border-b border-gray-100 bg-white">
-          <div className="max-w-[1400px] mx-auto px-3 sm:px-6 lg:px-8 flex items-center justify-between sm:justify-end h-8 sm:h-8.5 text-[11px] min-[380px]:text-[11.5px] sm:text-[12px] text-gray-500 font-medium gap-2 sm:gap-8">
-            <a
-              href="mailto:info@caddmanjeri.com"
-              className="flex items-center gap-1.5 sm:gap-2 hover:text-[#C4161C] transition-colors truncate"
-            >
-              <Mail className="w-3.5 h-3.5 text-[#C4161C] shrink-0" />
-              <span className="truncate">info@caddmanjeri.com</span>
-            </a>
-            <button
-              type="button"
-              onClick={onOpenCallDirectory}
-              className="flex items-center gap-1.5 sm:gap-2 hover:text-[#C4161C] transition-colors shrink-0 cursor-pointer text-left"
-              title="Click to view all department lines (+91 88915 50060)"
-            >
-              <Phone className="w-3.5 h-3.5 text-[#C4161C] shrink-0" />
-              <span>Hotline: <strong className="text-gray-900 font-bold hover:text-[#C4161C] transition-colors">+91 88915 50060</strong></span>
-            </button>
+          <div className="max-w-[1400px] mx-auto px-3 sm:px-6 lg:px-8 flex items-center justify-between h-8 sm:h-8.5 text-[11px] min-[380px]:text-[11.5px] sm:text-[12px] text-gray-500 font-medium gap-2 sm:gap-8">
+            {/* Desktop 25 Years Badge */}
+            <div className="hidden md:flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-[#C4161C] animate-pulse shrink-0 shadow-[0_0_6px_rgba(196,22,28,0.5)]" />
+              <span className="text-xs font-bold text-gray-900 tracking-tight">
+                Proudly Serving Manjeri for 25 Years
+              </span>
+            </div>
+
+            {/* Contact utilities */}
+            <div className="flex items-center justify-between md:justify-end gap-2 sm:gap-6 w-full md:w-auto">
+              <a
+                href="mailto:info@caddmanjeri.com"
+                className="flex items-center gap-1.5 sm:gap-2 hover:text-[#C4161C] transition-colors truncate"
+              >
+                <Mail className="w-3.5 h-3.5 text-[#C4161C] shrink-0" />
+                <span className="truncate">info@caddmanjeri.com</span>
+              </a>
+              <button
+                type="button"
+                onClick={onOpenCallDirectory}
+                className="flex items-center gap-1.5 sm:gap-2 hover:text-[#C4161C] transition-colors shrink-0 cursor-pointer text-left"
+                title="Click to view all department lines (+91 88915 50060)"
+              >
+                <Phone className="w-3.5 h-3.5 text-[#C4161C] shrink-0" />
+                <span>Hotline: <strong className="text-gray-900 font-bold hover:text-[#C4161C] transition-colors">+91 88915 50060</strong></span>
+              </button>
+            </div>
           </div>
         </div>
 
@@ -47,12 +58,12 @@ export default function HeaderFinbiz({ onOpenDemo, onOpenCallDirectory }) {
         <div className="relative max-w-[1400px] mx-auto px-3 sm:px-6 lg:px-8 flex items-center justify-between h-14 sm:h-16">
 
           {/* Left Crimson Polygon Ribbon with Official Red CADD Centre Logo */}
-          <div className="absolute left-0 top-0 bottom-0 flex items-center">
+          <div className="absolute left-0 top-0 bottom-0 flex items-center z-10">
             <div
               className="h-full bg-[#C4161C] flex items-center pl-2.5 sm:pl-6 pr-5 sm:pr-8 shadow-md"
               style={{
                 clipPath: 'polygon(0 0, 100% 0, 84% 100%, 0 100%)',
-                minWidth: '135px',
+                minWidth: '125px',
                 maxWidth: '240px'
               }}
             >
@@ -67,7 +78,17 @@ export default function HeaderFinbiz({ onOpenDemo, onOpenCallDirectory }) {
           </div>
 
           {/* Spacer for the left ribbon */}
-          <div className="w-[130px] sm:w-[220px] shrink-0" />
+          <div className="w-[125px] sm:w-[220px] shrink-0" />
+
+          {/* Center Mobile Badge: Proudly Serving Manjeri for 25 Years */}
+          <div className="flex md:hidden flex-1 items-center justify-center px-1 min-w-0">
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-red-50/90 border border-red-200/90 shadow-xs max-w-full">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#C4161C] animate-pulse shrink-0 shadow-[0_0_6px_rgba(196,22,28,0.5)]" />
+              <span className="text-[10px] min-[360px]:text-[10.5px] min-[390px]:text-[11.5px] font-extrabold text-[#111827] tracking-tight whitespace-nowrap">
+                <span className="hidden min-[350px]:inline">Proudly </span>Serving Manjeri for 25 Years
+              </span>
+            </div>
+          </div>
 
           {/* Center Desktop Navigation Menu */}
           <nav className="hidden md:flex items-center gap-5 lg:gap-6 xl:gap-7 text-[13px] lg:text-[13.5px] font-semibold text-gray-800">
@@ -98,7 +119,7 @@ export default function HeaderFinbiz({ onOpenDemo, onOpenCallDirectory }) {
           </nav>
 
           {/* Right CTA Button & Mobile Trigger */}
-          <div className="flex items-center gap-2 sm:gap-3">
+          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
             {/* Desktop CTA Button */}
             <button
               type="button"
@@ -123,6 +144,13 @@ export default function HeaderFinbiz({ onOpenDemo, onOpenCallDirectory }) {
         {/* Mobile Drawer Menu */}
         {mobileMenuOpen && (
           <div className="md:hidden border-t border-gray-100 bg-white/98 backdrop-blur-xl px-5 py-5 space-y-3 shadow-2xl animate-in slide-in-from-top-2 duration-200 max-h-[calc(100vh-4rem)] overflow-y-auto">
+            {/* 25 Years Badge in Mobile Menu */}
+            <div className="py-2 px-3 rounded-xl bg-red-50/80 border border-red-100 flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-[#C4161C] animate-pulse shrink-0" />
+              <span className="text-xs font-extrabold text-[#111827]">
+                Proudly Serving Manjeri for 25 Years
+              </span>
+            </div>
             <a
               href="#hero"
               onClick={() => setMobileMenuOpen(false)}
