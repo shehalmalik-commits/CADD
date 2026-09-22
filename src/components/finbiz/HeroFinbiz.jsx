@@ -1328,14 +1328,6 @@ export default function HeroFinbiz({ onOpenDemo }) {
           {/* ========================================================= */}
           <div className="order-2 lg:order-1 lg:col-span-6 xl:col-span-6 flex flex-col justify-center text-left py-0 z-10">
 
-            {/* Highlighted 25 Years Badge (Desktop only, mobile has it in navbar) */}
-            <div className="hidden md:inline-flex mb-3 sm:mb-4 items-center gap-2 sm:gap-2.5 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-red-50/80 border border-red-200/90 shadow-xs w-fit">
-              <span className="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-[#C4161C] animate-pulse shrink-0 shadow-[0_0_8px_rgba(196,22,28,0.6)]" />
-              <span className="text-xs sm:text-sm font-extrabold text-[#111827] tracking-tight">
-                Proudly Serving Manjeri for 25 Years
-              </span>
-            </div>
-
             {/* Headline */}
             <h1 className="text-2xl min-[380px]:text-3xl sm:text-4xl lg:text-[42px] xl:text-[48px] font-extrabold tracking-tight leading-[1.15] sm:leading-[1.12] text-[#0F172A]">
               <div>The World’s Largest</div>
@@ -1352,6 +1344,14 @@ export default function HeroFinbiz({ onOpenDemo }) {
               </div>
               <div>Training Network</div>
             </h1>
+
+            {/* Highlighted 25 Years Badge (Below Headline - Laptop view as shown in 2nd image, mobile has it in navbar) */}
+            <div className="hidden md:inline-flex mt-3.5 sm:mt-4 items-center gap-2.5 px-4 py-2 rounded-full bg-red-50/80 border border-red-200/90 shadow-xs w-fit">
+              <span className="w-2.5 h-2.5 rounded-full bg-[#C4161C] animate-pulse shrink-0 shadow-[0_0_8px_rgba(196,22,28,0.6)]" />
+              <span className="text-xs sm:text-sm font-extrabold text-[#111827] tracking-tight">
+                Proudly Serving Manjeri for 25 Years
+              </span>
+            </div>
 
             {/* Action Buttons: Hidden on mobile view, visible on sm and desktop */}
             <div className="hidden sm:flex pt-3 sm:pt-4 flex-row items-center gap-3">

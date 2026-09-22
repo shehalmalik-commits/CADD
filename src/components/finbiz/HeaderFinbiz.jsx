@@ -23,17 +23,9 @@ export default function HeaderFinbiz({ onOpenDemo, onOpenCallDirectory }) {
       >
         {/* Top Utilities Strip (Above Navbar) */}
         <div className="border-b border-gray-100 bg-white">
-          <div className="max-w-[1400px] mx-auto px-3 sm:px-6 lg:px-8 flex items-center justify-between h-8 sm:h-8.5 text-[11px] min-[380px]:text-[11.5px] sm:text-[12px] text-gray-500 font-medium gap-2 sm:gap-8">
-            {/* Desktop 25 Years Badge */}
-            <div className="hidden md:flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-[#C4161C] animate-pulse shrink-0 shadow-[0_0_6px_rgba(196,22,28,0.5)]" />
-              <span className="text-xs font-bold text-gray-900 tracking-tight">
-                Proudly Serving Manjeri for 25 Years
-              </span>
-            </div>
-
+          <div className="max-w-[1400px] mx-auto px-3 sm:px-6 lg:px-8 flex items-center justify-between sm:justify-end h-8 sm:h-8.5 text-[11px] min-[380px]:text-[11.5px] sm:text-[12px] text-gray-500 font-medium gap-2 sm:gap-8">
             {/* Contact utilities */}
-            <div className="flex items-center justify-between md:justify-end gap-2 sm:gap-6 w-full md:w-auto">
+            <div className="flex items-center justify-between sm:justify-end gap-2 sm:gap-6 w-full sm:w-auto">
               <a
                 href="mailto:info@caddmanjeri.com"
                 className="flex items-center gap-1.5 sm:gap-2 hover:text-[#C4161C] transition-colors truncate"
