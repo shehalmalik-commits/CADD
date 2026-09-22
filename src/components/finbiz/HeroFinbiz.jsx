@@ -105,6 +105,46 @@ export default function HeroFinbiz({ onOpenDemo }) {
   const cardRef = useRef(null);
   const canvasRef = useRef(null);
 
+  const [isInteracting, setIsInteracting] = useState(false);
+  const pauseTimeoutRef = useRef(null);
+
+  const applyModelRotation = (modelId) => {
+    if (modelId === 'cad-car') {
+      rotRef.current = { x: 0.22, y: -0.78 };
+    } else if (modelId === 'bim-tower') {
+      rotRef.current = { x: 0.14, y: 0.58 };
+    } else if (modelId === 'geodesic-dome') {
+      rotRef.current = { x: 0.28, y: 0.65 };
+    } else {
+      rotRef.current = { x: 0.28, y: 0.65 };
+    }
+  };
+
+  const selectModel = (modelId) => {
+    setActiveModel(modelId);
+    applyModelRotation(modelId);
+  };
+
+  // Automatically cycle through CAD/BIM models every 5 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (isInteracting || isDraggingRef.current) return;
+
+      setActiveModel((prev) => {
+        const currentIndex = MODELS.findIndex((m) => m.id === prev);
+        const nextIndex = (currentIndex + 1) % MODELS.length;
+        const nextModel = MODELS[nextIndex];
+        applyModelRotation(nextModel.id);
+        return nextModel.id;
+      });
+    }, 5000);
+
+    return () => {
+      clearInterval(interval);
+      if (pauseTimeoutRef.current) clearTimeout(pauseTimeoutRef.current);
+    };
+  }, [isInteracting]);
+
   // 3D Orbit Camera Angles & Antigravity Motion Tracking (Optimized 3/4 towering angle for Building)
   const rotRef = useRef({ x: 0.14, y: 0.58 });
   const isDraggingRef = useRef(false);
@@ -1224,10 +1264,13 @@ export default function HeroFinbiz({ onOpenDemo }) {
     targetTiltRef.current = { x: 0, y: 0 };
     mouseCanvasPosRef.current = { x: -999, y: -999 };
     isDraggingRef.current = false;
+    setIsInteracting(false);
   };
 
   // Mobile Touch Gestures (3D Rotation with Vertical Scroll Preservation & Pinch Zoom)
   const handleTouchStart = (e) => {
+    setIsInteracting(true);
+    if (pauseTimeoutRef.current) clearTimeout(pauseTimeoutRef.current);
     if (e.touches.length === 1) {
       isDraggingRef.current = true;
       lastMouseRef.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
@@ -1261,6 +1304,10 @@ export default function HeroFinbiz({ onOpenDemo }) {
   const handleTouchEnd = () => {
     isDraggingRef.current = false;
     touchStartDistRef.current = 0;
+    if (pauseTimeoutRef.current) clearTimeout(pauseTimeoutRef.current);
+    pauseTimeoutRef.current = setTimeout(() => {
+      setIsInteracting(false);
+    }, 6000);
   };
 
   return (
@@ -1363,6 +1410,7 @@ export default function HeroFinbiz({ onOpenDemo }) {
           <div className="lg:col-span-6 xl:col-span-6 relative flex justify-center lg:justify-end">
             <div
               ref={cardRef}
+              onMouseEnter={() => setIsInteracting(true)}
               onMouseMove={handleCardMouseMove}
               onMouseLeave={handleCardMouseLeave}
               style={{ perspective: '1400px' }}
@@ -1386,16 +1434,12 @@ export default function HeroFinbiz({ onOpenDemo }) {
                           key={m.id}
                           type="button"
                           onClick={() => {
-                            setActiveModel(m.id);
-                            if (m.id === 'cad-car') {
-                              rotRef.current = { x: 0.22, y: -0.78 };
-                            } else if (m.id === 'bim-tower') {
-                              rotRef.current = { x: 0.14, y: 0.58 };
-                            } else if (m.id === 'geodesic-dome') {
-                              rotRef.current = { x: 0.28, y: 0.65 };
-                            } else {
-                              rotRef.current = { x: 0.28, y: 0.65 };
-                            }
+                            selectModel(m.id);
+                            setIsInteracting(true);
+                            if (pauseTimeoutRef.current) clearTimeout(pauseTimeoutRef.current);
+                            pauseTimeoutRef.current = setTimeout(() => {
+                              setIsInteracting(false);
+                            }, 10000);
                           }}
                           className={`px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg text-[10.5px] sm:text-xs font-bold transition-all cursor-pointer whitespace-nowrap flex items-center gap-1.5 ${isActive
                               ? 'bg-[#C4161C] text-white shadow-md'
