@@ -1311,7 +1311,7 @@ export default function HeroFinbiz({ onOpenDemo }) {
   };
 
   return (
-    <section id="hero" className="relative overflow-hidden bg-[#FCFCFD] pt-2.5 sm:pt-3 pb-5 sm:pb-6 select-none">
+    <section id="hero" className="relative overflow-hidden bg-[#FCFCFD] pt-2.5 sm:pt-3 pb-3 sm:pb-6 select-none">
       {/* Background Architectural Blueprint Grid & Laser Radial Glow */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#C4161C08_1px,transparent_1px),linear-gradient(to_bottom,#C4161C08_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none" />
       <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-[#C4161C]/5 rounded-full blur-3xl pointer-events-none" />
@@ -1337,9 +1337,9 @@ export default function HeroFinbiz({ onOpenDemo }) {
             </div>
 
             {/* Headline */}
-            <h1 className="text-[27px] min-[360px]:text-[30px] min-[390px]:text-[34px] sm:text-4xl lg:text-[42px] xl:text-[48px] font-black tracking-tight leading-[1.14] sm:leading-[1.12] text-[#0F172A]">
+            <h1 className="text-2xl min-[380px]:text-3xl sm:text-4xl lg:text-[42px] xl:text-[48px] font-extrabold tracking-tight leading-[1.15] sm:leading-[1.12] text-[#0F172A]">
               <div>The World’s Largest</div>
-              <div className="text-[#C4161C] text-[15.5px] min-[360px]:text-[17.5px] min-[390px]:text-[19px] sm:text-[24px] md:text-[28px] lg:text-[23px] xl:text-[27.5px] 2xl:text-[31px] font-black tracking-tight my-1.5 sm:my-1.5 flex flex-wrap items-center gap-x-1.5 min-[360px]:gap-x-2">
+              <div className="text-[#C4161C] text-[13px] min-[360px]:text-[15px] min-[400px]:text-[17px] sm:text-[24px] md:text-[28px] lg:text-[23px] xl:text-[27.5px] 2xl:text-[31px] font-black tracking-tight my-1 sm:my-1.5 flex flex-wrap items-center gap-x-1.5 sm:gap-x-2">
                 <span>CAD</span>
                 <span className="text-[#C4161C]">•</span>
                 <span>Interior Design</span>
@@ -1442,8 +1442,8 @@ export default function HeroFinbiz({ onOpenDemo }) {
                             }, 10000);
                           }}
                           className={`px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg text-[10.5px] sm:text-xs font-bold transition-all cursor-pointer whitespace-nowrap flex items-center gap-1.5 ${isActive
-                              ? 'bg-[#C4161C] text-white shadow-md'
-                              : 'bg-white/5 hover:bg-white/10 text-gray-300'
+                            ? 'bg-[#C4161C] text-white shadow-md'
+                            : 'bg-white/5 hover:bg-white/10 text-gray-300'
                             }`}
                         >
                           <span className={`w-1.5 h-1.5 rounded-full ${isActive ? 'bg-white animate-pulse' : 'bg-gray-500'}`} />
@@ -1552,7 +1552,7 @@ export default function HeroFinbiz({ onOpenDemo }) {
         {/* ========================================================= */}
         {/* HORIZONTAL STATIC SCROLLABLE ENGINEERING COURSES STRIP    */}
         {/* ========================================================= */}
-        <div className="mt-5 min-[380px]:mt-6 sm:mt-3.5 pt-3 sm:pt-2.5 pb-1 sm:pb-0 border-t border-gray-100 flex items-center gap-2 sm:gap-3 overflow-hidden">
+        <div className="mt-2.5 sm:mt-3.5 pt-2 sm:pt-2.5 border-t border-gray-100 flex items-center gap-2 sm:gap-3 overflow-hidden">
           {/* Left Pinned Label */}
           <div className="shrink-0 text-[10.5px] sm:text-xs font-bold font-mono uppercase tracking-wider text-[#C4161C] flex items-center gap-1.5 pr-2 sm:pr-3 border-r border-gray-200 bg-white">
             <GraduationCap className="w-3.5 h-3.5" />
