@@ -1326,7 +1326,15 @@ export default function HeroFinbiz({ onOpenDemo }) {
           {/* ========================================================= */}
           {/* LEFT COLUMN: HIGH-IMPACT CADD EDITORIAL & QUICK ACTIONS   */}
           {/* ========================================================= */}
-          <div className="lg:col-span-6 xl:col-span-6 flex flex-col justify-center text-left py-0 z-10">
+          <div className="order-2 lg:order-1 lg:col-span-6 xl:col-span-6 flex flex-col justify-center text-left py-0 z-10">
+
+            {/* Highlighted 25 Years Badge */}
+            <div className="mb-3 sm:mb-4 inline-flex items-center gap-2 sm:gap-2.5 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-red-50/80 border border-red-200/90 shadow-xs w-fit">
+              <span className="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-[#C4161C] animate-pulse shrink-0 shadow-[0_0_8px_rgba(196,22,28,0.6)]" />
+              <span className="text-xs sm:text-sm font-extrabold text-[#111827] tracking-tight">
+                Proudly Serving Manjeri for 25 Years
+              </span>
+            </div>
 
             {/* Headline */}
             <h1 className="text-2xl min-[380px]:text-3xl sm:text-4xl lg:text-[42px] xl:text-[48px] font-extrabold tracking-tight leading-[1.15] sm:leading-[1.12] text-[#0F172A]">
@@ -1399,7 +1407,7 @@ export default function HeroFinbiz({ onOpenDemo }) {
           {/* ========================================================= */}
           {/* RIGHT COLUMN: FULL 3D INTERACTIVE CADD/BIM WORKSTATION    */}
           {/* ========================================================= */}
-          <div className="lg:col-span-6 xl:col-span-6 relative flex justify-center lg:justify-end">
+          <div className="order-1 lg:order-2 lg:col-span-6 xl:col-span-6 relative flex justify-center lg:justify-end">
             <div
               ref={cardRef}
               onMouseEnter={() => setIsInteracting(true)}

@@ -78,31 +78,7 @@ export default function HeaderFinbiz({ onOpenDemo, onOpenCallDirectory }) {
           </div>
 
           {/* Spacer for the left ribbon */}
-          <div className="w-[118px] sm:w-[220px] shrink-0" />
-
-          {/* Center Mobile Badge: Proudly Serving Manjeri for 25 Years */}
-          <div className="flex md:hidden flex-1 items-center justify-center px-1 min-w-0">
-            {/* Mobile Phones (<640px): 2-tier stacked badge that fits with pristine margins on ALL screens */}
-            <div className="sm:hidden inline-flex items-center gap-1.5 min-[380px]:gap-2 px-2.5 min-[380px]:px-3 py-1 rounded-xl bg-gradient-to-r from-red-50/95 via-white to-red-50/95 border border-red-200/90 shadow-xs max-w-full">
-              <span className="w-1.5 min-[380px]:w-2 h-1.5 min-[380px]:h-2 rounded-full bg-[#C4161C] animate-pulse shrink-0 shadow-[0_0_6px_rgba(196,22,28,0.5)]" />
-              <div className="flex flex-col text-left leading-[1.12] shrink-0">
-                <span className="text-[9.5px] min-[360px]:text-[10px] min-[390px]:text-[10.5px] font-bold text-gray-700 tracking-tight whitespace-nowrap">
-                  <span className="hidden min-[370px]:inline">Proudly </span>Serving Manjeri
-                </span>
-                <span className="text-[11px] min-[360px]:text-[11.5px] min-[390px]:text-[12px] font-black text-[#C4161C] tracking-tight whitespace-nowrap">
-                  For 25 Years
-                </span>
-              </div>
-            </div>
-
-            {/* Tablets (640px - 767px): Sleek full single-line pill */}
-            <div className="hidden sm:inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-50/90 border border-red-200/90 shadow-xs">
-              <span className="w-2 h-2 rounded-full bg-[#C4161C] animate-pulse shrink-0 shadow-[0_0_6px_rgba(196,22,28,0.5)]" />
-              <span className="text-xs font-extrabold text-[#111827] tracking-tight whitespace-nowrap">
-                Proudly Serving Manjeri for 25 Years
-              </span>
-            </div>
-          </div>
+          <div className="w-[125px] sm:w-[220px] shrink-0" />
 
           {/* Center Desktop Navigation Menu */}
           <nav className="hidden md:flex items-center gap-5 lg:gap-6 xl:gap-7 text-[13px] lg:text-[13.5px] font-semibold text-gray-800">
